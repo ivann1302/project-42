@@ -1,1 +1,1 @@
-// TODO: implement Cta widget
+export { Cta } from './ui/Cta'

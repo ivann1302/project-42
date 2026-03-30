@@ -1,0 +1,57 @@
+.root {
+  @include section-pad;
+
+  position: relative;
+  overflow: hidden;
+  background: $color-bg;
+}
+
+.glow {
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba($color-purple, 0.15) 0%,
+    rgba($color-blue, 0.06) 50%,
+    transparent 70%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xl;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.eyebrow {
+  @include eyebrow-text;
+
+  color: $color-accent;
+}
+
+.heading {
+  @include display-text($font-size-2xl);
+
+  max-width: 600px;
+  color: $color-text;
+
+  @include mobile {
+    font-size: $font-size-xl;
+  }
+}
+
+.sub {
+  @include body-text($font-size-md);
+
+  color: $color-text-muted;
+}
