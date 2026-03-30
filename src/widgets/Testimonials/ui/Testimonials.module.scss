@@ -1,0 +1,88 @@
+.root {
+  @include section-pad;
+
+  background: $color-bg;
+}
+
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: $spacing-2xl;
+  padding: 0;
+  list-style: none;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  @include card-base;
+
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  padding: $spacing-xl;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+  color: $color-accent;
+}
+
+.text {
+  @include body-text($font-size-base);
+
+  flex: 1;
+  font-style: italic;
+  line-height: 1.7;
+  color: $color-gray-light;
+
+  &::before {
+    content: '"';
+  }
+
+  &::after {
+    content: '"';
+  }
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-top: auto;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  font-family: $font-display;
+  font-size: $font-size-md;
+  font-weight: 700;
+  color: $color-white;
+  background: linear-gradient(135deg, $color-purple, $color-blue);
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  @include flex-center;
+}
+
+.name {
+  @include body-text($font-size-base);
+
+  font-weight: 600;
+  color: $color-text;
+}
+
+.role {
+  @include body-text($font-size-sm);
+
+  color: $color-text-muted;
+}

@@ -1,1 +1,1 @@
-// TODO: implement Testimonials widget
+export { Testimonials } from './ui/Testimonials'
