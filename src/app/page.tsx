@@ -1,22 +1,31 @@
-// Widget imports will be added as sections are built
-// import { Header } from '@/widgets/Header'
-// import { Hero } from '@/widgets/Hero'
-// ...
+import { Header } from '@/widgets/Header'
+import { Hero } from '@/widgets/Hero'
+import { WhyUs } from '@/widgets/WhyUs'
+import { Services } from '@/widgets/Services'
+import { HowItWorks } from '@/widgets/HowItWorks'
+import { Portfolio } from '@/widgets/Portfolio'
+import { Stats } from '@/widgets/Stats'
+import { Testimonials } from '@/widgets/Testimonials'
+import { Pricing } from '@/widgets/Pricing'
+import { Cta } from '@/widgets/Cta'
+import { Footer } from '@/widgets/Footer'
 
 export default function HomePage() {
   return (
-    <main>
-      {/* Sections are assembled here in order */}
-      {/* <Header /> */}
-      {/* <Hero /> */}
-      {/* <Services /> */}
-      {/* <HowItWorks /> */}
-      {/* <Portfolio /> */}
-      {/* <Stats /> */}
-      {/* <Testimonials /> */}
-      {/* <Pricing /> */}
-      {/* <Cta /> */}
-      {/* <Footer /> */}
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <WhyUs />
+        <Services />
+        <HowItWorks />
+        <Portfolio />
+        <Stats />
+        <Testimonials />
+        <Pricing />
+        <Cta />
+      </main>
+      <Footer />
+    </>
   )
 }
