@@ -1,1 +1,7 @@
-// TODO: define entity types
+export type Project = {
+  id: string
+  title: string
+  tags: string[]
+  imageUrl?: string
+  href?: string
+}
