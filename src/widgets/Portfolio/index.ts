@@ -1,1 +1,1 @@
-// TODO: implement Portfolio widget
+export { Portfolio } from './ui/Portfolio'

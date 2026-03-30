@@ -1,0 +1,91 @@
+.root {
+  @include section-pad;
+
+  background: $color-bg;
+}
+
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: $spacing-2xl;
+  padding: 0;
+  list-style: none;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  @include card-base;
+
+  overflow: hidden;
+  transition:
+    border-color $transition-base,
+    transform $transition-base;
+
+  &:hover {
+    border-color: rgba($color-purple, 0.5);
+    transform: translateY(-4px);
+  }
+}
+
+.image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform $transition-slow;
+
+  .card:hover & {
+    transform: scale(1.03);
+  }
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba($color-purple, 0.08), rgba($color-blue, 0.05));
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-lg;
+}
+
+.title {
+  @include body-text($font-size-md);
+
+  font-weight: 600;
+  color: $color-text;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  list-style: none;
+  padding: 0;
+}
+
+.tag {
+  @include eyebrow-text;
+
+  padding: 4px 10px;
+  font-size: 10px;
+  color: $color-accent;
+  background: rgba($color-purple, 0.1);
+  border: 1px solid rgba($color-purple, 0.2);
+  border-radius: $radius-pill;
+}
