@@ -7,7 +7,13 @@ import { Button } from '@/shared/ui'
 import { contactSchema, type ContactFormData } from '../model/schema'
 import styles from './ContactForm.module.scss'
 
-const SERVICES = ['UI/UX Дизайн', 'Веб-разработка', 'Мобильное приложение', 'SEO & Аналитика']
+const SERVICES = [
+  'Лендинг',
+  'Корпоративный сайт',
+  'GEO-оптимизация',
+  'Поддержка и развитие',
+  'Другое',
+]
 
 type Props = { onSuccess?: () => void }
 
@@ -83,9 +89,9 @@ export function ContactForm({ onSuccess }: Props) {
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label}>Услуга</label>
+        <label className={styles.label}>Тип проекта</label>
         <select className={styles.input} {...register('service')}>
-          <option value="">Выберите услугу</option>
+          <option value="">Выберите тип проекта</option>
           {SERVICES.map((s) => (
             <option key={s} value={s}>
               {s}
