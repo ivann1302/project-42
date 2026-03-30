@@ -1,1 +1,1 @@
-// TODO: implement Footer widget
+export { Footer } from './ui/Footer'

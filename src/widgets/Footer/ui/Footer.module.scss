@@ -1,0 +1,113 @@
+.root {
+  background: $color-bg-dark;
+  border-top: 1px solid $color-border;
+}
+
+.inner {
+  padding-top: $spacing-2xl;
+  padding-bottom: $spacing-xl;
+}
+
+.top {
+  @include flex-between;
+
+  align-items: flex-start;
+  gap: $spacing-xl;
+  padding-bottom: $spacing-xl;
+  border-bottom: 1px solid $color-border;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.logo {
+  @include display-text($font-size-md);
+
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: $color-text;
+}
+
+.accent {
+  color: $color-accent;
+}
+
+.tagline {
+  @include body-text($font-size-sm);
+
+  color: $color-text-muted;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  @include mobile {
+    flex-flow: row wrap;
+    gap: $spacing-md;
+  }
+}
+
+.navLink {
+  @include body-text($font-size-sm);
+
+  text-decoration: none;
+  color: $color-text-muted;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.social {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  color: $color-text-muted;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  transition:
+    color $transition-base,
+    border-color $transition-base;
+
+  &:hover {
+    color: $color-text;
+    border-color: rgba($color-white, 0.2);
+  }
+}
+
+.bottom {
+  @include flex-between;
+
+  padding-top: $spacing-xl;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+}
+
+.copy {
+  @include body-text($font-size-sm);
+
+  color: $color-text-muted;
+}
