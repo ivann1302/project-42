@@ -1,1 +1,1 @@
-// TODO: implement Hero widget
+export { Hero } from './ui/Hero'
