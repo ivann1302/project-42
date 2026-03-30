@@ -1,0 +1,77 @@
+.root {
+  @include section-pad;
+
+  background: $color-bg-section;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 720px;
+  margin-top: $spacing-2xl;
+  padding: 0;
+  list-style: none;
+  margin-inline: auto;
+}
+
+.step {
+  display: grid;
+  gap: $spacing-lg;
+  grid-template-columns: 64px 1fr;
+  position: relative;
+}
+
+.numWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-family: $font-display;
+  font-size: $font-size-sm;
+  font-weight: 700;
+  color: $color-accent;
+  background: rgba($color-purple, 0.12);
+  border: 1px solid rgba($color-purple, 0.3);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.line {
+  display: block;
+  flex: 1;
+  width: 1px;
+  min-height: 32px;
+  margin: $spacing-sm 0;
+  background: linear-gradient(to bottom, rgba($color-purple, 0.3), rgba($color-purple, 0.05));
+}
+
+.content {
+  padding-bottom: $spacing-2xl;
+
+  .step:last-child & {
+    padding-bottom: 0;
+  }
+}
+
+.title {
+  @include body-text($font-size-md);
+
+  margin-bottom: $spacing-sm;
+  font-weight: 600;
+  color: $color-text;
+}
+
+.desc {
+  @include body-text($font-size-base);
+
+  color: $color-text-muted;
+}

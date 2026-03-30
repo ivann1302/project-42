@@ -1,1 +1,1 @@
-// TODO: implement HowItWorks widget
+export { HowItWorks } from './ui/HowItWorks'
