@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv /home/ivan/project-42/9HIZj.webp /home/ivan/project-42/desktop.webp)",
+      "Bash(mv /home/ivan/project-42/uBoTW.webp /home/ivan/project-42/mobile.webp)"
+    ],
+    "additionalDirectories": ["/home/ivan/project-42"]
+  }
+}

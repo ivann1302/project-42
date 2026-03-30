@@ -1,0 +1,45 @@
+.root {
+  @include flex-col;
+
+  gap: $spacing-sm;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.eyebrow {
+  @include eyebrow-text;
+
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  color: $color-gray-light;
+  background: rgba($color-purple, 8%);
+  border: 1px solid rgba($color-purple, 25%);
+  border-radius: $radius-pill;
+
+  .light & {
+    color: $color-mint;
+    background: rgba($color-mint, 8%);
+    border-color: rgba($color-mint, 25%);
+  }
+}
+
+.heading {
+  font-size: $font-size-2xl;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: $color-white;
+
+  @include mobile {
+    font-size: $font-size-xl;
+  }
+}

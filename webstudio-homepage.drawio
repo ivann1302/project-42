@@ -1,0 +1,439 @@
+<mxfile host="vscode" modified="2026-03-29T10:00:00.000Z" agent="Claude" version="21.0.0">
+  <diagram id="homepage" name="Web Studio — Homepage">
+    <mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="0" page="0" pageScale="1" pageWidth="1440" pageHeight="2800" math="0" shadow="0" background="#0A0A0F">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===================== PAGE BACKGROUND ===================== -->
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0A0A0F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1440" height="2800" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== NAVBAR ===================== -->
+        <mxCell id="navbar-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0D0D15;strokeColor=#1E1E2E;strokeWidth=1;fillOpacity=90;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1440" height="72" as="geometry" />
+        </mxCell>
+        <!-- Logo dot grid icon -->
+        <mxCell id="logo-icon" value="⬛⬛&#xa;⬛⬛" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=8;fontColor=#A855F7;" vertex="1" parent="1">
+          <mxGeometry x="60" y="22" width="30" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="logo-text" value="PIXEL LAB" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontColor=#FFFFFF;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="88" y="22" width="110" height="28" as="geometry" />
+        </mxCell>
+        <!-- Nav links -->
+        <mxCell id="nav-l1" value="Услуги" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#AAAACC;" vertex="1" parent="1">
+          <mxGeometry x="530" y="22" width="80" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="nav-l2" value="Портфолио" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#AAAACC;" vertex="1" parent="1">
+          <mxGeometry x="630" y="22" width="100" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="nav-l3" value="О нас" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#FFFFFF;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="22" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="nav-l4" value="Контакты" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#AAAACC;" vertex="1" parent="1">
+          <mxGeometry x="840" y="22" width="90" height="28" as="geometry" />
+        </mxCell>
+        <!-- Nav CTA button -->
+        <mxCell id="nav-cta" value="Обсудить проект" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontSize=13;fontStyle=1;fontColor=#FFFFFF;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="18" width="150" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== HERO SECTION ===================== -->
+        <mxCell id="hero-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0A0A0F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="72" width="1440" height="680" as="geometry" />
+        </mxCell>
+        <!-- Gradient blob purple -->
+        <mxCell id="blob-purple" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;opacity=18;" vertex="1" parent="1">
+          <mxGeometry x="600" y="300" width="700" height="500" as="geometry" />
+        </mxCell>
+        <!-- Gradient blob pink -->
+        <mxCell id="blob-pink" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EC4899;strokeColor=none;opacity=12;" vertex="1" parent="1">
+          <mxGeometry x="200" y="420" width="500" height="400" as="geometry" />
+        </mxCell>
+        <!-- Gradient blob teal -->
+        <mxCell id="blob-teal" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#06B6D4;strokeColor=none;opacity=10;" vertex="1" parent="1">
+          <mxGeometry x="900" y="150" width="400" height="350" as="geometry" />
+        </mxCell>
+
+        <!-- Badge pill -->
+        <mxCell id="hero-badge" value="✦  Веб-студия полного цикла" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#1E1030;strokeColor=#7C3AED;strokeWidth=1;fontSize=13;fontColor=#A78BFA;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="520" y="150" width="260" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- H1 -->
+        <mxCell id="hero-h1-1" value="Создаём сайты," style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=68;fontStyle=1;fontColor=#FFFFFF;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="220" y="200" width="1000" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="hero-h1-2" value="которые продают" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=68;fontStyle=1;fontColor=#A855F7;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="220" y="280" width="1000" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Subtitle -->
+        <mxCell id="hero-sub" value="Дизайн, разработка и продвижение — всё в одной команде.&#xa;Запускаем проекты, которые привлекают клиентов." style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=18;fontColor=#888899;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="320" y="375" width="800" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- CTA Buttons -->
+        <mxCell id="hero-btn1" value="Начать проект" style="rounded=24;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontSize=16;fontStyle=1;fontColor=#FFFFFF;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="550" y="470" width="180" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="hero-btn2" value="Посмотреть работы  →" style="rounded=24;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#444466;fontSize=16;fontColor=#CCCCEE;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="750" y="470" width="200" height="52" as="geometry" />
+        </mxCell>
+
+        <!-- Floating card 1 — проект -->
+        <mxCell id="float-card1" value="" style="rounded=16;whiteSpace=wrap;html=1;fillColor=#151525;strokeColor=#2A2A4A;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="400" width="220" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="fc1-dot" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#10B981;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="96" y="420" width="10" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="fc1-label" value="Проект сдан" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=11;fontColor=#888899;" vertex="1" parent="1">
+          <mxGeometry x="112" y="414" width="120" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="fc1-title" value="E-commerce store" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=15;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="96" y="440" width="190" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="fc1-bar-bg" value="" style="rounded=4;whiteSpace=wrap;html=1;fillColor=#1E1E3A;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="96" y="476" width="188" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="fc1-bar" value="" style="rounded=4;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="96" y="476" width="140" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="fc1-pct" value="74% выполнено" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=11;fontColor=#888899;" vertex="1" parent="1">
+          <mxGeometry x="96" y="492" width="130" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Floating card 2 — rating -->
+        <mxCell id="float-card2" value="" style="rounded=16;whiteSpace=wrap;html=1;fillColor=#151525;strokeColor=#2A2A4A;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="380" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="fc2-stars" value="★ ★ ★ ★ ★" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontColor=#FBBF24;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="390" width="200" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="fc2-text" value="«Отличная команда, сдали&#xa;проект раньше срока!»" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=12;fontColor=#AAAACC;" vertex="1" parent="1">
+          <mxGeometry x="1155" y="420" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fc2-name" value="— Алексей К., CEO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=11;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="462" width="200" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== CLIENTS STRIP ===================== -->
+        <mxCell id="clients-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0D0D18;strokeColor=#1A1A2E;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="752" width="1440" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="clients-label" value="Нам доверяют:" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#555577;" vertex="1" parent="1">
+          <mxGeometry x="80" y="768" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cl1" value="ALPHA CO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontStyle=1;fontColor=#3A3A5A;" vertex="1" parent="1">
+          <mxGeometry x="240" y="768" width="130" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cl2" value="NEXO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontStyle=1;fontColor=#3A3A5A;" vertex="1" parent="1">
+          <mxGeometry x="420" y="768" width="100" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cl3" value="SKYLINE" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontStyle=1;fontColor=#3A3A5A;" vertex="1" parent="1">
+          <mxGeometry x="580" y="768" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cl4" value="ORBIT" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontStyle=1;fontColor=#3A3A5A;" vertex="1" parent="1">
+          <mxGeometry x="760" y="768" width="100" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cl5" value="FORGETECH" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontStyle=1;fontColor=#3A3A5A;" vertex="1" parent="1">
+          <mxGeometry x="920" y="768" width="140" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cl6" value="VANTA" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontStyle=1;fontColor=#3A3A5A;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="768" width="100" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== SERVICES SECTION ===================== -->
+        <mxCell id="services-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0A0A0F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="832" width="1440" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="srv-badge" value="Что мы делаем" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#1A0D30;strokeColor=#7C3AED;strokeWidth=1;fontSize=13;fontColor=#A78BFA;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="630" y="870" width="180" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="srv-h2" value="Наши услуги" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=48;fontStyle=1;fontColor=#FFFFFF;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="320" y="918" width="800" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="srv-sub" value="Полный спектр услуг для запуска вашего цифрового продукта" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontColor=#666688;" vertex="1" parent="1">
+          <mxGeometry x="380" y="980" width="680" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Service Card 1 — Design -->
+        <mxCell id="sc1" value="" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#12121E;strokeColor=#2A2A4A;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1030" width="290" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="sc1-icon-bg" value="" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#1E0D40;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="104" y="1054" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sc1-icon" value="✦" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=28;fontColor=#A855F7;" vertex="1" parent="1">
+          <mxGeometry x="104" y="1054" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sc1-title" value="UI/UX Дизайн" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="104" y="1126" width="240" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="sc1-desc" value="Создаём интерфейсы, которые интуитивно понятны и визуально безупречны. Прототипы, дизайн-система, адаптив." style="text;html=1;align=left;verticalAlign=top;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#777799;" vertex="1" parent="1">
+          <mxGeometry x="104" y="1164" width="246" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sc1-link" value="Подробнее →" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#A855F7;" vertex="1" parent="1">
+          <mxGeometry x="104" y="1276" width="130" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- Service Card 2 — Dev -->
+        <mxCell id="sc2" value="" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#12121E;strokeColor=#7C3AED;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1030" width="290" height="300" as="geometry" />
+        </mxCell>
+        <!-- Purple top accent -->
+        <mxCell id="sc2-accent" value="" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;opacity=15;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1030" width="290" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="sc2-icon-bg" value="" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#4C1D95;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="424" y="1054" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sc2-icon" value="&lt;&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="424" y="1054" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sc2-title" value="Разработка" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="424" y="1126" width="240" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="sc2-desc" value="Разрабатываем быстрые и масштабируемые сайты и веб-приложения. React, Next.js, Node.js, любые CMS." style="text;html=1;align=left;verticalAlign=top;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#AAAACC;" vertex="1" parent="1">
+          <mxGeometry x="424" y="1164" width="246" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sc2-badge" value="Популярно" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontSize=11;fontColor=#FFFFFF;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="424" y="1276" width="90" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- Service Card 3 — SEO -->
+        <mxCell id="sc3" value="" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#12121E;strokeColor=#2A2A4A;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="1030" width="290" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="sc3-icon-bg" value="" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#0D2040;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="744" y="1054" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sc3-icon" value="↑" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=30;fontStyle=1;fontColor=#38BDF8;" vertex="1" parent="1">
+          <mxGeometry x="744" y="1054" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sc3-title" value="SEO &amp; Продвижение" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="744" y="1126" width="240" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="sc3-desc" value="Выводим сайты в топ поисковых систем. Технический аудит, семантика, контент-стратегия, ссылочный профиль." style="text;html=1;align=left;verticalAlign=top;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#777799;" vertex="1" parent="1">
+          <mxGeometry x="744" y="1164" width="246" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sc3-link" value="Подробнее →" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#38BDF8;" vertex="1" parent="1">
+          <mxGeometry x="744" y="1276" width="130" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- Service Card 4 — Brand -->
+        <mxCell id="sc4" value="" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#12121E;strokeColor=#2A2A4A;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="1030" width="290" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="sc4-icon-bg" value="" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#200D30;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1064" y="1054" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sc4-icon" value="◈" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=28;fontColor=#EC4899;" vertex="1" parent="1">
+          <mxGeometry x="1064" y="1054" width="56" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sc4-title" value="Брендинг" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1064" y="1126" width="240" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="sc4-desc" value="Создаём визуальную идентичность бренда: логотип, фирменный стиль, гайдлайны и брендбук." style="text;html=1;align=left;verticalAlign=top;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#777799;" vertex="1" parent="1">
+          <mxGeometry x="1064" y="1164" width="246" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sc4-link" value="Подробнее →" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#EC4899;" vertex="1" parent="1">
+          <mxGeometry x="1064" y="1276" width="130" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== PORTFOLIO SECTION ===================== -->
+        <mxCell id="portfolio-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0D0D18;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="1392" width="1440" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="port-badge" value="Наши работы" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#1A0D30;strokeColor=#7C3AED;strokeWidth=1;fontSize=13;fontColor=#A78BFA;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="630" y="1428" width="180" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="port-h2" value="Портфолио" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=48;fontStyle=1;fontColor=#FFFFFF;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1476" width="800" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Portfolio card 1 -->
+        <mxCell id="pc1" value="" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#1A1A30;strokeColor=#2A2A4A;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1556" width="390" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="pc1-img" value="" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#2D1B60;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1576" width="350" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="pc1-img-label" value="E-commerce Platform" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontColor=#A855F7;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1660" width="350" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pc1-tag1" value="React" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#1E0D40;strokeColor=#7C3AED;strokeWidth=1;fontSize=11;fontColor=#A78BFA;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1812" width="70" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="pc1-tag2" value="Node.js" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#1E0D40;strokeColor=#7C3AED;strokeWidth=1;fontSize=11;fontColor=#A78BFA;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1812" width="70" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="pc1-title" value="Магазин электроники" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1848" width="310" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pc1-desc" value="Полноценный интернет-магазин с личным кабинетом и аналитикой" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#777799;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1878" width="310" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pc1-arrow" value="↗" style="text;html=1;align=right;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=24;fontColor=#7C3AED;" vertex="1" parent="1">
+          <mxGeometry x="410" y="1878" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Portfolio card 2 -->
+        <mxCell id="pc2" value="" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#1A1A30;strokeColor=#2A2A4A;" vertex="1" parent="1">
+          <mxGeometry x="500" y="1556" width="390" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="pc2-img" value="" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#1A2040;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="520" y="1576" width="350" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="pc2-img-label" value="SaaS Dashboard" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontColor=#38BDF8;" vertex="1" parent="1">
+          <mxGeometry x="520" y="1660" width="350" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pc2-tag1" value="Next.js" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#0D1E40;strokeColor=#38BDF8;strokeWidth=1;fontSize=11;fontColor=#38BDF8;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="520" y="1812" width="70" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="pc2-tag2" value="TypeScript" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#0D1E40;strokeColor=#38BDF8;strokeWidth=1;fontSize=11;fontColor=#38BDF8;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="600" y="1812" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="pc2-title" value="Аналитическая платформа" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="520" y="1848" width="310" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pc2-desc" value="SaaS-дашборд для мониторинга KPI и бизнес-метрик в реальном времени" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#777799;" vertex="1" parent="1">
+          <mxGeometry x="520" y="1878" width="310" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pc2-arrow" value="↗" style="text;html=1;align=right;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=24;fontColor=#38BDF8;" vertex="1" parent="1">
+          <mxGeometry x="830" y="1878" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Portfolio card 3 -->
+        <mxCell id="pc3" value="" style="rounded=20;whiteSpace=wrap;html=1;fillColor=#1A1A30;strokeColor=#2A2A4A;" vertex="1" parent="1">
+          <mxGeometry x="920" y="1556" width="390" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="pc3-img" value="" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#281030;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="940" y="1576" width="350" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="pc3-img-label" value="Brand Identity" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontColor=#EC4899;" vertex="1" parent="1">
+          <mxGeometry x="940" y="1660" width="350" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pc3-tag1" value="Figma" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#280D30;strokeColor=#EC4899;strokeWidth=1;fontSize=11;fontColor=#EC4899;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="940" y="1812" width="70" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="pc3-tag2" value="Брендинг" style="rounded=12;whiteSpace=wrap;html=1;fillColor=#280D30;strokeColor=#EC4899;strokeWidth=1;fontSize=11;fontColor=#EC4899;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="1812" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="pc3-title" value="Фирменный стиль стартапа" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="940" y="1848" width="310" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pc3-desc" value="Полный брендинг от концепции до гайдлайнов для финтех-стартапа" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#777799;" vertex="1" parent="1">
+          <mxGeometry x="940" y="1878" width="310" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pc3-arrow" value="↗" style="text;html=1;align=right;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=24;fontColor=#EC4899;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="1878" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== STATS SECTION ===================== -->
+        <mxCell id="stats-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0A0A0F;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="2012" width="1440" height="280" as="geometry" />
+        </mxCell>
+        <!-- Divider line -->
+        <mxCell id="stats-div" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#1E1E3A;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="2012" width="1280" height="1" as="geometry" />
+        </mxCell>
+
+        <!-- Stat 1 -->
+        <mxCell id="st1-num" value="120+" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=56;fontStyle=1;fontColor=#A855F7;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="80" y="2040" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="st1-label" value="Проектов запущено" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontColor=#666688;" vertex="1" parent="1">
+          <mxGeometry x="80" y="2110" width="280" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Stat 2 -->
+        <mxCell id="st2-num" value="5 лет" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=56;fontStyle=1;fontColor=#38BDF8;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2040" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="st2-label" value="На рынке" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontColor=#666688;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2110" width="280" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Stat 3 -->
+        <mxCell id="st3-num" value="98%" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=56;fontStyle=1;fontColor=#EC4899;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="720" y="2040" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="st3-label" value="Довольных клиентов" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontColor=#666688;" vertex="1" parent="1">
+          <mxGeometry x="720" y="2110" width="280" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Stat 4 -->
+        <mxCell id="st4-num" value="14 дней" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=56;fontStyle=1;fontColor=#10B981;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="2040" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="st4-label" value="Средний срок MVP" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=16;fontColor=#666688;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="2110" width="320" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== CTA SECTION ===================== -->
+        <mxCell id="cta-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0D0D18;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="2292" width="1440" height="340" as="geometry" />
+        </mxCell>
+        <!-- CTA card -->
+        <mxCell id="cta-card" value="" style="rounded=24;whiteSpace=wrap;html=1;fillColor=#14103A;strokeColor=#3D2A8A;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="2322" width="1160" height="270" as="geometry" />
+        </mxCell>
+        <!-- CTA glow -->
+        <mxCell id="cta-glow" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;opacity=20;" vertex="1" parent="1">
+          <mxGeometry x="400" y="2300" width="600" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="cta-h2" value="Готовы запустить проект?" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=44;fontStyle=1;fontColor=#FFFFFF;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="240" y="2355" width="960" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cta-sub" value="Обсудим вашу идею и предложим решение. Первая консультация — бесплатно." style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=17;fontColor=#9999BB;" vertex="1" parent="1">
+          <mxGeometry x="340" y="2416" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cta-btn" value="Написать нам" style="rounded=24;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=none;fontSize=18;fontStyle=1;fontColor=#FFFFFF;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="575" y="2466" width="200" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cta-tg" value="или напишите в Telegram" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#555577;" vertex="1" parent="1">
+          <mxGeometry x="440" y="2532" width="220" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cta-tg-link" value="@pixellab_studio" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#38BDF8;" vertex="1" parent="1">
+          <mxGeometry x="655" y="2532" width="180" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== FOOTER ===================== -->
+        <mxCell id="footer-bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#080810;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="2632" width="1440" height="168" as="geometry" />
+        </mxCell>
+        <mxCell id="footer-div" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#1E1E2E;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="0" y="2632" width="1440" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="footer-logo" value="PIXEL LAB" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="80" y="2660" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="footer-tagline" value="Создаём цифровые продукты с душой" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#444466;" vertex="1" parent="1">
+          <mxGeometry x="80" y="2696" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="footer-l1" value="Услуги" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#555577;" vertex="1" parent="1">
+          <mxGeometry x="560" y="2660" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="footer-l2" value="Портфолио" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#555577;" vertex="1" parent="1">
+          <mxGeometry x="660" y="2660" width="100" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="footer-l3" value="О нас" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#555577;" vertex="1" parent="1">
+          <mxGeometry x="780" y="2660" width="80" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="footer-l4" value="Контакты" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#555577;" vertex="1" parent="1">
+          <mxGeometry x="880" y="2660" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="footer-copy" value="© 2026 Pixel Lab. Все права защищены." style="text;html=1;align=right;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#333355;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="2756" width="360" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="footer-policy" value="Политика конфиденциальности" style="text;html=1;align=left;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=13;fontColor=#333355;" vertex="1" parent="1">
+          <mxGeometry x="80" y="2756" width="240" height="24" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

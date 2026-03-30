@@ -1,0 +1,76 @@
+// ─── Neutral scale ───────────────────────────────────────────────
+$color-black: #03030d;
+$color-dark: #080812;
+$color-dark-alt: #0a0a1a;
+$color-card: #12122a;
+$color-gray-dark: #6060a0;
+$color-gray-mid: #8080b0;
+$color-gray-light: #a0a0c0;
+$color-white: #fff;
+
+// ─── Semantic surfaces ───────────────────────────────────────────
+$color-bg: $color-dark;
+$color-bg-dark: $color-black;
+$color-bg-section: $color-dark-alt;
+
+// ─── Text ────────────────────────────────────────────────────────
+$color-text: $color-white;
+$color-text-muted: $color-gray-dark;
+$color-text-inv: $color-dark;
+
+// ─── Accent ──────────────────────────────────────────────────────
+$color-purple: #7c5cf6;
+$color-purple-dark: #6344e0;
+$color-blue: #4f8ef7;
+$color-mint: #2dd4bf;
+$color-accent: $color-purple;
+$color-accent-dark: $color-purple-dark;
+$color-accent-alt: $color-blue;
+$color-accent-mint: $color-mint;
+
+// ─── Borders ─────────────────────────────────────────────────────
+$color-border: rgba(255 255 255 / 10%);
+$color-border-dark: rgba(255 255 255 / 6%);
+$color-border-card: rgba($color-purple, 30%);
+
+// ─── Typography ──────────────────────────────────────────────────
+$font-display: var(--font-display), sans-serif;
+$font-body: var(--font-body), sans-serif;
+$font-size-xs: 12px;
+$font-size-sm: 13px;
+$font-size-base: 14px;
+$font-size-md: 16px;
+$font-size-lg: 20px;
+$font-size-xl: 32px;
+$font-size-2xl: 48px;
+$font-size-3xl: 72px;
+$font-size-hero: 96px;
+
+// ─── Spacing ─────────────────────────────────────────────────────
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 40px;
+$spacing-2xl: 64px;
+$spacing-3xl: 100px;
+
+// ─── Breakpoints ─────────────────────────────────────────────────
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+$bp-wide: 1440px;
+
+// ─── Layout ──────────────────────────────────────────────────────
+$container-max: 1440px;
+$container-pad-desktop: 80px;
+$container-pad-tablet: 40px;
+$container-pad-mobile: 20px;
+
+// ─── Misc ────────────────────────────────────────────────────────
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 20px;
+$radius-pill: 100px;
+$transition-base: 0.25s ease;
+$transition-slow: 0.4s ease;

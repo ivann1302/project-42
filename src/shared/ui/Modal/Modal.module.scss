@@ -1,0 +1,83 @@
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000;
+  padding: $spacing-md;
+  background: rgba($color-black, 70%);
+  inset: 0;
+  backdrop-filter: blur(6px);
+  animation: fade-in 0.2s ease;
+}
+
+.modal {
+  @include card-base;
+
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slide-up 0.25s ease;
+
+  @include mobile {
+    max-height: 95vh;
+  }
+}
+
+.header {
+  @include flex-between;
+
+  padding: $spacing-lg $spacing-lg $spacing-md;
+  border-bottom: 1px solid $color-border;
+}
+
+.title {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-white;
+}
+
+.close {
+  @include flex-center;
+
+  width: 32px;
+  height: 32px;
+  color: $color-gray-mid;
+  border-radius: $radius-sm;
+  transition:
+    color $transition-base,
+    background $transition-base;
+
+  &:hover {
+    color: $color-white;
+    background: rgba($color-white, 8%);
+  }
+}
+
+.body {
+  padding: $spacing-lg;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

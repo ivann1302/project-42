@@ -1,0 +1,121 @@
+// ─── Breakpoints ─────────────────────────────────────────────────
+@mixin mobile {
+  @media (max-width: #{$bp-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $bp-tablet) and (max-width: #{$bp-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $bp-desktop) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media (max-width: #{$bp-desktop - 1px}) {
+    @content;
+  }
+}
+
+// ─── Layout helpers ──────────────────────────────────────────────
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $container-pad-desktop;
+  padding-left: $container-pad-desktop;
+
+  @include tablet {
+    padding-right: $container-pad-tablet;
+    padding-left: $container-pad-tablet;
+  }
+
+  @include mobile {
+    padding-right: $container-pad-mobile;
+    padding-left: $container-pad-mobile;
+  }
+}
+
+// ─── Typography ──────────────────────────────────────────────────
+@mixin display-text($size: $font-size-2xl) {
+  font-family: $font-display;
+  font-size: $size;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+@mixin body-text($size: $font-size-md) {
+  font-family: $font-body;
+  font-size: $size;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@mixin eyebrow-text {
+  font-family: $font-body;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+// ─── UI helpers ──────────────────────────────────────────────────
+@mixin text-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin gradient-text($from: $color-purple, $to: $color-blue) {
+  background: linear-gradient(135deg, $from, $to);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin card-base {
+  background: $color-card;
+  border: 1px solid $color-border-card;
+  border-radius: $radius-lg;
+}
+
+@mixin glass {
+  background: rgba($color-card, 80%);
+  border: 1px solid $color-border;
+  backdrop-filter: blur(12px);
+}
+
+@mixin section-pad {
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
+
+  @include mobile {
+    padding-top: $spacing-2xl;
+    padding-bottom: $spacing-2xl;
+  }
+}
