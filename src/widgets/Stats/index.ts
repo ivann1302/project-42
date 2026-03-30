@@ -1,1 +1,1 @@
-// TODO: implement Stats widget
+export { Stats } from './ui/Stats'

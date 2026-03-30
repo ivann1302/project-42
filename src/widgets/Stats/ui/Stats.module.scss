@@ -1,0 +1,64 @@
+.root {
+  padding-top: $spacing-2xl;
+  padding-bottom: $spacing-2xl;
+  background: $color-bg-section;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include mobile {
+    gap: $spacing-xl;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+  position: relative;
+  padding: $spacing-lg;
+  text-align: center;
+
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 0;
+    width: 1px;
+    height: 60%;
+    background: $color-border;
+
+    @include mobile {
+      display: none;
+    }
+  }
+}
+
+.value {
+  @include gradient-text;
+
+  font-family: $font-display;
+  font-size: $font-size-2xl;
+  font-weight: 700;
+  line-height: 1;
+
+  @include mobile {
+    font-size: $font-size-xl;
+  }
+}
+
+.label {
+  @include body-text($font-size-sm);
+
+  max-width: 120px;
+  color: $color-text-muted;
+}
