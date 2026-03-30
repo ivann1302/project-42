@@ -1,1 +1,1 @@
-// TODO: implement Pricing widget
+export { Pricing } from './ui/Pricing'
