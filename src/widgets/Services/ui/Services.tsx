@@ -1,10 +1,11 @@
-import { Container, Icon, SectionTitle } from '@/shared/ui'
+import { Container, Icon, SectionTitle, StarField } from '@/shared/ui'
 import { services } from '@/entities/Service'
 import styles from './Services.module.scss'
 
 export function Services() {
   return (
     <section className={styles.root} id="services">
+      <StarField blobColor="rgba(79,142,247,0.28)" blobPosition="top-right" />
       <Container>
         <SectionTitle eyebrow="Что мы делаем" align="center">
           Полный цикл разработки

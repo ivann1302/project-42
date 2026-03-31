@@ -1,4 +1,4 @@
-import { Container, Icon, SectionTitle } from '@/shared/ui'
+import { Container, Icon, SectionTitle, StarField } from '@/shared/ui'
 import type { IconName } from '@/shared/ui/Icon/icons'
 import styles from './WhyUs.module.scss'
 
@@ -50,6 +50,7 @@ const items: Item[] = [
 export function WhyUs() {
   return (
     <section className={styles.root} id="why">
+      <StarField blobColor="rgba(124,92,246,0.28)" blobPosition="bottom-left" />
       <Container>
         <SectionTitle eyebrow="Наш подход" align="center">
           Мы устроены иначе
