@@ -9,6 +9,8 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  background-color: $color-bg;
+  color-scheme: dark;
 }
 
 body {
