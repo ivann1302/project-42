@@ -3,44 +3,76 @@
   @include section-fade-bottom($color-bg);
 
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   background: $color-bg-section;
 }
 
-.grid {
+// ─── Stack container ─────────────────────────────────────────────
+.stack {
+  --card-height: 280px;
+  --card-gap: 24px;
+
   display: grid;
-  gap: $spacing-lg;
-  grid-template-columns: repeat(3, 1fr);
+  gap: var(--card-gap);
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, var(--card-height));
   margin-top: $spacing-2xl;
-  padding: 0;
+  padding: 0 0 calc(6 * var(--card-gap));
   list-style: none;
 
-  @include tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   @include mobile {
-    grid-template-columns: 1fr;
+    --card-height: 240px;
+    --card-gap: 16px;
   }
 }
 
+// ─── Sticky wrapper ──────────────────────────────────────────────
 .card {
-  @include card-base;
+  position: sticky;
+  top: 10vh;
+  height: var(--card-height);
+  padding-top: calc(var(--index, 0) * 4px);
+  perspective: 1000px;
+}
+
+// ─── Animated content surface ────────────────────────────────────
+.cardContent {
+  // Each card gets a progressively stronger purple tint via --index.
+  // rgb() modern syntax needed: $color-purple = #7c5cf6 = 124 92 246
+  --card-tint: calc(0.1 + 0.03 * var(--index, 0));
 
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
-  padding: $spacing-xl;
-  transition:
-    border-color $transition-base,
-    transform $transition-base;
+  width: 100%;
+  height: 100%;
+  padding: $spacing-lg $spacing-xl;
+  background: linear-gradient(
+    135deg,
+    $color-bg-section 0%,
+    rgb(124 92 246 / var(--card-tint)) 100%
+  );
+  border: 1px solid rgba($color-purple, 0.15);
+  border-radius: $radius-lg;
+  transition: border-color $transition-base;
+  transform: scale(calc(1 - 0.08 * var(--progress, 0))) translateY(calc(-6vh * var(--progress, 0)))
+    rotateX(calc(-15deg * var(--progress, 0)));
+  filter: brightness(calc(1 - 0.35 * var(--progress, 0)));
+  box-sizing: border-box;
+  transform-origin: 50% 0%;
+  transform-style: preserve-3d;
+  will-change: transform, filter;
 
   &:hover {
     border-color: rgba($color-purple, 0.5);
-    transform: translateY(-2px);
+  }
+
+  @include mobile {
+    padding: $spacing-md $spacing-lg;
   }
 }
 
+// ─── Card internals ──────────────────────────────────────────────
 .iconWrap {
   display: flex;
   align-items: center;

@@ -1,4 +1,4 @@
-import { Container, SectionTitle } from '@/shared/ui'
+import { Container, SectionTitle, StarField } from '@/shared/ui'
 import styles from './HowItWorks.module.scss'
 
 const steps = [
@@ -39,6 +39,7 @@ const steps = [
 export function HowItWorks() {
   return (
     <section className={styles.root} id="process">
+      <StarField />
       <Container>
         <SectionTitle eyebrow="Процесс" align="center">
           От замысла до результата

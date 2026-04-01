@@ -1,10 +1,13 @@
-import { Button, Container } from '@/shared/ui'
+import { Button, Container, StarField } from '@/shared/ui'
 import styles from './Hero.module.scss'
 
 export function Hero() {
   return (
     <section className={styles.root} id="hero">
-      <div className={styles.glow} aria-hidden="true" />
+      <StarField />
+      <div className={styles.blob1} aria-hidden="true" />
+      <div className={styles.blob2} aria-hidden="true" />
+      <div className={styles.blob3} aria-hidden="true" />
       <Container className={styles.inner}>
         <span className={styles.eyebrow}>— Project 42</span>
         <h1 className={styles.heading}>

@@ -1,9 +1,13 @@
 .root {
+  position: relative;
   padding-top: $spacing-2xl;
   padding-bottom: $spacing-2xl;
+  overflow: hidden;
   background: $color-bg-section;
   border-top: 1px solid $color-border;
   border-bottom: 1px solid $color-border;
+
+  @include section-fade-bottom($color-bg);
 }
 
 .list {

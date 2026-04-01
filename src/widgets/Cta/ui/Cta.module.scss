@@ -1,26 +1,105 @@
 .root {
   @include section-pad;
+  @include section-fade-bottom($color-bg-dark);
 
   position: relative;
   overflow: hidden;
   background: $color-bg;
 }
 
-.glow {
+:global {
+  @keyframes cta-blob1-move {
+    0%,
+    100% {
+      transform: translate(-50%, 0) scale(1);
+    }
+    33% {
+      transform: translate(calc(-50% - 160px), -100px) scale(1.18);
+    }
+    66% {
+      transform: translate(calc(-50% + 140px), 90px) scale(0.86);
+    }
+  }
+
+  @keyframes cta-blob2-move {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    40% {
+      transform: translate(-180px, -130px) scale(1.2);
+    }
+    75% {
+      transform: translate(100px, 110px) scale(0.84);
+    }
+  }
+
+  @keyframes cta-blob3-move {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    30% {
+      transform: translate(170px, -110px) scale(1.15);
+    }
+    70% {
+      transform: translate(-130px, 130px) scale(0.87);
+    }
+  }
+}
+
+.blob1 {
   position: absolute;
-  bottom: -20%;
+  top: -10%;
   left: 50%;
   width: 700px;
-  height: 500px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba($color-purple, 0.15) 0%,
-    rgba($color-blue, 0.06) 50%,
-    transparent 70%
-  );
-  transform: translateX(-50%);
-  pointer-events: none;
+  height: 550px;
+  background: radial-gradient(ellipse at center, rgba($color-purple, 0.32) 0%, transparent 65%);
+  border-radius: 50%;
   filter: blur(40px);
+  pointer-events: none;
+  animation: cta-blob1-move 8s ease-in-out infinite;
+
+  @include mobile {
+    width: 360px;
+    height: 300px;
+  }
+}
+
+.blob2 {
+  position: absolute;
+  top: 10%;
+  right: -5%;
+  width: 480px;
+  height: 380px;
+  background: radial-gradient(ellipse at center, rgba($color-blue, 0.24) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: cta-blob2-move 10s ease-in-out infinite;
+
+  @include mobile {
+    width: 260px;
+    height: 200px;
+  }
+}
+
+.blob3 {
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  width: 400px;
+  height: 320px;
+  background: radial-gradient(ellipse at center, rgba($color-mint, 0.18) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: cta-blob3-move 12s ease-in-out infinite;
+
+  @include mobile {
+    width: 220px;
+    height: 180px;
+  }
 }
 
 .inner {

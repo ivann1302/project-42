@@ -5,7 +5,7 @@ import styles from './Services.module.scss'
 export function Services() {
   return (
     <section className={styles.root} id="services">
-      <StarField blobColor="rgba(79,142,247,0.28)" blobPosition="top-right" />
+      <StarField />
       <Container>
         <SectionTitle eyebrow="Что мы делаем" align="center">
           Полный цикл разработки

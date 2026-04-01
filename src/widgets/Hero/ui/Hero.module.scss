@@ -6,27 +6,102 @@
   background: $color-bg;
 
   @include flex-center;
+  @include section-fade-bottom($color-bg-section);
 }
 
-.glow {
+/* stylelint-disable keyframes-name-pattern */
+:global {
+  @keyframes blob1-move {
+    0%,
+    100% {
+      transform: translate(-50%, 0) scale(1);
+    }
+    33% {
+      transform: translate(calc(-50% - 180px), -120px) scale(1.2);
+    }
+    66% {
+      transform: translate(calc(-50% + 160px), 100px) scale(0.85);
+    }
+  }
+
+  @keyframes blob2-move {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    40% {
+      transform: translate(-200px, -150px) scale(1.2);
+    }
+    75% {
+      transform: translate(100px, 130px) scale(0.82);
+    }
+  }
+
+  @keyframes blob3-move {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    30% {
+      transform: translate(200px, -130px) scale(1.18);
+    }
+    70% {
+      transform: translate(-150px, 150px) scale(0.85);
+    }
+  }
+}
+
+.blob1 {
   position: absolute;
-  top: 10%;
+  top: 5%;
   left: 50%;
   width: 800px;
-  height: 600px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba($color-purple, 0.18) 0%,
-    rgba($color-blue, 0.08) 40%,
-    transparent 70%
-  );
-  transform: translateX(-50%);
-  pointer-events: none;
+  height: 650px;
+  background: radial-gradient(ellipse at center, rgba($color-purple, 0.38) 0%, transparent 65%);
+  border-radius: 50%;
   filter: blur(40px);
+  pointer-events: none;
+  animation: blob1-move 7s ease-in-out infinite;
 
   @include mobile {
     width: 400px;
-    height: 400px;
+    height: 340px;
+  }
+}
+
+.blob2 {
+  position: absolute;
+  top: 15%;
+  right: 0;
+  width: 580px;
+  height: 480px;
+  background: radial-gradient(ellipse at center, rgba($color-blue, 0.3) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: blob2-move 9s ease-in-out infinite;
+
+  @include mobile {
+    width: 300px;
+    height: 250px;
+  }
+}
+
+.blob3 {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba($color-mint, 0.22) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: blob3-move 11s ease-in-out infinite;
+
+  @include mobile {
+    width: 260px;
+    height: 210px;
   }
 }
 

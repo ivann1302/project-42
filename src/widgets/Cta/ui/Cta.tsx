@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Button, Container, Modal } from '@/shared/ui'
+import { Button, Container, Modal, StarField } from '@/shared/ui'
 import { ContactForm } from '@/features/ContactForm'
 import styles from './Cta.module.scss'
 
@@ -10,7 +10,10 @@ export function Cta() {
 
   return (
     <section className={styles.root} id="cta">
-      <div className={styles.glow} aria-hidden="true" />
+      <StarField />
+      <div className={styles.blob1} aria-hidden="true" />
+      <div className={styles.blob2} aria-hidden="true" />
+      <div className={styles.blob3} aria-hidden="true" />
       <Container className={styles.inner}>
         <p className={styles.eyebrow}>Готовы начать?</p>
         <h2 className={styles.heading}>

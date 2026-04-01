@@ -50,7 +50,7 @@ const items: Item[] = [
 export function WhyUs() {
   return (
     <section className={styles.root} id="why">
-      <StarField blobColor="rgba(124,92,246,0.28)" blobPosition="bottom-left" />
+      <StarField />
       <Container>
         <SectionTitle eyebrow="Наш подход" align="center">
           Мы устроены иначе

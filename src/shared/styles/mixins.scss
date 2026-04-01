@@ -113,6 +113,22 @@
   backdrop-filter: blur(12px);
 }
 
+@mixin section-fade-bottom($to-color, $height: 120px) {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    height: $height;
+    background: linear-gradient(to bottom, transparent, $to-color);
+    pointer-events: none;
+  }
+}
+
 @mixin section-pad {
   padding-top: $spacing-3xl;
   padding-bottom: $spacing-3xl;

@@ -1,6 +1,9 @@
 .root {
   @include section-pad;
+  @include section-fade-bottom($color-bg);
 
+  position: relative;
+  overflow: hidden;
   background: $color-bg-section;
 }
 

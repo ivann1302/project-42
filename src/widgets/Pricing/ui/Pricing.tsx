@@ -1,10 +1,11 @@
-import { Button, Container, Icon, SectionTitle } from '@/shared/ui'
+import { Button, Container, Icon, SectionTitle, StarField } from '@/shared/ui'
 import { pricingPlans } from '@/entities/PricingPlan'
 import styles from './Pricing.module.scss'
 
 export function Pricing() {
   return (
     <section className={styles.root} id="pricing">
+      <StarField />
       <Container>
         <SectionTitle eyebrow="Прозрачные цены" align="center">
           Выберите формат работы

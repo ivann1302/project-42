@@ -1,10 +1,11 @@
-import { Container, SectionTitle } from '@/shared/ui'
+import { Container, SectionTitle, StarField } from '@/shared/ui'
 import { projects } from '@/entities/Project'
 import styles from './Portfolio.module.scss'
 
 export function Portfolio() {
   return (
     <section className={styles.root} id="portfolio">
+      <StarField />
       <Container>
         <SectionTitle eyebrow="Наши работы" align="center">
           Проекты

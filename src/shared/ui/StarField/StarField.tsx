@@ -13,8 +13,9 @@ type Star = {
 }
 
 type StarFieldProps = {
-  blobColor: string
+  blobColor?: string
   blobPosition?: 'top-right' | 'bottom-left'
+  blobTop?: string
 }
 
 function generateStars(count: number): Star[] {
@@ -31,7 +32,7 @@ function generateStars(count: number): Star[] {
   })
 }
 
-export function StarField({ blobColor, blobPosition = 'top-right' }: StarFieldProps) {
+export function StarField({ blobColor, blobPosition = 'top-right', blobTop }: StarFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const blobRef = useRef<HTMLDivElement>(null)
 
@@ -135,14 +136,17 @@ export function StarField({ blobColor, blobPosition = 'top-right' }: StarFieldPr
   return (
     <>
       <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
-      <div
-        ref={blobRef}
-        className={`${styles.blob} ${blobClass}`}
-        aria-hidden="true"
-        style={{
-          background: `radial-gradient(ellipse at center, ${blobColor} 0%, transparent 65%)`,
-        }}
-      />
+      {blobColor && (
+        <div
+          ref={blobRef}
+          className={`${styles.blob} ${blobClass}`}
+          aria-hidden="true"
+          style={{
+            background: `radial-gradient(ellipse at center, ${blobColor} 0%, transparent 65%)`,
+            ...(blobTop !== undefined && { top: blobTop }),
+          }}
+        />
+      )}
     </>
   )
 }

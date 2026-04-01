@@ -1,4 +1,4 @@
-import { Container } from '@/shared/ui'
+import { Container, StarField } from '@/shared/ui'
 import styles from './Stats.module.scss'
 
 const stats = [
@@ -11,6 +11,7 @@ const stats = [
 export function Stats() {
   return (
     <section className={styles.root}>
+      <StarField />
       <Container>
         <ul className={styles.list} role="list">
           {stats.map((stat) => (
