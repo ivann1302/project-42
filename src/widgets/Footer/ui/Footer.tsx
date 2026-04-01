@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { label: 'Как работаем', href: '#process' },
   { label: 'Портфолио', href: '#portfolio' },
   { label: 'Цены', href: '#pricing' },
+  { label: 'FAQ', href: '#faq' },
 ]
 
 export function Footer() {
