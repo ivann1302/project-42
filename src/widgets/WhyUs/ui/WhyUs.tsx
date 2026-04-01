@@ -1,6 +1,3 @@
-'use client'
-
-import { useEffect, useRef } from 'react'
 import { Container, Icon, SectionTitle, StarField } from '@/shared/ui'
 import type { IconName } from '@/shared/ui/Icon/icons'
 import styles from './WhyUs.module.scss'
@@ -51,50 +48,6 @@ const items: Item[] = [
 ]
 
 export function WhyUs() {
-  const stackRef = useRef<HTMLUListElement>(null)
-
-  useEffect(() => {
-    const stack = stackRef.current
-    if (!stack) return
-
-    let rafId: number
-    let stackTop = 0
-    let stickyTopPx = 0
-    const cards: HTMLLIElement[] = []
-
-    function measure() {
-      stackTop = stack!.getBoundingClientRect().top + window.scrollY
-      stickyTopPx = window.innerHeight * 0.1
-      cards.length = 0
-      stack!.querySelectorAll<HTMLLIElement>('li').forEach((li) => cards.push(li))
-    }
-
-    function onScroll() {
-      cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(() => {
-        const scrollY = window.scrollY
-        for (let i = 0; i < cards.length - 1; i++) {
-          const cardHeight = cards[i].offsetHeight
-          const exitStart = stackTop + cards[i + 1].offsetTop - stickyTopPx
-          const progress = Math.min(Math.max((scrollY - exitStart) / cardHeight, 0), 1)
-          cards[i].style.setProperty('--progress', String(progress))
-        }
-      })
-    }
-
-    measure()
-    onScroll()
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', measure)
-
-    return () => {
-      cancelAnimationFrame(rafId)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', measure)
-    }
-  }, [])
-
   return (
     <section className={styles.root} id="why">
       <StarField />
@@ -102,20 +55,14 @@ export function WhyUs() {
         <SectionTitle eyebrow="Наш подход" align="center">
           Мы устроены иначе
         </SectionTitle>
-        <ul className={styles.stack} ref={stackRef} role="list">
-          {items.map((item, i) => (
-            <li
-              key={item.title}
-              className={styles.card}
-              style={{ '--index': i } as React.CSSProperties}
-            >
-              <div className={styles.cardContent}>
-                <span className={styles.iconWrap} aria-hidden="true">
-                  <Icon name={item.icon} size={24} />
-                </span>
-                <h3 className={styles.title}>{item.title}</h3>
-                <p className={styles.desc}>{item.description}</p>
-              </div>
+        <ul className={styles.grid} role="list">
+          {items.map((item) => (
+            <li key={item.title} className={styles.card}>
+              <span className={styles.iconWrap} aria-hidden="true">
+                <Icon name={item.icon} size={24} />
+              </span>
+              <h3 className={styles.title}>{item.title}</h3>
+              <p className={styles.desc}>{item.description}</p>
             </li>
           ))}
         </ul>
