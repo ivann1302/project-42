@@ -46,7 +46,11 @@ export function HowItWorks() {
         </SectionTitle>
         <ol className={styles.list}>
           {steps.map((step, idx) => (
-            <li key={step.num} className={styles.step}>
+            <li
+              key={step.num}
+              className={styles.step}
+              style={{ '--i': idx } as React.CSSProperties}
+            >
               <div className={styles.numWrap}>
                 <span className={styles.num}>{step.num}</span>
                 {idx < steps.length - 1 && <span className={styles.line} aria-hidden="true" />}
