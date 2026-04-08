@@ -14,9 +14,9 @@ export function Portfolio() {
           {projects.map((project) => (
             <li key={project.id} className={styles.card}>
               <div className={styles.image} aria-hidden="true">
-                {project.imageUrl ? (
+                {project.desktopImageUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={project.imageUrl} alt={project.title} className={styles.img} />
+                  <img src={project.desktopImageUrl} alt={project.title} className={styles.img} />
                 ) : (
                   <div className={styles.placeholder} />
                 )}

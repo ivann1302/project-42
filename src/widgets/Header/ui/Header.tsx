@@ -8,7 +8,7 @@ import styles from './Header.module.scss'
 const NAV_LINKS = [
   { label: 'Услуги', href: '#services' },
   { label: 'Как работаем', href: '#process' },
-  { label: 'Портфолио', href: '#portfolio' },
+  { label: 'Портфолио', href: '/portfolio' },
   { label: 'Цены', href: '#pricing' },
 ]
 
@@ -30,16 +30,27 @@ export function Header() {
         </Link>
 
         <nav className={[styles.nav, menuOpen && styles.navOpen].filter(Boolean).join(' ')}>
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={styles.navLink}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) =>
+            link.href.startsWith('/') ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={styles.navLink}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className={styles.navLink}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ),
+          )}
         </nav>
 
         <Button size="sm" href="#cta" className={styles.cta}>

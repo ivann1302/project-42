@@ -15,9 +15,8 @@ describe('Faq', () => {
 
   it('all answers are hidden on initial render', () => {
     render(<Faq />)
-    const regions = screen.getAllByRole('region')
-    regions.forEach((region) => {
-      expect(region.closest('[data-open]')).toHaveAttribute('data-open', 'false')
+    screen.getAllByRole('button').forEach((btn) => {
+      expect(btn).toHaveAttribute('aria-expanded', 'false')
     })
   })
 

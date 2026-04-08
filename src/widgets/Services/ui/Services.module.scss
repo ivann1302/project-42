@@ -3,76 +3,45 @@
   @include section-fade-bottom($color-bg-section);
 
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   background: $color-bg;
 }
 
 .grid {
   display: grid;
   gap: $spacing-lg;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   margin-top: $spacing-2xl;
   padding: 0;
   list-style: none;
 
+  & > li {
+    grid-column: span 2;
+  }
+
   @include desktop {
     & > li:nth-child(4) {
-      grid-column: 1 / 2;
-      margin-left: calc(50% + #{$spacing-lg} / 2);
+      grid-column: 2 / span 2;
     }
 
     & > li:nth-child(5) {
-      grid-column: 2 / 3;
+      grid-column: 4 / span 2;
     }
   }
 
   @include tablet {
     grid-template-columns: repeat(2, 1fr);
+
+    & > li {
+      grid-column: span 1;
+    }
   }
 
   @include mobile {
     grid-template-columns: 1fr;
+
+    & > li {
+      grid-column: span 1;
+    }
   }
-}
-
-.card {
-  @include card-base;
-
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-md;
-  padding: $spacing-xl;
-  transition:
-    border-color $transition-base,
-    transform $transition-base;
-
-  &:hover {
-    border-color: rgba($color-purple, 0.5);
-    transform: translateY(-2px);
-  }
-}
-
-.iconWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  color: $color-accent;
-  background: rgba($color-purple, 0.12);
-  border-radius: $radius-md;
-  flex-shrink: 0;
-}
-
-.title {
-  @include body-text($font-size-md);
-
-  font-weight: 600;
-  color: $color-text;
-}
-
-.desc {
-  @include body-text($font-size-base);
-
-  color: $color-text-muted;
 }

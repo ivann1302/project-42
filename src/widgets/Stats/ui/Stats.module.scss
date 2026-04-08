@@ -2,7 +2,7 @@
   position: relative;
   padding-top: $spacing-2xl;
   padding-bottom: $spacing-2xl;
-  overflow: hidden;
+  overflow: clip;
   background: $color-bg-section;
   border-top: 1px solid $color-border;
   border-bottom: 1px solid $color-border;

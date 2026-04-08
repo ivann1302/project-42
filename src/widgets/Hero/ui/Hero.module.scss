@@ -2,23 +2,25 @@
   position: relative;
   min-height: 100svh;
   padding-top: 72px;
-  overflow: hidden;
+  overflow: clip;
   background: $color-bg;
 
   @include flex-center;
   @include section-fade-bottom($color-bg-section);
 }
 
-/* stylelint-disable keyframes-name-pattern */
+/* stylelint-disable keyframes-name-pattern, selector-pseudo-class-no-unknown */
 :global {
   @keyframes blob1-move {
     0%,
     100% {
       transform: translate(-50%, 0) scale(1);
     }
+
     33% {
       transform: translate(calc(-50% - 180px), -120px) scale(1.2);
     }
+
     66% {
       transform: translate(calc(-50% + 160px), 100px) scale(0.85);
     }
@@ -29,9 +31,11 @@
     100% {
       transform: translate(0, 0) scale(1);
     }
+
     40% {
       transform: translate(-200px, -150px) scale(1.2);
     }
+
     75% {
       transform: translate(100px, 130px) scale(0.82);
     }
@@ -42,9 +46,11 @@
     100% {
       transform: translate(0, 0) scale(1);
     }
+
     30% {
       transform: translate(200px, -130px) scale(1.18);
     }
+
     70% {
       transform: translate(-150px, 150px) scale(0.85);
     }
@@ -91,8 +97,8 @@
   position: absolute;
   bottom: 5%;
   left: 5%;
-  width: 500px;
-  height: 400px;
+  width: 550px;
+  height: 440px;
   background: radial-gradient(ellipse at center, rgba($color-mint, 0.22) 0%, transparent 65%);
   border-radius: 50%;
   filter: blur(40px);
@@ -127,7 +133,11 @@
   @include display-text($font-size-3xl);
 
   max-width: 800px;
-  color: $color-text;
+  color: transparent;
+  background: linear-gradient(135deg, $color-purple 0%, $color-blue 55%, $color-mint 100%);
+  background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 
   @include tablet {
     font-size: $font-size-2xl;
@@ -136,6 +146,10 @@
   @include mobile {
     font-size: $font-size-xl;
     line-height: 1.15;
+  }
+
+  .span {
+    color: $color-text;
   }
 }
 

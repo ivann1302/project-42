@@ -3,7 +3,7 @@
   @include section-fade-bottom($color-bg);
 
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   background: $color-bg-section;
 }
 
@@ -29,11 +29,11 @@
 
 .card {
   @include card-base;
+  @include card-hover;
 
   display: flex;
   flex-direction: column;
   gap: $spacing-xl;
-  position: relative;
   padding: $spacing-xl;
 }
 

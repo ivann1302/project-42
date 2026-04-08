@@ -3,19 +3,22 @@
   @include section-fade-bottom($color-bg-dark);
 
   position: relative;
-  overflow: hidden;
+  overflow-x: clip;
   background: $color-bg;
 }
 
+/* stylelint-disable keyframes-name-pattern, selector-pseudo-class-no-unknown */
 :global {
   @keyframes cta-blob1-move {
     0%,
     100% {
       transform: translate(-50%, 0) scale(1);
     }
+
     33% {
       transform: translate(calc(-50% - 160px), -100px) scale(1.18);
     }
+
     66% {
       transform: translate(calc(-50% + 140px), 90px) scale(0.86);
     }
@@ -26,9 +29,11 @@
     100% {
       transform: translate(0, 0) scale(1);
     }
+
     40% {
       transform: translate(-180px, -130px) scale(1.2);
     }
+
     75% {
       transform: translate(100px, 110px) scale(0.84);
     }
@@ -39,9 +44,11 @@
     100% {
       transform: translate(0, 0) scale(1);
     }
+
     30% {
       transform: translate(170px, -110px) scale(1.15);
     }
+
     70% {
       transform: translate(-130px, 130px) scale(0.87);
     }
@@ -119,13 +126,22 @@
 }
 
 .heading {
-  @include display-text($font-size-2xl);
+  @include display-text($font-size-3xl);
 
   max-width: 600px;
-  color: $color-text;
+  color: transparent;
+  background: linear-gradient(135deg, $color-purple 0%, $color-blue 55%, $color-mint 100%);
+  background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @include tablet {
+    font-size: $font-size-2xl;
+  }
 
   @include mobile {
     font-size: $font-size-xl;
+    line-height: 1.15;
   }
 }
 

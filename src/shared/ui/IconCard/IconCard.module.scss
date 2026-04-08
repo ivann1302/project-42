@@ -1,0 +1,34 @@
+.root {
+  @include card-base;
+  @include card-hover;
+
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-xl;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: $color-accent;
+  background: rgba($color-purple, 0.12);
+  border-radius: $radius-md;
+  flex-shrink: 0;
+}
+
+.title {
+  @include body-text($font-size-md);
+
+  font-weight: 600;
+  color: $color-mint;
+}
+
+.desc {
+  @include body-text($font-size-base);
+
+  color: $color-text-muted;
+}

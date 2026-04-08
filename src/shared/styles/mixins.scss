@@ -107,6 +107,42 @@
   border-radius: $radius-lg;
 }
 
+@mixin card-hover {
+  position: relative;
+  isolation: isolate;
+  transition:
+    border-color $transition-base,
+    box-shadow $transition-base,
+    transform $transition-base;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba($color-purple, 0.1) 0%,
+      transparent 60%
+    );
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity $transition-base;
+    inset: 0;
+  }
+
+  &:hover {
+    border-color: rgba($color-purple, 0.55);
+    box-shadow:
+      0 0 24px rgba($color-purple, 0.3),
+      0 0 60px rgba($color-purple, 0.12);
+    transform: translateY(-4px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
 @mixin glass {
   background: rgba($color-card, 80%);
   border: 1px solid $color-border;

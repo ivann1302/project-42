@@ -11,9 +11,9 @@ export function Hero() {
       <Container className={styles.inner}>
         <span className={styles.eyebrow}>— Project 42</span>
         <h1 className={styles.heading}>
-          Не ещё одна
+          <span className={styles.span}>Создаем сайты</span> и приложения,
           <br />
-          веб-студия
+          которые не бросают
         </h1>
         <p className={styles.sub}>
           Решаем задачи бизнеса.

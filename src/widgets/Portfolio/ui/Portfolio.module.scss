@@ -3,7 +3,7 @@
   @include section-fade-bottom($color-bg-section);
 
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   background: $color-bg;
 }
 
@@ -26,16 +26,9 @@
 
 .card {
   @include card-base;
+  @include card-hover;
 
   overflow: hidden;
-  transition:
-    border-color $transition-base,
-    transform $transition-base;
-
-  &:hover {
-    border-color: rgba($color-purple, 0.5);
-    transform: translateY(-4px);
-  }
 }
 
 .image {

@@ -1,5 +1,5 @@
-import { Container, Icon, SectionTitle, StarField } from '@/shared/ui'
-import type { IconName } from '@/shared/ui/Icon/icons'
+import { Container, GlowBlob, IconCard, SectionTitle, StarField } from '@/shared/ui'
+import type { IconName } from '@/shared/ui'
 import styles from './WhyUs.module.scss'
 
 type Item = {
@@ -13,7 +13,7 @@ const items: Item[] = [
     icon: 'target',
     title: 'Мало проектов',
     description:
-      'Одновременно в работе не более 5 проектов. Каждый получает максимальное внимание команды.',
+      'Одновременно в работе не более 4 проектов. Каждый получает максимальное внимание команды.',
   },
   {
     icon: 'zap',
@@ -51,19 +51,19 @@ export function WhyUs() {
   return (
     <section className={styles.root} id="why">
       <StarField />
+      <GlowBlob size={900} y={62} className={styles.blob} />
       <Container>
         <SectionTitle eyebrow="Наш подход" align="center">
           Мы устроены иначе
         </SectionTitle>
         <ul className={styles.grid} role="list">
           {items.map((item) => (
-            <li key={item.title} className={styles.card}>
-              <span className={styles.iconWrap} aria-hidden="true">
-                <Icon name={item.icon} size={24} />
-              </span>
-              <h3 className={styles.title}>{item.title}</h3>
-              <p className={styles.desc}>{item.description}</p>
-            </li>
+            <IconCard
+              key={item.title}
+              icon={item.icon}
+              title={item.title}
+              description={item.description}
+            />
           ))}
         </ul>
       </Container>

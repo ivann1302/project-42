@@ -7,6 +7,12 @@
   background: $color-bg-section;
 }
 
+.blob {
+  @include tablet-down {
+    display: none;
+  }
+}
+
 .grid {
   display: grid;
   gap: $spacing-lg;
@@ -22,46 +28,4 @@
   @include mobile {
     grid-template-columns: 1fr;
   }
-}
-
-.card {
-  @include card-base;
-
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-md;
-  padding: $spacing-xl;
-  transition:
-    border-color $transition-base,
-    transform $transition-base;
-
-  &:hover {
-    border-color: rgba($color-purple, 0.5);
-    transform: translateY(-2px);
-  }
-}
-
-.iconWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  color: $color-accent;
-  background: rgba($color-purple, 0.12);
-  border-radius: $radius-md;
-  flex-shrink: 0;
-}
-
-.title {
-  @include body-text($font-size-md);
-
-  font-weight: 600;
-  color: $color-text;
-}
-
-.desc {
-  @include body-text($font-size-base);
-
-  color: $color-text-muted;
 }

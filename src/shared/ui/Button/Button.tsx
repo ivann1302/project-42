@@ -9,6 +9,8 @@ type Props = PropsWithClassName & {
   variant?: ButtonVariant
   size?: ButtonSize
   href?: string
+  target?: string
+  rel?: string
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   loading?: boolean
@@ -20,6 +22,8 @@ export function Button({
   variant = 'primary',
   size = 'md',
   href,
+  target,
+  rel,
   type = 'button',
   disabled,
   loading,
@@ -31,7 +35,12 @@ export function Button({
 
   if (href) {
     return (
-      <Link href={href} className={cls}>
+      <Link
+        href={href}
+        className={cls}
+        target={target}
+        rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}
+      >
         {children}
       </Link>
     )

@@ -1,0 +1,156 @@
+@use '@/shared/styles/mixins' as *;
+
+.root {
+  @include section-pad;
+
+  background: $color-bg;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-2xl;
+  text-align: center;
+}
+
+.eyebrow {
+  @include eyebrow-text;
+
+  color: $color-accent;
+}
+
+.heading {
+  @include display-text($font-size-2xl);
+
+  color: $color-text;
+}
+
+.subtitle {
+  @include body-text($font-size-md);
+
+  max-width: 480px;
+  color: $color-text-muted;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  align-items: center;
+  gap: $spacing-2xl;
+  grid-template-columns: 1fr 1fr;
+  padding: $spacing-2xl 0;
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  @include tablet {
+    gap: $spacing-xl;
+    grid-template-columns: 1fr;
+  }
+
+  @include mobile {
+    gap: $spacing-xl;
+    grid-template-columns: 1fr;
+  }
+}
+
+.reversed {
+  .mockups {
+    order: -1;
+
+    @include tablet {
+      order: 0;
+    }
+
+    @include mobile {
+      order: 0;
+    }
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $spacing-lg;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  @include eyebrow-text;
+
+  padding: 4px 10px;
+  font-size: 10px;
+  color: $color-accent;
+  background: rgba($color-purple, 0.1);
+  border: 1px solid rgba($color-purple, 0.2);
+  border-radius: $radius-pill;
+}
+
+.title {
+  @include display-text($font-size-xl);
+
+  color: $color-text;
+}
+
+.description {
+  @include body-text($font-size-md);
+
+  color: $color-text-muted;
+}
+
+.icon {
+  margin-left: $spacing-xs;
+  vertical-align: middle;
+}
+
+.mockups {
+  display: flex;
+  align-items: flex-end;
+  gap: $spacing-md;
+}
+
+.desktop {
+  flex: 7;
+  overflow: hidden;
+  border-radius: $radius-md;
+  aspect-ratio: 16 / 10;
+}
+
+.mobile {
+  flex: 3;
+  overflow: hidden;
+  border-radius: $radius-md;
+  aspect-ratio: 9 / 16;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba($color-purple, 0.08), rgba($color-blue, 0.05));
+  border: 1px solid $color-border-dark;
+  border-radius: $radius-md;
+}
+
+.mockupImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

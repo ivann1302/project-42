@@ -25,7 +25,7 @@ export function Faq() {
             const answerId = `faq-answer-${item.id}`
             const triggerId = `faq-trigger-${item.id}`
             return (
-              <li key={item.id} className={styles.item} data-open={String(isOpen)}>
+              <li key={item.id} className={`${styles.item} ${isOpen ? styles.itemOpen : ''}`}>
                 <button
                   id={triggerId}
                   className={styles.trigger}

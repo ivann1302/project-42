@@ -1,4 +1,4 @@
-import { Container, Icon, SectionTitle, StarField } from '@/shared/ui'
+import { Container, Icon, SectionTitle, StarField, GlowBlob } from '@/shared/ui'
 import { testimonials } from '@/entities/Testimonial'
 import styles from './Testimonials.module.scss'
 
@@ -6,6 +6,7 @@ export function Testimonials() {
   return (
     <section className={styles.root}>
       <StarField />
+      <GlowBlob color="purple" size={800} y={75} />
       <Container>
         <SectionTitle eyebrow="Что говорят клиенты" align="center">
           Отзывы

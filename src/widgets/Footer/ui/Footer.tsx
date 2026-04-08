@@ -5,7 +5,7 @@ import styles from './Footer.module.scss'
 const NAV_LINKS = [
   { label: 'Услуги', href: '#services' },
   { label: 'Как работаем', href: '#process' },
-  { label: 'Портфолио', href: '#portfolio' },
+  { label: 'Портфолио', href: '/portfolio' },
   { label: 'Цены', href: '#pricing' },
   { label: 'FAQ', href: '#faq' },
 ]
@@ -23,11 +23,17 @@ export function Footer() {
           </div>
 
           <nav className={styles.nav} aria-label="Навигация в подвале">
-            {NAV_LINKS.map((link) => (
-              <a key={link.href} href={link.href} className={styles.navLink}>
-                {link.label}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) =>
+              link.href.startsWith('/') ? (
+                <Link key={link.href} href={link.href} className={styles.navLink}>
+                  {link.label}
+                </Link>
+              ) : (
+                <a key={link.href} href={link.href} className={styles.navLink}>
+                  {link.label}
+                </a>
+              ),
+            )}
           </nav>
 
           <div className={styles.social}>

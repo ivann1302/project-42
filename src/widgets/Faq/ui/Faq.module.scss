@@ -3,12 +3,13 @@
 
   position: relative;
   overflow: hidden;
+  background: $color-bg;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  max-width: 760px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -17,12 +18,12 @@
   transition:
     border-color $transition-base,
     background $transition-base;
+}
 
-  &[data-open='true'] {
-    border-left-color: $color-accent;
-    background: rgba($color-purple, 0.08);
-    border-radius: 0 $radius-sm $radius-sm 0;
-  }
+.itemOpen {
+  border-left-color: $color-accent;
+  background: rgba($color-purple, 0.08);
+  border-radius: 0 $radius-sm $radius-sm 0;
 }
 
 .trigger {
@@ -54,14 +55,14 @@
 }
 
 .question {
-  @include body-text($font-size-md);
+  @include body-text($font-size-lg);
 
   flex: 1;
   font-weight: 600;
   color: $color-text;
 
   @include mobile {
-    font-size: $font-size-base;
+    font-size: $font-size-md;
   }
 }
 
@@ -70,7 +71,7 @@
   color: $color-text-muted;
   transition: transform $transition-base;
 
-  .item[data-open='true'] & {
+  .itemOpen & {
     color: $color-accent;
     transform: rotate(180deg);
   }
@@ -81,7 +82,7 @@
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.35s ease;
 
-  .item[data-open='true'] & {
+  .itemOpen & {
     grid-template-rows: 1fr;
   }
 }
@@ -91,7 +92,7 @@
 }
 
 .answer {
-  @include body-text($font-size-base);
+  @include body-text($font-size-md);
 
   padding: 0 $spacing-xl $spacing-lg calc(#{$spacing-xl} + 28px + #{$spacing-md});
   color: $color-text-muted;
