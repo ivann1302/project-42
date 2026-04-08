@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
 import { Container, SectionTitle, StarField } from '@/shared/ui'
 import styles from './HowItWorks.module.scss'
 
@@ -37,6 +40,26 @@ const steps = [
 ]
 
 export function HowItWorks() {
+  const listRef = useRef<HTMLOListElement>(null)
+
+  useEffect(() => {
+    const el = listRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add(styles.visible)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.15 },
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className={styles.root} id="process">
       <StarField />
@@ -44,7 +67,7 @@ export function HowItWorks() {
         <SectionTitle eyebrow="Процесс" align="center">
           От замысла до результата
         </SectionTitle>
-        <ol className={styles.list}>
+        <ol ref={listRef} className={styles.list}>
           {steps.map((step, idx) => (
             <li
               key={step.num}
