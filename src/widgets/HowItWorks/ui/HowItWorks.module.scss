@@ -1,9 +1,34 @@
+/* stylelint-disable keyframes-name-pattern */
+:global {
+  @keyframes hw-step-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hw-line-grow {
+    from {
+      transform: scaleY(0);
+    }
+
+    to {
+      transform: scaleY(1);
+    }
+  }
+}
+
 .root {
   @include section-pad;
   @include section-fade-bottom($color-bg);
 
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   background: $color-bg-section;
 }
 
@@ -23,6 +48,17 @@
   gap: $spacing-lg;
   grid-template-columns: 64px 1fr;
   position: relative;
+  opacity: 0;
+}
+
+.list.visible .step {
+  animation: hw-step-in 400ms ease-out forwards;
+  animation-delay: calc(var(--i) * 400ms);
+}
+
+.list.visible .line {
+  animation: hw-line-grow 300ms ease-in-out forwards;
+  animation-delay: calc(var(--i) * 400ms + 200ms);
 }
 
 .numWrap {
@@ -54,7 +90,9 @@
   width: 1px;
   min-height: 32px;
   margin: $spacing-sm 0;
-  background: linear-gradient(to bottom, rgba($color-purple, 0.3), rgba($color-purple, 0.05));
+  background: linear-gradient(to bottom, rgba($color-mint, 0.6), rgba($color-mint, 0.1));
+  transform-origin: top;
+  transform: scaleY(0);
 }
 
 .content {
@@ -77,4 +115,16 @@
   @include body-text($font-size-base);
 
   color: $color-text-muted;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    opacity: 1;
+    animation: none;
+  }
+
+  .line {
+    transform: scaleY(1);
+    animation: none;
+  }
 }
