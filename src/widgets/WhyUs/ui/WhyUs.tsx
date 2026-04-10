@@ -1,53 +1,68 @@
-import { Container, GlowBlob, IconCard, SectionTitle, StarField } from '@/shared/ui'
+'use client'
+
+import { useEffect, useRef } from 'react'
+import { Container, GlowBlob, Icon, SectionTitle, StarField } from '@/shared/ui'
 import type { IconName } from '@/shared/ui'
 import styles from './WhyUs.module.scss'
 
-type Item = {
+type Comparison = {
   icon: IconName
-  title: string
-  description: string
+  them: string
+  us: string
 }
 
-const items: Item[] = [
+const comparisons: Comparison[] = [
   {
     icon: 'target',
-    title: 'Мало проектов',
-    description:
-      'Одновременно в работе не более 4 проектов. Каждый получает максимальное внимание команды.',
+    them: '10+ проектов параллельно',
+    us: 'Не более 4 проектов в работе',
   },
   {
     icon: 'zap',
-    title: 'AI как инструмент',
-    description:
-      'Нейросети ускоряют рутину, не заменяют экспертизу. Ниже цена — не значит ниже качество.',
+    them: 'AI игнорируют или скрывают',
+    us: 'AI — инструмент скорости',
   },
   {
     icon: 'layers',
-    title: 'Отлаженные процессы',
-    description:
-      'Выверенные процессы и AI-инструменты дают скорость и качество большой студии при стоимости небольшой команды.',
+    them: 'Смета растёт без объяснений',
+    us: 'Отлаженные процессы, честная цена',
   },
   {
     icon: 'code',
-    title: 'Полный цикл',
-    description:
-      'Дизайн, разработка, SEO, GEO, поддержка — всё под одной крышей. Без потерь на стыках между подрядчиками.',
+    them: 'SEO — отдельный подрядчик',
+    us: 'Дизайн, SEO, GEO — всё в одном',
   },
   {
     icon: 'shield',
-    title: 'Код без замков',
-    description:
-      'Чистый, документированный код. Если понадобится другой специалист — он подхватит проект без боли.',
+    them: 'Код — чёрный ящик',
+    us: 'Чистый код без замков',
   },
   {
     icon: 'rocket',
-    title: 'Результат без балласта',
-    description:
-      'Не раздуваем смету, не пишем отчёты ради отчётов и не держим менеджеров, которые съедают ваш бюджет. Только работа и результат.',
+    them: 'Менеджеры съедают бюджет',
+    us: 'Только работа и результат',
   },
 ]
 
 export function WhyUs() {
+  const gridRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = gridRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add(styles.visible)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.15 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className={styles.root} id="why">
       <StarField />
@@ -56,16 +71,36 @@ export function WhyUs() {
         <SectionTitle eyebrow="Наш подход" align="center">
           Мы устроены иначе
         </SectionTitle>
-        <ul className={styles.grid} role="list">
-          {items.map((item) => (
-            <IconCard
-              key={item.title}
-              icon={item.icon}
-              title={item.title}
-              description={item.description}
-            />
-          ))}
-        </ul>
+        <div className={styles.versus} ref={gridRef}>
+          {/* Колонка «Обычно» */}
+          <div className={styles.colThem}>
+            <div className={styles.colHeader}>Обычно</div>
+            {comparisons.map((c, i) => (
+              <div key={c.icon} className={styles.row} style={{ '--i': i } as React.CSSProperties}>
+                <span className={styles.dot} aria-hidden="true" />
+                <span>{c.them}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Разделитель VS */}
+          <div className={styles.divider}>
+            <div className={styles.dividerLine} />
+            <div className={styles.badge}>VS</div>
+            <div className={styles.dividerLine} />
+          </div>
+
+          {/* Колонка «Мы» */}
+          <div className={styles.colUs}>
+            <div className={styles.colHeader}>Мы</div>
+            {comparisons.map((c, i) => (
+              <div key={c.icon} className={styles.row} style={{ '--i': i } as React.CSSProperties}>
+                <span>{c.us}</span>
+                <Icon name={c.icon} size={22} className={styles.icon} />
+              </div>
+            ))}
+          </div>
+        </div>
       </Container>
     </section>
   )

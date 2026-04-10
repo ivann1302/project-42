@@ -43,7 +43,9 @@
 
   @include mobile {
     flex-direction: column;
+    align-items: center;
     gap: $spacing-lg;
+    text-align: center;
   }
 }
 
@@ -78,6 +80,7 @@
 
   @include mobile {
     flex-flow: row wrap;
+    justify-content: center;
     gap: $spacing-md;
   }
 }
@@ -126,7 +129,7 @@
 
   @include mobile {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: $spacing-sm;
   }
 }

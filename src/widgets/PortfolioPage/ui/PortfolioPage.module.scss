@@ -6,6 +6,12 @@
   background: $color-bg;
 }
 
+.container {
+  @include mobile {
+    padding-top: 50px;
+  }
+}
+
 .header {
   display: flex;
   flex-direction: column;
@@ -43,9 +49,11 @@
 
 .row {
   display: grid;
-  align-items: center;
-  gap: $spacing-2xl;
-  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg $spacing-2xl;
+  grid-template:
+    'text    mockups' auto
+    'link    link' auto
+    / 1fr 1fr;
   padding: $spacing-2xl 0;
   border-bottom: 1px solid $color-border;
 
@@ -54,35 +62,86 @@
   }
 
   @include tablet {
-    gap: $spacing-xl;
+    gap: $spacing-xl 0;
     grid-template-columns: 1fr;
+    grid-template-areas:
+      'text'
+      'mockups'
+      'link';
   }
 
   @include mobile {
-    gap: $spacing-xl;
+    gap: $spacing-xl 0;
     grid-template-columns: 1fr;
+    grid-template-areas:
+      'text'
+      'mockups'
+      'link';
   }
 }
 
 .reversed {
-  .mockups {
-    order: -1;
+  grid-template-areas:
+    'mockups text'
+    'link    link';
 
-    @include tablet {
-      order: 0;
-    }
+  @include tablet {
+    grid-template-areas:
+      'text'
+      'mockups'
+      'link';
+  }
 
-    @include mobile {
-      order: 0;
-    }
+  @include mobile {
+    grid-template-areas:
+      'text'
+      'mockups'
+      'link';
   }
 }
 
 .text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: $spacing-lg;
+  grid-area: text;
+}
+
+.achievements {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: 0;
+  list-style: none;
+}
+
+.achievement {
+  @include body-text($font-size-base);
+
+  position: relative;
+  padding-left: 16px;
+  color: $color-text-muted;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background: $color-accent-mint;
+    border-radius: 50%;
+  }
+}
+
+.link {
+  grid-area: link;
+  place-self: start start;
+
+  @include mobile {
+    justify-self: center;
+  }
 }
 
 .tags {
@@ -125,32 +184,30 @@
   display: flex;
   align-items: flex-end;
   gap: $spacing-md;
+  grid-area: mockups;
 }
 
 .desktop {
   flex: 7;
   overflow: hidden;
   border-radius: $radius-md;
-  aspect-ratio: 16 / 10;
 }
 
 .mobile {
   flex: 3;
   overflow: hidden;
   border-radius: $radius-md;
-  aspect-ratio: 9 / 16;
 }
 
 .placeholder {
-  width: 100%;
-  height: 100%;
+  aspect-ratio: 16 / 10;
   background: linear-gradient(135deg, rgba($color-purple, 0.08), rgba($color-blue, 0.05));
   border: 1px solid $color-border-dark;
   border-radius: $radius-md;
 }
 
 .mockupImg {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }

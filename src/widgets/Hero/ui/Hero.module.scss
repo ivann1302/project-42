@@ -136,7 +136,6 @@
   color: transparent;
   background: linear-gradient(135deg, $color-purple 0%, $color-blue 55%, $color-mint 100%);
   background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
 
   @include tablet {
@@ -148,8 +147,9 @@
     line-height: 1.15;
   }
 
-  .span {
-    color: $color-text;
+  .aiLabel {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
   }
 }
 

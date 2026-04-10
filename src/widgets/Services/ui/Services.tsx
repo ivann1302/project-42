@@ -1,8 +1,31 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
 import { Container, GlowBlob, IconCard, SectionTitle, StarField } from '@/shared/ui'
 import { services } from '@/entities/Service'
 import styles from './Services.module.scss'
 
 export function Services() {
+  const gridRef = useRef<HTMLUListElement>(null)
+
+  useEffect(() => {
+    const el = gridRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add(styles.visible)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 },
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className={styles.root} id="services">
       <StarField />
@@ -11,7 +34,7 @@ export function Services() {
         <SectionTitle eyebrow="Что мы делаем" align="center">
           Полный цикл разработки
         </SectionTitle>
-        <ul className={styles.grid} role="list">
+        <ul ref={gridRef} className={styles.grid} role="list">
           {services.map((service) => (
             <IconCard
               key={service.id}

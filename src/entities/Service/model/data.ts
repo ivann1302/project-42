@@ -30,6 +30,13 @@ export const services: Service[] = [
       'Оптимизация под AI-поисковики: Google AI Overviews, ChatGPT, Perplexity. Новый канал трафика уже сейчас.',
   },
   {
+    id: 'yandex-direct',
+    icon: 'target',
+    title: 'Яндекс.Директ',
+    description:
+      'Настройка и запуск рекламных кампаний в Яндекс.Директ. Целевой трафик с первого дня без лишних расходов.',
+  },
+  {
     id: 'support',
     icon: 'headset',
     title: 'Поддержка и развитие',

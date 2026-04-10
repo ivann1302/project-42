@@ -1,0 +1,233 @@
+<h2>Как перестроить секцию «Мы устроены иначе»?</h2>
+<p class="subtitle">Текущий вид — 6 одинаковых карточек, как у всех. Вот 3 направления, которые выделят тебя среди конкурентов.</p>
+
+<style>
+  /* === Mockup-level styles === */
+  .mock-section {
+    background: #0d0d1a;
+    border-radius: 12px;
+    padding: 32px 28px;
+    color: #e0e0ff;
+    font-family: system-ui, sans-serif;
+    overflow: hidden;
+  }
+  .mock-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #7c6fff;
+    margin-bottom: 6px;
+  }
+  .mock-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 24px;
+    color: #fff;
+  }
+
+  /* === A: Bento === */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto auto;
+    gap: 10px;
+  }
+  .bento-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .bento-card.wide { grid-column: span 3; }
+  .bento-card.normal { grid-column: span 2; }
+  .bento-card.hero {
+    grid-column: span 4;
+    background: linear-gradient(135deg, rgba(124,111,255,0.2), rgba(0,200,255,0.1));
+    border-color: rgba(124,111,255,0.3);
+  }
+  .bento-icon { font-size: 20px; margin-bottom: 8px; }
+  .bento-card-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .bento-card-desc { font-size: 11px; color: #8888aa; line-height: 1.5; }
+
+  /* === B: Manifesto === */
+  .manifesto-list { display: flex; flex-direction: column; gap: 0; }
+  .manifesto-item {
+    display: grid;
+    grid-template-columns: 56px 1fr 2fr;
+    align-items: start;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .manifesto-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: rgba(124,111,255,0.3);
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .manifesto-item-title { font-size: 14px; font-weight: 700; color: #fff; padding-top: 4px; }
+  .manifesto-item-desc { font-size: 12px; color: #8888aa; line-height: 1.6; }
+
+  /* === C: Versus === */
+  .versus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .versus-col { border-radius: 10px; overflow: hidden; }
+  .versus-col-header {
+    padding: 10px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .versus-col.them .versus-col-header { background: rgba(255,255,255,0.06); color: #666; }
+  .versus-col.us .versus-col-header { background: rgba(124,111,255,0.25); color: #a89fff; }
+  .versus-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .versus-col.them .versus-row { color: #555; text-decoration: none; }
+  .versus-col.us .versus-row { color: #ccc; }
+  .versus-dot {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 4px;
+  }
+  .versus-col.them .versus-dot { background: #444; }
+  .versus-col.us .versus-dot { background: #7c6fff; }
+</style>
+
+<div class="cards">
+
+  <!-- Option A: Bento Grid -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mock-section">
+        <div class="mock-eyebrow">Наш подход</div>
+        <div class="mock-title">Мы устроены иначе</div>
+        <div class="bento-grid">
+          <div class="bento-card hero">
+            <div class="bento-icon">🎯</div>
+            <div class="bento-card-title">Мало проектов — максимум внимания</div>
+            <div class="bento-card-desc">Одновременно в работе не более 4 проектов. Каждый получает полную вовлечённость команды — не долю от неё.</div>
+          </div>
+          <div class="bento-card normal">
+            <div class="bento-icon">⚡</div>
+            <div class="bento-card-title">AI как инструмент</div>
+            <div class="bento-card-desc">Нейросети ускоряют рутину, не заменяют экспертизу.</div>
+          </div>
+          <div class="bento-card wide">
+            <div class="bento-icon">🛡</div>
+            <div class="bento-card-title">Код без замков</div>
+            <div class="bento-card-desc">Чистый, документированный код — если нужен другой специалист, он подхватит без боли.</div>
+          </div>
+          <div class="bento-card normal">
+            <div class="bento-icon">🚀</div>
+            <div class="bento-card-title">Результат без балласта</div>
+            <div class="bento-card-desc">Без раздутой сметы и отчётов ради отчётов.</div>
+          </div>
+          <div class="bento-card normal">
+            <div class="bento-icon">🔧</div>
+            <div class="bento-card-title">Полный цикл</div>
+            <div class="bento-card-desc">Дизайн, разработка, SEO — под одной крышей.</div>
+          </div>
+          <div class="bento-card normal">
+            <div class="bento-icon">⚙️</div>
+            <div class="bento-card-title">Процессы</div>
+            <div class="bento-card-desc">Скорость большой студии по цене команды.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Бенто-сетка</h3>
+      <p>Асимметричные карточки разного размера. Ключевые преимущества выделены крупнее. Современно, выделяется на фоне конкурентов.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Manifesto -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mock-section">
+        <div class="mock-eyebrow">Наш подход</div>
+        <div class="mock-title">Мы устроены иначе</div>
+        <div class="manifesto-list">
+          <div class="manifesto-item">
+            <div class="manifesto-num">01</div>
+            <div class="manifesto-item-title">Мало проектов</div>
+            <div class="manifesto-item-desc">Одновременно в работе не более 4 проектов. Каждый получает максимальное внимание команды.</div>
+          </div>
+          <div class="manifesto-item">
+            <div class="manifesto-num">02</div>
+            <div class="manifesto-item-title">AI как инструмент</div>
+            <div class="manifesto-item-desc">Нейросети ускоряют рутину, не заменяют экспертизу. Ниже цена — не значит ниже качество.</div>
+          </div>
+          <div class="manifesto-item">
+            <div class="manifesto-num">03</div>
+            <div class="manifesto-item-title">Полный цикл</div>
+            <div class="manifesto-item-desc">Дизайн, разработка, SEO, GEO, поддержка — всё под одной крышей.</div>
+          </div>
+          <div class="manifesto-item">
+            <div class="manifesto-num">04</div>
+            <div class="manifesto-item-title">Код без замков</div>
+            <div class="manifesto-item-desc">Чистый, документированный код. Другой специалист подхватит без боли.</div>
+          </div>
+          <div class="manifesto-item">
+            <div class="manifesto-num">05</div>
+            <div class="manifesto-item-title">Результат без балласта</div>
+            <div class="manifesto-item-desc">Только работа и результат — никаких раздутых смет и отчётов ради отчётов.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Манифест</h3>
+      <p>Нумерованный список с крупными числами и двухколоночным текстом. Редакционный, «человеческий» стиль. Сильно отличается от типичных студий.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Versus -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mock-section">
+        <div class="mock-eyebrow">Наш подход</div>
+        <div class="mock-title">Мы устроены иначе</div>
+        <div class="versus-grid">
+          <div class="versus-col them">
+            <div class="versus-col-header">Обычно</div>
+            <div class="versus-row"><span class="versus-dot"></span>10+ проектов параллельно</div>
+            <div class="versus-row"><span class="versus-dot"></span>Много менеджеров, мало толку</div>
+            <div class="versus-row"><span class="versus-dot"></span>Код — чёрный ящик</div>
+            <div class="versus-row"><span class="versus-dot"></span>SEO — отдельный подрядчик</div>
+            <div class="versus-row"><span class="versus-dot"></span>Раздутые сметы и отчёты</div>
+            <div class="versus-row"><span class="versus-dot"></span>AI скрывают или не используют</div>
+          </div>
+          <div class="versus-col us">
+            <div class="versus-col-header">Мы</div>
+            <div class="versus-row"><span class="versus-dot"></span>Не более 4 проектов в работе</div>
+            <div class="versus-row"><span class="versus-dot"></span>Только работа и результат</div>
+            <div class="versus-row"><span class="versus-dot"></span>Чистый код без замков</div>
+            <div class="versus-row"><span class="versus-dot"></span>Дизайн, SEO, GEO — всё в одном</div>
+            <div class="versus-row"><span class="versus-dot"></span>Честная цена, нет лишнего</div>
+            <div class="versus-row"><span class="versus-dot"></span>AI — инструмент, не замена</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Мы vs Они</h3>
+      <p>Таблица сравнения: слева — как обычно делают конкуренты, справа — как делаем мы. Максимально конкретно и убедительно для конверсии.</p>
+    </div>
+  </div>
+
+</div>

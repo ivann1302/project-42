@@ -7,8 +7,10 @@ import { Portfolio } from '@/widgets/Portfolio'
 import { Stats } from '@/widgets/Stats'
 import { Testimonials } from '@/widgets/Testimonials'
 import { Pricing } from '@/widgets/Pricing'
+import { DirectorMessage } from '@/widgets/DirectorMessage'
 import { Cta } from '@/widgets/Cta'
 import { Faq } from '@/widgets/Faq'
+import { WhatWeDontDo } from '@/widgets/WhatWeDontDo'
 import { Footer } from '@/widgets/Footer'
 
 export default function HomePage() {
@@ -20,9 +22,11 @@ export default function HomePage() {
         <WhyUs />
         <Services />
         <HowItWorks />
+        <WhatWeDontDo />
         <Portfolio />
         <Stats />
         <Testimonials />
+        <DirectorMessage />
         <Pricing />
         <Cta />
         <Faq />

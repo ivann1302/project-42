@@ -1,4 +1,4 @@
-import { Container, SectionTitle, StarField } from '@/shared/ui'
+import { Container, SectionTitle, StarField, Button } from '@/shared/ui'
 import { projects } from '@/entities/Project'
 import styles from './Portfolio.module.scss'
 
@@ -34,6 +34,11 @@ export function Portfolio() {
             </li>
           ))}
         </ul>
+        <div className={styles.footer}>
+          <Button variant="secondary" href="/portfolio">
+            Перейти в портфолио
+          </Button>
+        </div>
       </Container>
     </section>
   )

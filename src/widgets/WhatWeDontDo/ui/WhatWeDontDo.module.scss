@@ -1,0 +1,65 @@
+@use '@/shared/styles/mixins' as *;
+
+.root {
+  @include section-pad;
+  @include section-fade-top($color-bg);
+  @include section-fade-bottom($color-bg);
+
+  position: relative;
+  overflow: clip;
+  background: $color-bg-section;
+}
+
+.list {
+  display: grid;
+  gap: $spacing-md;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: $spacing-2xl;
+  padding: 0;
+  list-style: none;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: rgba($color-white, 0.03);
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  opacity: 0;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+  transform: translateY(20px);
+  transition-delay: calc(var(--i) * 0.1s);
+}
+
+.visible .item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #f87171;
+  background: rgba(#f87171, 0.1);
+  border: 1px solid rgba(#f87171, 0.2);
+  border-radius: $radius-sm;
+}
+
+.text {
+  @include body-text($font-size-md);
+
+  margin: 0;
+  padding-top: 6px;
+  color: $color-text-muted;
+}

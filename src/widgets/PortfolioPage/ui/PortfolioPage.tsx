@@ -1,11 +1,13 @@
 import { Container, Button, Icon } from '@/shared/ui'
+import { StarField } from '@/shared/ui'
 import { projects } from '@/entities/Project'
 import styles from './PortfolioPage.module.scss'
 
 export function PortfolioPage() {
   return (
     <section className={styles.root} id="portfolio">
-      <Container>
+      <StarField />
+      <Container className={styles.container}>
         <div className={styles.header}>
           <span className={styles.eyebrow}>Наши работы</span>
           <h1 className={styles.heading}>Портфолио</h1>
@@ -30,13 +32,27 @@ export function PortfolioPage() {
                   </ul>
                   <h2 className={styles.title}>{project.title}</h2>
                   <p className={styles.description}>{project.description}</p>
-                  {project.href && (
-                    <Button variant="ghost" href={project.href} target="_blank">
-                      Посмотреть сайт
-                      <Icon name="externalLink" size={16} className={styles.icon} />
-                    </Button>
+                  {project.achievements && (
+                    <ul className={styles.achievements} role="list">
+                      {project.achievements.map((item) => (
+                        <li key={item} className={styles.achievement}>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   )}
                 </div>
+                {project.href && (
+                  <Button
+                    variant="secondary"
+                    href={project.href}
+                    target="_blank"
+                    className={styles.link}
+                  >
+                    Посмотреть сайт
+                    <Icon name="externalLink" size={16} className={styles.icon} />
+                  </Button>
+                )}
 
                 <div className={styles.mockups}>
                   <div className={styles.desktop}>

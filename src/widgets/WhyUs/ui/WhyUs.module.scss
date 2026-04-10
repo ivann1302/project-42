@@ -13,19 +13,154 @@
   }
 }
 
-.grid {
-  display: grid;
-  gap: $spacing-lg;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: $spacing-2xl;
-  padding: 0;
-  list-style: none;
+// ─── Versus layout ───────────────────────────────────────────────
 
-  @include tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.versus {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr 72px 1fr;
+  margin-top: $spacing-2xl;
 
   @include mobile {
     grid-template-columns: 1fr;
+  }
+}
+
+// ─── Колонки ─────────────────────────────────────────────────────
+
+.colThem,
+.colUs {
+  display: flex;
+  flex-direction: column;
+}
+
+.colHeader {
+  margin-bottom: $spacing-xs;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-lg;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid $color-border-dark;
+
+  .colThem & {
+    color: $color-text-muted;
+  }
+
+  .colUs & {
+    text-align: right;
+    color: $color-accent;
+  }
+}
+
+// ─── Строки ──────────────────────────────────────────────────────
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-lg;
+  line-height: 1.45;
+
+  // Анимация: по умолчанию скрыты
+  opacity: 0;
+  transition:
+    opacity $transition-slow,
+    transform $transition-slow;
+  transform: translateY(8px);
+  border-bottom: 1px solid $color-border-dark;
+  transition-delay: calc(var(--i) * 80ms);
+
+  // Появляются когда .versus получает класс .visible
+  .visible & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .colThem & {
+    flex-direction: row;
+    color: $color-text-muted;
+  }
+
+  .colUs & {
+    flex-direction: row-reverse;
+    text-align: right;
+    color: $color-gray-light;
+  }
+}
+
+// ─── Точка-индикатор ─────────────────────────────────────────────
+
+.dot {
+  width: 7px;
+  height: 7px;
+  background: $color-gray-dark;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// ─── Иконка правой колонки ───────────────────────────────────────
+
+.icon {
+  flex-shrink: 0;
+  color: $color-accent-mint;
+  opacity: 0.9;
+}
+
+// ─── Разделитель VS ──────────────────────────────────────────────
+
+.divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: $spacing-xl;
+
+  @include mobile {
+    flex-direction: row;
+    justify-content: center;
+    gap: $spacing-md;
+    margin-top: 20px;
+    padding: $spacing-md 0;
+    padding-top: 0;
+  }
+}
+
+.dividerLine {
+  flex: 1;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba($color-accent, 0.25), transparent);
+
+  @include mobile {
+    width: auto;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba($color-accent, 0.25), transparent);
+  }
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: $color-accent;
+  background: rgba($color-accent, 0.15);
+  border: 1.5px solid rgba($color-accent, 0.5);
+  border-radius: 50%;
+  box-shadow:
+    0 0 18px rgba($color-accent, 0.25),
+    0 0 48px rgba($color-accent, 0.1);
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    opacity: 1;
+    transition: none;
+    transform: none;
   }
 }

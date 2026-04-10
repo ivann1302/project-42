@@ -1,0 +1,115 @@
+@use '@/shared/styles/mixins' as *;
+
+.root {
+  @include section-pad;
+  @include section-fade-top($color-bg-section);
+  @include section-fade-bottom($color-bg-section);
+
+  position: relative;
+  overflow: hidden;
+  background: $color-bg;
+}
+
+.card {
+  position: relative;
+
+  @include card-base;
+
+  max-width: 780px;
+  margin: 0 auto;
+  padding: $spacing-3xl $spacing-3xl $spacing-2xl;
+  overflow: hidden;
+
+  @include mobile {
+    padding: $spacing-xl $spacing-lg $spacing-lg;
+  }
+}
+
+.quoteMark {
+  position: absolute;
+  top: -8px;
+  left: 36px;
+  font-family: $font-display;
+  font-size: 180px;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, $color-purple, $color-blue);
+  opacity: 0.18;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  user-select: none;
+
+  @include mobile {
+    left: 16px;
+    font-size: 120px;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  position: relative;
+  z-index: 1;
+}
+
+.paragraph {
+  @include body-text($font-size-lg);
+
+  margin: 0;
+  color: rgba($color-white, 0.88);
+
+  @include mobile {
+    @include body-text($font-size-md);
+  }
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  position: relative;
+  z-index: 1;
+  margin-top: $spacing-2xl;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $color-border;
+
+  @include mobile {
+    margin-top: $spacing-xl;
+  }
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-family: $font-display;
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-white;
+  background: linear-gradient(135deg, $color-purple, $color-blue);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.authorName {
+  font-family: $font-body;
+  font-size: $font-size-md;
+  font-weight: 600;
+  color: $color-white;
+}
+
+.authorRole {
+  @include eyebrow-text;
+
+  color: $color-text-muted;
+}

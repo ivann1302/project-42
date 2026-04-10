@@ -1,22 +1,78 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
 import { Container, StarField } from '@/shared/ui'
 import styles from './Stats.module.scss'
 
-const stats = [
-  { value: '100%', label: 'проектов сданы в срок' },
-  { value: '×2', label: 'быстрее среднего за счёт AI' },
-  { value: '≤5', label: 'проектов одновременно' },
-  { value: '0', label: 'брошенных проектов' },
+interface StatItem {
+  value: number
+  prefix: string
+  suffix: string
+  label: string
+  static?: boolean
+}
+
+const stats: StatItem[] = [
+  { value: 100, prefix: '', suffix: '%', label: 'проектов сданы в срок' },
+  { value: 2, prefix: '×', suffix: '', label: 'быстрее среднего за счёт AI' },
+  { value: 5, prefix: '≤', suffix: '', label: 'проектов одновременно' },
+  { value: 0, prefix: '', suffix: '', label: 'брошенных проектов', static: true },
 ]
 
 export function Stats() {
+  const spanRefs = useRef<(HTMLSpanElement | null)[]>([])
+  const listRef = useRef<HTMLUListElement>(null)
+
+  useEffect(() => {
+    const el = listRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      async ([entry]) => {
+        if (!entry.isIntersecting) return
+        observer.disconnect()
+
+        const { CountUp } = await import('countup.js')
+
+        stats.forEach((stat, i) => {
+          if (stat.static) return
+          const span = spanRefs.current[i]
+          if (!span) return
+          new CountUp(span, stat.value, {
+            prefix: stat.prefix,
+            suffix: stat.suffix,
+            duration: 2,
+          }).start()
+        })
+      },
+      { threshold: 0.3 },
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className={styles.root}>
       <StarField />
       <Container>
-        <ul className={styles.list} role="list">
-          {stats.map((stat) => (
+        <ul ref={listRef} className={styles.list} role="list">
+          {stats.map((stat, i) => (
             <li key={stat.label} className={styles.item}>
-              <span className={styles.value}>{stat.value}</span>
+              <span
+                className={styles.value}
+                ref={
+                  stat.static
+                    ? undefined
+                    : (el) => {
+                        spanRefs.current[i] = el
+                      }
+                }
+              >
+                {stat.static
+                  ? `${stat.prefix}${stat.value}${stat.suffix}`
+                  : `${stat.prefix}0${stat.suffix}`}
+              </span>
               <span className={styles.label}>{stat.label}</span>
             </li>
           ))}

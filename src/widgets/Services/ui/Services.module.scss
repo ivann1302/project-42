@@ -1,3 +1,18 @@
+/* stylelint-disable keyframes-name-pattern */
+:global {
+  @keyframes srv-card-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 .root {
   @include section-pad;
   @include section-fade-bottom($color-bg-section);
@@ -17,16 +32,30 @@
 
   & > li {
     grid-column: span 2;
+    opacity: 0;
   }
 
-  @include desktop {
-    & > li:nth-child(4) {
-      grid-column: 2 / span 2;
-    }
+  &.visible > li {
+    animation: srv-card-in 450ms ease-out forwards;
+  }
 
-    & > li:nth-child(5) {
-      grid-column: 4 / span 2;
-    }
+  &.visible > li:nth-child(1) {
+    animation-delay: 0ms;
+  }
+  &.visible > li:nth-child(2) {
+    animation-delay: 80ms;
+  }
+  &.visible > li:nth-child(3) {
+    animation-delay: 160ms;
+  }
+  &.visible > li:nth-child(4) {
+    animation-delay: 240ms;
+  }
+  &.visible > li:nth-child(5) {
+    animation-delay: 320ms;
+  }
+  &.visible > li:nth-child(6) {
+    animation-delay: 400ms;
   }
 
   @include tablet {
@@ -43,5 +72,12 @@
     & > li {
       grid-column: span 1;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid > li {
+    opacity: 1;
+    animation: none;
   }
 }

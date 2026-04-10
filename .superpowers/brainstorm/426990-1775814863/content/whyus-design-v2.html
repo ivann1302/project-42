@@ -1,0 +1,332 @@
+<h2>Мы vs Они — эстетика десктопа</h2>
+<p class="subtitle">Три варианта оформления. Выбери или укажи направление.</p>
+
+<style>
+  .vs-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #7c6fff;
+    margin-bottom: 6px;
+  }
+  .vs-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 28px;
+  }
+  @keyframes rowIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .vs-row {
+    opacity: 0;
+    transform: translateY(6px);
+    animation: rowIn 0.35s ease forwards;
+  }
+  .vs-row:nth-child(2) { animation-delay: 0.00s; }
+  .vs-row:nth-child(3) { animation-delay: 0.07s; }
+  .vs-row:nth-child(4) { animation-delay: 0.14s; }
+  .vs-row:nth-child(5) { animation-delay: 0.21s; }
+  .vs-row:nth-child(6) { animation-delay: 0.28s; }
+  .vs-row:nth-child(7) { animation-delay: 0.35s; }
+
+  /* ============ ВАРИАНТ D1 — Карточки с акцентом ============ */
+  .d1 {
+    background: #0b0b18;
+    border-radius: 16px;
+    padding: 36px 32px;
+    font-family: system-ui, sans-serif;
+  }
+  .d1-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .d1-col-them {
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .d1-col-us {
+    background: rgba(124,111,255,0.06);
+  }
+  .d1-header {
+    padding: 14px 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .d1-col-them .d1-header { color: #444; background: rgba(255,255,255,0.02); }
+  .d1-col-us .d1-header { color: #9b8fff; background: rgba(124,111,255,0.12); }
+  .d1 .vs-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .d1-col-them .vs-row { color: #3a3a55; }
+  .d1-col-us .vs-row { color: #c8c8e8; }
+  .d1-col-them .vs-row span.icon { color: #2a2a40; font-size: 15px; }
+  .d1-col-us .vs-row span.icon { color: #7c6fff; font-size: 15px; }
+
+  /* ============ ВАРИАНТ D2 — Разделённый «vs» ============ */
+  .d2 {
+    background: #0b0b18;
+    border-radius: 16px;
+    padding: 36px 32px;
+    font-family: system-ui, sans-serif;
+  }
+  .d2-grid {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+  .d2-col { display: flex; flex-direction: column; gap: 0; }
+  .d2-header {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 4px 16px;
+  }
+  .d2-col-them .d2-header { color: #444; }
+  .d2-col-us .d2-header { color: #9b8fff; text-align: right; }
+  .d2 .vs-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+  .d2-col-them .vs-row { color: #363650; flex-direction: row; }
+  .d2-col-us .vs-row { color: #c0c0e0; flex-direction: row-reverse; text-align: right; }
+  .d2-dot {
+    flex-shrink: 0;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+  }
+  .d2-col-them .d2-dot { background: #2a2a40; }
+  .d2-col-us .d2-dot { background: #7c6fff; box-shadow: 0 0 6px rgba(124,111,255,0.7); }
+  .d2-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 48px;
+    gap: 6px;
+  }
+  .d2-vs-badge {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(124,111,255,0.15);
+    border: 1px solid rgba(124,111,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 800;
+    color: #7c6fff;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+  .d2-line {
+    flex: 1;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(124,111,255,0.2), transparent);
+  }
+
+  /* ============ ВАРИАНТ D3 — Строки на всю ширину ============ */
+  .d3 {
+    background: #0b0b18;
+    border-radius: 16px;
+    padding: 36px 32px;
+    font-family: system-ui, sans-serif;
+  }
+  .d3-headers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 8px;
+    padding: 0 4px;
+  }
+  .d3-header {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .d3-header.them { color: #444; }
+  .d3-header.us { color: #9b8fff; }
+  .d3-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: rowIn 0.35s ease forwards;
+  }
+  .d3-row:nth-child(2) { animation-delay: 0.00s; }
+  .d3-row:nth-child(3) { animation-delay: 0.08s; }
+  .d3-row:nth-child(4) { animation-delay: 0.16s; }
+  .d3-row:nth-child(5) { animation-delay: 0.24s; }
+  .d3-row:nth-child(6) { animation-delay: 0.32s; }
+  .d3-row:nth-child(7) { animation-delay: 0.40s; }
+  .d3-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+  .d3-cell.them {
+    background: rgba(255,255,255,0.025);
+    color: #3a3a58;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  .d3-cell.us {
+    background: rgba(124,111,255,0.08);
+    color: #c0c0e0;
+    border: 1px solid rgba(124,111,255,0.12);
+  }
+  .d3-dot {
+    flex-shrink: 0;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+  }
+  .d3-cell.them .d3-dot { background: #2e2e48; }
+  .d3-cell.us .d3-dot { background: #7c6fff; box-shadow: 0 0 5px rgba(124,111,255,0.6); }
+  .d3-list { display: flex; flex-direction: column; gap: 6px; }
+</style>
+
+<div class="cards">
+
+  <!-- D1 -->
+  <div class="card" data-choice="d1" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="d1">
+        <div class="vs-eyebrow">Наш подход</div>
+        <div class="vs-title">Мы устроены иначе</div>
+        <div class="d1-grid">
+          <div class="d1-col-them">
+            <div class="d1-header">Обычно</div>
+            <div class="vs-row"><span class="icon">✕</span>10+ проектов параллельно</div>
+            <div class="vs-row"><span class="icon">✕</span>Менеджеры съедают бюджет</div>
+            <div class="vs-row"><span class="icon">✕</span>Код — чёрный ящик</div>
+            <div class="vs-row"><span class="icon">✕</span>SEO — отдельный подрядчик</div>
+            <div class="vs-row"><span class="icon">✕</span>Раздутые сметы</div>
+            <div class="vs-row"><span class="icon">✕</span>AI игнорируют или скрывают</div>
+          </div>
+          <div class="d1-col-us">
+            <div class="d1-header">Мы</div>
+            <div class="vs-row"><span class="icon">✓</span>Не более 4 проектов в работе</div>
+            <div class="vs-row"><span class="icon">✓</span>Только работа и результат</div>
+            <div class="vs-row"><span class="icon">✓</span>Чистый код без замков</div>
+            <div class="vs-row"><span class="icon">✓</span>Дизайн, SEO, GEO — всё в одном</div>
+            <div class="vs-row"><span class="icon">✓</span>Честная цена, без балласта</div>
+            <div class="vs-row"><span class="icon">✓</span>AI — инструмент скорости</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>D1 — Монолитные колонки</h3>
+      <p>Единый блок, чёткое разделение. ✕ слева, ✓ справа. Строго и лаконично.</p>
+    </div>
+  </div>
+
+  <!-- D2 -->
+  <div class="card" data-choice="d2" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="d2">
+        <div class="vs-eyebrow">Наш подход</div>
+        <div class="vs-title">Мы устроены иначе</div>
+        <div class="d2-grid">
+          <div class="d2-col d2-col-them">
+            <div class="d2-header">Обычно</div>
+            <div class="vs-row"><span class="d2-dot"></span>10+ проектов параллельно</div>
+            <div class="vs-row"><span class="d2-dot"></span>Менеджеры съедают бюджет</div>
+            <div class="vs-row"><span class="d2-dot"></span>Код — чёрный ящик</div>
+            <div class="vs-row"><span class="d2-dot"></span>SEO — другой подрядчик</div>
+            <div class="vs-row"><span class="d2-dot"></span>Раздутые сметы</div>
+            <div class="vs-row"><span class="d2-dot"></span>AI игнорируют</div>
+          </div>
+          <div class="d2-divider">
+            <div class="d2-line" style="flex:0;height:16px;"></div>
+            <div class="d2-vs-badge">VS</div>
+            <div class="d2-line"></div>
+          </div>
+          <div class="d2-col d2-col-us">
+            <div class="d2-header">Мы</div>
+            <div class="vs-row"><span class="d2-dot"></span>Не более 4 проектов</div>
+            <div class="vs-row"><span class="d2-dot"></span>Только работа и результат</div>
+            <div class="vs-row"><span class="d2-dot"></span>Чистый код без замков</div>
+            <div class="vs-row"><span class="d2-dot"></span>Дизайн, SEO, GEO в одном</div>
+            <div class="vs-row"><span class="d2-dot"></span>Честная цена</div>
+            <div class="vs-row"><span class="d2-dot"></span>AI — инструмент скорости</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>D2 — Зеркало с «VS»</h3>
+      <p>Левая колонка выровнена влево, правая вправо. Бейдж VS по центру. Динамичный, конкурентный дух.</p>
+    </div>
+  </div>
+
+  <!-- D3 -->
+  <div class="card" data-choice="d3" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="d3">
+        <div class="vs-eyebrow">Наш подход</div>
+        <div class="vs-title">Мы устроены иначе</div>
+        <div class="d3-list">
+          <div class="d3-headers">
+            <span class="d3-header them">Обычно</span>
+            <span class="d3-header us">Мы</span>
+          </div>
+          <div class="d3-row">
+            <div class="d3-cell them"><span class="d3-dot"></span>10+ проектов параллельно</div>
+            <div class="d3-cell us"><span class="d3-dot"></span>Не более 4 проектов</div>
+          </div>
+          <div class="d3-row">
+            <div class="d3-cell them"><span class="d3-dot"></span>Менеджеры съедают бюджет</div>
+            <div class="d3-cell us"><span class="d3-dot"></span>Только работа и результат</div>
+          </div>
+          <div class="d3-row">
+            <div class="d3-cell them"><span class="d3-dot"></span>Код — чёрный ящик</div>
+            <div class="d3-cell us"><span class="d3-dot"></span>Чистый код без замков</div>
+          </div>
+          <div class="d3-row">
+            <div class="d3-cell them"><span class="d3-dot"></span>SEO — отдельный подрядчик</div>
+            <div class="d3-cell us"><span class="d3-dot"></span>Дизайн, SEO, GEO в одном</div>
+          </div>
+          <div class="d3-row">
+            <div class="d3-cell them"><span class="d3-dot"></span>Раздутые сметы</div>
+            <div class="d3-cell us"><span class="d3-dot"></span>Честная цена, без балласта</div>
+          </div>
+          <div class="d3-row">
+            <div class="d3-cell them"><span class="d3-dot"></span>AI игнорируют или скрывают</div>
+            <div class="d3-cell us"><span class="d3-dot"></span>AI — инструмент скорости</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>D3 — Парные строки</h3>
+      <p>Каждая строка — пара «плохо → хорошо». Анимация построчная. Самый наглядный контраст.</p>
+    </div>
+  </div>
+
+</div>

@@ -165,6 +165,22 @@
   }
 }
 
+@mixin section-fade-top($from-color, $height: 120px) {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    height: $height;
+    background: linear-gradient(to bottom, $from-color, transparent);
+    pointer-events: none;
+  }
+}
+
 @mixin section-pad {
   padding-top: $spacing-3xl;
   padding-bottom: $spacing-3xl;
