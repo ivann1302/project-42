@@ -4,14 +4,12 @@
   right: 0;
   left: 0;
   z-index: 100;
-  transition:
-    background $transition-slow,
-    border-color $transition-slow;
+  background: $color-bg;
+  transition: border-color $transition-slow;
   border-bottom: 1px solid transparent;
 }
 
 .scrolled {
-  background: rgba($color-bg, 0.92);
   backdrop-filter: blur(16px);
   border-bottom-color: $color-border;
 }
@@ -21,6 +19,10 @@
 
   gap: $spacing-xl;
   height: 72px;
+
+  @include mobile {
+    justify-content: flex-start;
+  }
 }
 
 .logo {
@@ -58,6 +60,7 @@
       gap: $spacing-lg;
       position: fixed;
       inset: 72px 0 0;
+      z-index: 99;
       padding: $spacing-xl $container-pad-mobile;
       background: $color-bg;
       border-top: 1px solid $color-border;
@@ -98,8 +101,6 @@
 
   @include mobile {
     display: flex;
-    justify-content: center;
-    width: 100%;
     margin-top: $spacing-md;
   }
 }
@@ -116,5 +117,6 @@
 
   @include mobile {
     display: flex;
+    margin-left: auto;
   }
 }

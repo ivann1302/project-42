@@ -57,7 +57,11 @@ export function Header() {
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Обсудить проект">
         <ContactForm onSuccess={() => setModalOpen(false)} />
       </Modal>
-      <header className={[styles.root, scrolled && styles.scrolled].filter(Boolean).join(' ')}>
+      <header
+        className={[styles.root, scrolled && !menuOpen && styles.scrolled]
+          .filter(Boolean)
+          .join(' ')}
+      >
         <Container className={styles.inner}>
           <Link href="/" className={styles.logo}>
             Project<span className={styles.accent}>42</span>
