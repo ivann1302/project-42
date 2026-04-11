@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     z-index: 0;
-    font-family: $font-display;
+    font-family: $font-body;
     font-size: 28vw;
     font-weight: 700;
     line-height: 1;
@@ -64,6 +64,7 @@
 }
 
 .accent {
+  font-family: $font-body;
   color: $color-accent;
 }
 
@@ -71,6 +72,31 @@
   @include body-text($font-size-sm);
 
   color: $color-text-muted;
+}
+
+.socials {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-sm;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: $color-text-muted;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  transition:
+    color $transition-base,
+    border-color $transition-base;
+
+  &:hover {
+    color: $color-text;
+    border-color: rgba($color-purple, 0.5);
+  }
 }
 
 .nav {
@@ -94,31 +120,6 @@
 
   &:hover {
     color: $color-text;
-  }
-}
-
-.social {
-  display: flex;
-  gap: $spacing-md;
-}
-
-.socialLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  text-decoration: none;
-  color: $color-text-muted;
-  border: 1px solid $color-border;
-  border-radius: $radius-md;
-  transition:
-    color $transition-base,
-    border-color $transition-base;
-
-  &:hover {
-    color: $color-text;
-    border-color: rgba($color-white, 0.2);
   }
 }
 

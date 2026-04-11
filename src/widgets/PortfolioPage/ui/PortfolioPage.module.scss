@@ -211,3 +211,38 @@
   width: 100%;
   height: auto;
 }
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  margin-top: $spacing-3xl;
+  padding-top: $spacing-3xl;
+  border-top: 1px solid $color-border;
+  text-align: center;
+}
+
+.ctaHeading {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $font-size-2xl;
+  font-weight: 700;
+  line-height: 1.15;
+  background: linear-gradient(90deg, $color-purple, $color-blue, $color-mint);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  @include mobile {
+    font-size: $font-size-xl;
+  }
+}
+
+.ctaSub {
+  max-width: 480px;
+  margin: 0;
+  font-size: $font-size-md;
+  line-height: 1.6;
+  color: $color-text-muted;
+}

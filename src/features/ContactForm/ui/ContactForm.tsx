@@ -1,17 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '@/shared/ui'
+import { Button, Select } from '@/shared/ui'
 import { contactSchema, type ContactFormData } from '../model/schema'
 import styles from './ContactForm.module.scss'
 
 const SERVICES = [
   'Лендинг',
   'Корпоративный сайт',
-  'GEO-оптимизация',
+  'SEO-оптимизация',
   'Поддержка и развитие',
+  'Настройка и запуск рекламы',
   'Другое',
 ]
 
@@ -24,6 +25,7 @@ export function ContactForm({ onSuccess }: Props) {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -78,7 +80,7 @@ export function ContactForm({ onSuccess }: Props) {
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label}>Телефон *</label>
+        <label className={styles.label}>Телефон</label>
         <input
           type="tel"
           className={[styles.input, errors.phone && styles.inputError].filter(Boolean).join(' ')}
@@ -89,15 +91,30 @@ export function ContactForm({ onSuccess }: Props) {
       </div>
 
       <div className={styles.field}>
+        <label className={styles.label}>Email</label>
+        <input
+          type="email"
+          className={[styles.input, errors.email && styles.inputError].filter(Boolean).join(' ')}
+          placeholder="example@company.ru"
+          {...register('email')}
+        />
+        {errors.email && <span className={styles.error}>{errors.email.message}</span>}
+      </div>
+
+      <div className={styles.field}>
         <label className={styles.label}>Тип проекта</label>
-        <select className={styles.input} {...register('service')}>
-          <option value="">Выберите тип проекта</option>
-          {SERVICES.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
+        <Controller
+          name="service"
+          control={control}
+          render={({ field }) => (
+            <Select
+              options={SERVICES.map((s) => ({ label: s, value: s }))}
+              value={field.value ?? ''}
+              onChange={field.onChange}
+              placeholder="Выберите тип проекта"
+            />
+          )}
+        />
       </div>
 
       <div className={styles.field}>

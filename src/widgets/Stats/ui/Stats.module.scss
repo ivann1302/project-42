@@ -50,7 +50,7 @@
 .value {
   @include gradient-text;
 
-  font-family: $font-display;
+  font-family: $font-body;
   font-size: $font-size-2xl;
   font-weight: 700;
   line-height: 1;

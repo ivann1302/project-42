@@ -129,9 +129,9 @@
   @include display-text($font-size-3xl);
 
   max-width: 600px;
+  font-family: var(--font-body), sans-serif;
   color: transparent;
   background: linear-gradient(135deg, $color-purple 0%, $color-blue 55%, $color-mint 100%);
-  background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 

@@ -1,9 +1,16 @@
-import { Container, Button, Icon } from '@/shared/ui'
+'use client'
+
+import { useState } from 'react'
+import Image from 'next/image'
+import { Container, Button, Icon, Modal } from '@/shared/ui'
 import { StarField } from '@/shared/ui'
+import { ContactForm } from '@/features/ContactForm'
 import { projects } from '@/entities/Project'
 import styles from './PortfolioPage.module.scss'
 
 export function PortfolioPage() {
+  const [open, setOpen] = useState(false)
+
   return (
     <section className={styles.root} id="portfolio">
       <StarField />
@@ -20,6 +27,7 @@ export function PortfolioPage() {
             return (
               <li
                 key={project.id}
+                id={project.id}
                 className={[styles.row, isEven && styles.reversed].filter(Boolean).join(' ')}
               >
                 <div className={styles.text}>
@@ -57,11 +65,13 @@ export function PortfolioPage() {
                 <div className={styles.mockups}>
                   <div className={styles.desktop}>
                     {project.desktopImageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={project.desktopImageUrl}
                         alt={`${project.title} — десктоп`}
+                        width={1920}
+                        height={1080}
                         className={styles.mockupImg}
+                        sizes="(max-width: 768px) 100vw, 60vw"
                       />
                     ) : (
                       <div className={styles.placeholder} />
@@ -69,11 +79,13 @@ export function PortfolioPage() {
                   </div>
                   <div className={styles.mobile}>
                     {project.mobileImageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={project.mobileImageUrl}
                         alt={`${project.title} — мобильный`}
+                        width={372}
+                        height={807}
                         className={styles.mockupImg}
+                        sizes="(max-width: 768px) 100vw, 25vw"
                       />
                     ) : (
                       <div className={styles.placeholder} />
@@ -84,7 +96,19 @@ export function PortfolioPage() {
             )
           })}
         </ul>
+
+        <div className={styles.cta}>
+          <p className={styles.ctaHeading}>Понравились работы?</p>
+          <p className={styles.ctaSub}>
+            Хотите так же или хотите чтобы мы рассказали больше — оставьте заявку
+          </p>
+          <Button onClick={() => setOpen(true)}>Оставить заявку</Button>
+        </div>
       </Container>
+
+      <Modal open={open} onClose={() => setOpen(false)} title="Оставить заявку">
+        <ContactForm onSuccess={() => setOpen(false)} />
+      </Modal>
     </section>
   )
 }

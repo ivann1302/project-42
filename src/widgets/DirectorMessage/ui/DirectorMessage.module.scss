@@ -2,7 +2,6 @@
 
 .root {
   @include section-pad;
-  @include section-fade-top($color-bg-section);
   @include section-fade-bottom($color-bg-section);
 
   position: relative;

@@ -5,10 +5,22 @@ import { Container, SectionTitle, StarField } from '@/shared/ui'
 import styles from './WhatWeDontDo.module.scss'
 
 const items = [
-  'Не даём ложных обещаний по срокам.Заранее проговарим с Вами все сроки, ньансы и подводные камни в разработке',
-  'Не навешываем дополнительные ненужные вашему бизнесу услуги. У нас максимально прозрачное ценообразование',
-  'Не ставим дизайн в противовес эффективности сайта.  Мы твердно убеждены, что сайт должен быть полезен как для пользователя, так и для его владельца',
-  'Не накручиваем поведенческие факторы в SEO.Да, это не даст эффект в течение 1–2 дней. Однако используя наш подход вы получите надёжный фундамент для дальнейшего развития бизнеса',
+  {
+    title: 'Честные сроки.',
+    body: 'Заранее проговариваем все нюансы и подводные камни — без сюрпризов в процессе.',
+  },
+  {
+    title: 'Прозрачное ценообразование.',
+    body: 'Только то, что реально нужно вашему бизнесу, без навязанных услуг.',
+  },
+  {
+    title: 'Дизайн работает на результат.',
+    body: 'Сайт должен быть полезен и пользователю, и владельцу бизнеса.',
+  },
+  {
+    title: 'Белое SEO.',
+    body: 'Строим надёжный фундамент для долгосрочного роста — без накруток и серых схем.',
+  },
 ]
 
 export function WhatWeDontDo() {
@@ -37,22 +49,29 @@ export function WhatWeDontDo() {
       <StarField />
       <Container>
         <SectionTitle eyebrow="Честность" align="center">
-          Что мы не делаем
+          Наши принципы
         </SectionTitle>
         <ul ref={listRef} className={styles.list} role="list">
           {items.map((item, idx) => (
-            <li key={item} className={styles.item} style={{ '--i': idx } as React.CSSProperties}>
+            <li
+              key={item.title}
+              className={styles.item}
+              style={{ '--i': idx } as React.CSSProperties}
+            >
               <span className={styles.icon} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path
                     stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
-                    d="M18 6L6 18M6 6l12 12"
+                    strokeLinejoin="round"
+                    d="M5 13l4 4L19 7"
                   />
                 </svg>
               </span>
-              <p className={styles.text}>{item}</p>
+              <p className={styles.text}>
+                <strong className={styles.textTitle}>{item.title}</strong> {item.body}
+              </p>
             </li>
           ))}
         </ul>

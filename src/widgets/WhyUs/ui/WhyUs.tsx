@@ -35,7 +35,7 @@ const comparisons: Comparison[] = [
   {
     icon: 'shield',
     them: 'Код — чёрный ящик',
-    us: 'Чистый код без замков',
+    us: 'Чистый код для легкой поддержи',
   },
   {
     icon: 'rocket',
@@ -69,7 +69,7 @@ export function WhyUs() {
       <GlowBlob size={900} y={62} className={styles.blob} />
       <Container>
         <SectionTitle eyebrow="Наш подход" align="center">
-          Мы устроены иначе
+          Чем мы отличаемся от других веб-студий
         </SectionTitle>
         <div className={styles.versus} ref={gridRef}>
           {/* Колонка «Обычно» */}

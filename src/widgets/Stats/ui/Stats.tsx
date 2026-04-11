@@ -14,9 +14,9 @@ interface StatItem {
 
 const stats: StatItem[] = [
   { value: 100, prefix: '', suffix: '%', label: 'проектов сданы в срок' },
-  { value: 2, prefix: '×', suffix: '', label: 'быстрее среднего за счёт AI' },
-  { value: 5, prefix: '≤', suffix: '', label: 'проектов одновременно' },
-  { value: 0, prefix: '', suffix: '', label: 'брошенных проектов', static: true },
+  { value: 3, prefix: '×', suffix: '', label: 'быстрее среднего за счёт AI' },
+  { value: 4, prefix: '≤', suffix: '', label: 'проектов одновременно' },
+  { value: 7, prefix: 'от ', suffix: ' дней', label: 'срок разработки' },
 ]
 
 export function Stats() {
@@ -53,7 +53,7 @@ export function Stats() {
   }, [])
 
   return (
-    <section className={styles.root}>
+    <section className={styles.root} id="stats">
       <StarField />
       <Container>
         <ul ref={listRef} className={styles.list} role="list">

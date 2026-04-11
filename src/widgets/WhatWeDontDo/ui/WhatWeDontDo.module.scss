@@ -2,8 +2,8 @@
 
 .root {
   @include section-pad;
-  @include section-fade-top($color-bg);
-  @include section-fade-bottom($color-bg);
+  @include section-fade-top($color-bg-section);
+  @include section-fade-bottom($color-bg-section);
 
   position: relative;
   overflow: clip;
@@ -50,9 +50,9 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  color: #f87171;
-  background: rgba(#f87171, 0.1);
-  border: 1px solid rgba(#f87171, 0.2);
+  color: $color-accent;
+  background: rgba($color-purple, 0.1);
+  border: 1px solid rgba($color-purple, 0.2);
   border-radius: $radius-sm;
 }
 
@@ -62,4 +62,9 @@
   margin: 0;
   padding-top: 6px;
   color: $color-text-muted;
+}
+
+.textTitle {
+  font-weight: 700;
+  color: $color-white;
 }

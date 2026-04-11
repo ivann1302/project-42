@@ -1,5 +1,9 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
-import { Container, Icon } from '@/shared/ui'
+import { Container, Button, Modal } from '@/shared/ui'
+import { ContactForm } from '@/features/ContactForm'
 import styles from './Footer.module.scss'
 
 const NAV_LINKS = [
@@ -11,8 +15,13 @@ const NAV_LINKS = [
 ]
 
 export function Footer() {
+  const [modalOpen, setModalOpen] = useState(false)
+
   return (
     <footer className={styles.root}>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Заказать консультацию">
+        <ContactForm onSuccess={() => setModalOpen(false)} />
+      </Modal>
       <Container className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.brand}>
@@ -30,26 +39,9 @@ export function Footer() {
             ))}
           </nav>
 
-          <div className={styles.social}>
-            <a
-              href="https://t.me/project42studio"
-              className={styles.socialLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Telegram"
-            >
-              <Icon name="send" size={18} />
-            </a>
-            <a
-              href="https://instagram.com/project42studio"
-              className={styles.socialLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <Icon name="instagram" size={18} />
-            </a>
-          </div>
+          <Button variant="primary" size="md" onClick={() => setModalOpen(true)}>
+            Заказать консультацию
+          </Button>
         </div>
 
         <div className={styles.bottom}>

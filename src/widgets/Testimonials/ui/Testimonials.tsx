@@ -6,7 +6,7 @@ export function Testimonials() {
   return (
     <section className={styles.root}>
       <StarField />
-      <GlowBlob color="purple" size={800} y={75} />
+      <GlowBlob color="purple" size={937} x={50} y={46} />
       <Container>
         <SectionTitle eyebrow="Что говорят клиенты" align="center">
           Отзывы

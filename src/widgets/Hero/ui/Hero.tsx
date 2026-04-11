@@ -11,14 +11,14 @@ export function Hero() {
       <Container className={styles.inner}>
         <span className={styles.eyebrow}>— Project 42</span>
         <h1 className={styles.heading}>
+          Результат быстрее, ценник ниже, качество выше —
           <span className={styles.aiLabel}>AI-студия</span>
-          <br />
-          полного цикла разработки и сопровождения сайтов
+          &nbsp;полного цикла
         </h1>
         <p className={styles.sub}>
-          Решаем задачи бизнеса.
+          Налаженные AI-процессы и профи,
           <br />
-          Остаёмся рядом, когда задачи меняются.
+          которые знают, как создавать и продвигать качественные сайты.
         </p>
         <div className={styles.actions}>
           <Button size="lg" href="#cta">

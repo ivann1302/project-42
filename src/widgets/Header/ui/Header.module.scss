@@ -13,7 +13,6 @@
 .scrolled {
   background: rgba($color-bg, 0.92);
   backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
   border-bottom-color: $color-border;
 }
 
@@ -34,6 +33,7 @@
 }
 
 .accent {
+  font-family: $font-body;
   color: $color-accent;
 }
 
@@ -76,6 +76,10 @@
     color: $color-text;
   }
 
+  &.navLinkActive {
+    color: $color-text;
+  }
+
   @include mobile {
     font-size: $font-size-lg;
   }
@@ -86,6 +90,17 @@
 
   @include mobile {
     display: none;
+  }
+}
+
+.mobileCtaInNav {
+  display: none;
+
+  @include mobile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: $spacing-md;
   }
 }
 

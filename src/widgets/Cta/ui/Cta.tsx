@@ -17,13 +17,15 @@ export function Cta() {
       <Container className={styles.inner}>
         <p className={styles.eyebrow}>Готовы начать?</p>
         <h2 className={styles.heading}>
-          Давайте создадим ваш
+          Сейчас мы открыты
           <br />
-          следующий проект
+          для 1–2 новых проектов
         </h2>
-        <p className={styles.sub}>Расскажите о задаче — обсудим, как её решить</p>
+        <p className={styles.sub}>
+          Расскажите о задаче — решим, подходим ли мы друг другу. Это бесплатно.
+        </p>
         <Button size="lg" onClick={() => setOpen(true)}>
-          Обсудить проект
+          Забронировать место
         </Button>
       </Container>
 

@@ -11,6 +11,9 @@ export function Pricing() {
         <SectionTitle eyebrow="Прозрачные цены" align="center">
           Выберите формат работы
         </SectionTitle>
+        <p className={styles.paymentNote}>
+          Оплата поэтапно: 50% предоплата, 50% после запуска. Работаем по договору.
+        </p>
         <ul className={styles.grid} role="list">
           {pricingPlans.map((plan) => (
             <li

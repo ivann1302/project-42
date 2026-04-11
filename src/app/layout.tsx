@@ -3,6 +3,16 @@ import { Inter, Syne } from 'next/font/google'
 import { siteConfig } from '@/shared/config/seo'
 import '@/shared/styles/globals.scss'
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: siteConfig.description,
+  founder: { '@type': 'Person', name: 'Иван Нарчук' },
+  serviceType: ['Веб-разработка', 'UI/UX дизайн', 'SEO', 'GEO-оптимизация'],
+}
+
 const fontBody = Inter({
   subsets: ['latin', 'cyrillic'],
   variable: '--font-body',
@@ -11,7 +21,6 @@ const fontBody = Inter({
 
 const fontDisplay = Syne({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-display',
   display: 'swap',
 })
@@ -47,6 +56,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru" className={`${fontBody.variable} ${fontDisplay.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   )

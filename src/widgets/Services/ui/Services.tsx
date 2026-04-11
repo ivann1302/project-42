@@ -1,12 +1,14 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { Container, GlowBlob, IconCard, SectionTitle, StarField } from '@/shared/ui'
+import { useEffect, useRef, useState } from 'react'
+import { Button, Container, GlowBlob, IconCard, Modal, SectionTitle, StarField } from '@/shared/ui'
+import { ContactForm } from '@/features/ContactForm'
 import { services } from '@/entities/Service'
 import styles from './Services.module.scss'
 
 export function Services() {
   const gridRef = useRef<HTMLUListElement>(null)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const el = gridRef.current
@@ -44,7 +46,20 @@ export function Services() {
             />
           ))}
         </ul>
+        <div className={styles.cta}>
+          <p className={styles.ctaText}>
+            Не знаете, с чего начать? Проконсультируем по любой из услуг — бесплатно и без
+            обязательств.
+          </p>
+          <Button size="lg" onClick={() => setOpen(true)}>
+            Получить консультацию
+          </Button>
+        </div>
       </Container>
+
+      <Modal open={open} onClose={() => setOpen(false)} title="Получить консультацию">
+        <ContactForm onSuccess={() => setOpen(false)} />
+      </Modal>
     </section>
   )
 }

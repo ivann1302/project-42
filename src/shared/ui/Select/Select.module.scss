@@ -1,0 +1,104 @@
+@use '@/shared/styles/mixins' as *;
+
+.root {
+  position: relative;
+  width: 100%;
+}
+
+.trigger {
+  position: relative;
+  width: 100%;
+  padding: 12px 44px 12px 16px;
+  font-family: $font-body;
+  font-size: $font-size-base;
+  text-align: left;
+  color: $color-white;
+  background: rgba($color-white, 4%);
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  transition:
+    border-color $transition-base,
+    box-shadow $transition-base,
+    border-radius $transition-base;
+  cursor: pointer;
+  outline: none;
+
+  &.open {
+    border-radius: $radius-md $radius-md 0 0;
+    box-shadow: 0 0 0 3px rgba($color-purple, 12%);
+    border-color: rgba($color-purple, 60%);
+    border-bottom-color: rgba($color-white, 8%);
+  }
+}
+
+.placeholder {
+  color: $color-gray-dark;
+}
+
+.value {
+  color: $color-white;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  color: $color-gray-mid;
+  transition: transform $transition-base;
+  transform: translateY(-50%);
+  pointer-events: none;
+
+  &.arrowOpen {
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  overflow: hidden;
+  background: $color-card;
+  border: 1px solid rgba($color-purple, 60%);
+  border-top: none;
+  border-radius: 0 0 $radius-md $radius-md;
+  transform-origin: top;
+  animation: dropdown-open $transition-base forwards;
+}
+
+.option {
+  width: 100%;
+  padding: 10px 16px;
+  font-family: $font-body;
+  font-size: $font-size-base;
+  text-align: left;
+  color: $color-gray-light;
+  transition:
+    background $transition-base,
+    color $transition-base;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-white;
+    background: rgba($color-white, 5%);
+  }
+
+  &.optionActive {
+    color: $color-white;
+    background: rgba($color-purple, 10%);
+  }
+}
+
+@keyframes dropdown-open {
+  from {
+    opacity: 0;
+    transform: scaleY(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}

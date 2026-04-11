@@ -31,7 +31,14 @@
   overflow: hidden;
 }
 
+.cardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
 .image {
+  position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
 }
@@ -75,6 +82,24 @@
   padding: 0;
 }
 
+.hoverLabel {
+  display: block;
+  padding: 0 $spacing-lg $spacing-md;
+  font-family: $font-body;
+  font-size: $font-size-sm;
+  color: $color-accent;
+  opacity: 0;
+  transition:
+    opacity $transition-base,
+    transform $transition-base;
+  transform: translateY(4px);
+
+  .card:hover & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .footer {
   display: flex;
   justify-content: center;
@@ -90,4 +115,39 @@
   background: rgba($color-purple, 0.1);
   border: 1px solid rgba($color-purple, 0.2);
   border-radius: $radius-pill;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  margin-top: $spacing-3xl;
+  padding-top: $spacing-3xl;
+  border-top: 1px solid $color-border;
+  text-align: center;
+}
+
+.ctaHeading {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $font-size-2xl;
+  font-weight: 700;
+  line-height: 1.15;
+  background: linear-gradient(90deg, $color-purple, $color-blue, $color-mint);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  @include mobile {
+    font-size: $font-size-xl;
+  }
+}
+
+.ctaSub {
+  max-width: 480px;
+  margin: 0;
+  font-size: $font-size-md;
+  line-height: 1.6;
+  color: $color-text-muted;
 }
