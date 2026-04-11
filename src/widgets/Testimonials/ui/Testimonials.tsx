@@ -14,7 +14,7 @@ export function Testimonials() {
         <ul className={styles.grid} role="list">
           {testimonials.map((t) => (
             <li key={t.id} className={styles.card}>
-              <div className={styles.stars} aria-label="5 из 5 звёзд">
+              <div className={styles.stars} role="img" aria-label="5 из 5 звёзд">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Icon key={i} name="star" size={14} />
                 ))}

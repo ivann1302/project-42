@@ -1,11 +1,72 @@
-.canvas {
-  display: block;
+@use 'sass:math';
+@use 'sass:string';
+
+// Star positions are generated once at build time.
+// X: 1..2560 covers up to 2K screens. Y: 1..1500 covers tall sections.
+// Sections with overflow:hidden clip anything outside their bounds naturally.
+
+@function multiple-box-shadow($n) {
+  $value: '#{math.random(2560)}px #{math.random(1500)}px #fff';
+
+  @for $i from 2 through $n {
+    $value: '#{$value} , #{math.random(2560)}px #{math.random(1500)}px #fff';
+  }
+
+  @return string.unquote($value);
+}
+
+$shadows-small: multiple-box-shadow(200);
+$shadows-medium: multiple-box-shadow(100);
+$shadows-large: multiple-box-shadow(40);
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+%star-base {
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 0;
-  width: 100%;
-  height: 100%;
-  inset: 0;
+  border-radius: 50%;
   pointer-events: none;
+  animation: twinkle ease-in-out infinite;
+  will-change: opacity;
+}
+
+.stars1 {
+  @extend %star-base;
+
+  width: 1px;
+  height: 1px;
+  box-shadow: $shadows-small;
+  animation-duration: 4s;
+}
+
+.stars2 {
+  @extend %star-base;
+
+  width: 1.5px;
+  height: 1.5px;
+  box-shadow: $shadows-medium;
+  animation-duration: 3s;
+  animation-delay: 1s;
+}
+
+.stars3 {
+  @extend %star-base;
+
+  width: 2px;
+  height: 2px;
+  box-shadow: $shadows-large;
+  animation-duration: 2s;
+  animation-delay: 0.5s;
 }
 
 .blob {
@@ -16,7 +77,6 @@
   border-radius: 50%;
   filter: blur(60px);
   pointer-events: none;
-  will-change: transform;
 
   @include mobile {
     width: 260px;
