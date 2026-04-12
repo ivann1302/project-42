@@ -32,6 +32,10 @@
   padding: $spacing-lg;
   text-align: center;
 
+  @include scroll-scale-in(0.8, 0);
+
+  transition-delay: calc(var(--i, 0) * 120ms);
+
   &:not(:last-child)::after {
     content: '';
     position: absolute;

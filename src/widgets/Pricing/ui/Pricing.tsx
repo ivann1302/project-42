@@ -1,26 +1,51 @@
+'use client'
+
+import { useRef } from 'react'
 import { Button, Container, Icon, SectionTitle, StarField, GlowBlob } from '@/shared/ui'
-import { pricingPlans } from '@/entities/PricingPlan'
+import { useScrollReveal } from '@/shared/lib'
+import { pricingPlans as defaultPlans } from '@/entities/PricingPlan'
+import type { PricingPlan } from '@/entities/PricingPlan'
 import styles from './Pricing.module.scss'
 
-export function Pricing() {
+type Props = {
+  plans?: PricingPlan[]
+  paymentNote?: string
+  eyebrow?: string
+  title?: string
+}
+
+export function Pricing({
+  plans = defaultPlans,
+  paymentNote = 'Оплата поэтапно: 50% предоплата, 50% после запуска. Работаем по договору.',
+  eyebrow = 'Прозрачные цены',
+  title = 'Выберите формат работы',
+}: Props) {
+  const gridRef = useRef<HTMLUListElement>(null)
+  useScrollReveal(gridRef, { threshold: 0.1 })
+
+  const getAnimIndex = (idx: number, highlighted?: boolean) => {
+    if (highlighted) return 0
+    const before = plans.slice(0, idx).filter((p) => !p.highlighted).length
+    return before + 1
+  }
+
   return (
     <section className={styles.root} id="pricing">
       <StarField />
       <GlowBlob color="blue" size={900} />
       <Container>
-        <SectionTitle eyebrow="Прозрачные цены" align="center">
-          Выберите формат работы
+        <SectionTitle eyebrow={eyebrow} align="center">
+          {title}
         </SectionTitle>
-        <p className={styles.paymentNote}>
-          Оплата поэтапно: 50% предоплата, 50% после запуска. Работаем по договору.
-        </p>
-        <ul className={styles.grid} role="list">
-          {pricingPlans.map((plan) => (
+        <p className={styles.paymentNote}>{paymentNote}</p>
+        <ul ref={gridRef} className={styles.grid} role="list">
+          {plans.map((plan, idx) => (
             <li
               key={plan.id}
               className={[styles.card, plan.highlighted && styles.highlighted]
                 .filter(Boolean)
                 .join(' ')}
+              style={{ '--i': getAnimIndex(idx, plan.highlighted) } as React.CSSProperties}
             >
               {plan.highlighted && <span className={styles.badge}>Популярный выбор</span>}
               <div className={styles.top}>

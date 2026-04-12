@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { Container, GlowBlob, Icon, SectionTitle, StarField } from '@/shared/ui'
 import type { IconName } from '@/shared/ui'
+import { useScrollReveal } from '@/shared/lib'
 import styles from './WhyUs.module.scss'
 
 type Comparison = {
@@ -35,7 +36,7 @@ const comparisons: Comparison[] = [
   {
     icon: 'shield',
     them: 'Код — чёрный ящик',
-    us: 'Чистый код для легкой поддержи',
+    us: 'Чистый код для легкой поддержки',
   },
   {
     icon: 'rocket',
@@ -46,22 +47,7 @@ const comparisons: Comparison[] = [
 
 export function WhyUs() {
   const gridRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = gridRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.visible)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  useScrollReveal(gridRef, { threshold: 0.15 })
 
   return (
     <section className={styles.root} id="why">
@@ -72,7 +58,6 @@ export function WhyUs() {
           Чем мы отличаемся от других веб-студий
         </SectionTitle>
         <div className={styles.versus} ref={gridRef}>
-          {/* Колонка «Обычно» */}
           <div className={styles.colThem}>
             <div className={styles.colHeader}>Обычно</div>
             {comparisons.map((c, i) => (
@@ -83,14 +68,12 @@ export function WhyUs() {
             ))}
           </div>
 
-          {/* Разделитель VS */}
           <div className={styles.divider}>
             <div className={styles.dividerLine} />
             <div className={styles.badge}>VS</div>
             <div className={styles.dividerLine} />
           </div>
 
-          {/* Колонка «Мы» */}
           <div className={styles.colUs}>
             <div className={styles.colHeader}>Мы</div>
             {comparisons.map((c, i) => (

@@ -27,8 +27,15 @@
 .card {
   @include card-base;
   @include card-hover;
+  @include scroll-scale-in(0.92, 20px);
 
   overflow: hidden;
+  transition-delay: calc(var(--i, 0) * 60ms);
+
+  // Re-declare hover transform after scroll reveal (both use transform)
+  &:hover {
+    transform: translateY(-4px);
+  }
 }
 
 .cardLink {
@@ -135,7 +142,6 @@
   font-weight: 700;
   line-height: 1.15;
   background: linear-gradient(90deg, $color-purple, $color-blue, $color-mint);
-  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 

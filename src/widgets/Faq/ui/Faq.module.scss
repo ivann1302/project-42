@@ -29,9 +29,12 @@
 
 .item {
   border-left: 3px solid $color-border-card;
-  transition:
-    border-color $transition-base,
-    background $transition-base;
+
+  @include scroll-fade-up(16px);
+
+  // Extend mixin's transition to include accordion-specific properties
+  transition-property: opacity, transform, border-color, background;
+  transition-delay: calc(var(--i, 0) * 50ms);
 }
 
 .itemOpen {

@@ -1,12 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Container, Icon, SectionTitle, StarField } from '@/shared/ui'
-import { faqItems } from '@/entities/FaqItem'
+import { useScrollReveal } from '@/shared/lib'
+import { faqItems as defaultFaqItems } from '@/entities/FaqItem'
+import type { FaqItem } from '@/entities/FaqItem'
 import styles from './Faq.module.scss'
 
-export function Faq() {
+type Props = {
+  items?: FaqItem[]
+  eyebrow?: string
+  title?: string
+}
+
+export function Faq({
+  items = defaultFaqItems,
+  eyebrow = 'Частые вопросы',
+  title = 'Ответы на вопросы',
+}: Props) {
+  const listRef = useRef<HTMLUListElement>(null)
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  useScrollReveal(listRef, { threshold: 0.1 })
 
   const toggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index))
@@ -16,16 +31,20 @@ export function Faq() {
     <section className={styles.root} id="faq">
       <StarField />
       <Container>
-        <SectionTitle eyebrow="Частые вопросы" align="center">
-          Ответы на вопросы
+        <SectionTitle eyebrow={eyebrow} align="center">
+          {title}
         </SectionTitle>
-        <ul className={styles.list} role="list">
-          {faqItems.map((item, index) => {
+        <ul ref={listRef} className={styles.list} role="list">
+          {items.map((item, index) => {
             const isOpen = openIndex === index
             const answerId = `faq-answer-${item.id}`
             const triggerId = `faq-trigger-${item.id}`
             return (
-              <li key={item.id} className={`${styles.item} ${isOpen ? styles.itemOpen : ''}`}>
+              <li
+                key={item.id}
+                className={`${styles.item} ${isOpen ? styles.itemOpen : ''}`}
+                style={{ '--i': index } as React.CSSProperties}
+              >
                 <button
                   id={triggerId}
                   className={styles.trigger}

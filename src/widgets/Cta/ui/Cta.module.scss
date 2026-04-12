@@ -121,12 +121,15 @@
 
 .eyebrow {
   @include eyebrow-text;
+  @include scroll-fade-up(12px);
 
   color: $color-accent;
+  transition-delay: 0ms;
 }
 
 .heading {
   @include display-text($font-size-3xl);
+  @include scroll-scale-in(0.96, 20px);
 
   max-width: 600px;
   font-family: var(--font-body), sans-serif;
@@ -134,6 +137,7 @@
   background: linear-gradient(135deg, $color-purple 0%, $color-blue 55%, $color-mint 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  transition-delay: 80ms;
 
   @include tablet {
     font-size: $font-size-2xl;
@@ -147,6 +151,14 @@
 
 .sub {
   @include body-text($font-size-md);
+  @include scroll-fade-up(20px);
 
   color: $color-text-muted;
+  transition-delay: 160ms;
+}
+
+.buttonWrap {
+  @include scroll-fade-up(20px);
+
+  transition-delay: 240ms;
 }

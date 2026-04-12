@@ -125,18 +125,22 @@
 
 .eyebrow {
   @include eyebrow-text;
+  @include scroll-fade-up(12px, 500ms);
 
   color: $color-accent;
+  transition-delay: 0ms;
 }
 
 .heading {
   @include display-text($font-size-3xl);
+  @include scroll-fade-up(20px, 550ms);
 
   max-width: 800px;
   color: transparent;
   background: linear-gradient(135deg, $color-purple 0%, $color-blue 55%, $color-mint 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  transition-delay: 80ms;
 
   @include tablet {
     font-size: $font-size-2xl;
@@ -155,10 +159,12 @@
 
 .sub {
   @include body-text($font-size-lg);
+  @include scroll-fade-up(20px, 500ms);
 
   max-width: 480px;
   line-height: 1.7;
   color: $color-text-muted;
+  transition-delay: 160ms;
 
   @include mobile {
     font-size: $font-size-md;
@@ -166,9 +172,12 @@
 }
 
 .actions {
+  @include scroll-fade-up(20px, 500ms);
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: $spacing-md;
   margin-top: $spacing-sm;
+  transition-delay: 240ms;
 }

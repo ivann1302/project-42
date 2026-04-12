@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { Container, SectionTitle, StarField } from '@/shared/ui'
+import { useScrollReveal } from '@/shared/lib'
 import styles from './WhatWeDontDo.module.scss'
 
 const items = [
@@ -25,24 +26,7 @@ const items = [
 
 export function WhatWeDontDo() {
   const listRef = useRef<HTMLUListElement>(null)
-
-  useEffect(() => {
-    const el = listRef.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.visible)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  useScrollReveal(listRef, { threshold: 0.1 })
 
   return (
     <section className={styles.root} id="what-we-dont-do">

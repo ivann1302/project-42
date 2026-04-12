@@ -62,31 +62,25 @@
   padding: $spacing-md $spacing-lg;
   font-size: $font-size-lg;
   line-height: 1.45;
-
-  // Анимация: по умолчанию скрыты
-  opacity: 0;
-  transition:
-    opacity $transition-slow,
-    transform $transition-slow;
-  transform: translateY(8px);
   border-bottom: 1px solid $color-border-dark;
-  transition-delay: calc(var(--i) * 80ms);
-
-  // Появляются когда .versus получает класс .visible
-  .visible & {
-    opacity: 1;
-    transform: translateY(0);
-  }
 
   .colThem & {
     flex-direction: row;
     color: $color-text-muted;
+
+    @include scroll-slide-left(20px);
+
+    transition-delay: calc(var(--i) * 80ms);
   }
 
   .colUs & {
     flex-direction: row-reverse;
     text-align: right;
     color: $color-gray-light;
+
+    @include scroll-slide-right(20px);
+
+    transition-delay: calc(var(--i) * 80ms);
   }
 }
 
@@ -155,12 +149,4 @@
     0 0 18px rgba($color-accent, 0.25),
     0 0 48px rgba($color-accent, 0.1);
   flex-shrink: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .row {
-    opacity: 1;
-    transition: none;
-    transform: none;
-  }
 }

@@ -1,48 +1,34 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Button, Container, GlowBlob, IconCard, Modal, SectionTitle, StarField } from '@/shared/ui'
 import { ContactForm } from '@/features/ContactForm'
+import { useScrollReveal } from '@/shared/lib'
 import { services } from '@/entities/Service'
 import styles from './Services.module.scss'
 
 export function Services() {
-  const gridRef = useRef<HTMLUListElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const [open, setOpen] = useState(false)
 
-  useEffect(() => {
-    const el = gridRef.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.visible)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  useScrollReveal(sectionRef, { threshold: 0.1 })
 
   return (
-    <section className={styles.root} id="services">
+    <section ref={sectionRef} className={styles.root} id="services">
       <StarField />
       <GlowBlob color="blue" size={1000} />
       <Container>
         <SectionTitle eyebrow="Что мы делаем" align="center">
           Полный цикл разработки
         </SectionTitle>
-        <ul ref={gridRef} className={styles.grid} role="list">
-          {services.map((service) => (
+        <ul className={styles.grid} role="list">
+          {services.map((service, idx) => (
             <IconCard
               key={service.id}
               icon={service.icon}
               title={service.title}
               description={service.description}
+              style={{ '--i': idx } as React.CSSProperties}
             />
           ))}
         </ul>

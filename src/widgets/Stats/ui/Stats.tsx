@@ -2,24 +2,21 @@
 
 import { useEffect, useRef } from 'react'
 import { Container, StarField } from '@/shared/ui'
+import type { StatItem } from '@/entities/ServicePage'
 import styles from './Stats.module.scss'
 
-interface StatItem {
-  value: number
-  prefix: string
-  suffix: string
-  label: string
-  static?: boolean
-}
-
-const stats: StatItem[] = [
+const defaultStats: StatItem[] = [
   { value: 100, prefix: '', suffix: '%', label: 'проектов сданы в срок' },
   { value: 3, prefix: '×', suffix: '', label: 'быстрее среднего за счёт AI' },
   { value: 4, prefix: '≤', suffix: '', label: 'проектов одновременно' },
-  { value: 7, prefix: 'от ', suffix: ' дней', label: 'срок разработки' },
+  { value: 0, prefix: '', suffix: '', label: 'брошенных проектов', static: true },
 ]
 
-export function Stats() {
+type Props = {
+  items?: StatItem[]
+}
+
+export function Stats({ items = defaultStats }: Props) {
   const spanRefs = useRef<(HTMLSpanElement | null)[]>([])
   const listRef = useRef<HTMLUListElement>(null)
 
@@ -32,9 +29,11 @@ export function Stats() {
         if (!entry.isIntersecting) return
         observer.disconnect()
 
+        el.classList.add('visible')
+
         const { CountUp } = await import('countup.js')
 
-        stats.forEach((stat, i) => {
+        items.forEach((stat, i) => {
           if (stat.static) return
           const span = spanRefs.current[i]
           if (!span) return
@@ -50,15 +49,19 @@ export function Stats() {
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [])
+  }, [items])
 
   return (
     <section className={styles.root} id="stats">
       <StarField />
       <Container>
         <ul ref={listRef} className={styles.list} role="list">
-          {stats.map((stat, i) => (
-            <li key={stat.label} className={styles.item}>
+          {items.map((stat, i) => (
+            <li
+              key={stat.label}
+              className={styles.item}
+              style={{ '--i': i } as React.CSSProperties}
+            >
               <span
                 className={styles.value}
                 ref={

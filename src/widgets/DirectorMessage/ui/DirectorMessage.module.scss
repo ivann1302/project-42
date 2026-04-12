@@ -22,6 +22,8 @@
   @include mobile {
     padding: $spacing-xl $spacing-lg $spacing-lg;
   }
+
+  @include scroll-fade-up(24px);
 }
 
 .quoteMark {
@@ -51,6 +53,10 @@
   gap: $spacing-lg;
   position: relative;
   z-index: 1;
+
+  @include scroll-slide-right(30px);
+
+  transition-delay: 100ms;
 }
 
 .paragraph {
@@ -77,6 +83,10 @@
   @include mobile {
     margin-top: $spacing-xl;
   }
+
+  @include scroll-slide-left(30px);
+
+  transition-delay: 180ms;
 }
 
 .avatar {

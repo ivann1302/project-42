@@ -39,11 +39,13 @@
 .card {
   @include card-base;
   @include card-hover;
+  @include scroll-scale-in(0.94, 24px);
 
   display: flex;
   flex-direction: column;
   gap: $spacing-xl;
   padding: $spacing-xl;
+  transition-delay: calc(var(--i, 0) * 100ms);
 }
 
 .highlighted {

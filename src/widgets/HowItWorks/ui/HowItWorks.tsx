@@ -1,10 +1,12 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { Container, SectionTitle, StarField } from '@/shared/ui'
+import { useScrollReveal } from '@/shared/lib'
+import type { HowItWorksStep } from '@/entities/ServicePage'
 import styles from './HowItWorks.module.scss'
 
-const steps = [
+const defaultSteps: HowItWorksStep[] = [
   {
     num: '01',
     title: 'Погружение',
@@ -39,33 +41,26 @@ const steps = [
   },
 ]
 
-export function HowItWorks() {
+type Props = {
+  eyebrow?: string
+  title?: string
+  steps?: HowItWorksStep[]
+}
+
+export function HowItWorks({
+  eyebrow = 'Процесс',
+  title = 'От замысла до результата',
+  steps = defaultSteps,
+}: Props) {
   const listRef = useRef<HTMLOListElement>(null)
-
-  useEffect(() => {
-    const el = listRef.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.visible)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15 },
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+  useScrollReveal(listRef, { threshold: 0.1 })
 
   return (
     <section className={styles.root} id="process">
       <StarField />
       <Container>
-        <SectionTitle eyebrow="Процесс" align="center">
-          От замысла до результата
+        <SectionTitle eyebrow={eyebrow} align="center">
+          {title}
         </SectionTitle>
         <ol ref={listRef} className={styles.list}>
           {steps.map((step, idx) => (

@@ -98,7 +98,6 @@
 @mixin gradient-text($from: $color-purple, $to: $color-blue) {
   background: linear-gradient(135deg, $from, $to);
   background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -189,5 +188,77 @@
   @include mobile {
     padding-top: $spacing-2xl;
     padding-bottom: $spacing-2xl;
+  }
+}
+
+// ─── Scroll reveal ────────────────────────────────────────────────
+
+@mixin scroll-fade-up($y: 20px, $duration: 450ms, $easing: ease-out) {
+  opacity: 0;
+  transition:
+    opacity $duration $easing,
+    transform $duration $easing;
+  transform: translateY($y);
+
+  // :global(.visible) keeps the trigger class unscoped so the hook can add
+  // the literal string 'visible' without needing to know the CSS module hash.
+  :global(.visible) & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+@mixin scroll-slide-left($x: 24px, $duration: 450ms, $easing: ease-out) {
+  opacity: 0;
+  transition:
+    opacity $duration $easing,
+    transform $duration $easing;
+  transform: translateX(-$x);
+
+  :global(.visible) & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+@mixin scroll-slide-right($x: 24px, $duration: 450ms, $easing: ease-out) {
+  opacity: 0;
+  transition:
+    opacity $duration $easing,
+    transform $duration $easing;
+  transform: translateX($x);
+
+  :global(.visible) & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+@mixin scroll-scale-in($scale: 0.92, $y: 16px, $duration: 450ms, $easing: ease-out) {
+  opacity: 0;
+  transition:
+    opacity $duration $easing,
+    transform $duration $easing;
+  transform: scale($scale) translateY($y);
+
+  :global(.visible) & {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 }

@@ -1,11 +1,16 @@
 'use client'
 
+import { useRef } from 'react'
 import { Container, GlowBlob, StarField } from '@/shared/ui'
+import { useScrollReveal } from '@/shared/lib'
 import styles from './DirectorMessage.module.scss'
 
 export function DirectorMessage() {
+  const sectionRef = useRef<HTMLElement>(null)
+  useScrollReveal(sectionRef, { threshold: 0.2 })
+
   return (
-    <section className={styles.root} id="director">
+    <section ref={sectionRef} className={styles.root} id="director">
       <StarField />
       <GlowBlob color="blue" size={700} x={60} y={50} />
       <Container>

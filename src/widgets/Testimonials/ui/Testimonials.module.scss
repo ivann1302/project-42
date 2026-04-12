@@ -26,11 +26,13 @@
 .card {
   @include card-base;
   @include card-hover;
+  @include scroll-fade-up(28px);
 
   display: flex;
   flex-direction: column;
   gap: $spacing-lg;
   padding: $spacing-xl;
+  transition-delay: calc(var(--i, 0) * 100ms);
 }
 
 .stars {

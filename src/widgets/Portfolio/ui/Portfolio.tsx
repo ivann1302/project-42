@@ -1,15 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Container, SectionTitle, StarField, Button, Modal } from '@/shared/ui'
 import { ContactForm } from '@/features/ContactForm'
+import { useScrollReveal } from '@/shared/lib'
 import { projects } from '@/entities/Project'
 import styles from './Portfolio.module.scss'
 
 export function Portfolio() {
+  const gridRef = useRef<HTMLUListElement>(null)
   const [open, setOpen] = useState(false)
+
+  useScrollReveal(gridRef, { threshold: 0.1 })
 
   return (
     <section className={styles.root} id="portfolio">
@@ -18,9 +22,13 @@ export function Portfolio() {
         <SectionTitle eyebrow="Наши работы" align="center">
           Проекты
         </SectionTitle>
-        <ul className={styles.grid} role="list">
-          {projects.map((project) => (
-            <li key={project.id} className={styles.card}>
+        <ul ref={gridRef} className={styles.grid} role="list">
+          {projects.map((project, idx) => (
+            <li
+              key={project.id}
+              className={styles.card}
+              style={{ '--i': idx } as React.CSSProperties}
+            >
               <Link href={`/portfolio#${project.id}`} className={styles.cardLink}>
                 <div className={styles.image}>
                   {project.desktopImageUrl ? (

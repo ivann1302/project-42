@@ -1,18 +1,3 @@
-/* stylelint-disable keyframes-name-pattern */
-:global {
-  @keyframes srv-card-in {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
 .root {
   @include section-pad;
   @include section-fade-bottom($color-bg-section);
@@ -32,35 +17,10 @@
 
   & > li {
     grid-column: span 2;
-    opacity: 0;
-  }
 
-  &.visible > li {
-    animation: srv-card-in 450ms ease-out forwards;
-  }
+    @include scroll-scale-in(0.92, 20px);
 
-  &.visible > li:nth-child(1) {
-    animation-delay: 0ms;
-  }
-
-  &.visible > li:nth-child(2) {
-    animation-delay: 80ms;
-  }
-
-  &.visible > li:nth-child(3) {
-    animation-delay: 160ms;
-  }
-
-  &.visible > li:nth-child(4) {
-    animation-delay: 240ms;
-  }
-
-  &.visible > li:nth-child(5) {
-    animation-delay: 320ms;
-  }
-
-  &.visible > li:nth-child(6) {
-    animation-delay: 400ms;
+    transition-delay: calc(var(--i, 0) * 80ms);
   }
 
   @include tablet {
@@ -94,11 +54,4 @@
   font-size: $font-size-md;
   line-height: 1.6;
   color: $color-gray-light;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .grid > li {
-    opacity: 1;
-    animation: none;
-  }
 }

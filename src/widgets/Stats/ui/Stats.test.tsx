@@ -21,6 +21,16 @@ describe('Stats', () => {
     expect(screen.getAllByRole('listitem')).toHaveLength(4)
   })
 
+  it('renders custom items when provided', () => {
+    const items = [
+      { value: 50, prefix: '', suffix: '+', label: 'сайтов продвинуто' },
+      { value: 3, prefix: '×', suffix: '', label: 'рост трафика в среднем' },
+    ]
+    render(<Stats items={items} />)
+    expect(screen.getByText('сайтов продвинуто')).toBeInTheDocument()
+    expect(screen.queryByText('проектов сданы в срок')).not.toBeInTheDocument()
+  })
+
   it('renders all stat labels', () => {
     render(<Stats />)
     expect(screen.getByText('проектов сданы в срок')).toBeInTheDocument()
