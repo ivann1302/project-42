@@ -40,11 +40,20 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — ${siteConfig.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
