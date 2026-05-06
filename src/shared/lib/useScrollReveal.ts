@@ -47,5 +47,5 @@ export function useScrollReveal<T extends Element>(
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [threshold, rootMargin])
+  }, [ref, threshold, rootMargin])
 }

@@ -53,4 +53,50 @@ export const projects: Project[] = [
     mobileImageUrl: '/images/portfolio/truetell-mobile.webp',
     href: 'https://truetell-retail.ru/',
   },
+  {
+    id: 'project-4',
+    title: 'Лендинг для компании «Ровный пол»',
+    description:
+      'Конверсионный лендинг для компании по стяжке пола в Москве. Сделали сайт с понятной подачей преимуществ, настроили рекламу и запустили стабильный поток лидов.',
+    tags: ['Landing', 'Реклама', 'Дизайн', 'Стяжка пола'],
+    achievements: [
+      'Создание лендинга для компании по стяжке пола',
+      'Настройка рекламной кампании под Москву',
+      'Актуальный дизайн, выделяющийся в нише',
+      'Запуск постоянного потока заявок',
+    ],
+    desktopImageUrl: '/images/portfolio/floor-screed-desktop.webp',
+    mobileImageUrl: '/images/portfolio/floor-screed-mobile.png',
+  },
+  {
+    id: 'project-5',
+    title: 'Лендинг для Красим.ру',
+    description:
+      'Лендинг для компании по покраске помещений. Сделали сайт и настроили рекламу, чтобы компания получала лиды с современным визуалом, понятной структурой и акцентом на доверие.',
+    tags: ['Landing', 'Реклама', 'Дизайн', 'Лиды'],
+    achievements: [
+      'Разработка лендинга для компании по покраске',
+      'Запуск рекламных объявлений',
+      'Фокус на конверсию и простоту контакта',
+      'Создание свежего образа сайта для продвижения услуг',
+    ],
+    desktopImageUrl: '/images/portfolio/krasim-ru-desktop.webp',
+    mobileImageUrl: '/images/portfolio/krasim-ru-mobile.webp',
+  },
+  {
+    id: 'project-6',
+    title: 'Лендинг для репетитора начальной школы Ирины Витальевны',
+    description:
+      'Лендинг для репетитора начальной школы с акцентом на кейсы, результаты учеников и доверие родителей. Сделали сайт для демонстрации экспертизы и постоянного притока заявок.',
+    tags: ['Landing', 'Образование', 'Персональный бренд', 'Лиды'],
+    achievements: [
+      'Создание лендинга для репетитора начальной школы',
+      'Фокус на доверии и результатах',
+      'Понятная структура для родителей',
+      'Демонстрация успешных кейсов и отзывов',
+    ],
+    desktopImageUrl: '/images/portfolio/school-tutor-desktop.webp',
+    mobileImageUrl: '/images/portfolio/school-tutor-mobile.webp',
+    href: 'https://school-tutor-gold.vercel.app/',
+  },
 ]

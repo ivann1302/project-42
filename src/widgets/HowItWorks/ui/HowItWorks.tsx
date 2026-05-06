@@ -1,8 +1,5 @@
-'use client'
-
-import { useRef } from 'react'
-import { Container, SectionTitle, StarField } from '@/shared/ui'
-import { useScrollReveal } from '@/shared/lib'
+import type { CSSProperties } from 'react'
+import { Container, ScrollReveal, SectionTitle, StarField } from '@/shared/ui'
 import type { HowItWorksStep } from '@/entities/ServicePage'
 import styles from './HowItWorks.module.scss'
 
@@ -52,9 +49,6 @@ export function HowItWorks({
   title = 'От замысла до результата',
   steps = defaultSteps,
 }: Props) {
-  const listRef = useRef<HTMLOListElement>(null)
-  useScrollReveal(listRef, { threshold: 0.1 })
-
   return (
     <section className={styles.root} id="process">
       <StarField />
@@ -62,13 +56,9 @@ export function HowItWorks({
         <SectionTitle eyebrow={eyebrow} align="center">
           {title}
         </SectionTitle>
-        <ol ref={listRef} className={styles.list}>
+        <ScrollReveal as="ol" className={styles.list} threshold={0.1}>
           {steps.map((step, idx) => (
-            <li
-              key={step.num}
-              className={styles.step}
-              style={{ '--i': idx } as React.CSSProperties}
-            >
+            <li key={step.num} className={styles.step} style={{ '--i': idx } as CSSProperties}>
               <div className={styles.numWrap}>
                 <span className={styles.num}>{step.num}</span>
                 {idx < steps.length - 1 && <span className={styles.line} aria-hidden="true" />}
@@ -79,7 +69,7 @@ export function HowItWorks({
               </div>
             </li>
           ))}
-        </ol>
+        </ScrollReveal>
       </Container>
     </section>
   )

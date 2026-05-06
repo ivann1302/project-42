@@ -5,4 +5,5 @@ export type Service = {
   icon: IconName
   title: string
   description: string
+  href?: string
 }

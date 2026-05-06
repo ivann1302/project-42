@@ -7,6 +7,11 @@
   background: $color-bg;
 }
 
+.carouselShell {
+  display: flow-root;
+  position: relative;
+}
+
 .grid {
   display: grid;
   gap: $spacing-lg;
@@ -20,7 +25,49 @@
   }
 
   @include mobile {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: $spacing-md;
+    grid-template-columns: none;
+    max-width: 100%;
+    overflow-x: auto;
+    scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.desktopCarousel {
+  @include desktop {
+    margin-top: $spacing-2xl;
+
+    .grid {
+      display: flex;
+      gap: $spacing-lg;
+      grid-template-columns: none;
+      margin-top: 0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      scroll-padding-inline: 0;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .card {
+      flex: 0 0 calc(33.3333% - 16px);
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
   }
 }
 
@@ -35,6 +82,60 @@
   // Re-declare hover transform after scroll reveal (both use transform)
   &:hover {
     transform: translateY(-4px);
+  }
+
+  @include mobile {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.carouselControls {
+  display: none;
+
+  @include desktop {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    left: -22px;
+    z-index: 2;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+}
+
+.carouselButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: $color-text;
+  background: rgba($color-card, 0.9);
+  border: 1px solid rgba($color-purple, 0.36);
+  border-radius: 50%;
+  box-shadow: 0 14px 34px rgba(0 0 0 / 28%);
+  transition:
+    background $transition-base,
+    border-color $transition-base,
+    color $transition-base,
+    transform $transition-base;
+  cursor: pointer;
+  pointer-events: auto;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-accent-mint;
+    background: rgba($color-purple, 0.2);
+    border-color: rgba($color-accent-mint, 0.62);
+    transform: scale(1.06);
   }
 }
 

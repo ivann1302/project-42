@@ -1,7 +1,9 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { Button, Container, Modal, StarField } from '@/shared/ui'
+import { Button, Container, Icon, Modal, StarField } from '@/shared/ui'
+
+const TG_HREF = 'https://t.me/project42studio'
 import { ContactForm } from '@/features/ContactForm'
 import { useScrollReveal } from '@/shared/lib'
 import styles from './Cta.module.scss'
@@ -46,6 +48,10 @@ export function Cta({
         <div className={styles.buttonWrap}>
           <Button size="lg" onClick={() => setOpen(true)}>
             {buttonText}
+          </Button>
+          <Button size="lg" variant="ghost" href={TG_HREF} target="_blank">
+            <Icon name="telegram" size={18} />
+            Написать в Telegram
           </Button>
         </div>
       </Container>

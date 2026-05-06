@@ -186,8 +186,8 @@
   padding-bottom: $spacing-3xl;
 
   @include mobile {
-    padding-top: $spacing-2xl;
-    padding-bottom: $spacing-2xl;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }
 

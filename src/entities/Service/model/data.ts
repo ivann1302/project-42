@@ -11,9 +11,10 @@ export const services: Service[] = [
   {
     id: 'development',
     icon: 'code',
-    title: 'Разработка',
+    title: 'Разработка лендингов',
     description:
-      'Быстрые, масштабируемые решения на современном стеке. Адаптив, интеграции, чистый код без замков.',
+      'Быстрые посадочные страницы на современном стеке. Адаптив, формы, аналитика, интеграции и чистый код без замков.',
+    href: '/razrabotka-sayta',
   },
   {
     id: 'seo',
@@ -21,13 +22,15 @@ export const services: Service[] = [
     title: 'SEO',
     description:
       'Технический аудит, контентная стратегия, рост в органическом поиске. Работаем на долгосрочный результат.',
+    href: '/seo-prodvizhenie',
   },
   {
     id: 'geo',
     icon: 'globe',
     title: 'GEO-оптимизация',
     description:
-      'Оптимизация под AI-поисковики: Google AI Overviews, ChatGPT, Perplexity. Новый канал трафика уже сейчас.',
+      'GEO (Generative Engine Optimization) — оптимизация контента под AI-поисковики: ChatGPT, Perplexity, Google AI Overviews. Новый канал трафика уже сейчас.',
+    href: '/seo-prodvizhenie',
   },
   {
     id: 'yandex-direct',

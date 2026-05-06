@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import clsx from 'clsx'
 import type { PropsWithClassName } from '@/shared/types'
 import { Icon } from '../Icon'
 import styles from './Select.module.scss'
@@ -30,10 +31,10 @@ export function Select({ options, value, onChange, placeholder, className }: Pro
   }, [open])
 
   return (
-    <div ref={ref} className={[styles.root, className].filter(Boolean).join(' ')}>
+    <div ref={ref} className={clsx(styles.root, className)}>
       <button
         type="button"
-        className={[styles.trigger, open && styles.open].filter(Boolean).join(' ')}
+        className={clsx(styles.trigger, open && styles.open)}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="listbox"
@@ -44,7 +45,7 @@ export function Select({ options, value, onChange, placeholder, className }: Pro
         <Icon
           name="chevronDown"
           size={16}
-          className={[styles.arrow, open && styles.arrowOpen].filter(Boolean).join(' ')}
+          className={clsx(styles.arrow, open && styles.arrowOpen)}
         />
       </button>
 
@@ -54,9 +55,7 @@ export function Select({ options, value, onChange, placeholder, className }: Pro
             <li key={opt.value} role="option" aria-selected={opt.value === value}>
               <button
                 type="button"
-                className={[styles.option, opt.value === value && styles.optionActive]
-                  .filter(Boolean)
-                  .join(' ')}
+                className={clsx(styles.option, opt.value === value && styles.optionActive)}
                 onClick={() => {
                   onChange(opt.value)
                   setOpen(false)

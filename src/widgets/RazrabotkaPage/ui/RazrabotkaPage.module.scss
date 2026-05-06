@@ -1,0 +1,639 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+$landing-bg: #030303;
+
+.pageCanvas {
+  overflow: hidden;
+  background: $landing-bg;
+
+  :global(section) {
+    background: $landing-bg !important;
+  }
+
+  :global(section::before),
+  :global(section::after) {
+    background: linear-gradient(to bottom, rgba($landing-bg, 0), $landing-bg) !important;
+  }
+
+  :global([class*='blob']),
+  :global([class*='Blob']) {
+    display: none !important;
+  }
+}
+
+.about,
+.benefits,
+.comparison,
+.support {
+  position: relative;
+  overflow: hidden;
+}
+
+.about {
+  padding: clamp(72px, 10vw, 120px) 0;
+  background: $landing-bg;
+}
+
+.aboutInner {
+  display: grid;
+  align-items: start;
+  gap: clamp(40px, 6vw, 88px);
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  text-align: left;
+}
+
+.aboutIntro {
+  display: grid;
+  gap: 20px;
+  position: sticky;
+  top: 112px;
+
+  p {
+    max-width: 420px;
+    margin: 0;
+    font-size: clamp(17px, 1.8vw, 21px);
+    line-height: 1.62;
+    color: $color-gray-light;
+  }
+}
+
+.aboutGradientText {
+  color: transparent;
+  background: linear-gradient(135deg, $color-purple 0%, $color-blue 48%, $color-mint 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.aboutList {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aboutItem {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 68px minmax(0, 1fr);
+  position: relative;
+  padding: clamp(20px, 3vw, 28px);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba($color-white, 0.07), rgba($color-white, 0.025)),
+    rgba($color-white, 0.025);
+  border: 1px solid rgba($color-white, 0.1);
+  border-radius: $radius-sm;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, $color-purple, $color-blue, $color-mint);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    background:
+      linear-gradient(90deg, rgba($color-white, 0.28), transparent) top left / 100% 1px no-repeat,
+      linear-gradient(180deg, rgba($color-white, 0.28), transparent) top left / 1px 100% no-repeat;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  h3 {
+    margin: 0 0 8px;
+    font-family: $font-display;
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: $color-text;
+  }
+
+  p {
+    max-width: 620px;
+    margin: 0;
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.58;
+    color: $color-gray-light;
+  }
+}
+
+.aboutNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-family: $font-body;
+  font-size: $font-size-sm;
+  font-weight: 700;
+  color: $color-text;
+  background: rgba($color-white, 0.07);
+  border: 1px solid rgba($color-white, 0.12);
+  border-radius: 50%;
+}
+
+.benefits,
+.comparison,
+.support {
+  padding: clamp(80px, 11vw, 140px) 0;
+}
+
+.sectionContent {
+  position: relative;
+  z-index: 1;
+}
+
+.benefits {
+  background: $landing-bg;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    height: clamp(96px, 12vw, 180px);
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    background: linear-gradient(to bottom, $landing-bg, rgba($landing-bg, 0));
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba($landing-bg, 0), $landing-bg);
+  }
+}
+
+.comparison {
+  background: $landing-bg;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    height: clamp(96px, 12vw, 180px);
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    background: linear-gradient(to bottom, $landing-bg, rgba($landing-bg, 0));
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba($landing-bg, 0), $landing-bg);
+  }
+}
+
+.benefitsList {
+  display: grid;
+  gap: 18px;
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 48px auto 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    align-items: center;
+    gap: 18px;
+    grid-template-columns: 36px minmax(0, 1fr);
+    position: relative;
+    padding: 0 0 18px;
+    font-size: 17px;
+    line-height: 1.48;
+    color: $color-text;
+    border-bottom: 1px solid rgba($color-white, 0.09);
+
+    &::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      font-size: 15px;
+      font-weight: 800;
+      color: $color-purple;
+      background: rgba($color-purple, 0.12);
+      border: 1px solid rgba($color-purple, 0.32);
+      border-radius: 50%;
+      box-shadow: 0 0 28px rgba($color-purple, 0.22);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 18px;
+      bottom: -18px;
+      left: 17px;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba($color-purple, 0.36), transparent);
+      pointer-events: none;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+.comparisonGrid {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr 72px 1fr;
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
+}
+
+.comparisonColMuted,
+.comparisonColAccent {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparisonHeader {
+  margin-bottom: $spacing-xs;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-lg;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid $color-border-dark;
+
+  .comparisonColMuted & {
+    color: $color-text-muted;
+  }
+
+  .comparisonColAccent & {
+    text-align: right;
+    color: $color-accent;
+  }
+}
+
+.comparisonRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-lg;
+  line-height: 1.45;
+  border-bottom: 1px solid $color-border-dark;
+
+  .comparisonColMuted & {
+    flex-direction: row;
+    color: $color-text-muted;
+
+    @include scroll-slide-left(20px);
+
+    transition-delay: calc(var(--i) * 80ms);
+  }
+
+  .comparisonColAccent & {
+    flex-direction: row-reverse;
+    text-align: right;
+    color: $color-gray-light;
+
+    @include scroll-slide-right(20px);
+
+    transition-delay: calc(var(--i) * 80ms);
+  }
+}
+
+.comparisonDot {
+  width: 7px;
+  height: 7px;
+  background: $color-gray-dark;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.comparisonIcon {
+  flex-shrink: 0;
+  color: $color-accent-mint;
+  opacity: 0.9;
+}
+
+.comparisonDivider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: $spacing-xl;
+}
+
+.comparisonDividerLine {
+  flex: 1;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba($color-accent, 0.25), transparent);
+}
+
+.comparisonBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: $color-accent;
+  background: rgba($color-accent, 0.15);
+  border: 1.5px solid rgba($color-accent, 0.5);
+  border-radius: 50%;
+  box-shadow:
+    0 0 18px rgba($color-accent, 0.25),
+    0 0 48px rgba($color-accent, 0.1);
+  flex-shrink: 0;
+}
+
+.supportInner {
+  display: grid;
+  align-items: stretch;
+  gap: clamp(32px, 5vw, 64px);
+  grid-template-columns: minmax(280px, 0.74fr) minmax(0, 1fr);
+  position: relative;
+  z-index: 1;
+}
+
+.supportIntro {
+  display: grid;
+  align-content: center;
+  gap: 24px;
+
+  > p {
+    max-width: 520px;
+  }
+
+  p {
+    margin: 0;
+    font-size: clamp(17px, 1.7vw, 20px);
+    line-height: 1.62;
+    color: $color-gray-light;
+  }
+}
+
+.supportStatement {
+  display: grid;
+  gap: 8px;
+  padding-left: 20px;
+  border-left: 2px solid rgba($color-purple, 0.5);
+
+  p {
+    margin: 0;
+    font-family: $font-display;
+    font-size: clamp(26px, 3.4vw, 44px);
+    font-weight: 800;
+    line-height: 1.08;
+  }
+}
+
+.supportMuted {
+  color: rgba($color-white, 0.36);
+}
+
+.supportAccent {
+  color: transparent;
+  background: linear-gradient(135deg, $color-purple 0%, $color-blue 54%, $color-mint 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.supportSocials {
+  margin-top: -4px;
+}
+
+.supportPanel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 0%, rgba($color-purple, 0.18), transparent 34%),
+    rgba($color-white, 0.035);
+  border: 1px solid rgba($color-white, 0.1);
+  border-radius: $radius-sm;
+  box-shadow: 0 24px 80px rgba(0 0 0 / 24%);
+}
+
+.supportPanelItem {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  min-height: 214px;
+  padding: clamp(22px, 3vw, 32px);
+  border-right: 1px solid rgba($color-white, 0.08);
+  border-bottom: 1px solid rgba($color-white, 0.08);
+
+  &:nth-child(2n) {
+    border-right: 0;
+  }
+
+  &:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  h3 {
+    margin: 0;
+    font-family: $font-display;
+    font-size: clamp(21px, 2.1vw, 28px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: $color-text;
+  }
+
+  p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.58;
+    color: $color-gray-light;
+  }
+}
+
+.supportIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: $color-purple;
+  background: rgba($color-purple, 0.12);
+  border: 1px solid rgba($color-purple, 0.32);
+  border-radius: 50%;
+  box-shadow: 0 0 26px rgba($color-purple, 0.22);
+}
+
+.support {
+  background: $landing-bg;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    height: clamp(120px, 14vw, 220px);
+    background: linear-gradient(to bottom, $landing-bg, rgba($landing-bg, 0));
+    pointer-events: none;
+  }
+}
+
+@include tablet {
+  .aboutInner,
+  .supportInner {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutIntro {
+    position: static;
+  }
+}
+
+@include mobile {
+  .about,
+  .benefits,
+  .comparison,
+  .support {
+    padding: 44px 0;
+  }
+
+  .aboutInner {
+    gap: 28px;
+    grid-template-columns: 1fr;
+  }
+
+  .aboutIntro {
+    gap: 16px;
+    position: static;
+  }
+
+  .aboutItem {
+    gap: 14px;
+    grid-template-columns: 44px minmax(0, 1fr);
+    padding: 20px 18px;
+
+    &::after {
+      top: 16px;
+      right: 16px;
+      width: 34px;
+      height: 34px;
+    }
+
+    h3 {
+      padding-right: 28px;
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .aboutNumber {
+    width: 34px;
+    height: 34px;
+    font-size: 11px;
+  }
+
+  .benefitsList {
+    margin-top: 36px;
+
+    li {
+      gap: 14px;
+      grid-template-columns: 32px minmax(0, 1fr);
+      padding-bottom: 16px;
+      font-size: 16px;
+
+      &::before {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+
+      &::after {
+        top: 16px;
+        bottom: -16px;
+        left: 15px;
+      }
+    }
+  }
+
+  .comparisonGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparisonDivider {
+    flex-direction: row;
+    justify-content: center;
+    gap: $spacing-md;
+    margin-top: 20px;
+    padding: $spacing-md 0;
+    padding-top: 0;
+  }
+
+  .comparisonDividerLine {
+    width: auto;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba($color-accent, 0.25), transparent);
+  }
+
+  .supportInner,
+  .supportIntro {
+    gap: 28px;
+  }
+
+  .supportInner {
+    grid-template-columns: 1fr;
+  }
+
+  .supportStatement {
+    padding-left: 16px;
+  }
+
+  .supportPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .supportPanelItem {
+    min-height: auto;
+    padding: 22px 20px;
+    border-right: 0;
+
+    &:nth-last-child(-n + 2) {
+      border-bottom: 1px solid rgba($color-white, 0.08);
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}

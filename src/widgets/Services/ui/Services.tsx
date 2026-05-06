@@ -28,6 +28,7 @@ export function Services() {
               icon={service.icon}
               title={service.title}
               description={service.description}
+              href={service.href}
               style={{ '--i': idx } as React.CSSProperties}
             />
           ))}

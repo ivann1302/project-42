@@ -1,16 +1,10 @@
-'use client'
-
-import { useRef } from 'react'
-import { Container, GlowBlob, StarField } from '@/shared/ui'
-import { useScrollReveal } from '@/shared/lib'
+import Image from 'next/image'
+import { Container, GlowBlob, ScrollReveal, StarField } from '@/shared/ui'
 import styles from './DirectorMessage.module.scss'
 
 export function DirectorMessage() {
-  const sectionRef = useRef<HTMLElement>(null)
-  useScrollReveal(sectionRef, { threshold: 0.2 })
-
   return (
-    <section ref={sectionRef} className={styles.root} id="director">
+    <ScrollReveal as="section" className={styles.root} id="director" threshold={0.2}>
       <StarField />
       <GlowBlob color="blue" size={700} x={60} y={50} />
       <Container>
@@ -37,7 +31,14 @@ export function DirectorMessage() {
 
           <div className={styles.author}>
             <div className={styles.avatar} aria-hidden="true">
-              И
+              <Image
+                src="/images/chief-photo.webp"
+                alt=""
+                fill
+                sizes="96px"
+                className={styles.avatarImage}
+                priority
+              />
             </div>
             <div className={styles.authorInfo}>
               <span className={styles.authorName}>Иван</span>
@@ -46,6 +47,6 @@ export function DirectorMessage() {
           </div>
         </div>
       </Container>
-    </section>
+    </ScrollReveal>
   )
 }

@@ -1,0 +1,47 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  text-decoration: none;
+  color: $color-text;
+  background: rgba($color-white, 0.04);
+  border: 1px solid rgba($color-white, 0.12);
+  border-radius: $radius-sm;
+  box-shadow: 0 10px 28px rgba(0 0 0 / 18%);
+  transition:
+    border-color $transition-base,
+    box-shadow $transition-base,
+    transform $transition-base;
+
+  &:hover,
+  &:focus-visible {
+    border-color: rgba($color-purple, 0.56);
+    box-shadow:
+      0 0 20px rgba($color-purple, 0.2),
+      0 14px 34px rgba(0 0 0 / 24%);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba($color-purple, 0.72);
+    outline-offset: 3px;
+  }
+}
+
+.icon {
+  display: block;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  pointer-events: none;
+}

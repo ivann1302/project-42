@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Inter, Syne } from 'next/font/google'
 import { siteConfig } from '@/shared/config/seo'
 import '@/shared/styles/globals.scss'
 
@@ -12,18 +11,6 @@ const organizationSchema = {
   founder: { '@type': 'Person', name: 'Иван Нарчук' },
   serviceType: ['Веб-разработка', 'UI/UX дизайн', 'SEO', 'GEO-оптимизация'],
 }
-
-const fontBody = Inter({
-  subsets: ['latin', 'cyrillic'],
-  variable: '--font-body',
-  display: 'swap',
-})
-
-const fontDisplay = Syne({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: {
@@ -64,7 +51,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" className={`${fontBody.variable} ${fontDisplay.variable}`}>
+    <html lang="ru">
       <head>
         <script
           type="application/ld+json"

@@ -4,7 +4,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'landing',
     name: 'Лендинг',
-    price: 'от 9 900 ₽',
+    price: 'от 10 000 ₽',
     priceNote: 'Для быстрого запуска и первых заявок',
     description: 'Одностраничный сайт с высокой конверсией и базовым SEO.',
     features: [
@@ -19,7 +19,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'corporate',
     name: 'Корпоративный сайт',
-    price: 'от  79 900 ₽',
+    price: 'от  60 000 ₽',
     priceNote: 'Полный цикл — самый популярный выбор',
     description: 'Многостраничный сайт с полным циклом: дизайн, разработка, SEO, GEO и поддержка.',
     features: [
@@ -28,7 +28,7 @@ export const pricingPlans: PricingPlan[] = [
       'SEO-продвижение на начальном этапе',
       'GEO-оптимизация',
       'Интеграции и CMS',
-      'Поддержка 3 месяца включена',
+      'Поддержка 2 месяца включена',
     ],
     highlighted: true,
     cta: 'Обсудить проект',

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import clsx from 'clsx'
 import { Container, Button, Icon, Modal } from '@/shared/ui'
 import { StarField } from '@/shared/ui'
 import { ContactForm } from '@/features/ContactForm'
@@ -28,7 +29,7 @@ export function PortfolioPage() {
               <li
                 key={project.id}
                 id={project.id}
-                className={[styles.row, isEven && styles.reversed].filter(Boolean).join(' ')}
+                className={clsx(styles.row, isEven && styles.reversed)}
               >
                 <div className={styles.text}>
                   <ul className={styles.tags} role="list">
@@ -72,6 +73,7 @@ export function PortfolioPage() {
                         height={1080}
                         className={styles.mockupImg}
                         sizes="(max-width: 768px) 100vw, 60vw"
+                        priority={index === 0}
                       />
                     ) : (
                       <div className={styles.placeholder} />

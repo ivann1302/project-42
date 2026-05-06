@@ -2,16 +2,15 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Container, Button, Modal } from '@/shared/ui'
+import { Container, Button, Modal, SocialLinks } from '@/shared/ui'
 import { ContactForm } from '@/features/ContactForm'
 import styles from './Footer.module.scss'
 
 const NAV_LINKS = [
-  { label: 'Услуги', href: '/#services' },
+  { label: 'Разработка сайтов', href: '/razrabotka-sayta' },
   { label: 'Как работаем', href: '/#process' },
   { label: 'Портфолио', href: '/portfolio' },
   { label: 'Цены', href: '/#pricing' },
-  { label: 'FAQ', href: '/#faq' },
 ]
 
 export function Footer() {
@@ -29,6 +28,7 @@ export function Footer() {
               Project<span className={styles.accent}>42</span>
             </Link>
             <p className={styles.tagline}>Не ещё одна веб-студия</p>
+            <SocialLinks className={styles.socials} />
           </div>
 
           <nav className={styles.nav} aria-label="Навигация в подвале">
@@ -39,9 +39,13 @@ export function Footer() {
             ))}
           </nav>
 
-          <Button variant="primary" size="md" onClick={() => setModalOpen(true)}>
-            Заказать консультацию
-          </Button>
+          <div className={styles.ctaPanel}>
+            <p className={styles.ctaTitle}>Обсудим проект?</p>
+            <p className={styles.ctaText}>Коротко разберём задачу и подскажем следующий шаг.</p>
+            <Button variant="primary" size="md" onClick={() => setModalOpen(true)}>
+              Заказать консультацию
+            </Button>
+          </div>
         </div>
 
         <div className={styles.bottom}>

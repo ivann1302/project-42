@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import clsx from 'clsx'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Select } from '@/shared/ui'
@@ -16,8 +17,9 @@ const SERVICES = [
   'Другое',
 ]
 
-type Props = { onSuccess?: () => void }
+const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
 
+type Props = { onSuccess?: () => void }
 export function ContactForm({ onSuccess }: Props) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
@@ -35,10 +37,10 @@ export function ContactForm({ onSuccess }: Props) {
   const onSubmit = async (data: ContactFormData) => {
     setStatus('loading')
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, _page: window.location.pathname }),
       })
       if (!res.ok) throw new Error()
       setStatus('success')
@@ -72,7 +74,7 @@ export function ContactForm({ onSuccess }: Props) {
       <div className={styles.field}>
         <label className={styles.label}>Имя *</label>
         <input
-          className={[styles.input, errors.name && styles.inputError].filter(Boolean).join(' ')}
+          className={clsx(styles.input, errors.name && styles.inputError)}
           placeholder="Иван Иванов"
           {...register('name')}
         />
@@ -83,7 +85,7 @@ export function ContactForm({ onSuccess }: Props) {
         <label className={styles.label}>Телефон</label>
         <input
           type="tel"
-          className={[styles.input, errors.phone && styles.inputError].filter(Boolean).join(' ')}
+          className={clsx(styles.input, errors.phone && styles.inputError)}
           placeholder="+7 (___) ___-__-__"
           {...register('phone')}
         />
@@ -94,7 +96,7 @@ export function ContactForm({ onSuccess }: Props) {
         <label className={styles.label}>Email</label>
         <input
           type="email"
-          className={[styles.input, errors.email && styles.inputError].filter(Boolean).join(' ')}
+          className={clsx(styles.input, errors.email && styles.inputError)}
           placeholder="example@company.ru"
           {...register('email')}
         />

@@ -1,8 +1,14 @@
-'use client'
-
-import { useRef } from 'react'
-import { Button, Container, Icon, SectionTitle, StarField, GlowBlob } from '@/shared/ui'
-import { useScrollReveal } from '@/shared/lib'
+import type { CSSProperties } from 'react'
+import clsx from 'clsx'
+import {
+  Button,
+  Container,
+  GlowBlob,
+  Icon,
+  ScrollReveal,
+  SectionTitle,
+  StarField,
+} from '@/shared/ui'
 import { pricingPlans as defaultPlans } from '@/entities/PricingPlan'
 import type { PricingPlan } from '@/entities/PricingPlan'
 import styles from './Pricing.module.scss'
@@ -20,9 +26,6 @@ export function Pricing({
   eyebrow = 'Прозрачные цены',
   title = 'Выберите формат работы',
 }: Props) {
-  const gridRef = useRef<HTMLUListElement>(null)
-  useScrollReveal(gridRef, { threshold: 0.1 })
-
   const getAnimIndex = (idx: number, highlighted?: boolean) => {
     if (highlighted) return 0
     const before = plans.slice(0, idx).filter((p) => !p.highlighted).length
@@ -38,14 +41,12 @@ export function Pricing({
           {title}
         </SectionTitle>
         <p className={styles.paymentNote}>{paymentNote}</p>
-        <ul ref={gridRef} className={styles.grid} role="list">
+        <ScrollReveal as="ul" className={styles.grid} role="list" threshold={0.1}>
           {plans.map((plan, idx) => (
             <li
               key={plan.id}
-              className={[styles.card, plan.highlighted && styles.highlighted]
-                .filter(Boolean)
-                .join(' ')}
-              style={{ '--i': getAnimIndex(idx, plan.highlighted) } as React.CSSProperties}
+              className={clsx(styles.card, plan.highlighted && styles.highlighted)}
+              style={{ '--i': getAnimIndex(idx, plan.highlighted) } as CSSProperties}
             >
               {plan.highlighted && <span className={styles.badge}>Популярный выбор</span>}
               <div className={styles.top}>
@@ -71,7 +72,7 @@ export function Pricing({
               </Button>
             </li>
           ))}
-        </ul>
+        </ScrollReveal>
       </Container>
     </section>
   )

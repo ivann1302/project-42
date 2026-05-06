@@ -160,5 +160,9 @@
 .buttonWrap {
   @include scroll-fade-up(20px);
 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-md;
   transition-delay: 240ms;
 }

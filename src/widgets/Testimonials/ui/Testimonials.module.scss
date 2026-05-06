@@ -19,7 +19,20 @@
   }
 
   @include mobile {
-    grid-template-columns: 1fr;
+    display: flex;
+    gap: $spacing-md;
+    grid-template-columns: none;
+    max-width: 100%;
+    overflow-x: auto;
+    scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 
@@ -33,6 +46,12 @@
   gap: $spacing-lg;
   padding: $spacing-xl;
   transition-delay: calc(var(--i, 0) * 100ms);
+
+  @include mobile {
+    flex: 0 0 86%;
+    padding: $spacing-lg;
+    scroll-snap-align: start;
+  }
 }
 
 .stars {

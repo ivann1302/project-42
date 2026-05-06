@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     z-index: 0;
-    font-family: $font-body;
+    font-family: $font-display;
     font-size: 28vw;
     font-weight: 700;
     line-height: 1;
@@ -34,16 +34,21 @@
 }
 
 .top {
-  @include flex-between;
-
-  align-items: flex-start;
-  gap: $spacing-xl;
+  display: grid;
+  align-items: start;
+  gap: clamp(32px, 5vw, 72px);
+  grid-template-columns: minmax(180px, 0.7fr) minmax(320px, 1fr) minmax(260px, 0.72fr);
   padding-bottom: $spacing-xl;
   border-bottom: 1px solid $color-border;
 
+  @include tablet {
+    grid-template-columns: 1fr 1.4fr;
+  }
+
   @include mobile {
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: $spacing-lg;
     text-align: center;
   }
@@ -64,7 +69,8 @@
 }
 
 .accent {
-  font-family: $font-body;
+  font-family: $font-display;
+  font-weight: 700;
   color: $color-accent;
 }
 
@@ -78,36 +84,29 @@
   display: flex;
   gap: $spacing-sm;
   margin-top: $spacing-sm;
-}
 
-.socialLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  color: $color-text-muted;
-  border: 1px solid $color-border;
-  border-radius: $radius-sm;
-  transition:
-    color $transition-base,
-    border-color $transition-base;
-
-  &:hover {
-    color: $color-text;
-    border-color: rgba($color-purple, 0.5);
+  @include mobile {
+    justify-content: center;
   }
 }
 
 .nav {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
+  display: grid;
+  place-content: start center;
+  gap: 12px clamp(24px, 3vw, 44px);
+  grid-template-columns: repeat(3, minmax(0, max-content));
+  padding-top: 2px;
+
+  @include tablet {
+    place-content: start;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+  }
 
   @include mobile {
-    flex-flow: row wrap;
+    place-content: start center;
     justify-content: center;
     gap: $spacing-md;
+    grid-template-columns: repeat(2, auto);
   }
 }
 
@@ -120,6 +119,47 @@
 
   &:hover {
     color: $color-text;
+  }
+}
+
+.ctaPanel {
+  display: grid;
+  justify-items: start;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: rgba($color-white, 0.035);
+  border: 1px solid rgba($color-white, 0.1);
+  border-radius: $radius-sm;
+
+  @include tablet {
+    grid-column: 1 / -1;
+    align-items: center;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  @include mobile {
+    justify-items: center;
+    padding: $spacing-lg $spacing-md;
+  }
+}
+
+.ctaTitle {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $font-size-lg;
+  font-weight: 700;
+  line-height: 1.15;
+  color: $color-text;
+}
+
+.ctaText {
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: 1.5;
+  color: $color-text-muted;
+
+  @include tablet {
+    max-width: 420px;
   }
 }
 

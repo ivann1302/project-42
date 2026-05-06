@@ -47,7 +47,7 @@ describe('Stats', () => {
   it('starts CountUp for animated stats on intersection', async () => {
     const { CountUp } = await import('countup.js')
     const startMock = jest.fn()
-    ;(CountUp as jest.Mock).mockImplementation(() => ({ start: startMock }))
+    ;(CountUp as unknown as jest.Mock).mockImplementation(() => ({ start: startMock }))
 
     let triggerIntersect: (entries: Partial<IntersectionObserverEntry>[]) => void = () => {}
     global.IntersectionObserver = jest.fn().mockImplementation((callback) => {

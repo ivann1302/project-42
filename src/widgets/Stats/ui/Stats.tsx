@@ -24,6 +24,11 @@ export function Stats({ items = defaultStats }: Props) {
     const el = listRef.current
     if (!el) return
 
+    if (typeof IntersectionObserver === 'undefined') {
+      el.classList.add('visible')
+      return
+    }
+
     const observer = new IntersectionObserver(
       async ([entry]) => {
         if (!entry.isIntersecting) return

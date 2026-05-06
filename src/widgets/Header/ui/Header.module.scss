@@ -35,7 +35,8 @@
 }
 
 .accent {
-  font-family: $font-body;
+  font-family: $font-display;
+  font-weight: 700;
   color: $color-accent;
 }
 
@@ -102,6 +103,31 @@
   @include mobile {
     display: flex;
     margin-top: $spacing-md;
+  }
+}
+
+.headerSocials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  @media (width <= 1180px) {
+    display: none;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.mobileSocials {
+  display: none;
+
+  @include mobile {
+    display: flex;
+    align-items: center;
+    margin-top: $spacing-sm;
   }
 }
 

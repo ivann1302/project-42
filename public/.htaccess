@@ -1,0 +1,26 @@
+Options -Indexes
+
+ErrorDocument 404 /404.html
+DirectorySlash On
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+?)/?$ /$1.html [L]
+
+RewriteRule ^ /404.html [L,R=404]
+
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(env|ini|log|bak|backup|sql|sqlite|yml|yaml|lock)$">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "^(package(-lock)?\.json|composer\.(json|lock)|tsconfig\.json|next\.config\.(js|ts|mjs)|README\.md)$">
+  Require all denied
+</FilesMatch>

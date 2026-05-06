@@ -7,6 +7,10 @@
 
   @include flex-center;
   @include section-fade-bottom($color-bg-section);
+
+  @include mobile {
+    padding-top: 25px;
+  }
 }
 
 /* stylelint-disable keyframes-name-pattern, selector-pseudo-class-no-unknown */
@@ -115,7 +119,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: $spacing-xl;
   position: relative;
   z-index: 1;
   padding-top: $spacing-3xl;
@@ -123,10 +126,81 @@
   text-align: center;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xl;
+}
+
+.visual {
+  display: none;
+}
+
+.withVisual {
+  @include desktop {
+    display: grid;
+    align-items: center;
+    gap: clamp(36px, 5vw, 84px);
+    grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.8fr);
+    text-align: left;
+  }
+
+  .content {
+    @include desktop {
+      align-items: flex-start;
+      max-width: 660px;
+      transform: translateX(clamp(-48px, -3vw, -24px));
+    }
+  }
+
+  .heading {
+    @include desktop {
+      max-width: 660px;
+      font-size: 60px;
+    }
+  }
+
+  .sub {
+    @include desktop {
+      max-width: 460px;
+    }
+  }
+
+  .gradientSubheading {
+    @include desktop {
+      justify-content: flex-start;
+    }
+  }
+
+  .actions {
+    @include desktop {
+      justify-content: flex-start;
+    }
+  }
+
+  .visual {
+    @include mobile {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      margin-top: clamp(18px, 6vw, 30px);
+    }
+
+    @include desktop {
+      display: block;
+      justify-self: end;
+      width: 100%;
+      min-width: 0;
+    }
+  }
+}
+
 .eyebrow {
   @include eyebrow-text;
   @include scroll-fade-up(12px, 500ms);
 
+  font-size: 18px;
   color: $color-accent;
   transition-delay: 0ms;
 }
@@ -136,6 +210,7 @@
   @include scroll-fade-up(20px, 550ms);
 
   max-width: 800px;
+  font-size: 60px;
   color: transparent;
   background: linear-gradient(135deg, $color-purple 0%, $color-blue 55%, $color-mint 100%);
   background-clip: text;
@@ -171,6 +246,32 @@
   }
 }
 
+.gradientSubheading {
+  @include scroll-fade-up(20px, 500ms);
+
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.22em;
+  margin: -$spacing-md 0 0;
+  font-family: $font-body;
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 600;
+  line-height: 1;
+  color: $color-gray-light;
+  transition-delay: 220ms;
+}
+
+.gradientNumber {
+  font-size: clamp(38px, 5.2vw, 68px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: transparent;
+  background: linear-gradient(135deg, $color-purple 0%, $color-blue 55%, $color-mint 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .actions {
   @include scroll-fade-up(20px, 500ms);
 
@@ -180,4 +281,8 @@
   gap: $spacing-md;
   margin-top: $spacing-sm;
   transition-delay: 240ms;
+
+  @include mobile {
+    padding-bottom: 70px;
+  }
 }

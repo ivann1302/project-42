@@ -14,9 +14,9 @@ describe('Footer', () => {
     expect(links[0]).toHaveAttribute('href', '/portfolio')
   })
 
-  it('renders hash nav links as anchors with correct hrefs', () => {
+  it('renders process hash nav link with correct href', () => {
     render(<Footer />)
-    const servicesLink = screen.getByRole('link', { name: 'Услуги' })
-    expect(servicesLink).toHaveAttribute('href', '#services')
+    const processLink = screen.getByRole('link', { name: 'Как работаем' })
+    expect(processLink).toHaveAttribute('href', '/#process')
   })
 })

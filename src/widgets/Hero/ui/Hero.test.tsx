@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { Hero } from './Hero'
 
 describe('Hero', () => {
@@ -22,5 +23,15 @@ describe('Hero', () => {
   it('renders custom primary CTA label', () => {
     render(<Hero ctaPrimary={{ label: 'Обсудить разработку', href: '#cta' }} />)
     expect(screen.getByRole('link', { name: 'Обсудить разработку' })).toBeInTheDocument()
+  })
+
+  it('opens the contact form from the default primary CTA', async () => {
+    const user = userEvent.setup()
+
+    render(<Hero />)
+    await user.click(screen.getByRole('button', { name: 'Обсудить проект' }))
+
+    expect(screen.getByRole('dialog', { name: 'Обсудить проект' })).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('Иван Иванов')).toBeInTheDocument()
   })
 })

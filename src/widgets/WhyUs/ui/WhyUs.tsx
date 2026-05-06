@@ -1,9 +1,6 @@
-'use client'
-
-import { useRef } from 'react'
-import { Container, GlowBlob, Icon, SectionTitle, StarField } from '@/shared/ui'
+import type { CSSProperties } from 'react'
+import { Container, GlowBlob, Icon, ScrollReveal, SectionTitle, StarField } from '@/shared/ui'
 import type { IconName } from '@/shared/ui'
-import { useScrollReveal } from '@/shared/lib'
 import styles from './WhyUs.module.scss'
 
 type Comparison = {
@@ -31,7 +28,7 @@ const comparisons: Comparison[] = [
   {
     icon: 'code',
     them: 'SEO — отдельный подрядчик',
-    us: 'Дизайн, SEO, GEO — всё в одном',
+    us: 'Дизайн, SEO, GEO (AI-поиск) — всё в одном',
   },
   {
     icon: 'shield',
@@ -46,9 +43,6 @@ const comparisons: Comparison[] = [
 ]
 
 export function WhyUs() {
-  const gridRef = useRef<HTMLDivElement>(null)
-  useScrollReveal(gridRef, { threshold: 0.15 })
-
   return (
     <section className={styles.root} id="why">
       <StarField />
@@ -57,11 +51,11 @@ export function WhyUs() {
         <SectionTitle eyebrow="Наш подход" align="center">
           Чем мы отличаемся от других веб-студий
         </SectionTitle>
-        <div className={styles.versus} ref={gridRef}>
+        <ScrollReveal className={styles.versus} threshold={0.15}>
           <div className={styles.colThem}>
             <div className={styles.colHeader}>Обычно</div>
             {comparisons.map((c, i) => (
-              <div key={c.icon} className={styles.row} style={{ '--i': i } as React.CSSProperties}>
+              <div key={c.icon} className={styles.row} style={{ '--i': i } as CSSProperties}>
                 <span className={styles.dot} aria-hidden="true" />
                 <span>{c.them}</span>
               </div>
@@ -77,13 +71,13 @@ export function WhyUs() {
           <div className={styles.colUs}>
             <div className={styles.colHeader}>Мы</div>
             {comparisons.map((c, i) => (
-              <div key={c.icon} className={styles.row} style={{ '--i': i } as React.CSSProperties}>
+              <div key={c.icon} className={styles.row} style={{ '--i': i } as CSSProperties}>
                 <span>{c.us}</span>
                 <Icon name={c.icon} size={22} className={styles.icon} />
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   )

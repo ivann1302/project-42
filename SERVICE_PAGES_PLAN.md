@@ -21,22 +21,22 @@ Detailed plans: `docs/superpowers/plans/`
 
 ## Phase 1 — /razrabotka-sayta
 
-- [ ] Config: `src/entities/ServicePage/model/razrabotka-sayta.ts`
-- [ ] Widget: `WhatYouGet`
-- [ ] Widget: `TypesOfSites`
-- [ ] Widget: `RazrabotkaPage` (composition)
-- [ ] Route: `src/app/razrabotka-sayta/page.tsx`
+- [x] Config: `src/entities/ServicePage/model/razrabotka-sayta.ts`
+- [x] Widget: `WhatYouGet`
+- [x] Widget: `TypesOfSites`
+- [x] Widget: `RazrabotkaPage` (composition)
+- [x] Route: `src/app/razrabotka-sayta/page.tsx`
 
 ---
 
 ## Phase 2 — /seo-prodvizhenie
 
-- [ ] Config: `src/entities/ServicePage/model/seo-prodvizhenie.ts`
-- [ ] Widget: `WhyNow`
-- [ ] Widget: `WhatIncludes` ← reused in Phase 3
-- [ ] Widget: `Cases`
-- [ ] Widget: `SeoPage` (composition)
-- [ ] Route: `src/app/seo-prodvizhenie/page.tsx`
+- [x] Config: `src/entities/ServicePage/model/seo-prodvizhenie.ts`
+- [x] Widget: `WhyNow`
+- [x] Widget: `WhatIncludes` ← reused in Phase 3
+- [x] Widget: `Cases`
+- [x] Widget: `SeoPage` (composition)
+- [x] Route: `src/app/seo-prodvizhenie/page.tsx`
 
 ---
 

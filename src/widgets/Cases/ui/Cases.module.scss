@@ -1,0 +1,126 @@
+@use '@/shared/styles/mixins' as *;
+
+.root {
+  position: relative;
+  padding: $spacing-3xl 0;
+  overflow: hidden;
+  background: $color-bg;
+}
+
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: $spacing-2xl;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  padding: $spacing-xl;
+  background: rgba($color-white, 0.03);
+  border: 1px solid rgba($color-white, 0.08);
+  border-radius: $radius-lg;
+
+  @include scroll-fade-up(20px, 500ms);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-sm;
+}
+
+.title {
+  @include display-text($font-size-lg);
+
+  color: $color-text;
+}
+
+.niche {
+  @include body-text($font-size-sm);
+
+  padding: 2px $spacing-sm;
+  color: $color-text-muted;
+  background: rgba($color-white, 0.06);
+  border-radius: $radius-sm;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.metrics {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: rgba($color-white, 0.03);
+  border: 1px solid rgba($color-white, 0.06);
+  border-radius: $radius-md;
+}
+
+.metricBlock {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.metricLabel {
+  @include body-text($font-size-sm);
+
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+}
+
+.metricValue {
+  @include body-text($font-size-sm);
+
+  line-height: 1.4;
+  color: $color-text;
+}
+
+.metricValueGood {
+  color: $color-mint;
+}
+
+.arrow {
+  font-size: 1.25rem;
+  color: $color-text-muted;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+}
+
+.duration {
+  @include body-text($font-size-sm);
+
+  color: $color-text-muted;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.tag {
+  @include body-text($font-size-xs);
+
+  padding: 2px $spacing-sm;
+  color: $color-purple;
+  background: rgba($color-purple, 0.1);
+  border: 1px solid rgba($color-purple, 0.2);
+  border-radius: $radius-sm;
+}

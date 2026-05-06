@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import clsx from 'clsx'
 import type { PropsWithClassName } from '@/shared/types'
 import styles from './Button.module.scss'
 
@@ -31,7 +32,7 @@ export function Button({
   className,
   children,
 }: Props) {
-  const cls = [styles.root, styles[variant], styles[size], className].filter(Boolean).join(' ')
+  const cls = clsx(styles.root, styles[variant], styles[size], className)
 
   if (href) {
     return (

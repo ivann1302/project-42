@@ -1,0 +1,11 @@
+@use '@/shared/styles/mixins' as *;
+
+.wrapper {
+  > :global(section) {
+    background: $color-bg;
+
+    &::after {
+      display: none;
+    }
+  }
+}

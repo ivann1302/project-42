@@ -1,8 +1,5 @@
-'use client'
-
-import { useRef } from 'react'
-import { Container, SectionTitle, StarField } from '@/shared/ui'
-import { useScrollReveal } from '@/shared/lib'
+import type { CSSProperties } from 'react'
+import { Container, ScrollReveal, SectionTitle, StarField } from '@/shared/ui'
 import styles from './WhatWeDontDo.module.scss'
 
 const items = [
@@ -25,9 +22,6 @@ const items = [
 ]
 
 export function WhatWeDontDo() {
-  const listRef = useRef<HTMLUListElement>(null)
-  useScrollReveal(listRef, { threshold: 0.1 })
-
   return (
     <section className={styles.root} id="what-we-dont-do">
       <StarField />
@@ -35,13 +29,9 @@ export function WhatWeDontDo() {
         <SectionTitle eyebrow="Честность" align="center">
           Наши принципы
         </SectionTitle>
-        <ul ref={listRef} className={styles.list} role="list">
+        <ScrollReveal as="ul" className={styles.list} role="list" threshold={0.1}>
           {items.map((item, idx) => (
-            <li
-              key={item.title}
-              className={styles.item}
-              style={{ '--i': idx } as React.CSSProperties}
-            >
+            <li key={item.title} className={styles.item} style={{ '--i': idx } as CSSProperties}>
               <span className={styles.icon} aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path
@@ -58,7 +48,7 @@ export function WhatWeDontDo() {
               </p>
             </li>
           ))}
-        </ul>
+        </ScrollReveal>
       </Container>
     </section>
   )
