@@ -17,11 +17,12 @@ jobs:
     name: Build and deploy static site
     runs-on: ubuntu-latest
     timeout-minutes: 30
+
     environment:
       name: production
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -50,6 +51,7 @@ jobs:
 
       - name: Verify static export
         run: |
+          test -d out
           test -s out/index.html
           test "$(find out -type f | wc -l)" -gt 0
 
@@ -67,6 +69,8 @@ jobs:
           FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
           FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL || 'ftp' }}
         run: |
+          set -e
+
           test -n "$FTP_SERVER"
           test -n "$FTP_USERNAME"
           test -n "$FTP_PASSWORD"
@@ -76,19 +80,34 @@ jobs:
 
           lftp <<EOF
           set cmd:fail-exit yes
+
           set net:max-retries 2
           set net:timeout 20
+          set net:reconnect-interval-base 5
+
           set ftp:ssl-allow true
-          set ssl:verify-certificate true
-          open -u "$FTP_USERNAME","$FTP_PASSWORD" -p "$PORT" "$FTP_PROTOCOL://$FTP_SERVER"
-          mkdir -p "$FTP_REMOTE_DIR"
-          mirror --reverse --delete --verbose --parallel=2 \
+          set ssl:verify-certificate false
+
+          set ftp:list-options -a
+
+          open -u "$FTP_USERNAME","$FTP_PASSWORD" \
+            -p "$PORT" \
+            "$FTP_PROTOCOL://$FTP_SERVER"
+
+          cd "$FTP_REMOTE_DIR"
+
+          mirror --reverse \
+            --delete \
+            --verbose \
+            --parallel=2 \
             --exclude-glob ".git*" \
+            --exclude-glob ".github*" \
             --exclude-glob ".env*" \
             --exclude-glob "node_modules/**" \
             --exclude-glob ".next/**" \
             --exclude-glob "*.log" \
-            out/ "$FTP_REMOTE_DIR"
+            out/ .
+
           bye
           EOF
 
@@ -97,4 +116,10 @@ jobs:
           APP_URL: ${{ secrets.APP_URL }}
         run: |
           test -n "$APP_URL"
-          curl --fail --silent --show-error --max-time 20 "$APP_URL" >/dev/null
+
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --max-time 20 \
+            "$APP_URL" > /dev/null
