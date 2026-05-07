@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint src",
     "lint:css": "stylelint \"src/**/*.scss\"",
+    "typecheck": "tsc --noEmit",
     "format": "prettier --write src",
     "fix": "npm run lint -- --fix && npm run lint:css -- --fix && npm run format",
     "test": "jest",
