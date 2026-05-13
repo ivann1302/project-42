@@ -1,4 +1,4 @@
-import { Container, Icon, SectionTitle, SocialLinks, StarField } from '@/shared/ui'
+import { Container, Icon, SectionTitle, StarField } from '@/shared/ui'
 import type { IconName } from '@/shared/ui'
 import type { RazrabotkaPageConfig } from '@/entities/ServicePage'
 import styles from './RazrabotkaPage.module.scss'
@@ -40,7 +40,7 @@ export function SupportSection({ support }: Props) {
             <span id="landing-support-title">{support.title}</span>
           </SectionTitle>
           <div className={styles.supportStatement}>
-            <p className={styles.supportMuted}>Никуда ен пропадем после создания сайта</p>
+            <p className={styles.supportMuted}>Никуда не пропадем после создания сайта</p>
             <p className={styles.supportAccent}>Мы остаёмся рядом после запуска.</p>
           </div>
           <p>{support.text}</p>

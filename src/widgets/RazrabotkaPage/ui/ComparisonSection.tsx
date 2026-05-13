@@ -1,5 +1,4 @@
 import type { CSSProperties } from 'react'
-import { WhatYouGet } from '@/widgets/WhatYouGet'
 import { Container, GlowBlob, Icon, ScrollReveal, SectionTitle, StarField } from '@/shared/ui'
 import type { IconName } from '@/shared/ui'
 import type { RazrabotkaPageConfig } from '@/entities/ServicePage'
@@ -7,12 +6,11 @@ import styles from './RazrabotkaPage.module.scss'
 
 type Props = {
   comparison: RazrabotkaPageConfig['comparison']
-  whatYouGet: RazrabotkaPageConfig['whatYouGet']
 }
 
 const comparisonIcons: IconName[] = ['target', 'eye', 'zap', 'layers', 'searchUp', 'code']
 
-export function ComparisonSection({ comparison, whatYouGet }: Props) {
+export function ComparisonSection({ comparison }: Props) {
   const mutedComparison = comparison.find((column) => column.muted) ?? comparison[0]
   const accentComparison =
     comparison.find((column) => !column.muted) ?? comparison[1] ?? comparison[0]
@@ -64,13 +62,6 @@ export function ComparisonSection({ comparison, whatYouGet }: Props) {
             ))}
           </div>
         </ScrollReveal>
-        <WhatYouGet
-          items={whatYouGet}
-          eyebrow="Преимущества"
-          title="Почему наш лендинг  будет лучше чем у ваших конкурентов?"
-          itemTitleClassName={styles.comparisonBenefitTitle}
-          itemDescriptionClassName={styles.comparisonBenefitDescription}
-        />
       </Container>
     </section>
   )

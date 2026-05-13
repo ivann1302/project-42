@@ -25,6 +25,7 @@ $landing-bg: #030303;
 .about,
 .benefits,
 .comparison,
+.painSolutions,
 .support {
   position: relative;
   overflow: hidden;
@@ -103,7 +104,6 @@ $landing-bg: #030303;
 
   h3 {
     margin: 0 0 8px;
-    font-family: $font-display;
     font-size: clamp(20px, 1.8vw, 24px);
     font-weight: 700;
     line-height: 1.15;
@@ -133,6 +133,7 @@ $landing-bg: #030303;
 
 .benefits,
 .comparison,
+.painSolutions,
 .support {
   padding: clamp(80px, 11vw, 140px) 0;
 }
@@ -192,6 +193,32 @@ $landing-bg: #030303;
   }
 }
 
+.painSolutions {
+  background: $landing-bg;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    height: clamp(96px, 12vw, 180px);
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    background: linear-gradient(to bottom, $landing-bg, rgba($landing-bg, 0));
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba($landing-bg, 0), $landing-bg);
+  }
+}
+
+.benefits .benefitsBlob,
 .comparison .comparisonBlob,
 .pageCanvas :global([class*='HowItWorks_blob']),
 .pageCanvas :global([class*='Cta_blob']) {
@@ -358,6 +385,188 @@ $landing-bg: #030303;
   color: $color-white;
 }
 
+.painSolutionsHeader {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+
+  p {
+    max-width: 720px;
+    margin: 0;
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.62;
+    color: $color-gray-light;
+  }
+}
+
+.painCarouselShell {
+  display: grid;
+  gap: 28px;
+  margin-top: clamp(36px, 5vw, 56px);
+}
+
+.painCarousel {
+  display: grid;
+  gap: 22px;
+  grid-auto-columns: calc((100% - 44px) / 3);
+  grid-auto-flow: column;
+  margin: 0;
+  padding: 0 0 12px;
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.painCard {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 560px;
+  padding: clamp(22px, 2.4vw, 32px);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba($color-white, 0.075), rgba($color-white, 0.025)),
+    rgba($color-white, 0.025);
+  border: 1px solid rgba($color-white, 0.1);
+  border-radius: $radius-sm;
+  box-shadow: 0 24px 80px rgba(0 0 0 / 22%);
+  scroll-snap-align: start;
+
+  @include scroll-fade-up;
+
+  transition-delay: calc(var(--i) * 80ms);
+
+  h3 {
+    margin: 0;
+    font-size: clamp(22px, 2vw, 30px);
+    font-weight: 800;
+    line-height: 1.12;
+    color: $color-text;
+  }
+}
+
+.painCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.painCardNumber {
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(38px, 4vw, 56px);
+  font-weight: 900;
+  line-height: 0.9;
+  color: rgba($color-white, 0.18);
+}
+
+.painTags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: $color-accent-mint;
+    background: rgba($color-mint, 0.08);
+    border: 1px solid rgba($color-mint, 0.22);
+    border-radius: 999px;
+  }
+}
+
+.painCardGrid {
+  display: grid;
+  gap: 18px;
+
+  div {
+    display: grid;
+    gap: 8px;
+    padding-top: 18px;
+    border-top: 1px solid rgba($color-white, 0.09);
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba($color-white, 0.48);
+  }
+
+  p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.56;
+    color: $color-gray-light;
+  }
+}
+
+.painCardCta {
+  place-self: end center;
+  margin-top: 8px;
+  color: $color-mint;
+  border-color: rgba($color-mint, 0.45);
+
+  &:hover {
+    color: $color-mint;
+    border-color: rgba($color-mint, 0.8);
+    box-shadow: 0 4px 20px rgba($color-mint, 0.14);
+  }
+}
+
+.painCarouselControls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.painCarouselButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: $color-white;
+  background: rgba($color-white, 0.055);
+  border: 1px solid rgba($color-white, 0.12);
+  border-radius: 50%;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-accent-mint;
+    background: rgba($color-purple, 0.12);
+    border-color: rgba($color-purple, 0.38);
+    transform: translateY(-1px);
+  }
+}
+
+.painSolutionsFooter {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
 .comparisonDivider {
   display: flex;
   flex-direction: column;
@@ -502,7 +711,6 @@ $landing-bg: #030303;
 
   h3 {
     margin: 0;
-    font-family: $font-display;
     font-size: clamp(21px, 2.1vw, 28px);
     font-weight: 700;
     line-height: 1.15;
@@ -554,12 +762,17 @@ $landing-bg: #030303;
   .aboutList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .painCarousel {
+    grid-auto-columns: calc((100% - 22px) / 2);
+  }
 }
 
 @include mobile {
   .about,
   .benefits,
   .comparison,
+  .painSolutions,
   .support {
     padding: 44px 0;
   }
@@ -634,6 +847,45 @@ $landing-bg: #030303;
     width: auto;
     height: 1px;
     background: linear-gradient(to right, transparent, rgba($color-accent, 0.25), transparent);
+  }
+
+  .painSolutionsHeader {
+    gap: 16px;
+  }
+
+  .painCarouselShell {
+    margin-top: 32px;
+  }
+
+  .painCarousel {
+    grid-auto-columns: 88%;
+  }
+
+  .painCard {
+    gap: 20px;
+    min-height: auto;
+    padding: 22px 18px;
+
+    h3 {
+      font-size: 22px;
+    }
+  }
+
+  .painCardTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .painTags {
+    justify-content: flex-start;
+  }
+
+  .painCardGrid {
+    gap: 16px;
+
+    p {
+      font-size: 14px;
+    }
   }
 
   .supportInner,

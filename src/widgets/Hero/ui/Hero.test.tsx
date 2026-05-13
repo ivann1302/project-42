@@ -27,8 +27,13 @@ describe('Hero', () => {
   })
 
   it('renders secondary gradient subheading when provided', () => {
-    render(<Hero gradientSubheading="от 10 000 рублей" gradientSubheadingSecondary="от 5 дней" />)
-    expect(screen.getByText('дней').closest('p')).toHaveTextContent('от 5 дней')
+    render(
+      <Hero
+        gradientSubheading="от 10 000 рублей"
+        gradientSubheadingSecondary="от 5 рабочих дней"
+      />,
+    )
+    expect(screen.getByText(/рабочих дней/).closest('p')).toHaveTextContent('от 5 рабочих дней')
   })
 
   it('renders custom primary CTA label', () => {

@@ -24,11 +24,10 @@ describe('RazrabotkaPage', () => {
     )
   })
 
-  it('renders WhatYouGet section', () => {
+  it('renders founder message section', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
-    expect(
-      screen.getByText(/Почему наш лендинг\s+будет лучше чем у ваших конкурентов\?/),
-    ).toBeInTheDocument()
+    expect(screen.getByText('Основатель Project 42')).toBeInTheDocument()
+    expect(screen.getByText(/сайт уже есть, но он не помогает продавать/)).toBeInTheDocument()
   })
 
   it('renders approach section', () => {
@@ -41,6 +40,7 @@ describe('RazrabotkaPage', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
     expect(screen.getByText('Результат после запуска')).toBeInTheDocument()
     expect(screen.getByText('Почему наш подход лучше сайта на конструкторе?')).toBeInTheDocument()
+    expect(screen.getByText('С какой болью приходят клиенты')).toBeInTheDocument()
     expect(screen.getByText('Поддержка после запуска')).toBeInTheDocument()
   })
 })

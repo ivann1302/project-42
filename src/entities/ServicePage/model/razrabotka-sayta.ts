@@ -45,7 +45,7 @@ export const razrabotkaConfig: RazrabotkaPageConfig = {
     eyebrow: '— Project 42',
     headingText: 'Делаем лендинги, которые приводят клиентов',
     gradientSubheading: 'от 10 000 рублей',
-    gradientSubheadingSecondary: 'от 5 дней',
+    gradientSubheadingSecondary: 'от 5 рабочих дней',
     sub: 'Если вам нужен не просто красивый одностраничный сайт, а посадочная страница, которая быстро загружается, понятно объясняет оффер и приводит заявки — вы по адресу.',
     ctaPrimary: { label: 'Обсудить проект', href: '#cta' },
     ctaSecondary: { label: 'Посмотреть работы', href: '#portfolio' },
@@ -252,7 +252,7 @@ export const razrabotkaConfig: RazrabotkaPageConfig = {
       id: 'dev-timeline',
       question: 'Сколько времени занимает разработка?',
       answer:
-        'Простой лендинг можно запустить от 7 рабочих дней. Срок зависит от объёма, готовности материалов и скорости согласований.',
+        'Простой лендинг можно запустить от 5 рабочих дней. Срок зависит от объёма, готовности материалов и скорости согласований.',
     },
     {
       id: 'dev-process',

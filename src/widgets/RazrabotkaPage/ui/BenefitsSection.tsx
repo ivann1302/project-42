@@ -1,4 +1,4 @@
-import { Container, SectionTitle, StarField } from '@/shared/ui'
+import { Container, GlowBlob, SectionTitle, StarField } from '@/shared/ui'
 import styles from './RazrabotkaPage.module.scss'
 
 type Props = {
@@ -13,6 +13,7 @@ export function BenefitsSection({ benefits }: Props) {
       data-feedback-trigger
     >
       <StarField />
+      <GlowBlob color="mint" size={780} x={50} y={50} className={styles.benefitsBlob} />
       <Container className={styles.sectionContent}>
         <SectionTitle eyebrow="Что вы получите" align="center">
           <span id="landing-benefits-title">Результат после запуска</span>

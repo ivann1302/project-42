@@ -23,7 +23,7 @@
 
 .grid {
   display: grid;
-  align-items: start;
+  align-items: stretch;
   gap: $spacing-lg;
   grid-template-columns: repeat(3, 1fr);
   margin-top: $spacing-2xl;
@@ -49,6 +49,7 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-xl;
+  min-height: 680px;
   padding: $spacing-xl;
   transition-delay: calc(var(--i, 0) * 100ms);
 }
@@ -135,4 +136,5 @@
 .cta {
   justify-content: center;
   width: 100%;
+  margin-top: auto;
 }

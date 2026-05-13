@@ -6,8 +6,8 @@ declare module '*.scss' {
 interface Window {
   ym?: (
     counterId: number,
-    method: 'hit' | 'init',
-    params:
+    method: 'hit' | 'init' | 'reachGoal',
+    params?:
       | string
       | {
           accurateTrackBounce?: boolean
