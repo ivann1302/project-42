@@ -113,6 +113,11 @@ describe('Cta', () => {
     await user.keyboard('{Enter}')
 
     expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({
+      contact: '@clinic',
+      service: 'Квиз на сайте',
+    })
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).not.toHaveProperty('phone')
     await waitFor(() => expect(mockPush).toHaveBeenCalledWith('/thank-you'))
   })
 })

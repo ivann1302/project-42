@@ -28,6 +28,7 @@ if (!empty($body['_honeypot'])) {
 $name = trim((string)($body['name'] ?? ''));
 $phone = trim((string)($body['phone'] ?? ''));
 $email = trim((string)($body['email'] ?? ''));
+$contact = trim((string)($body['contact'] ?? ''));
 $service = trim((string)($body['service'] ?? ''));
 $message = trim((string)($body['message'] ?? ''));
 $page = trim((string)($body['_page'] ?? ''));
@@ -47,7 +48,11 @@ if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors['email'] = ['Некорректный email'];
 }
 
-if ($phone === '' && $email === '') {
+if (stringLength($contact) > 100) {
+    $errors['contact'] = ['Контакт слишком длинный'];
+}
+
+if ($phone === '' && $email === '' && $contact === '') {
     $errors['phone'] = ['Укажите телефон или email'];
 }
 
@@ -84,6 +89,9 @@ if ($phone !== '') {
 if ($email !== '') {
     $lines[] = '✉️ <b>Email:</b> ' . escapeHtml($email);
 }
+if ($contact !== '') {
+    $lines[] = '💬 <b>Контакт:</b> ' . escapeHtml($contact);
+}
 if ($service !== '') {
     $lines[] = '🎯 <b>Услуга:</b> ' . escapeHtml($service);
 }
@@ -101,25 +109,10 @@ $text = implode("\n", $lines);
 $sent = false;
 
 foreach ($chatIds as $chatId) {
-    $ch = curl_init('https://api.telegram.org/bot' . $botToken . '/sendMessage');
-    curl_setopt_array($ch, [
-        CURLOPT_POST => true,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 8,
-        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
-        CURLOPT_POSTFIELDS => http_build_query([
-            'chat_id' => $chatId,
-            'text' => $text,
-            'parse_mode' => 'HTML',
-        ]),
-    ]);
-
-    $response = curl_exec($ch);
-    $error = curl_error($ch);
-    curl_close($ch);
+    [$response, $error] = sendTelegramMessage($botToken, $chatId, $text);
 
     if ($error !== '') {
-        error_log('[contact] Telegram curl error: ' . $error);
+        error_log('[contact] Telegram transport error: ' . $error);
         continue;
     }
 
@@ -198,6 +191,54 @@ function stringLength(string $value): int
     }
 
     return strlen($value);
+}
+
+/**
+ * @return array{0: string, 1: string}
+ */
+function sendTelegramMessage(string $botToken, string $chatId, string $text): array
+{
+    $url = 'https://api.telegram.org/bot' . $botToken . '/sendMessage';
+    $payload = http_build_query([
+        'chat_id' => $chatId,
+        'text' => $text,
+        'parse_mode' => 'HTML',
+    ]);
+
+    if (function_exists('curl_init')) {
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 8,
+            CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+            CURLOPT_POSTFIELDS => $payload,
+        ]);
+
+        $response = curl_exec($ch);
+        $error = curl_error($ch);
+        curl_close($ch);
+
+        return [(string)$response, $error];
+    }
+
+    $context = stream_context_create([
+        'http' => [
+            'method' => 'POST',
+            'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
+            'content' => $payload,
+            'timeout' => 8,
+        ],
+    ]);
+
+    $response = @file_get_contents($url, false, $context);
+
+    if ($response === false) {
+        $error = error_get_last();
+        return ['', (string)($error['message'] ?? 'file_get_contents failed')];
+    }
+
+    return [$response, ''];
 }
 
 function startsWith(string $value, string $prefix): bool

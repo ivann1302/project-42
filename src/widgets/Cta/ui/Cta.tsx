@@ -112,7 +112,7 @@ export function Cta({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: 'Заявка из квиза CTA',
-          phone: values.contact,
+          contact: values.contact,
           service: 'Квиз на сайте',
           message,
           _honeypot: values._honeypot,
