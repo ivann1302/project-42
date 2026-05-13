@@ -190,8 +190,6 @@ function loadEnv(): void
                 $_ENV[$key] = $value;
             }
         }
-
-        return;
     }
 }
 
