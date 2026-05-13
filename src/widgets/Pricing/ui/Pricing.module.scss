@@ -16,7 +16,8 @@
 .paymentNote {
   @include body-text($font-size-sm);
 
-  margin-top: $spacing-lg;
+  max-width: 560px;
+  margin: $spacing-md auto 0;
   text-align: center;
   color: $color-text-muted;
 }
@@ -24,15 +25,15 @@
 .grid {
   display: grid;
   align-items: stretch;
-  gap: $spacing-lg;
+  gap: $spacing-md;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: $spacing-2xl;
+  margin-top: $spacing-xl;
   padding: 0;
   list-style: none;
 
   @include tablet {
     grid-template-columns: 1fr;
-    max-width: 480px;
+    max-width: 420px;
     margin-inline: auto;
   }
 
@@ -48,9 +49,9 @@
 
   display: flex;
   flex-direction: column;
-  gap: $spacing-xl;
-  min-height: 680px;
-  padding: $spacing-xl;
+  gap: $spacing-lg;
+  min-height: 520px;
+  padding: $spacing-lg;
   transition-delay: calc(var(--i, 0) * 100ms);
 }
 
@@ -96,7 +97,7 @@
 .price {
   margin-top: $spacing-sm;
   font-family: $font-body;
-  font-size: $font-size-xl;
+  font-size: 28px;
   font-weight: 700;
   line-height: 1.1;
   color: $color-text;
@@ -112,7 +113,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: $spacing-md;
+  gap: 12px;
   padding: 0;
   list-style: none;
 }

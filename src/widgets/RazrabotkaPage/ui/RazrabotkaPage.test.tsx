@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { RazrabotkaPage } from './RazrabotkaPage'
 import { razrabotkaConfig } from '@/entities/ServicePage'
+import { getProjectCaseHref, projects } from '@/entities/Project'
 
 jest.mock('next/navigation', () => ({
   useRouter: () => ({
@@ -42,5 +43,18 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText('Почему наш подход лучше сайта на конструкторе?')).toBeInTheDocument()
     expect(screen.getByText('С какой болью приходят клиенты')).toBeInTheDocument()
     expect(screen.getByText('Поддержка после запуска')).toBeInTheDocument()
+  })
+
+  it('links project cards to portfolio cases', () => {
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    projects
+      .filter((project) => project.clientPain && project.solution && project.result)
+      .forEach((project) => {
+        expect(screen.getByText(project.title).closest('a')).toHaveAttribute(
+          'href',
+          getProjectCaseHref(project.id),
+        )
+      })
   })
 })

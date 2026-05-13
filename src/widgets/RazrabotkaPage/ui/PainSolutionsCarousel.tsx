@@ -2,9 +2,10 @@
 
 import type { CSSProperties } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Button, Container, Icon, SectionTitle, StarField } from '@/shared/ui'
+import Link from 'next/link'
+import { Button, Container, SectionTitle, StarField } from '@/shared/ui'
 import { useScrollReveal } from '@/shared/lib'
-import { projects } from '@/entities/Project'
+import { getProjectCaseHref, projects } from '@/entities/Project'
 import styles from './RazrabotkaPage.module.scss'
 
 const VISIBLE_DESKTOP_CARDS = 3
@@ -14,6 +15,7 @@ const items = projects
   .map((project) => ({
     id: project.id,
     title: project.title,
+    href: getProjectCaseHref(project.id),
     tags: project.tags.slice(0, 3),
     pain: project.clientPain ?? project.description,
     solution: project.solution ?? project.description,
@@ -84,38 +86,34 @@ export function PainSolutionsCarousel() {
                 className={styles.painCard}
                 style={{ '--i': index } as CSSProperties}
               >
-                <div className={styles.painCardTop}>
-                  <span className={styles.painCardNumber}>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <ul className={styles.painTags} role="list">
-                    {item.tags.map((tag) => (
-                      <li key={tag}>{tag}</li>
-                    ))}
-                  </ul>
-                </div>
-                <h3>{item.title}</h3>
-                <div className={styles.painCardGrid}>
-                  <div>
-                    <span>Боль клиента</span>
-                    <p>{item.pain}</p>
+                <Link href={item.href} className={styles.painCardLink}>
+                  <div className={styles.painCardTop}>
+                    <span className={styles.painCardNumber}>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <ul className={styles.painTags} role="list">
+                      {item.tags.map((tag) => (
+                        <li key={tag}>{tag}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <div>
-                    <span>Решение</span>
-                    <p>{item.solution}</p>
+                  <h3>{item.title}</h3>
+                  <div className={styles.painCardGrid}>
+                    <div>
+                      <span>Боль клиента</span>
+                      <p>{item.pain}</p>
+                    </div>
+                    <div>
+                      <span>Решение</span>
+                      <p>{item.solution}</p>
+                    </div>
+                    <div>
+                      <span>Итог</span>
+                      <p>{item.result}</p>
+                    </div>
                   </div>
-                  <div>
-                    <span>Итог</span>
-                    <p>{item.result}</p>
-                  </div>
-                </div>
-                <Button
-                  href={`/portfolio#${item.id}`}
-                  variant="ghost"
-                  className={styles.painCardCta}
-                >
-                  Посмотреть проект
-                </Button>
+                  <span className={styles.painCardCta}>Посмотреть проект</span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -128,7 +126,7 @@ export function PainSolutionsCarousel() {
                 aria-label="Предыдущая задача клиента"
                 onClick={() => moveCarousel(-1)}
               >
-                <Icon name="arrowLeft" size={22} />
+                <span aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -136,7 +134,7 @@ export function PainSolutionsCarousel() {
                 aria-label="Следующая задача клиента"
                 onClick={() => moveCarousel(1)}
               >
-                <Icon name="arrowRight" size={22} />
+                <span aria-hidden="true" />
               </button>
             </div>
           )}

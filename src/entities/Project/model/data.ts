@@ -1,5 +1,7 @@
 import type { Project } from './types'
 
+export const getProjectCaseHref = (projectId: Project['id']) => `/portfolio#${projectId}`
+
 export const projects: Project[] = [
   {
     id: 'project-1',

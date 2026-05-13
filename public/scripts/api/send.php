@@ -68,6 +68,9 @@ if ($errors !== []) {
 
 $botToken = getenv('TELEGRAM_BOT_TOKEN') ?: '';
 $chatIds = getenv('TELEGRAM_CHAT_IDS') ?: getenv('TELEGRAM_CHAT_ID') ?: '';
+if (getenv('TELEGRAM_CHAT_ID_2')) {
+    $chatIds .= ',' . getenv('TELEGRAM_CHAT_ID_2');
+}
 $chatIds = array_values(array_filter(array_map('trim', explode(',', $chatIds))));
 
 if ($botToken === '' || $chatIds === []) {
@@ -231,7 +234,10 @@ function sanitizeTelegramError(string $error, string $botToken): string
  */
 function sendTelegramMessage(string $botToken, string $chatId, string $text): array
 {
-    $url = 'https://api.telegram.org/bot' . $botToken . '/sendMessage';
+    $apiBase = rtrim(getenv('TELEGRAM_API_BASE') ?: 'https://api.telegram.org', '/');
+    $url = $apiBase . '/bot' . $botToken . '/sendMessage';
+    $timeout = max(1, (int)(getenv('TELEGRAM_TIMEOUT') ?: 20));
+    $connectTimeout = max(1, (int)(getenv('TELEGRAM_CONNECT_TIMEOUT') ?: 10));
     $payload = http_build_query([
         'chat_id' => $chatId,
         'text' => $text,
@@ -243,10 +249,17 @@ function sendTelegramMessage(string $botToken, string $chatId, string $text): ar
         curl_setopt_array($ch, [
             CURLOPT_POST => true,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 8,
-            CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+            CURLOPT_TIMEOUT => $timeout,
+            CURLOPT_CONNECTTIMEOUT => $connectTimeout,
             CURLOPT_POSTFIELDS => $payload,
         ]);
+
+        $ipResolve = getenv('TELEGRAM_IPRESOLVE') ?: '';
+        if ($ipResolve === '4') {
+            curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        } elseif ($ipResolve === '6') {
+            curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V6);
+        }
 
         $response = curl_exec($ch);
         $error = curl_error($ch);
@@ -260,7 +273,7 @@ function sendTelegramMessage(string $botToken, string $chatId, string $text): ar
             'method' => 'POST',
             'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
             'content' => $payload,
-            'timeout' => 8,
+            'timeout' => $timeout,
         ],
     ]);
 

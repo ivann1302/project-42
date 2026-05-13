@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import { Container, SectionTitle, StarField, Button, Modal, Icon } from '@/shared/ui'
 import { ContactForm } from '@/features/ContactForm'
 import { useScrollReveal } from '@/shared/lib'
-import { projects } from '@/entities/Project'
+import { getProjectCaseHref, projects } from '@/entities/Project'
 import styles from './Portfolio.module.scss'
 
 type Props = {
@@ -109,7 +109,7 @@ export function Portfolio({ desktopCarousel = false }: Props) {
           <ul ref={gridRef} className={styles.grid} role="list">
             {projects.map((project, idx) => (
               <li key={project.id} className={styles.card} style={{ '--i': idx } as CSSProperties}>
-                <Link href={`/portfolio#${project.id}`} className={styles.cardLink}>
+                <Link href={getProjectCaseHref(project.id)} className={styles.cardLink}>
                   <div className={styles.image}>
                     {project.desktopImageUrl ? (
                       <Image

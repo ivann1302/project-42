@@ -405,6 +405,7 @@ $landing-bg: #030303;
 .painCarouselShell {
   display: grid;
   gap: 28px;
+  position: relative;
   margin-top: clamp(36px, 5vw, 56px);
 }
 
@@ -426,12 +427,7 @@ $landing-bg: #030303;
 }
 
 .painCard {
-  display: grid;
-  align-content: start;
-  gap: 24px;
-  grid-template-rows: auto auto 1fr auto;
   min-height: 560px;
-  padding: clamp(22px, 2.4vw, 32px);
   overflow: hidden;
   background:
     linear-gradient(135deg, rgba($color-white, 0.075), rgba($color-white, 0.025)),
@@ -447,10 +443,27 @@ $landing-bg: #030303;
 
   h3 {
     margin: 0;
-    font-size: clamp(22px, 2vw, 30px);
+    font-size: clamp(20px, 1.7vw, 26px);
     font-weight: 800;
     line-height: 1.12;
     color: $color-text;
+  }
+}
+
+.painCardLink {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100%;
+  min-height: inherit;
+  padding: clamp(22px, 2.4vw, 32px);
+  text-decoration: none;
+  color: inherit;
+
+  &:focus-visible {
+    outline: 2px solid rgba($color-mint, 0.7);
+    outline-offset: -4px;
   }
 }
 
@@ -502,7 +515,7 @@ $landing-bg: #030303;
   }
 
   span {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -511,19 +524,31 @@ $landing-bg: #030303;
 
   p {
     margin: 0;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.56;
     color: $color-gray-light;
   }
 }
 
 .painCardCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   place-self: end center;
+  min-height: 44px;
   margin-top: 8px;
+  padding: 0 18px;
+  font-size: $font-size-sm;
+  font-weight: 700;
   color: $color-mint;
-  border-color: rgba($color-mint, 0.45);
+  border: 1px solid rgba($color-mint, 0.45);
+  border-radius: $radius-pill;
+  transition:
+    border-color $transition-base,
+    box-shadow $transition-base;
 
-  &:hover {
+  .painCardLink:hover &,
+  .painCardLink:focus-visible & {
     color: $color-mint;
     border-color: rgba($color-mint, 0.8);
     box-shadow: 0 4px 20px rgba($color-mint, 0.14);
@@ -553,11 +578,47 @@ $landing-bg: #030303;
     transform 180ms ease;
   cursor: pointer;
 
+  span {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-bottom: 2px solid currentcolor;
+    border-left: 2px solid currentcolor;
+  }
+
+  &:first-child span {
+    transform: rotate(45deg) translate(2px, -2px);
+  }
+
+  &:last-child span {
+    transform: rotate(225deg) translate(2px, -2px);
+  }
+
   &:hover {
     color: $color-accent-mint;
     background: rgba($color-purple, 0.12);
     border-color: rgba($color-purple, 0.38);
     transform: translateY(-1px);
+  }
+}
+
+@include desktop {
+  .painCarouselControls {
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    left: -60px;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .painCarouselButton {
+    pointer-events: auto;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
   }
 }
 
@@ -862,18 +923,21 @@ $landing-bg: #030303;
   }
 
   .painCard {
-    gap: 20px;
     min-height: auto;
-    padding: 22px 18px;
 
     h3 {
-      font-size: 22px;
+      font-size: 20px;
     }
   }
 
+  .painCardLink {
+    gap: 20px;
+    min-height: auto;
+    padding: 22px 18px;
+  }
+
   .painCardTop {
-    flex-direction: column;
-    align-items: flex-start;
+    display: none;
   }
 
   .painTags {
@@ -884,7 +948,7 @@ $landing-bg: #030303;
     gap: 16px;
 
     p {
-      font-size: 14px;
+      font-size: 13px;
     }
   }
 
