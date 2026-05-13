@@ -107,12 +107,14 @@ $lines[] = '🕒 <b>Время:</b> ' . $now . ' МСК';
 $text = implode("\n", $lines);
 
 $sent = false;
+$lastTelegramError = '';
 
 foreach ($chatIds as $chatId) {
     [$response, $error] = sendTelegramMessage($botToken, $chatId, $text);
 
     if ($error !== '') {
-        error_log('[contact] Telegram transport error: ' . $error);
+        $lastTelegramError = sanitizeTelegramError($error, $botToken);
+        error_log('[contact] Telegram transport error: ' . $lastTelegramError);
         continue;
     }
 
@@ -120,13 +122,18 @@ foreach ($chatIds as $chatId) {
     if (($telegramData['ok'] ?? false) === true) {
         $sent = true;
     } else {
-        error_log('[contact] Telegram API error: ' . (string)$response);
+        $lastTelegramError = getTelegramErrorDescription($telegramData, (string)$response, $botToken);
+        error_log('[contact] Telegram API error: ' . $lastTelegramError);
     }
 }
 
 if (!$sent) {
     http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'Telegram error'], JSON_UNESCAPED_UNICODE);
+    echo json_encode([
+        'ok' => false,
+        'error' => 'Telegram error',
+        'details' => $lastTelegramError,
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -141,9 +148,13 @@ function loadEnv(): void
 {
     $documentRoot = $_SERVER['DOCUMENT_ROOT'] ?? '';
     $paths = array_filter([
+        $documentRoot !== '' ? $documentRoot . '/.env.local' : '',
         $documentRoot !== '' ? $documentRoot . '/.env' : '',
+        $documentRoot !== '' ? dirname($documentRoot) . '/.env.local' : '',
         $documentRoot !== '' ? dirname($documentRoot) . '/.env' : '',
+        __DIR__ . '/../../../.env.local',
         __DIR__ . '/../../../.env',
+        __DIR__ . '/../../../../.env.local',
         __DIR__ . '/../../../../.env',
     ]);
 
@@ -191,6 +202,30 @@ function stringLength(string $value): int
     }
 
     return strlen($value);
+}
+
+/**
+ * @param mixed $telegramData
+ */
+function getTelegramErrorDescription($telegramData, string $rawResponse, string $botToken): string
+{
+    if (is_array($telegramData)) {
+        $code = $telegramData['error_code'] ?? null;
+        $description = $telegramData['description'] ?? null;
+
+        if ($code !== null || $description !== null) {
+            return trim('code=' . (string)$code . ' ' . (string)$description);
+        }
+    }
+
+    return sanitizeTelegramError($rawResponse, $botToken);
+}
+
+function sanitizeTelegramError(string $error, string $botToken): string
+{
+    $sanitized = str_replace($botToken, '[telegram-token]', $error);
+
+    return substr($sanitized, 0, 500);
 }
 
 /**
