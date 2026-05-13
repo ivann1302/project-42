@@ -37,23 +37,22 @@ $landing-bg: #030303;
 
 .aboutInner {
   display: grid;
-  align-items: start;
-  gap: clamp(40px, 6vw, 88px);
-  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 64px);
   position: relative;
   z-index: 1;
-  max-width: 1160px;
-  text-align: left;
+  max-width: 1360px;
+  text-align: center;
 }
 
 .aboutIntro {
   display: grid;
   gap: 20px;
-  position: sticky;
-  top: 112px;
+  justify-items: center;
+  max-width: 860px;
+  margin: 0 auto;
 
   p {
-    max-width: 420px;
+    max-width: 680px;
     margin: 0;
     font-size: clamp(17px, 1.8vw, 21px);
     line-height: 1.62;
@@ -70,7 +69,9 @@ $landing-bg: #030303;
 
 .aboutList {
   display: grid;
-  gap: 14px;
+  gap: clamp(18px, 2.2vw, 28px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -78,14 +79,15 @@ $landing-bg: #030303;
 
 .aboutItem {
   display: grid;
-  gap: 20px;
-  grid-template-columns: 68px minmax(0, 1fr);
+  align-content: start;
+  gap: 18px;
+  justify-items: start;
   position: relative;
-  padding: clamp(20px, 3vw, 28px);
+  min-height: 100%;
+  padding: clamp(24px, 2.6vw, 36px);
   overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba($color-white, 0.07), rgba($color-white, 0.025)),
-    rgba($color-white, 0.025);
+  text-align: left;
+  background: transparent;
   border: 1px solid rgba($color-white, 0.1);
   border-radius: $radius-sm;
 
@@ -93,57 +95,40 @@ $landing-bg: #030303;
     content: '';
     position: absolute;
     top: 0;
-    bottom: 0;
+    right: 0;
     left: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, $color-purple, $color-blue, $color-mint);
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 48px;
-    height: 48px;
-    background:
-      linear-gradient(90deg, rgba($color-white, 0.28), transparent) top left / 100% 1px no-repeat,
-      linear-gradient(180deg, rgba($color-white, 0.28), transparent) top left / 1px 100% no-repeat;
-    opacity: 0.5;
-    pointer-events: none;
+    height: 2px;
+    background: linear-gradient(to right, $color-purple, $color-blue, $color-mint);
   }
 
   h3 {
     margin: 0 0 8px;
     font-family: $font-display;
-    font-size: clamp(20px, 2.2vw, 28px);
+    font-size: clamp(20px, 1.8vw, 24px);
     font-weight: 700;
     line-height: 1.15;
     color: $color-text;
   }
 
   p {
-    max-width: 620px;
     margin: 0;
-    font-size: clamp(15px, 1.5vw, 17px);
+    font-size: clamp(15px, 1.25vw, 16px);
     line-height: 1.58;
     color: $color-gray-light;
   }
 }
 
-.aboutNumber {
+.aboutIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  font-family: $font-body;
-  font-size: $font-size-sm;
-  font-weight: 700;
-  color: $color-text;
-  background: rgba($color-white, 0.07);
-  border: 1px solid rgba($color-white, 0.12);
+  width: 54px;
+  height: 54px;
+  color: $color-accent-mint;
+  background: rgba($color-purple, 0.1);
+  border: 1px solid rgba($color-purple, 0.32);
   border-radius: 50%;
+  box-shadow: 0 0 28px rgba($color-purple, 0.2);
 }
 
 .benefits,
@@ -204,6 +189,18 @@ $landing-bg: #030303;
   &::after {
     bottom: 0;
     background: linear-gradient(to bottom, rgba($landing-bg, 0), $landing-bg);
+  }
+}
+
+.comparison .comparisonBlob,
+.pageCanvas :global([class*='HowItWorks_blob']),
+.pageCanvas :global([class*='Cta_blob']) {
+  display: block !important;
+}
+
+@include mobile {
+  .pageCanvas :global([class*='Cta_blob']) {
+    display: none !important;
   }
 }
 
@@ -321,8 +318,15 @@ $landing-bg: #030303;
 
   .comparisonColAccent & {
     flex-direction: row-reverse;
+    width: 100%;
+    font-weight: 500;
     text-align: right;
-    color: $color-gray-light;
+    color: $color-white;
+
+    > span {
+      flex: 1;
+      min-width: 0;
+    }
 
     @include scroll-slide-right(20px);
 
@@ -344,15 +348,48 @@ $landing-bg: #030303;
   opacity: 0.9;
 }
 
+.comparisonBenefitTitle {
+  font-weight: 900;
+  color: $color-white;
+}
+
+.comparisonBenefitDescription {
+  font-weight: 500;
+  color: $color-white;
+}
+
 .comparisonDivider {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  isolation: isolate;
   padding-top: $spacing-xl;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    z-index: -1;
+    width: clamp(220px, 24vw, 360px);
+    height: clamp(360px, 42vw, 560px);
+    background:
+      radial-gradient(circle at 50% 38%, rgba($color-purple, 0.34), transparent 58%),
+      radial-gradient(circle at 50% 58%, rgba($color-blue, 0.2), transparent 62%),
+      radial-gradient(circle at 50% 50%, rgba($color-mint, 0.12), transparent 68%);
+    border-radius: 999px;
+    filter: blur(28px);
+    opacity: 0.95;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .comparisonDividerLine {
   flex: 1;
+  position: relative;
+  z-index: 1;
   width: 1px;
   background: linear-gradient(to bottom, rgba($color-accent, 0.25), transparent);
 }
@@ -361,6 +398,8 @@ $landing-bg: #030303;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
   width: 52px;
   height: 52px;
   font-size: 13px;
@@ -508,13 +547,12 @@ $landing-bg: #030303;
 }
 
 @include tablet {
-  .aboutInner,
   .supportInner {
     grid-template-columns: 1fr;
   }
 
-  .aboutIntro {
-    position: static;
+  .aboutList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -528,28 +566,21 @@ $landing-bg: #030303;
 
   .aboutInner {
     gap: 28px;
-    grid-template-columns: 1fr;
   }
 
   .aboutIntro {
     gap: 16px;
-    position: static;
+  }
+
+  .aboutList {
+    grid-template-columns: 1fr;
   }
 
   .aboutItem {
     gap: 14px;
-    grid-template-columns: 44px minmax(0, 1fr);
     padding: 20px 18px;
 
-    &::after {
-      top: 16px;
-      right: 16px;
-      width: 34px;
-      height: 34px;
-    }
-
     h3 {
-      padding-right: 28px;
       font-size: 20px;
     }
 
@@ -558,10 +589,9 @@ $landing-bg: #030303;
     }
   }
 
-  .aboutNumber {
-    width: 34px;
-    height: 34px;
-    font-size: 11px;
+  .aboutIcon {
+    width: 44px;
+    height: 44px;
   }
 
   .benefitsList {

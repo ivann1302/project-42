@@ -3,7 +3,7 @@ import { TypesOfSites } from './TypesOfSites'
 import type { TypeOfSite } from '@/entities/ServicePage'
 
 const items: TypeOfSite[] = [
-  { icon: 'target', title: 'Лендинг', description: 'Одностраничный.', price: 'от 9 900 ₽' },
+  { icon: 'target', title: 'Лендинг', description: 'Одностраничный.', price: 'от 10 000 ₽' },
   { icon: 'layers', title: 'Корпоративный', description: 'Многостраничный.', price: 'от 79 900 ₽' },
 ]
 
@@ -21,6 +21,6 @@ describe('TypesOfSites', () => {
 
   it('renders price for each item', () => {
     render(<TypesOfSites items={items} />)
-    expect(screen.getByText('от 9 900 ₽')).toBeInTheDocument()
+    expect(screen.getByText('от 10 000 ₽')).toBeInTheDocument()
   })
 })

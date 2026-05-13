@@ -14,6 +14,7 @@ import { Cta } from '@/widgets/Cta'
 import { Faq } from '@/widgets/Faq'
 import { WhatWeDontDo } from '@/widgets/WhatWeDontDo'
 import { Footer } from '@/widgets/Footer'
+import { MobileConsultationButton } from '@/shared/ui'
 
 const reviewsSchema = {
   '@context': 'https://schema.org',
@@ -74,6 +75,7 @@ export default function HomePage() {
         <Faq />
       </main>
       <Footer />
+      <MobileConsultationButton />
     </>
   )
 }

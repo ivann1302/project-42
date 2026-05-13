@@ -123,7 +123,7 @@
   "url": "https://project42.studio",
   "logo": "https://project42.studio/logo.png",
   "description": "AI-студия полного цикла разработки и сопровождения сайтов",
-  "sameAs": ["https://t.me/project42studio", "https://instagram.com/project42studio"],
+  "sameAs": ["https://t.me/ivann97n", "https://instagram.com/project42studio"],
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "customer service",
@@ -343,7 +343,7 @@ Sitemap: https://project42.studio/sitemap.xml
       name: 'Project 42',
       url: 'https://project42.studio',
       description: 'AI-студия полного цикла разработки и сопровождения сайтов',
-      sameAs: ['https://t.me/project42studio', 'https://instagram.com/project42studio'],
+      sameAs: ['https://t.me/ivann97n', 'https://instagram.com/project42studio'],
     }),
   }}
 />
@@ -525,7 +525,7 @@ export const metadata: Metadata = {
 - Индивидуально: по запросу
 
 ## Контакты
-- Telegram: https://t.me/project42studio
+- Telegram: https://t.me/ivann97n
 - Сайт: https://project42.studio
 ```
 

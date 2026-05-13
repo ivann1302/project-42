@@ -34,8 +34,9 @@
   flex-shrink: 0;
 }
 
-.accent {
-  font-family: $font-display;
+.logoNumber {
+  display: inline-block;
+  font-family: var(--font-body), sans-serif;
   font-weight: 700;
   color: $color-accent;
 }

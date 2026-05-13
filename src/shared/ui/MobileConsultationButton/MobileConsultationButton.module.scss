@@ -1,0 +1,24 @@
+.root {
+  display: none;
+
+  @include mobile {
+    display: block;
+    position: fixed;
+    right: 16px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    left: 16px;
+    z-index: 140;
+    pointer-events: none;
+  }
+}
+
+.button {
+  @include mobile {
+    width: 100%;
+    min-height: 56px;
+    box-shadow:
+      0 0 28px rgba($color-purple, 0.38),
+      0 18px 42px rgba(0 0 0 / 38%);
+    pointer-events: auto;
+  }
+}

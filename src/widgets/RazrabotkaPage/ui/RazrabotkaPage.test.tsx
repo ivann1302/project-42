@@ -2,6 +2,12 @@ import { render, screen } from '@testing-library/react'
 import { RazrabotkaPage } from './RazrabotkaPage'
 import { razrabotkaConfig } from '@/entities/ServicePage'
 
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}))
+
 beforeEach(() => {
   global.IntersectionObserver = jest.fn().mockImplementation(() => ({
     observe: jest.fn(),
@@ -34,7 +40,7 @@ describe('RazrabotkaPage', () => {
   it('renders landing-specific sections', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
     expect(screen.getByText('Результат после запуска')).toBeInTheDocument()
-    expect(screen.getByText('Конструктор или индивидуальная разработка')).toBeInTheDocument()
+    expect(screen.getByText('Почему наш подход лучше сайта на конструкторе?')).toBeInTheDocument()
     expect(screen.getByText('Поддержка после запуска')).toBeInTheDocument()
   })
 })

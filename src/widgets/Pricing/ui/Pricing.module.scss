@@ -4,11 +4,12 @@
   @include section-fade-bottom($color-bg);
 
   position: relative;
+  padding-top: 120px;
   overflow: clip;
   background: $color-bg-section;
 
   @include mobile {
-    padding-top: 48px;
+    padding-top: 120px;
   }
 }
 

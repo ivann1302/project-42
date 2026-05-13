@@ -1,12 +1,17 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { Button, Container, Icon, Modal, StarField } from '@/shared/ui'
-
-const TG_HREF = 'https://t.me/project42studio'
-import { ContactForm } from '@/features/ContactForm'
+import { useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
+import { useRouter } from 'next/navigation'
+import { Button, Container, Icon, StarField } from '@/shared/ui'
 import { useScrollReveal } from '@/shared/lib'
 import styles from './Cta.module.scss'
+
+const TG_HREF = 'https://t.me/ivann97n'
+const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
+const CONTENT_OPTIONS = ['Да, всё готово', 'Частично готов', 'Нужно подготовить'] as const
+const URGENCY_OPTIONS = ['Как можно быстрее', 'В течение недели', 'Не тороплюсь'] as const
+const CONTACT_METHOD_OPTIONS = ['Telegram', 'WhatsApp', 'MAX', 'По телефону'] as const
+const TOTAL_STEPS = 4
 
 type Props = {
   eyebrow?: string
@@ -16,6 +21,15 @@ type Props = {
   modalTitle?: string
 }
 
+type QuizAnswers = {
+  sphere: string
+  content: string
+  urgency: string
+  contact: string
+  contactMethod: string
+  _honeypot: string
+}
+
 export function Cta({
   eyebrow = 'Готовы начать?',
   heading = 'Сейчас мы открыты\nдля 1–2 новых проектов',
@@ -23,10 +37,135 @@ export function Cta({
   buttonText = 'Забронировать место',
   modalTitle = 'Обсудить проект',
 }: Props) {
+  const router = useRouter()
   const innerRef = useRef<HTMLElement>(null)
-  const [open, setOpen] = useState(false)
+  const [step, setStep] = useState(0)
+  const [answers, setAnswers] = useState<QuizAnswers>({
+    sphere: '',
+    content: '',
+    urgency: '',
+    contact: '',
+    contactMethod: '',
+    _honeypot: '',
+  })
+  const [error, setError] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle')
 
   useScrollReveal(innerRef, { threshold: 0.2 })
+
+  const updateAnswer = (field: keyof QuizAnswers, value: string) => {
+    setAnswers((current) => ({ ...current, [field]: value }))
+    setError('')
+    if (status === 'error') setStatus('idle')
+  }
+
+  const getCurrentAnswer = (override: Partial<QuizAnswers> = {}) => {
+    const values = { ...answers, ...override }
+
+    if (step === 0) return values.sphere.trim()
+    if (step === 1) return values.content
+    if (step === 2) return values.urgency
+    return values.contact.trim() && values.contactMethod
+  }
+
+  const nextStep = (override?: Partial<QuizAnswers>) => {
+    if (!getCurrentAnswer(override)) {
+      setError('Заполните этот шаг, чтобы продолжить.')
+      return
+    }
+    setStep((current) => Math.min(current + 1, TOTAL_STEPS - 1))
+  }
+
+  const prevStep = () => {
+    setError('')
+    setStep((current) => Math.max(current - 1, 0))
+  }
+
+  const submitQuiz = async (override: Partial<QuizAnswers> = {}) => {
+    const values = { ...answers, ...override }
+
+    if (!values.contact.trim()) {
+      setError('Укажите телефон или ник в Telegram.')
+      return
+    }
+
+    if (!values.contactMethod) {
+      setError('Выберите удобный способ связи.')
+      return
+    }
+
+    setStatus('loading')
+    setError('')
+
+    try {
+      const message = [
+        'Ответы из квиза CTA:',
+        `Сфера деятельности: ${values.sphere}`,
+        `Контент для сайта: ${values.content}`,
+        `Срочность: ${values.urgency}`,
+        `Контакт: ${values.contact}`,
+        `Удобнее связаться: ${values.contactMethod}`,
+      ].join('\n')
+
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Заявка из квиза CTA',
+          phone: values.contact,
+          service: 'Квиз на сайте',
+          message,
+          _honeypot: values._honeypot,
+          _page: window.location.pathname,
+          quiz: {
+            sphere: values.sphere,
+            content: values.content,
+            urgency: values.urgency,
+            contact: values.contact,
+            contactMethod: values.contactMethod,
+          },
+        }),
+      })
+
+      if (!res.ok) throw new Error()
+      router.push('/thank-you')
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  const handleQuizSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (status === 'loading') return
+
+    if (step < TOTAL_STEPS - 1) {
+      nextStep()
+      return
+    }
+
+    void submitQuiz()
+  }
+
+  const handleOptionEnter = (
+    e: KeyboardEvent<HTMLButtonElement>,
+    field: keyof QuizAnswers,
+    value: string,
+  ) => {
+    if (e.key !== 'Enter') return
+
+    e.preventDefault()
+    const override = { [field]: value } as Partial<QuizAnswers>
+    updateAnswer(field, value)
+
+    if (step < TOTAL_STEPS - 1) {
+      nextStep(override)
+      return
+    }
+
+    void submitQuiz(override)
+  }
+
+  const currentStep = step + 1
 
   return (
     <section ref={innerRef} className={styles.root} id="cta">
@@ -45,20 +184,163 @@ export function Cta({
           ))}
         </h2>
         <p className={styles.sub}>{sub}</p>
-        <div className={styles.buttonWrap}>
-          <Button size="lg" onClick={() => setOpen(true)}>
-            {buttonText}
-          </Button>
-          <Button size="lg" variant="ghost" href={TG_HREF} target="_blank">
-            <Icon name="telegram" size={18} />
-            Написать в Telegram
-          </Button>
+        <div className={styles.quizPanel}>
+          <div className={styles.quizHeader}>
+            <h3 className={styles.quizTitle}>{modalTitle}</h3>
+            <Button size="md" variant="ghost" href={TG_HREF} target="_blank">
+              <Icon name="telegram" size={18} />
+              Написать в Telegram
+            </Button>
+          </div>
+
+          <form className={styles.quiz} onSubmit={handleQuizSubmit} noValidate>
+            <input
+              type="text"
+              tabIndex={-1}
+              aria-hidden
+              className={styles.honeypot}
+              value={answers._honeypot}
+              onChange={(e) => updateAnswer('_honeypot', e.target.value)}
+            />
+
+            <div className={styles.quizProgress}>
+              <span>
+                Шаг {currentStep} из {TOTAL_STEPS}
+              </span>
+              <div className={styles.progressTrack} aria-hidden="true">
+                <span
+                  className={styles.progressValue}
+                  style={{ width: `${(currentStep / TOTAL_STEPS) * 100}%` }}
+                />
+              </div>
+            </div>
+
+            {step === 0 && (
+              <div className={styles.quizStep}>
+                <label className={styles.quizLabel} htmlFor="quiz-sphere">
+                  Сфера деятельности
+                </label>
+                <input
+                  id="quiz-sphere"
+                  className={styles.quizInput}
+                  value={answers.sphere}
+                  placeholder="Строительство, медицина, и т.д."
+                  onChange={(e) => updateAnswer('sphere', e.target.value)}
+                />
+              </div>
+            )}
+
+            {step === 1 && (
+              <fieldset className={styles.quizStep}>
+                <legend className={styles.quizLabel}>
+                  Есть ли контент для сайта: текст, изображения и другое?
+                </legend>
+                <div className={styles.optionGrid}>
+                  {CONTENT_OPTIONS.map((option) => (
+                    <button
+                      key={option}
+                      type="button"
+                      className={[
+                        styles.optionButton,
+                        answers.content === option ? styles.optionButtonActive : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      onClick={() => updateAnswer('content', option)}
+                      onKeyDown={(e) => handleOptionEnter(e, 'content', option)}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+            )}
+
+            {step === 2 && (
+              <fieldset className={styles.quizStep}>
+                <legend className={styles.quizLabel}>Как срочно нужно?</legend>
+                <div className={styles.optionGrid}>
+                  {URGENCY_OPTIONS.map((option) => (
+                    <button
+                      key={option}
+                      type="button"
+                      className={[
+                        styles.optionButton,
+                        answers.urgency === option ? styles.optionButtonActive : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      onClick={() => updateAnswer('urgency', option)}
+                      onKeyDown={(e) => handleOptionEnter(e, 'urgency', option)}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+            )}
+
+            {step === 3 && (
+              <div className={styles.quizStep}>
+                <label className={styles.quizLabel} htmlFor="quiz-contact">
+                  Телефон или ник в Telegram
+                </label>
+                <input
+                  id="quiz-contact"
+                  className={styles.quizInput}
+                  value={answers.contact}
+                  placeholder="+7 999 000-00-00 или @username"
+                  required
+                  onChange={(e) => updateAnswer('contact', e.target.value)}
+                />
+                <fieldset className={styles.inlineFieldset}>
+                  <legend className={styles.quizLabel}>Как удобнее связаться?</legend>
+                  <div className={styles.optionGrid}>
+                    {CONTACT_METHOD_OPTIONS.map((option) => (
+                      <button
+                        key={option}
+                        type="button"
+                        className={[
+                          styles.optionButton,
+                          answers.contactMethod === option ? styles.optionButtonActive : '',
+                        ]
+                          .filter(Boolean)
+                          .join(' ')}
+                        onClick={() => updateAnswer('contactMethod', option)}
+                        onKeyDown={(e) => handleOptionEnter(e, 'contactMethod', option)}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                </fieldset>
+              </div>
+            )}
+
+            {error && <p className={styles.quizError}>{error}</p>}
+            {status === 'error' && (
+              <p className={styles.quizError}>Ошибка отправки. Попробуйте позже.</p>
+            )}
+
+            <div className={styles.quizActions}>
+              {step > 0 && (
+                <Button type="button" variant="ghost" size="md" onClick={prevStep}>
+                  Назад
+                </Button>
+              )}
+              {step < TOTAL_STEPS - 1 ? (
+                <Button type="submit" size="md">
+                  Далее
+                </Button>
+              ) : (
+                <Button type="submit" size="md" loading={status === 'loading'}>
+                  {buttonText}
+                </Button>
+              )}
+            </div>
+          </form>
         </div>
       </Container>
-
-      <Modal open={open} onClose={() => setOpen(false)} title={modalTitle}>
-        <ContactForm onSuccess={() => setOpen(false)} />
-      </Modal>
     </section>
   )
 }

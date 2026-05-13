@@ -42,17 +42,26 @@ type Props = {
   eyebrow?: string
   title?: string
   steps?: HowItWorksStep[]
+  floatingBlobs?: boolean
 }
 
 export function HowItWorks({
   eyebrow = 'Процесс',
   title = 'От замысла до результата',
   steps = defaultSteps,
+  floatingBlobs = false,
 }: Props) {
   return (
     <section className={styles.root} id="process">
       <StarField />
-      <Container>
+      {floatingBlobs && (
+        <>
+          <div className={styles.blob1} aria-hidden="true" />
+          <div className={styles.blob2} aria-hidden="true" />
+          <div className={styles.blob3} aria-hidden="true" />
+        </>
+      )}
+      <Container className={styles.inner}>
         <SectionTitle eyebrow={eyebrow} align="center">
           {title}
         </SectionTitle>

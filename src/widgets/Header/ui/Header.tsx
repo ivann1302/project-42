@@ -26,9 +26,10 @@ const RAZRABOTKA_NAV_LINKS = [
 export function Header() {
   const pathname = usePathname()
   const isHome = pathname === '/'
+  const isPortfolioPage = pathname === '/portfolio'
   const isRazrabotkaPage = pathname === '/razrabotka-sayta'
-  const navLinks = isRazrabotkaPage ? RAZRABOTKA_NAV_LINKS : NAV_LINKS
-  const logoHref = isRazrabotkaPage ? '#hero' : '/'
+  const navLinks = isRazrabotkaPage || isPortfolioPage ? RAZRABOTKA_NAV_LINKS : NAV_LINKS
+  const logoHref = isRazrabotkaPage ? '#hero' : isPortfolioPage ? '/razrabotka-sayta' : '/'
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -72,7 +73,7 @@ export function Header() {
       <header className={clsx(styles.root, scrolled && !menuOpen && styles.scrolled)}>
         <Container className={styles.inner}>
           <Link href={logoHref} className={styles.logo} onClick={() => setMenuOpen(false)}>
-            Project<span className={styles.accent}>42</span>
+            Project<span className={styles.logoNumber}>42</span>
           </Link>
 
           <nav className={clsx(styles.nav, menuOpen && styles.navOpen)}>
@@ -89,7 +90,13 @@ export function Header() {
               ) : (
                 <a
                   key={link.href}
-                  href={isHome || isRazrabotkaPage ? link.href : `/${link.href}`}
+                  href={
+                    isHome || isRazrabotkaPage
+                      ? link.href
+                      : isPortfolioPage
+                        ? `/razrabotka-sayta${link.href}`
+                        : `/${link.href}`
+                  }
                   className={clsx(
                     styles.navLink,
                     activeSection === link.href.replace('#', '') && styles.navLinkActive,

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -21,7 +22,8 @@ const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/a
 
 type Props = { onSuccess?: () => void }
 export function ContactForm({ onSuccess }: Props) {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const router = useRouter()
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle')
 
   const {
     register,
@@ -43,21 +45,12 @@ export function ContactForm({ onSuccess }: Props) {
         body: JSON.stringify({ ...data, _page: window.location.pathname }),
       })
       if (!res.ok) throw new Error()
-      setStatus('success')
       reset()
       onSuccess?.()
+      router.push('/thank-you')
     } catch {
       setStatus('error')
     }
-  }
-
-  if (status === 'success') {
-    return (
-      <div className={styles.success}>
-        <span className={styles.successIcon}>✓</span>
-        <p>Заявка отправлена! Свяжемся в течение 24 часов.</p>
-      </div>
-    )
   }
 
   return (

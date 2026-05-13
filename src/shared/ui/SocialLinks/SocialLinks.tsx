@@ -42,8 +42,8 @@ export function SocialLinks({ className, onLinkClick }: Props) {
           <Image
             src={link.icon}
             alt=""
-            width={42}
-            height={42}
+            width={34}
+            height={34}
             className={styles.icon}
             aria-hidden="true"
           />

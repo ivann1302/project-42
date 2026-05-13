@@ -1,4 +1,4 @@
-/* stylelint-disable keyframes-name-pattern */
+/* stylelint-disable keyframes-name-pattern, selector-pseudo-class-no-unknown */
 :global {
   @keyframes hw-line-grow {
     from {
@@ -7,6 +7,51 @@
 
     to {
       transform: scaleY(1);
+    }
+  }
+
+  @keyframes hw-blob1-move {
+    0%,
+    100% {
+      transform: translate(-50%, 0) scale(1);
+    }
+
+    33% {
+      transform: translate(calc(-50% - 190px), -130px) scale(1.2);
+    }
+
+    66% {
+      transform: translate(calc(-50% + 170px), 110px) scale(0.85);
+    }
+  }
+
+  @keyframes hw-blob2-move {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+
+    40% {
+      transform: translate(-210px, -160px) scale(1.2);
+    }
+
+    75% {
+      transform: translate(110px, 140px) scale(0.82);
+    }
+  }
+
+  @keyframes hw-blob3-move {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+
+    30% {
+      transform: translate(210px, -140px) scale(1.18);
+    }
+
+    70% {
+      transform: translate(-160px, 160px) scale(0.85);
     }
   }
 }
@@ -18,6 +63,65 @@
   position: relative;
   overflow: clip;
   background: $color-bg-section;
+}
+
+.blob1 {
+  position: absolute;
+  top: -6%;
+  left: 50%;
+  width: 980px;
+  height: 790px;
+  background: radial-gradient(ellipse at center, rgba($color-purple, 0.38) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(44px);
+  pointer-events: none;
+  animation: hw-blob1-move 7s ease-in-out infinite;
+
+  @include mobile {
+    width: 500px;
+    height: 420px;
+  }
+}
+
+.blob2 {
+  position: absolute;
+  top: 10%;
+  right: -8%;
+  width: 740px;
+  height: 610px;
+  background: radial-gradient(ellipse at center, rgba($color-blue, 0.3) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(44px);
+  pointer-events: none;
+  animation: hw-blob2-move 9s ease-in-out infinite;
+
+  @include mobile {
+    width: 390px;
+    height: 320px;
+  }
+}
+
+.blob3 {
+  position: absolute;
+  bottom: -4%;
+  left: -5%;
+  width: 700px;
+  height: 560px;
+  background: radial-gradient(ellipse at center, rgba($color-mint, 0.22) 0%, transparent 65%);
+  border-radius: 50%;
+  filter: blur(44px);
+  pointer-events: none;
+  animation: hw-blob3-move 11s ease-in-out infinite;
+
+  @include mobile {
+    width: 340px;
+    height: 280px;
+  }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
 }
 
 .list {

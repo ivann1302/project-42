@@ -397,7 +397,7 @@
         <mxCell id="cta-tg" value="или напишите в Telegram" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#555577;" vertex="1" parent="1">
           <mxGeometry x="440" y="2532" width="220" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="cta-tg-link" value="@pixellab_studio" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#38BDF8;" vertex="1" parent="1">
+        <mxCell id="cta-tg-link" value="@ivann97n" style="text;html=1;align=center;verticalAlign=middle;resizable=0;strokeColor=none;fillColor=none;fontSize=14;fontColor=#38BDF8;" vertex="1" parent="1">
           <mxGeometry x="655" y="2532" width="180" height="24" as="geometry" />
         </mxCell>
 

@@ -12,16 +12,34 @@ type Props = {
   eyebrow?: string
   headingText?: string
   gradientSubheading?: string
+  gradientSubheadingSecondary?: string
   sub?: string
   ctaPrimary?: { label: string; href: string; opensForm?: boolean }
   ctaSecondary?: { label: string; href: string }
   visual?: ReactNode
 }
 
+function renderGradientMetric(text: string) {
+  const parts = text.match(/^(.*?)(\d[\d\s]*)(.*)$/)
+
+  if (!parts) {
+    return text
+  }
+
+  return (
+    <>
+      <span>{parts[1]}</span>
+      <span className={styles.gradientNumber}>{parts[2]}</span>
+      <span>{parts[3]}</span>
+    </>
+  )
+}
+
 export function Hero({
   eyebrow = '— Project 42',
   headingText,
   gradientSubheading,
+  gradientSubheadingSecondary,
   sub = 'Налаженные AI-процессы и профи, которые знают, как создавать и продвигать качественные сайты.',
   ctaPrimary = { label: 'Обсудить проект', href: '#cta' },
   ctaSecondary = { label: 'Посмотреть работы', href: '#portfolio' },
@@ -29,7 +47,6 @@ export function Hero({
 }: Props) {
   const sectionRef = useRef<HTMLElement>(null)
   const [contactOpen, setContactOpen] = useState(false)
-  const gradientSubheadingParts = gradientSubheading?.match(/^(.*?)(\d[\d\s]*)(.*)$/)
   const primaryOpensContactForm =
     ctaPrimary.opensForm ?? ctaPrimary.label.trim() === 'Обсудить проект'
   useScrollReveal(sectionRef, { threshold: 0.1 })
@@ -55,18 +72,21 @@ export function Hero({
               )}
             </h1>
             <p className={styles.sub}>{sub}</p>
-            {gradientSubheading && (
-              <h2 className={styles.gradientSubheading}>
-                {gradientSubheadingParts ? (
-                  <>
-                    <span>{gradientSubheadingParts[1]}</span>
-                    <span className={styles.gradientNumber}>{gradientSubheadingParts[2]}</span>
-                    <span>{gradientSubheadingParts[3]}</span>
-                  </>
-                ) : (
-                  gradientSubheading
+            {(gradientSubheading || gradientSubheadingSecondary) && (
+              <div className={styles.gradientSubheadingGroup}>
+                {gradientSubheading && (
+                  <h2 className={styles.gradientSubheading}>
+                    {renderGradientMetric(gradientSubheading)}
+                  </h2>
                 )}
-              </h2>
+                {gradientSubheadingSecondary && (
+                  <p
+                    className={clsx(styles.gradientSubheading, styles.gradientSubheadingSecondary)}
+                  >
+                    {renderGradientMetric(gradientSubheadingSecondary)}
+                  </p>
+                )}
+              </div>
             )}
             <div className={styles.actions}>
               {primaryOpensContactForm ? (

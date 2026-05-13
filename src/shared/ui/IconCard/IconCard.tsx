@@ -11,9 +11,20 @@ type Props = {
   href?: string
   style?: React.CSSProperties
   className?: string
+  titleClassName?: string
+  descriptionClassName?: string
 }
 
-export function IconCard({ icon, title, description, href, style, className }: Props) {
+export function IconCard({
+  icon,
+  title,
+  description,
+  href,
+  style,
+  className,
+  titleClassName,
+  descriptionClassName,
+}: Props) {
   return (
     <li
       className={[styles.root, href && styles.linked, className].filter(Boolean).join(' ')}
@@ -23,8 +34,8 @@ export function IconCard({ icon, title, description, href, style, className }: P
       <span className={styles.iconWrap} aria-hidden="true">
         <Icon name={icon} size={24} />
       </span>
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.desc}>{description}</p>
+      <h3 className={[styles.title, titleClassName].filter(Boolean).join(' ')}>{title}</h3>
+      <p className={[styles.desc, descriptionClassName].filter(Boolean).join(' ')}>{description}</p>
     </li>
   )
 }

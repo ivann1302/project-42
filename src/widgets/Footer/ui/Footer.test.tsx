@@ -1,6 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import { Footer } from './Footer'
 
+let mockPathname = '/'
+
+jest.mock('next/navigation', () => ({
+  usePathname: () => mockPathname,
+}))
+
+beforeEach(() => {
+  mockPathname = '/'
+})
+
 describe('Footer', () => {
   it('renders the logo', () => {
     render(<Footer />)
@@ -18,5 +28,23 @@ describe('Footer', () => {
     render(<Footer />)
     const processLink = screen.getByRole('link', { name: 'Как работаем' })
     expect(processLink).toHaveAttribute('href', '/#process')
+  })
+
+  it('points home links to razrabotka page from portfolio page', () => {
+    mockPathname = '/portfolio'
+    render(<Footer />)
+
+    expect(screen.getByRole('link', { name: /project/i })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta',
+    )
+    expect(screen.getByRole('link', { name: 'Как работаем' })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta#process',
+    )
+    expect(screen.getByRole('link', { name: 'Цены' })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta#pricing',
+    )
   })
 })

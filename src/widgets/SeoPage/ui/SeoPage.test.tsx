@@ -2,6 +2,12 @@ import { render, screen } from '@testing-library/react'
 import { SeoPage } from './SeoPage'
 import { seoConfig } from '@/entities/ServicePage'
 
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}))
+
 describe('SeoPage', () => {
   it('renders hero heading', () => {
     render(<SeoPage config={seoConfig} />)

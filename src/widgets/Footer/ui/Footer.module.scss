@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     z-index: 0;
-    font-family: $font-display;
+    font-family: var(--font-body), sans-serif;
     font-size: 28vw;
     font-weight: 700;
     line-height: 1;
@@ -68,8 +68,9 @@
   color: $color-text;
 }
 
-.accent {
-  font-family: $font-display;
+.logoNumber {
+  display: inline-block;
+  font-family: var(--font-body), sans-serif;
   font-weight: 700;
   color: $color-accent;
 }
@@ -138,8 +139,7 @@
   }
 
   @include mobile {
-    justify-items: center;
-    padding: $spacing-lg $spacing-md;
+    display: none;
   }
 }
 

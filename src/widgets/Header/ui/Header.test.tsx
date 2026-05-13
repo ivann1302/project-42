@@ -44,4 +44,30 @@ describe('Header', () => {
     expect(screen.getByRole('link', { name: 'Цены' })).toHaveAttribute('href', '#pricing')
     expect(screen.getByRole('link', { name: 'Обсудить' })).toHaveAttribute('href', '#cta')
   })
+
+  it('points razrabotka nav links to razrabotka page from portfolio page', () => {
+    mockPathname = '/portfolio'
+    render(<Header />)
+
+    expect(screen.getByRole('link', { name: /project\s*42/i })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta',
+    )
+    expect(screen.getByRole('link', { name: 'Как работаем' })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta#process',
+    )
+    expect(screen.getByRole('link', { name: 'Проекты' })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta#portfolio',
+    )
+    expect(screen.getByRole('link', { name: 'Цены' })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta#pricing',
+    )
+    expect(screen.getByRole('link', { name: 'Обсудить' })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta#cta',
+    )
+  })
 })

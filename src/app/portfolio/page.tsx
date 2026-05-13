@@ -3,6 +3,7 @@ import { Header } from '@/widgets/Header'
 import { PortfolioPage } from '@/widgets/PortfolioPage'
 import { Footer } from '@/widgets/Footer'
 import { siteConfig } from '@/shared/config/seo'
+import { MobileConsultationButton } from '@/shared/ui'
 
 export const metadata: Metadata = {
   title: 'Портфолио',
@@ -17,6 +18,7 @@ export default function PortfolioRoute() {
         <PortfolioPage />
       </main>
       <Footer />
+      <MobileConsultationButton />
     </>
   )
 }

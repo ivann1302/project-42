@@ -2,6 +2,12 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Hero } from './Hero'
 
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}))
+
 describe('Hero', () => {
   it('renders default heading on main page (no props)', () => {
     render(<Hero />)
@@ -18,6 +24,11 @@ describe('Hero', () => {
   it('renders custom sub when provided', () => {
     render(<Hero sub="Кастомный подзаголовок" />)
     expect(screen.getByText('Кастомный подзаголовок')).toBeInTheDocument()
+  })
+
+  it('renders secondary gradient subheading when provided', () => {
+    render(<Hero gradientSubheading="от 10 000 рублей" gradientSubheadingSecondary="от 5 дней" />)
+    expect(screen.getByText('дней').closest('p')).toHaveTextContent('от 5 дней')
   })
 
   it('renders custom primary CTA label', () => {

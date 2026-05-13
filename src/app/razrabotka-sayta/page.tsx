@@ -4,6 +4,7 @@ import { Footer } from '@/widgets/Footer'
 import { RazrabotkaPage } from '@/widgets/RazrabotkaPage'
 import { razrabotkaConfig } from '@/entities/ServicePage'
 import { siteConfig } from '@/shared/config/seo'
+import { MobileConsultationButton } from '@/shared/ui'
 
 export const metadata: Metadata = {
   title: razrabotkaConfig.seo.title,
@@ -121,6 +122,7 @@ export default function RazrabotkaPageRoute() {
         <RazrabotkaPage config={razrabotkaConfig} />
       </main>
       <Footer />
+      <MobileConsultationButton />
     </>
   )
 }
