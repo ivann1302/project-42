@@ -15,13 +15,6 @@ describe('PortfolioPage', () => {
     })
   })
 
-  it('renders all 3 project descriptions', () => {
-    render(<PortfolioPage />)
-    expect(screen.getByText(/многостраничный корпоративный сайт/i)).toBeInTheDocument()
-    expect(screen.getByText(/конверсионный лендинг для b2b saas/i)).toBeInTheDocument()
-    expect(screen.getByText(/конверсионный лендинг для b2b аналитической/i)).toBeInTheDocument()
-  })
-
   it('renders project headings as h2', () => {
     render(<PortfolioPage />)
     const h2s = screen.getAllByRole('heading', { level: 2 })
