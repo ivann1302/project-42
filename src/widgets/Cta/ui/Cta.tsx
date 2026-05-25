@@ -2,11 +2,10 @@
 
 import { useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { useRouter } from 'next/navigation'
-import { Button, Container, Icon, StarField } from '@/shared/ui'
+import { Button, Container, StarField } from '@/shared/ui'
 import { useScrollReveal } from '@/shared/lib'
 import styles from './Cta.module.scss'
 
-const TG_HREF = 'https://t.me/ivann97n'
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
 const CONTENT_OPTIONS = ['Да, всё готово', 'Частично готов', 'Нужно подготовить'] as const
 const URGENCY_OPTIONS = ['Как можно быстрее', 'В течение недели', 'Не тороплюсь'] as const
@@ -187,10 +186,6 @@ export function Cta({
         <div className={styles.quizPanel}>
           <div className={styles.quizHeader}>
             <h3 className={styles.quizTitle}>{modalTitle}</h3>
-            <Button size="md" variant="ghost" href={TG_HREF} target="_blank">
-              <Icon name="telegram" size={18} />
-              Написать в Telegram
-            </Button>
           </div>
 
           <form className={styles.quiz} onSubmit={handleQuizSubmit} noValidate>
