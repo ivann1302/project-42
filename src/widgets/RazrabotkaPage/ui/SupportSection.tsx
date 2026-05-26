@@ -11,22 +11,22 @@ const supportItems: Array<{ icon: IconName; title: string; text: string }> = [
   {
     icon: 'layers',
     title: 'Контент',
-    text: 'Правим тексты, добавляем блоки и обновляем офферы под новые гипотезы.',
+    text: 'Обновляем тексты, блоки и офферы.',
   },
   {
     icon: 'target',
     title: 'Реклама',
-    text: 'Адаптируем страницу под новые кампании, аудитории и посадочные сценарии.',
+    text: 'Адаптируем страницу под кампании.',
   },
   {
     icon: 'searchUp',
     title: 'Аналитика',
-    text: 'Проверяем события, цели, заявки и точки, где пользователи теряют интерес.',
+    text: 'Смотрим цели, заявки и слабые места.',
   },
   {
     icon: 'send',
     title: 'Формы',
-    text: 'Дорабатываем отправку заявок в Telegram, CRM или почту.',
+    text: 'Настраиваем отправку заявок.',
   },
 ]
 
@@ -40,8 +40,7 @@ export function SupportSection({ support }: Props) {
             <span id="landing-support-title">{support.title}</span>
           </SectionTitle>
           <div className={styles.supportStatement}>
-            <p className={styles.supportMuted}>Никуда не пропадем после создания сайта</p>
-            <p className={styles.supportAccent}>Мы остаёмся рядом после запуска.</p>
+            <p className={styles.supportAccent}>Остаёмся рядом.</p>
           </div>
           <p>{support.text}</p>
         </div>

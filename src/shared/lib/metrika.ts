@@ -1,1 +1,1 @@
-export const YANDEX_METRIKA_ID = 109098864
+export const YANDEX_METRIKA_ID = 109427452
