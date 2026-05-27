@@ -104,7 +104,12 @@ export function PortfolioPage() {
           <p className={styles.ctaSub}>
             Хотите так же или хотите чтобы мы рассказали больше — оставьте заявку
           </p>
-          <Button onClick={() => setOpen(true)}>Оставить заявку</Button>
+          <div className={styles.ctaActions}>
+            <Button onClick={() => setOpen(true)}>Оставить заявку</Button>
+            <Button variant="secondary" href="/razrabotka-sayta">
+              Вернуться на главную
+            </Button>
+          </div>
         </div>
       </Container>
 

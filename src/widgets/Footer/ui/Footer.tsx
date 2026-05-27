@@ -65,6 +65,20 @@ export function Footer() {
           <p className={styles.copy}>
             © {new Date().getFullYear()} Project <span className={styles.logoNumber}>42</span>
           </p>
+          <div className={styles.legalInfo}>
+            <address className={styles.ownerInfo}>
+              Самозанятый Нарчук Иван Валериевич · email project42studio@gmail.com · ИНН
+              300103507979
+            </address>
+            <div className={styles.legalLinks}>
+              <Link href="/privacy-policy" className={styles.legalLink}>
+                Политика конфиденциальности
+              </Link>
+              <Link href="/offer" className={styles.legalLink}>
+                Договор-оферта
+              </Link>
+            </div>
+          </div>
           <p className={styles.copy}>Решаем задачи бизнеса</p>
         </div>
       </Container>

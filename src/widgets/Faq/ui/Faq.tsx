@@ -30,7 +30,7 @@ export function Faq({
   return (
     <section className={styles.root} id="faq">
       <StarField />
-      <Container>
+      <Container className={styles.content}>
         <SectionTitle eyebrow={eyebrow} align="center">
           {title}
         </SectionTitle>

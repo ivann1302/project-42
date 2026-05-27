@@ -26,4 +26,12 @@ describe('PortfolioPage', () => {
     const links = screen.queryAllByRole('link', { name: /посмотреть сайт/i })
     expect(links).toHaveLength(projects.filter((project) => project.href).length)
   })
+
+  it('renders the home page return link', () => {
+    render(<PortfolioPage />)
+    expect(screen.getByRole('link', { name: /вернуться на главную/i })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta',
+    )
+  })
 })

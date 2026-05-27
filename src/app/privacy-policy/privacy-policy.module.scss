@@ -1,0 +1,133 @@
+.root {
+  min-height: 100svh;
+  padding-top: 120px;
+  padding-bottom: $spacing-3xl;
+  background:
+    radial-gradient(circle at 20% 12%, rgba($color-purple, 0.16), transparent 34%),
+    linear-gradient(180deg, $color-bg 0%, $color-bg-section 100%);
+
+  @include mobile {
+    padding-top: 96px;
+    padding-bottom: $spacing-2xl;
+  }
+}
+
+.inner {
+  position: relative;
+}
+
+.article {
+  width: min(100%, 960px);
+  margin: 0 auto;
+}
+
+.header {
+  padding-bottom: $spacing-xl;
+  border-bottom: 1px solid $color-border;
+}
+
+.eyebrow {
+  margin-bottom: $spacing-md;
+  font-family: $font-body;
+  font-size: $font-size-xs;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: $color-mint;
+}
+
+.title {
+  max-width: 840px;
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: $color-text;
+
+  @include mobile {
+    font-size: 34px;
+  }
+}
+
+.updated {
+  margin-top: $spacing-lg;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-text-muted;
+}
+
+.content {
+  display: grid;
+  gap: $spacing-xl;
+  padding-top: $spacing-xl;
+}
+
+.lead {
+  max-width: 880px;
+  font-size: $font-size-lg;
+  line-height: 1.7;
+  color: $color-text;
+
+  @include mobile {
+    font-size: $font-size-base;
+  }
+}
+
+.section {
+  display: grid;
+  gap: $spacing-md;
+  padding-top: $spacing-xl;
+  border-top: 1px solid $color-border-dark;
+
+  h2 {
+    font-family: $font-display;
+    font-size: $font-size-xl;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: $color-text;
+
+    @include mobile {
+      font-size: 24px;
+    }
+  }
+
+  p,
+  li {
+    font-size: $font-size-base;
+    line-height: 1.7;
+    color: $color-text-muted;
+  }
+
+  ul {
+    display: grid;
+    gap: $spacing-sm;
+    padding-left: 1.2rem;
+    list-style: disc;
+  }
+
+  li::marker {
+    color: $color-mint;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: $color-text;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $color-mint;
+    }
+  }
+}
+
+.contacts {
+  display: grid;
+  gap: $spacing-sm;
+  font-style: normal;
+}

@@ -31,6 +31,10 @@
   z-index: 1;
   padding-top: $spacing-2xl;
   padding-bottom: $spacing-xl;
+
+  @include mobile {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom));
+  }
 }
 
 .top {
@@ -166,6 +170,7 @@
 .bottom {
   @include flex-between;
 
+  gap: $spacing-md;
   padding-top: $spacing-xl;
 
   @include mobile {
@@ -175,8 +180,47 @@
   }
 }
 
+.legalInfo {
+  display: grid;
+  justify-items: center;
+  gap: $spacing-sm;
+}
+
 .copy {
   @include body-text($font-size-sm);
 
   color: $color-text-muted;
+}
+
+.ownerInfo {
+  @include body-text($font-size-xs);
+
+  margin: 0;
+  text-align: center;
+  color: $color-text-muted;
+  opacity: 0.82;
+
+  @include mobile {
+    max-width: 320px;
+  }
+}
+
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-sm $spacing-md;
+}
+
+.legalLink {
+  @include body-text($font-size-xs);
+
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: $color-text-muted;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-text;
+  }
 }

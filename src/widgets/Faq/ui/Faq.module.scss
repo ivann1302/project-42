@@ -18,6 +18,11 @@
   }
 }
 
+.content {
+  position: relative;
+  z-index: 1;
+}
+
 .list {
   display: flex;
   flex-direction: column;

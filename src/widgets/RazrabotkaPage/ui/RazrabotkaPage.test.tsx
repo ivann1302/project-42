@@ -43,6 +43,8 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText('Почему наш подход лучше сайта на конструкторе?')).toBeInTheDocument()
     expect(screen.getByText('С какой болью приходят клиенты')).toBeInTheDocument()
     expect(screen.getByText('Поддержка после запуска')).toBeInTheDocument()
+    expect(screen.getByText('Вопросы перед стартом')).toBeInTheDocument()
+    expect(screen.getByText('Почему цена «от», а не фиксированная?')).toBeInTheDocument()
   })
 
   it('links project cards to portfolio cases', () => {

@@ -4,6 +4,7 @@ import { Stats } from '@/widgets/Stats'
 import { Pricing } from '@/widgets/Pricing'
 import { DirectorMessage } from '@/widgets/DirectorMessage'
 import { Cta } from '@/widgets/Cta'
+import { Faq } from '@/widgets/Faq'
 import type { RazrabotkaPageConfig } from '@/entities/ServicePage'
 import styles from './RazrabotkaPage.module.scss'
 import { AboutSection } from './AboutSection'
@@ -57,6 +58,7 @@ export function RazrabotkaPage({ config }: Props) {
       />
       <Pricing plans={config.pricing} paymentNote={config.paymentNote} />
       <SupportSection support={config.support} />
+      <Faq items={config.faqItems} title="Вопросы перед стартом" />
       <Cta
         eyebrow={config.cta.eyebrow}
         heading={config.cta.heading}

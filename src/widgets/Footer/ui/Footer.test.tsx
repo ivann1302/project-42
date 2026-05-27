@@ -30,6 +30,19 @@ describe('Footer', () => {
     expect(processLink).toHaveAttribute('href', '/#process')
   })
 
+  it('renders privacy policy link', () => {
+    render(<Footer />)
+    expect(screen.getByRole('link', { name: 'Политика конфиденциальности' })).toHaveAttribute(
+      'href',
+      '/privacy-policy',
+    )
+  })
+
+  it('renders offer link', () => {
+    render(<Footer />)
+    expect(screen.getByRole('link', { name: 'Договор-оферта' })).toHaveAttribute('href', '/offer')
+  })
+
   it('points home links to razrabotka page from portfolio page', () => {
     mockPathname = '/portfolio'
     render(<Footer />)

@@ -1,4 +1,5 @@
 export { Button } from './Button'
+export { CookieNotice } from './CookieNotice'
 export { IconCard } from './IconCard'
 export { SectionTitle } from './SectionTitle'
 export { Container } from './Container'

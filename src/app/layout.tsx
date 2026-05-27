@@ -3,6 +3,7 @@ import Script from 'next/script'
 import { Suspense } from 'react'
 import { siteConfig } from '@/shared/config/seo'
 import { YANDEX_METRIKA_ID } from '@/shared/lib/metrika'
+import { CookieNotice } from '@/shared/ui/CookieNotice'
 import { YandexMetrika } from '@/shared/ui/YandexMetrika'
 import '@/shared/styles/globals.scss'
 
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Suspense fallback={null}>
           <YandexMetrika />
         </Suspense>
+        <CookieNotice />
       </body>
     </html>
   )
