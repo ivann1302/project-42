@@ -193,7 +193,18 @@ jobs:
           fi
 
           sleep 2
-          curl --fail --silent --show-error --max-time 20 "http://127.0.0.1:$APP_PORT/" > /dev/null
+          if ! curl --fail --silent --show-error --max-time 20 "http://127.0.0.1:$APP_PORT/__health" > /dev/null; then
+            echo "Local health check failed. Response headers from port $APP_PORT:"
+            curl -I --max-time 20 "http://127.0.0.1:$APP_PORT/__health" || true
+            echo "Known project process state:"
+            if command -v pm2 >/dev/null 2>&1; then
+              pm2 describe "$APP_NAME" || true
+            fi
+            if [ -f "$APP_DIR/app.pid" ]; then
+              echo "app.pid=$(cat "$APP_DIR/app.pid")"
+            fi
+            exit 1
+          fi
 
           rm -f "$RELEASE_ARCHIVE"
           find "$APP_DIR/releases" -mindepth 1 -maxdepth 1 -type d | sort | head -n -5 | xargs -r rm -rf

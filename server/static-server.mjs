@@ -25,6 +25,11 @@ const server = createServer(async (req, res) => {
     return
   }
 
+  if (requestUrl.pathname === '/__health') {
+    sendPlain(res, 200, 'ok')
+    return
+  }
+
   if (contactEndpoints.has(requestUrl.pathname)) {
     await handleContactRequest(req, res)
     return
