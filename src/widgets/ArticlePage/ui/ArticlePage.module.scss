@@ -1,0 +1,153 @@
+.root {
+  @include section-pad;
+
+  position: relative;
+  min-height: 100vh;
+  padding-top: calc(72px + $spacing-xl);
+  overflow: clip;
+  background: linear-gradient(180deg, rgba($color-purple, 0.09), transparent 300px), $color-bg;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xl;
+  font-size: $font-size-sm;
+  font-weight: 700;
+  text-decoration: none;
+  color: $color-text-muted;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.header {
+  display: grid;
+  gap: $spacing-md;
+  max-width: 920px;
+  padding-bottom: $spacing-2xl;
+}
+
+.category {
+  @include eyebrow-text;
+
+  color: $color-accent-mint;
+}
+
+.heading {
+  @include display-text(clamp(34px, 6vw, 72px));
+
+  margin: 0;
+  letter-spacing: 0;
+  color: $color-text;
+
+  @include mobile {
+    font-size: 34px;
+  }
+}
+
+.description {
+  @include body-text($font-size-lg);
+
+  max-width: 760px;
+  margin: 0;
+  color: $color-text-muted;
+
+  @include mobile {
+    font-size: $font-size-base;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  color: $color-gray-light;
+}
+
+.layout {
+  display: grid;
+  align-items: start;
+  gap: $spacing-2xl;
+  grid-template-columns: minmax(190px, 260px) minmax(0, 760px);
+  padding-top: $spacing-2xl;
+  border-top: 1px solid $color-border;
+
+  @include tablet-down {
+    gap: $spacing-xl;
+    grid-template-columns: 1fr;
+  }
+}
+
+.sidebar {
+  display: grid;
+  gap: $spacing-md;
+  position: sticky;
+  top: 104px;
+  padding: $spacing-lg;
+  background: rgba($color-white, 0.035);
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+
+  @include tablet-down {
+    position: static;
+  }
+}
+
+.sidebarTitle {
+  @include eyebrow-text;
+
+  color: $color-accent;
+}
+
+.highlights {
+  display: grid;
+  gap: $spacing-sm;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    font-size: $font-size-sm;
+    line-height: 1.5;
+    color: $color-text-muted;
+  }
+}
+
+.content {
+  display: grid;
+  gap: $spacing-xl;
+}
+
+.section {
+  display: grid;
+  gap: $spacing-md;
+
+  h2 {
+    margin: 0;
+    font-family: $font-display;
+    font-size: $font-size-xl;
+    line-height: 1.2;
+    color: $color-text;
+
+    @include mobile {
+      font-size: 26px;
+    }
+  }
+
+  p {
+    @include body-text($font-size-md);
+
+    margin: 0;
+    color: $color-gray-light;
+  }
+}

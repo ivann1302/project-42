@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { label: 'Разработка лендингов', href: '/razrabotka-sayta' },
   { label: 'Как работаем', href: '#process' },
   { label: 'Портфолио', href: '/portfolio' },
+  { label: 'Блог', href: '/blog' },
   { label: 'Цены', href: '#pricing' },
 ]
 

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,7 +15,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: Build and deploy static site
+    name: Build and deploy Node static site
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -47,79 +48,146 @@ jobs:
         run: npm test -- --runInBand
 
       - name: Build static export
-        run: npm run build
+        run: npm run build:static
 
-      - name: Verify static export
+      - name: Verify static export and Node server files
         run: |
           test -d out
           test -s out/index.html
+          test -s out/sitemap.xml
+          test -s server/static-server.mjs
+          test -s server/contact-handler.mjs
           test "$(find out -type f | wc -l)" -gt 0
 
-      - name: Install FTP client
+      - name: Package release
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends lftp
+          tar -czf project42-node-release.tar.gz out server package.json
 
-      - name: Deploy via FTP
+      - name: Configure SSH
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_PORT: ${{ secrets.FTP_PORT }}
-          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
-          FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL || 'ftp' }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           set -e
 
-          test -n "$FTP_SERVER"
-          test -n "$FTP_USERNAME"
-          test -n "$FTP_PASSWORD"
-          test -n "$FTP_REMOTE_DIR"
+          test -n "$SSH_HOST"
+          test -n "$SSH_PRIVATE_KEY"
 
-          PORT="${FTP_PORT:-21}"
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_project42
+          chmod 600 ~/.ssh/id_project42
 
-          lftp <<EOF
-          set cmd:fail-exit yes
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
 
-          set net:max-retries 2
-          set net:timeout 20
-          set net:reconnect-interval-base 5
+      - name: Upload release archive
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          RELEASE_ARCHIVE: project42-node-release-${{ github.sha }}.tar.gz
+        run: |
+          set -e
 
-          set ftp:ssl-allow true
-          set ssl:verify-certificate false
+          test -n "$SSH_USER"
 
-          set ftp:list-options -a
+          cp project42-node-release.tar.gz "$RELEASE_ARCHIVE"
+          scp \
+            -i ~/.ssh/id_project42 \
+            -P "$SSH_PORT" \
+            "$RELEASE_ARCHIVE" \
+            "$SSH_USER@$SSH_HOST:/tmp/$RELEASE_ARCHIVE"
 
-          open -u "$FTP_USERNAME","$FTP_PASSWORD" \
-            -p "$PORT" \
-            "$FTP_PROTOCOL://$FTP_SERVER"
+      - name: Activate release on server
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          NODE_APP_DIR: ${{ secrets.NODE_APP_DIR }}
+          NODE_APP_NAME: ${{ secrets.NODE_APP_NAME || 'project42' }}
+          NODE_APP_PORT: ${{ secrets.NODE_APP_PORT || '3000' }}
+          RELEASE_ARCHIVE: project42-node-release-${{ github.sha }}.tar.gz
+        run: |
+          set -e
 
-          cd "$FTP_REMOTE_DIR"
+          test -n "$NODE_APP_DIR"
 
-          mirror --reverse \
-            --delete \
-            --verbose \
-            --parallel=2 \
-            --exclude-glob ".git*" \
-            --exclude-glob ".github*" \
-            --exclude-glob ".env*" \
-            --exclude-glob "node_modules/**" \
-            --exclude-glob ".next/**" \
-            --exclude-glob "*.log" \
-            out/ .
+          ssh \
+            -i ~/.ssh/id_project42 \
+            -p "$SSH_PORT" \
+            "$SSH_USER@$SSH_HOST" \
+            "APP_DIR='$NODE_APP_DIR' APP_NAME='$NODE_APP_NAME' APP_PORT='$NODE_APP_PORT' RELEASE_ARCHIVE='/tmp/$RELEASE_ARCHIVE' bash -s" <<'EOF'
+          set -euo pipefail
 
-          bye
+          NODE_BIN="$(command -v node22 || true)"
+          if [ -z "$NODE_BIN" ]; then
+            echo "node22 was not found on the server"
+            exit 1
+          fi
+
+          if [ ! -f "$APP_DIR/.env" ]; then
+            echo "Missing $APP_DIR/.env"
+            exit 1
+          fi
+
+          RELEASE_ID="$(date +%Y%m%d%H%M%S)"
+          RELEASE_DIR="$APP_DIR/releases/$RELEASE_ID"
+          CURRENT_DIR="$APP_DIR/current"
+
+          mkdir -p "$APP_DIR/releases"
+          mkdir -p "$RELEASE_DIR"
+
+          tar -xzf "$RELEASE_ARCHIVE" -C "$RELEASE_DIR"
+          ln -sfn "$APP_DIR/.env" "$RELEASE_DIR/.env"
+          ln -sfn "$RELEASE_DIR" "$CURRENT_DIR"
+
+          export HOSTNAME=127.0.0.1
+          export PORT="$APP_PORT"
+          export NODE_ENV=production
+
+          if command -v pm2 >/dev/null 2>&1; then
+            if pm2 describe "$APP_NAME" >/dev/null 2>&1; then
+              pm2 restart "$APP_NAME" --update-env
+            else
+              cd "$CURRENT_DIR"
+              pm2 start server/static-server.mjs \
+                --name "$APP_NAME" \
+                --interpreter "$NODE_BIN" \
+                --time
+            fi
+            pm2 save || true
+          else
+            if [ -f "$APP_DIR/app.pid" ]; then
+              kill "$(cat "$APP_DIR/app.pid")" 2>/dev/null || true
+            fi
+
+            cd "$CURRENT_DIR"
+            nohup "$NODE_BIN" server/static-server.mjs > "$APP_DIR/app.log" 2>&1 &
+            echo $! > "$APP_DIR/app.pid"
+          fi
+
+          sleep 2
+          curl --fail --silent --show-error --max-time 20 "http://127.0.0.1:$APP_PORT/" > /dev/null
+
+          rm -f "$RELEASE_ARCHIVE"
+          find "$APP_DIR/releases" -mindepth 1 -maxdepth 1 -type d | sort | head -n -5 | xargs -r rm -rf
           EOF
 
-      - name: Health check
+      - name: External health check
         env:
           APP_URL: ${{ secrets.APP_URL }}
         run: |
-          test -n "$APP_URL"
+          if [ -z "$APP_URL" ]; then
+            echo "APP_URL is not set; skipping external health check."
+            exit 0
+          fi
 
           curl \
             --fail \
             --silent \
             --show-error \
             --max-time 20 \
-            "$APP_URL" > /dev/null
+            "$APP_URL" > /dev/null || {
+              echo "::warning::External health check failed for $APP_URL. Check DNS/domain/proxy settings."
+            }

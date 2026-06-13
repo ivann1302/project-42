@@ -46,10 +46,10 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  gap: $spacing-xl;
+  gap: clamp(16px, 2.3vw, $spacing-xl);
 
   @include tablet {
-    gap: $spacing-lg;
+    gap: $spacing-md;
   }
 
   @include mobile {
@@ -75,6 +75,7 @@
 
   text-decoration: none;
   color: $color-text-muted;
+  white-space: nowrap;
   transition: color $transition-base;
 
   &:hover {

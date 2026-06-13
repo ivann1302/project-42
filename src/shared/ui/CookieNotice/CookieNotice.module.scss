@@ -3,8 +3,8 @@
   align-items: center;
   gap: $spacing-md;
   position: fixed;
-  right: 24px;
   bottom: 24px;
+  left: 50%;
   z-index: 1100;
   width: min(calc(100% - 48px), 640px);
   padding: 14px 16px 14px 14px;
@@ -13,6 +13,7 @@
   border: 1px solid $color-border;
   border-radius: $radius-sm;
   box-shadow: 0 18px 60px rgba($color-black, 45%);
+  transform: translateX(-50%);
   backdrop-filter: blur(18px);
   animation: notice-in 0.28s ease;
 }
@@ -44,12 +45,12 @@
 @keyframes notice-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translate(-50%, 12px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%);
   }
 }
 
@@ -63,10 +64,8 @@
   .root {
     flex-wrap: wrap;
     align-items: flex-start;
-    right: $container-pad-mobile;
-    bottom: $container-pad-mobile;
-    left: $container-pad-mobile;
-    width: auto;
+    bottom: calc(86px + env(safe-area-inset-bottom));
+    width: min(calc(100% - #{$container-pad-mobile * 2}), 420px);
     padding: 14px;
   }
 

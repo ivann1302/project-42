@@ -1,6 +1,7 @@
 export const dynamic = 'force-static'
 
 import type { MetadataRoute } from 'next'
+import { articles } from '@/entities/Article'
 import { siteConfig } from '@/shared/config/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -17,6 +18,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${siteConfig.url}/blog`,
+      lastModified: new Date('2026-06-04'),
+      changeFrequency: 'weekly',
+      priority: 0.75,
+    },
+    ...articles.map((article) => ({
+      url: `${siteConfig.url}/blog/${article.slug}`,
+      lastModified: new Date(article.publishedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.65,
+    })),
     {
       url: `${siteConfig.url}/privacy-policy`,
       lastModified: new Date('2026-05-27'),

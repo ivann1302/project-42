@@ -41,6 +41,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# local deployment notes and manual release bundles
+PROJECT42_SERVER_TECH_NOTES.local.md
+project42-static-public-html-*.tar.gz
+project42-node-release*.tar.gz
+
 
 
 .worktrees/

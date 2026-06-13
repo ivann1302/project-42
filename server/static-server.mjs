@@ -1,0 +1,199 @@
+import { createReadStream } from 'node:fs'
+import { stat } from 'node:fs/promises'
+import { createServer } from 'node:http'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { handleContactRequest, loadEnv } from './contact-handler.mjs'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const projectRoot = path.resolve(__dirname, '..')
+const staticDir = path.resolve(process.env.STATIC_DIR || path.join(projectRoot, 'out'))
+const hostname = process.env.HOSTNAME || '127.0.0.1'
+const port = Number.parseInt(process.env.PORT || '3000', 10)
+
+const contactEndpoints = new Set(['/scripts/api/send.php', '/scripts/api/send', '/api/send'])
+
+await loadEnv({ cwd: projectRoot, documentRoot: staticDir })
+await assertStaticDir(staticDir)
+
+const server = createServer(async (req, res) => {
+  const requestUrl = getRequestUrl(req)
+
+  if (!requestUrl) {
+    sendPlain(res, 400, 'Bad Request')
+    return
+  }
+
+  if (contactEndpoints.has(requestUrl.pathname)) {
+    await handleContactRequest(req, res)
+    return
+  }
+
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    sendPlain(res, 405, 'Method Not Allowed')
+    return
+  }
+
+  const file = await resolveStaticFile(requestUrl.pathname)
+
+  if (!file) {
+    await serveFile(res, path.join(staticDir, '404.html'), 404, req.method === 'HEAD')
+    return
+  }
+
+  await serveFile(res, file, 200, req.method === 'HEAD')
+})
+
+server.listen(port, hostname, () => {
+  console.log(`[static-node] Serving ${staticDir}`)
+  console.log(`[static-node] Listening on http://${hostname}:${port}`)
+})
+
+async function assertStaticDir(dir) {
+  try {
+    const info = await stat(dir)
+    if (!info.isDirectory()) throw new Error()
+  } catch {
+    console.error(`[static-node] Static directory does not exist: ${dir}`)
+    console.error('[static-node] Run npm run build:static first.')
+    process.exit(1)
+  }
+}
+
+function getRequestUrl(req) {
+  try {
+    return new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`)
+  } catch {
+    return null
+  }
+}
+
+async function resolveStaticFile(urlPathname) {
+  const pathname = decodePathname(urlPathname)
+  if (pathname === null || hasBlockedPathSegment(pathname)) return null
+
+  const candidates = getStaticCandidates(pathname)
+
+  for (const candidate of candidates) {
+    const file = safeResolve(staticDir, candidate)
+    if (!file) continue
+
+    try {
+      const info = await stat(file)
+      if (info.isFile()) return file
+    } catch {
+      // Try the next candidate.
+    }
+  }
+
+  return null
+}
+
+function decodePathname(value) {
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    return null
+  }
+}
+
+function hasBlockedPathSegment(value) {
+  return value
+    .split('/')
+    .filter(Boolean)
+    .some((segment) => segment.startsWith('.') && segment !== '.well-known')
+}
+
+function getStaticCandidates(pathname) {
+  const cleanPath = pathname.replace(/^\/+/, '')
+
+  if (!cleanPath) {
+    return ['index.html']
+  }
+
+  const extension = path.extname(cleanPath)
+
+  if (extension) {
+    return [cleanPath]
+  }
+
+  return [`${cleanPath}.html`, path.join(cleanPath, 'index.html')]
+}
+
+function safeResolve(baseDir, relativePath) {
+  const resolved = path.resolve(baseDir, relativePath)
+  const base = `${baseDir}${path.sep}`
+
+  if (resolved !== baseDir && !resolved.startsWith(base)) {
+    return null
+  }
+
+  return resolved
+}
+
+async function serveFile(res, file, statusCode, headOnly) {
+  let info
+  try {
+    info = await stat(file)
+  } catch {
+    sendPlain(res, statusCode, statusCode === 404 ? 'Not Found' : 'File not found')
+    return
+  }
+
+  res.writeHead(statusCode, {
+    'Content-Length': info.size,
+    'Content-Type': getContentType(file),
+    'Cache-Control': getCacheControl(file),
+  })
+
+  if (headOnly) {
+    res.end()
+    return
+  }
+
+  createReadStream(file).pipe(res)
+}
+
+function sendPlain(res, statusCode, message) {
+  res.writeHead(statusCode, { 'Content-Type': 'text/plain; charset=utf-8' })
+  res.end(message)
+}
+
+function getContentType(file) {
+  const extension = path.extname(file).toLowerCase()
+
+  return (
+    {
+      '.css': 'text/css; charset=utf-8',
+      '.gif': 'image/gif',
+      '.html': 'text/html; charset=utf-8',
+      '.ico': 'image/x-icon',
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      '.js': 'text/javascript; charset=utf-8',
+      '.json': 'application/json; charset=utf-8',
+      '.png': 'image/png',
+      '.svg': 'image/svg+xml',
+      '.txt': 'text/plain; charset=utf-8',
+      '.webp': 'image/webp',
+      '.woff': 'font/woff',
+      '.woff2': 'font/woff2',
+      '.xml': 'application/xml; charset=utf-8',
+    }[extension] || 'application/octet-stream'
+  )
+}
+
+function getCacheControl(file) {
+  const normalized = file.replaceAll(path.sep, '/')
+
+  if (normalized.includes('/_next/static/')) {
+    return 'public, max-age=31536000, immutable'
+  }
+
+  if (path.extname(file).toLowerCase() === '.html') {
+    return 'no-cache'
+  }
+
+  return 'public, max-age=86400'
+}

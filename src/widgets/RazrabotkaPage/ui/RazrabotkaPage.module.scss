@@ -427,37 +427,35 @@ $landing-bg: #030303;
 }
 
 .painCard {
-  min-height: 560px;
+  min-height: auto;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba($color-white, 0.075), rgba($color-white, 0.025)),
+    linear-gradient(145deg, rgba($color-white, 0.09), rgba($color-white, 0.025) 42%),
     rgba($color-white, 0.025);
   border: 1px solid rgba($color-white, 0.1);
   border-radius: $radius-sm;
   box-shadow: 0 24px 80px rgba(0 0 0 / 22%);
   scroll-snap-align: start;
 
-  @include scroll-fade-up;
-
-  transition-delay: calc(var(--i) * 80ms);
-
   h3 {
     margin: 0;
-    font-size: clamp(20px, 1.7vw, 26px);
+    font-size: clamp(21px, 1.8vw, 28px);
     font-weight: 800;
-    line-height: 1.12;
+    line-height: 1.14;
     color: $color-text;
   }
 }
 
 .painCardLink {
-  display: grid;
-  align-content: start;
-  gap: 24px;
-  grid-template-rows: auto auto 1fr auto;
+  --pain-card-pad: clamp(18px, 2vw, 26px);
+  --pain-card-image-height: clamp(190px, 15vw, 220px);
+
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.5vw, 18px);
   height: 100%;
   min-height: inherit;
-  padding: clamp(22px, 2.4vw, 32px);
+  padding: var(--pain-card-pad) var(--pain-card-pad) 0;
   text-decoration: none;
   color: inherit;
 
@@ -467,92 +465,76 @@ $landing-bg: #030303;
   }
 }
 
-.painCardTop {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.painCardNumber {
-  font-family: var(--font-body), sans-serif;
-  font-size: clamp(38px, 4vw, 56px);
-  font-weight: 900;
-  line-height: 0.9;
-  color: rgba($color-white, 0.18);
-}
-
-.painTags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    padding: 6px 10px;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-    color: $color-accent-mint;
-    background: rgba($color-mint, 0.08);
-    border: 1px solid rgba($color-mint, 0.22);
-    border-radius: 999px;
-  }
-}
-
-.painCardGrid {
+.painCardHeader {
   display: grid;
+  align-items: flex-start;
   gap: 18px;
-
-  div {
-    display: grid;
-    gap: 8px;
-    padding-top: 18px;
-    border-top: 1px solid rgba($color-white, 0.09);
-  }
-
-  span {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba($color-white, 0.48);
-  }
-
-  p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.56;
-    color: $color-gray-light;
-  }
+  grid-template-columns: minmax(0, 1fr) 46px;
+  min-height: clamp(58px, 6vw, 80px);
 }
 
-.painCardCta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  place-self: end center;
-  min-height: 44px;
-  margin-top: 8px;
-  padding: 0 18px;
-  font-size: $font-size-sm;
-  font-weight: 700;
+.painCardArrow {
+  display: inline-grid;
+  place-items: center;
+  position: relative;
+  width: 46px;
+  height: 46px;
   color: $color-mint;
-  border: 1px solid rgba($color-mint, 0.45);
-  border-radius: $radius-pill;
+  background: rgba($color-mint, 0.08);
+  border: 1px solid rgba($color-mint, 0.28);
+  border-radius: 50%;
   transition:
+    background $transition-base,
     border-color $transition-base,
-    box-shadow $transition-base;
+    transform $transition-base;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+
+  &::before {
+    width: 16px;
+    height: 2px;
+    background: currentcolor;
+    transform: rotate(-45deg);
+  }
+
+  &::after {
+    width: 9px;
+    height: 9px;
+    border-top: 2px solid currentcolor;
+    border-right: 2px solid currentcolor;
+    transform: translate(4px, -4px);
+  }
 
   .painCardLink:hover &,
   .painCardLink:focus-visible & {
-    color: $color-mint;
-    border-color: rgba($color-mint, 0.8);
-    box-shadow: 0 4px 20px rgba($color-mint, 0.14);
+    background: rgba($color-mint, 0.14);
+    border-color: rgba($color-mint, 0.58);
+    transform: translate(2px, -2px);
   }
+}
+
+.painCardImage {
+  flex: 0 0 var(--pain-card-image-height);
+  height: var(--pain-card-image-height);
+  min-height: 0;
+  margin: auto calc(var(--pain-card-pad) * -1) 0;
+  overflow: hidden;
+  background: rgba($color-white, 0.035);
+  border-top: 1px solid rgba($color-white, 0.09);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -18px 56px rgba(0 0 0 / 28%);
+}
+
+.painCardImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }
 
 .painCarouselControls {
@@ -920,25 +902,23 @@ $landing-bg: #030303;
   }
 
   .painCardLink {
-    gap: 20px;
+    --pain-card-pad: 16px;
+    --pain-card-image-height: 160px;
+
+    gap: 12px;
     min-height: auto;
-    padding: 22px 18px;
+    padding: 18px var(--pain-card-pad) 0;
   }
 
-  .painCardTop {
-    display: none;
+  .painCardHeader {
+    gap: 14px;
+    grid-template-columns: minmax(0, 1fr) 40px;
+    min-height: 70px;
   }
 
-  .painTags {
-    justify-content: flex-start;
-  }
-
-  .painCardGrid {
-    gap: 16px;
-
-    p {
-      font-size: 13px;
-    }
+  .painCardArrow {
+    width: 40px;
+    height: 40px;
   }
 
   .supportInner,

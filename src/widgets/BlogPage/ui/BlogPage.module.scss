@@ -1,0 +1,286 @@
+.root {
+  @include section-pad;
+
+  position: relative;
+  min-height: 100vh;
+  padding-top: calc(72px + $spacing-2xl);
+  overflow: clip;
+  background: linear-gradient(180deg, rgba($color-blue, 0.08), transparent 340px), $color-bg;
+
+  @include mobile {
+    padding-top: calc(72px + $spacing-xl);
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  display: grid;
+  align-items: end;
+  gap: $spacing-xl;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  padding-bottom: $spacing-2xl;
+  border-bottom: 1px solid $color-border;
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+  }
+}
+
+.heroText {
+  display: grid;
+  gap: $spacing-md;
+  max-width: 860px;
+}
+
+.eyebrow,
+.digestLabel,
+.badge,
+.cardCategory {
+  @include eyebrow-text;
+
+  color: $color-accent-mint;
+}
+
+.heading {
+  @include display-text(clamp(38px, 7vw, 78px));
+
+  max-width: 980px;
+  letter-spacing: 0;
+  color: $color-text;
+
+  @include mobile {
+    font-size: 38px;
+  }
+}
+
+.subtitle {
+  @include body-text($font-size-lg);
+
+  max-width: 720px;
+  color: $color-text-muted;
+
+  @include mobile {
+    font-size: $font-size-base;
+  }
+}
+
+.digest {
+  display: grid;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: rgba($color-white, 0.035);
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+}
+
+.categoryList {
+  display: grid;
+  gap: $spacing-sm;
+  padding: 0;
+  list-style: none;
+}
+
+.categoryItem {
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding-bottom: $spacing-sm;
+  font-size: $font-size-sm;
+  line-height: 1.5;
+  color: $color-text-muted;
+  border-bottom: 1px solid $color-border-dark;
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  span:last-child {
+    color: $color-text;
+  }
+}
+
+.featured {
+  display: grid;
+  align-items: end;
+  gap: $spacing-xl;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-top: $spacing-2xl;
+  padding: $spacing-xl;
+  background:
+    linear-gradient(135deg, rgba($color-purple, 0.18), rgba($color-blue, 0.07)),
+    rgba($color-white, 0.035);
+  border: 1px solid rgba($color-purple, 0.32);
+  border-radius: $radius-sm;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    padding: $spacing-lg;
+  }
+}
+
+.featuredInfo {
+  display: grid;
+  gap: $spacing-md;
+  max-width: 760px;
+}
+
+.badge {
+  width: fit-content;
+  padding: 6px 10px;
+  color: $color-text;
+  background: rgba($color-white, 0.08);
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+}
+
+.featuredTitle,
+.cardTitle {
+  margin: 0;
+  font-family: $font-display;
+  font-weight: 700;
+  line-height: 1.15;
+  color: $color-text;
+}
+
+.featuredTitle {
+  font-size: $font-size-xl;
+
+  @include mobile {
+    font-size: 26px;
+  }
+}
+
+.featuredDescription,
+.cardDescription {
+  margin: 0;
+  color: $color-text-muted;
+}
+
+.featuredDescription {
+  @include body-text($font-size-md);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  color: $color-gray-light;
+}
+
+.featuredLink,
+.readMore {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  width: fit-content;
+  font-weight: 700;
+  text-decoration: none;
+  color: $color-text;
+}
+
+.linkIcon {
+  transition: transform $transition-base;
+}
+
+.featuredLink:hover .linkIcon,
+.cardLink:hover .linkIcon {
+  transform: translateX(4px);
+}
+
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: $spacing-lg;
+  padding: 0;
+  list-style: none;
+
+  @include tablet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  min-height: 100%;
+}
+
+.cardLink {
+  display: grid;
+  align-content: start;
+  gap: $spacing-md;
+  min-height: 100%;
+  padding: $spacing-lg;
+  text-decoration: none;
+  background: rgba($color-white, 0.035);
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  transition:
+    border-color $transition-base,
+    transform $transition-base,
+    background $transition-base;
+
+  &:hover {
+    background: rgba($color-white, 0.05);
+    border-color: rgba($color-blue, 0.42);
+    transform: translateY(-3px);
+  }
+}
+
+.card[data-accent='purple'] .cardLink:hover {
+  border-color: rgba($color-purple, 0.5);
+}
+
+.card[data-accent='mint'] .cardLink:hover {
+  border-color: rgba($color-mint, 0.5);
+}
+
+.cardTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $spacing-sm;
+}
+
+.cardDate {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.cardTitle {
+  font-size: $font-size-lg;
+}
+
+.cardDescription {
+  font-size: $font-size-sm;
+  line-height: 1.6;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.tag {
+  padding: 4px 8px;
+  font-size: $font-size-xs;
+  color: $color-gray-light;
+  background: rgba($color-white, 0.05);
+  border: 1px solid $color-border-dark;
+  border-radius: $radius-sm;
+}
+
+.readMore {
+  margin-top: auto;
+  color: $color-accent-mint;
+}
