@@ -185,6 +185,14 @@ jobs:
           else
             if [ -f "$APP_DIR/app.pid" ]; then
               kill "$(cat "$APP_DIR/app.pid")" 2>/dev/null || true
+              for _ in 1 2 3 4 5; do
+                if ! kill -0 "$(cat "$APP_DIR/app.pid")" 2>/dev/null; then
+                  break
+                fi
+                sleep 1
+              done
+              kill -9 "$(cat "$APP_DIR/app.pid")" 2>/dev/null || true
+              rm -f "$APP_DIR/app.pid"
             fi
 
             cd "$CURRENT_DIR"
@@ -202,6 +210,10 @@ jobs:
             fi
             if [ -f "$APP_DIR/app.pid" ]; then
               echo "app.pid=$(cat "$APP_DIR/app.pid")"
+            fi
+            if [ -f "$APP_DIR/app.log" ]; then
+              echo "Last app.log lines:"
+              tail -n 80 "$APP_DIR/app.log" || true
             fi
             exit 1
           fi
