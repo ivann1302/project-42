@@ -30,7 +30,11 @@ server. Node нужен для отдачи готовых HTML-файлов и 
 - [x] Локально проверена отправка заявки через Node endpoint без PHP.
 - [x] Production workflow переключен с FTP mirror на SSH-деплой Node22 server.
 - [x] Основной SEO-домен обновлен на `https://project42-studio.ru`.
-- [x] Серверный `.env` перенесен в `/home/a1256071/project42-node/.env`.
+- [x] Серверный `.env` перенесен в
+      `/home/a1256071/domains/project42-studio.ru/project42-node/.env`.
+- [x] Node static server адаптирован для запуска через Phusion Passenger.
+- [x] Production workflow генерирует `.htaccess` в `public_html` и дергает
+      `tmp/restart.txt` для Passenger.
 - [ ] Проверить production-деплой и форму после GitHub Actions.
 
 ## Key Changes
@@ -57,7 +61,10 @@ server. Node нужен для отдачи готовых HTML-файлов и 
   - паковать `out/`, `server/`, `package.json`;
   - загружать релиз по SSH в `NODE_APP_DIR/releases`;
   - переключать symlink `NODE_APP_DIR/current`;
-  - перезапускать процесс через `pm2`, если он установлен, иначе через `nohup`.
+  - создавать `.htaccess` в `public_html` для Phusion Passenger;
+  - дергать `tmp/restart.txt` в текущем релизе для перезапуска Passenger;
+  - сохранять локальный `pm2`/`nohup` запуск как диагностический health-check
+    на `127.0.0.1:$NODE_APP_PORT`.
 - Добавить локальную заметку `PROJECT42_SERVER_TECH_NOTES.local.md`:
   - описать, что production-схема для Project 42: static export, который отдает
     Node22 static server;
@@ -86,7 +93,9 @@ server. Node нужен для отдачи готовых HTML-файлов и 
   - `SSH_HOST`: Secret или Variable, SSH host Sprinthost.
   - `SSH_USER`: Secret или Variable, SSH user.
   - `NODE_APP_DIR`: Secret или Variable, директория приложения на сервере, где уже лежит `.env`
-    (`/home/a1256071/project42-node`).
+    (`/home/a1256071/domains/project42-studio.ru/project42-node`).
+  - `PUBLIC_HTML_DIR`: Secret или Variable, опционально, по умолчанию соседняя
+    директория `public_html` рядом с `NODE_APP_DIR`.
   - `SSH_PORT`: Secret или Variable, опционально, по умолчанию `22`.
   - `NODE_APP_NAME`: Secret или Variable, опционально, по умолчанию `project42`.
   - `NODE_APP_PORT`: Secret или Variable, опционально, по умолчанию `3000`.
@@ -134,8 +143,9 @@ Node-схема:
 - Локальная проверка Node-схемы: `/`, `/blog` и `/_next/static/...` вернули `200`,
   POST на `/scripts/api/send.php` вернул `200 {"ok":true}`.
 - На Sprinthost Node22-сценарий:
-  GitHub Actions собирает и загружает релиз, затем на сервере запускается
-  `HOSTNAME=127.0.0.1 PORT=3000 NODE_ENV=production node22 server/static-server.mjs`.
+  GitHub Actions собирает и загружает релиз, затем создает `.htaccess` для
+  Passenger в `public_html`. Для внутренней проверки дополнительно запускается
+  `HOSTNAME=127.0.0.1 PORT=$NODE_APP_PORT NODE_ENV=production node22 server/static-server.mjs`.
 
 Примечание: после проверки standalone-сборки Jest был настроен игнорировать
 `.next`, чтобы `.next/standalone/package.json` не конфликтовал с корневым
@@ -145,9 +155,10 @@ Node-схема:
 
 - Основной production-хостинг для сайта: Sprinthost shared hosting, не VPS.
 - Для Project 42 предпочтителен static export ради надежности и SEO.
-- Домен должен быть направлен на Node22-приложение или проксироваться на
-  `127.0.0.1:$NODE_APP_PORT`.
-- `.env` хранится на сервере в `/home/a1256071/project42-node/.env`; GitHub
+- Домен должен запускать Node22-приложение через Sprinthost Phusion Passenger и
+  `.htaccess` в `public_html`.
+- `.env` хранится на сервере в
+  `/home/a1256071/domains/project42-studio.ru/project42-node/.env`; GitHub
   Actions его не заливает.
 - Workflow явно падает с понятной ошибкой, если `SSH_HOST`, `SSH_PRIVATE_KEY`,
   `SSH_USER` или `NODE_APP_DIR` не заведены в GitHub Actions.

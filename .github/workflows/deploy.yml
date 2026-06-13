@@ -56,6 +56,7 @@ jobs:
           test -s out/index.html
           test -s out/sitemap.xml
           test -s server/static-server.mjs
+          test -s server/passenger.cjs
           test -s server/contact-handler.mjs
           test "$(find out -type f | wc -l)" -gt 0
 
@@ -129,6 +130,7 @@ jobs:
           NODE_APP_DIR: ${{ secrets.NODE_APP_DIR || vars.NODE_APP_DIR }}
           NODE_APP_NAME: ${{ secrets.NODE_APP_NAME || vars.NODE_APP_NAME || 'project42' }}
           NODE_APP_PORT: ${{ secrets.NODE_APP_PORT || vars.NODE_APP_PORT || '3000' }}
+          PUBLIC_HTML_DIR: ${{ secrets.PUBLIC_HTML_DIR || vars.PUBLIC_HTML_DIR }}
           RELEASE_ARCHIVE: project42-node-release-${{ github.sha }}.tar.gz
         run: |
           set -e
@@ -142,7 +144,7 @@ jobs:
             -i ~/.ssh/id_project42 \
             -p "$SSH_PORT" \
             "$SSH_USER@$SSH_HOST" \
-            "APP_DIR='$NODE_APP_DIR' APP_NAME='$NODE_APP_NAME' APP_PORT='$NODE_APP_PORT' RELEASE_ARCHIVE='/tmp/$RELEASE_ARCHIVE' bash -s" <<'EOF'
+            "APP_DIR='$NODE_APP_DIR' APP_NAME='$NODE_APP_NAME' APP_PORT='$NODE_APP_PORT' PUBLIC_HTML_DIR='$PUBLIC_HTML_DIR' RELEASE_ARCHIVE='/tmp/$RELEASE_ARCHIVE' bash -s" <<'EOF'
           set -euo pipefail
 
           NODE_BIN="$(command -v node22 || true)"
@@ -166,6 +168,30 @@ jobs:
           tar -xzf "$RELEASE_ARCHIVE" -C "$RELEASE_DIR"
           ln -sfn "$APP_DIR/.env" "$RELEASE_DIR/.env"
           ln -sfn "$RELEASE_DIR" "$CURRENT_DIR"
+
+          if [ -z "${PUBLIC_HTML_DIR:-}" ]; then
+            PUBLIC_HTML_DIR="$(dirname "$APP_DIR")/public_html"
+          fi
+
+          mkdir -p "$PUBLIC_HTML_DIR"
+
+          if [ -f "$PUBLIC_HTML_DIR/scripts/api/send.php" ]; then
+            mv "$PUBLIC_HTML_DIR/scripts/api/send.php" "$APP_DIR/send.php.backup.$RELEASE_ID"
+          fi
+
+          cat > "$PUBLIC_HTML_DIR/.htaccess" <<HTACCESS
+          PassengerEnabled on
+          PassengerAppRoot $CURRENT_DIR
+          PassengerAppType node
+          PassengerStartupFile server/passenger.cjs
+          PassengerNodejs $NODE_BIN
+          PassengerAppEnv production
+          SetEnv NODE_ENV production
+          SetEnv STATIC_DIR $CURRENT_DIR/out
+          HTACCESS
+
+          mkdir -p "$CURRENT_DIR/tmp"
+          touch "$CURRENT_DIR/tmp/restart.txt"
 
           export HOSTNAME=127.0.0.1
           export PORT="$APP_PORT"

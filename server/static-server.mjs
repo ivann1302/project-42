@@ -11,8 +11,11 @@ const projectRoot = path.resolve(__dirname, '..')
 const staticDir = path.resolve(process.env.STATIC_DIR || path.join(projectRoot, 'out'))
 const hostname = process.env.HOSTNAME || '127.0.0.1'
 const port = Number.parseInt(process.env.PORT || '3000', 10)
+const passenger = globalThis.PhusionPassenger
 
 const contactEndpoints = new Set(['/scripts/api/send.php', '/scripts/api/send', '/api/send'])
+
+passenger?.configure?.({ autoInstall: false })
 
 await loadEnv({ cwd: projectRoot, documentRoot: staticDir })
 await assertStaticDir(staticDir)
@@ -50,10 +53,17 @@ const server = createServer(async (req, res) => {
   await serveFile(res, file, 200, req.method === 'HEAD')
 })
 
-server.listen(port, hostname, () => {
-  console.log(`[static-node] Serving ${staticDir}`)
-  console.log(`[static-node] Listening on http://${hostname}:${port}`)
-})
+if (passenger) {
+  server.listen('passenger', () => {
+    console.log(`[static-node] Serving ${staticDir}`)
+    console.log('[static-node] Listening through Phusion Passenger')
+  })
+} else {
+  server.listen(port, hostname, () => {
+    console.log(`[static-node] Serving ${staticDir}`)
+    console.log(`[static-node] Listening on http://${hostname}:${port}`)
+  })
+}
 
 async function assertStaticDir(dir) {
   try {
