@@ -25,7 +25,7 @@ server. Node нужен для отдачи готовых HTML-файлов и 
 - [x] Прогнан полный локальный набор проверок перед финальным коммитом.
 - [x] Jest настроен игнорировать `.next`, чтобы standalone-артефакты не давали
       haste collision.
-- [x] Локально проверена отправка заявки через static+PHP endpoint в Telegram.
+- [x] PHP handler удален из `public/`, чтобы openresty не отдавал исходник как статику.
 - [x] Добавлен Node static server с Telegram endpoint для Node22-сценария.
 - [x] Локально проверена отправка заявки через Node endpoint без PHP.
 - [x] Production workflow переключен с FTP mirror на SSH-деплой Node22 server.
@@ -116,8 +116,9 @@ server. Node нужен для отдачи готовых HTML-файлов и 
 
 Проверка заявок 2026-06-13:
 
-- Локально `php -S ... -t out` и POST на `/scripts/api/send.php` вернули
-  `200 {"ok":true}`; PHP handler прочитал `.env` и Telegram API принял заявку.
+- Раньше PHP handler лежал в `public/scripts/api/send.php`, но внешний openresty
+  отдал его исходник как статический файл. PHP handler удален, production-заявки
+  должны идти через Node endpoint.
 - Ранее `https://project-42.ru` из текущей среды обрывался на TLS.
 - Ранее `http://project-42.ru` отвечал `nginx` parking-страницей REG.RU:
   срок регистрации домена истек. Основной домен сменен на `project42-studio.ru`.
