@@ -65,14 +65,21 @@ jobs:
 
       - name: Configure SSH
         env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+          SSH_HOST: ${{ secrets.SSH_HOST || vars.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || vars.SSH_PORT || '22' }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           set -e
 
-          test -n "$SSH_HOST"
-          test -n "$SSH_PRIVATE_KEY"
+          if [ -z "$SSH_HOST" ]; then
+            echo "::error::SSH_HOST is empty. Add SSH_HOST as a GitHub Actions secret or variable."
+            exit 1
+          fi
+
+          if [ -z "$SSH_PRIVATE_KEY" ]; then
+            echo "::error::SSH_PRIVATE_KEY is empty. Add the private SSH key as a GitHub Actions secret."
+            exit 1
+          fi
 
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
@@ -83,14 +90,17 @@ jobs:
 
       - name: Upload release archive
         env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
-          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST || vars.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || vars.SSH_PORT || '22' }}
+          SSH_USER: ${{ secrets.SSH_USER || vars.SSH_USER }}
           RELEASE_ARCHIVE: project42-node-release-${{ github.sha }}.tar.gz
         run: |
           set -e
 
-          test -n "$SSH_USER"
+          if [ -z "$SSH_USER" ]; then
+            echo "::error::SSH_USER is empty. Add SSH_USER as a GitHub Actions secret or variable."
+            exit 1
+          fi
 
           cp project42-node-release.tar.gz "$RELEASE_ARCHIVE"
           scp \
@@ -101,17 +111,20 @@ jobs:
 
       - name: Activate release on server
         env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          NODE_APP_DIR: ${{ secrets.NODE_APP_DIR }}
-          NODE_APP_NAME: ${{ secrets.NODE_APP_NAME || 'project42' }}
-          NODE_APP_PORT: ${{ secrets.NODE_APP_PORT || '3000' }}
+          SSH_HOST: ${{ secrets.SSH_HOST || vars.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || vars.SSH_PORT || '22' }}
+          SSH_USER: ${{ secrets.SSH_USER || vars.SSH_USER }}
+          NODE_APP_DIR: ${{ secrets.NODE_APP_DIR || vars.NODE_APP_DIR }}
+          NODE_APP_NAME: ${{ secrets.NODE_APP_NAME || vars.NODE_APP_NAME || 'project42' }}
+          NODE_APP_PORT: ${{ secrets.NODE_APP_PORT || vars.NODE_APP_PORT || '3000' }}
           RELEASE_ARCHIVE: project42-node-release-${{ github.sha }}.tar.gz
         run: |
           set -e
 
-          test -n "$NODE_APP_DIR"
+          if [ -z "$NODE_APP_DIR" ]; then
+            echo "::error::NODE_APP_DIR is empty. Add NODE_APP_DIR as a GitHub Actions secret or variable."
+            exit 1
+          fi
 
           ssh \
             -i ~/.ssh/id_project42 \
@@ -176,7 +189,7 @@ jobs:
 
       - name: External health check
         env:
-          APP_URL: ${{ secrets.APP_URL }}
+          APP_URL: ${{ secrets.APP_URL || vars.APP_URL }}
         run: |
           if [ -z "$APP_URL" ]; then
             echo "APP_URL is not set; skipping external health check."

@@ -29,8 +29,8 @@ server. Node нужен для отдачи готовых HTML-файлов и 
 - [x] Добавлен Node static server с Telegram endpoint для Node22-сценария.
 - [x] Локально проверена отправка заявки через Node endpoint без PHP.
 - [x] Production workflow переключен с FTP mirror на SSH-деплой Node22 server.
-- [ ] Разблокировать production-домен: `project-42.ru` сейчас отвечает парковкой
-      REG.RU из-за истекшего срока регистрации.
+- [x] Основной SEO-домен обновлен на `https://project42-studio.ru`.
+- [x] Серверный `.env` перенесен в `/home/a1256071/project42-node/.env`.
 - [ ] Проверить production-деплой и форму после GitHub Actions.
 
 ## Key Changes
@@ -81,15 +81,16 @@ server. Node нужен для отдачи готовых HTML-файлов и 
   - `npm run archive:static`
   - `npm run archive:node`
   - `npm run start:static-node`
-- GitHub Secrets для Node22-деплоя:
-  - `SSH_HOST`: SSH host Sprinthost.
-  - `SSH_USER`: SSH user.
-  - `SSH_PRIVATE_KEY`: private key для SSH-доступа.
-  - `NODE_APP_DIR`: директория приложения на сервере, где уже лежит `.env`.
-  - `SSH_PORT`: опционально, по умолчанию `22`.
-  - `NODE_APP_NAME`: опционально, по умолчанию `project42`.
-  - `NODE_APP_PORT`: опционально, по умолчанию `3000`.
-  - `APP_URL`: опционально, внешний health check.
+- GitHub Secrets/Variables для Node22-деплоя:
+  - `SSH_PRIVATE_KEY`: обязательно Secret, private key для SSH-доступа.
+  - `SSH_HOST`: Secret или Variable, SSH host Sprinthost.
+  - `SSH_USER`: Secret или Variable, SSH user.
+  - `NODE_APP_DIR`: Secret или Variable, директория приложения на сервере, где уже лежит `.env`
+    (`/home/a1256071/project42-node`).
+  - `SSH_PORT`: Secret или Variable, опционально, по умолчанию `22`.
+  - `NODE_APP_NAME`: Secret или Variable, опционально, по умолчанию `project42`.
+  - `NODE_APP_PORT`: Secret или Variable, опционально, по умолчанию `3000`.
+  - `APP_URL`: Secret или Variable, опционально, внешний health check.
 - Для форм сохранить текущий контракт:
   - `NEXT_PUBLIC_CONTACT_ENDPOINT`, если задан;
   - fallback `/scripts/api/send.php`.
@@ -110,17 +111,17 @@ server. Node нужен для отдачи готовых HTML-файлов и 
 - После деплоя GitHub Actions:
   - local health check на сервере через `http://127.0.0.1:$NODE_APP_PORT/`;
   - внешний health check через `APP_URL`, если secret задан;
-  - ручная проверка `https://project-42.ru`;
+  - ручная проверка `https://project42-studio.ru`;
   - проверить отправку формы на production endpoint.
 
 Проверка заявок 2026-06-13:
 
 - Локально `php -S ... -t out` и POST на `/scripts/api/send.php` вернули
   `200 {"ok":true}`; PHP handler прочитал `.env` и Telegram API принял заявку.
-- Production `https://project-42.ru` из текущей среды обрывается на TLS.
-- Production `http://project-42.ru` отвечает `nginx` parking-страницей REG.RU:
-  срок регистрации домена истек.
-- Production POST на `http://project-42.ru/scripts/api/send.php` вернул 404
+- Ранее `https://project-42.ru` из текущей среды обрывался на TLS.
+- Ранее `http://project-42.ru` отвечал `nginx` parking-страницей REG.RU:
+  срок регистрации домена истек. Основной домен сменен на `project42-studio.ru`.
+- Ранее POST на `http://project-42.ru/scripts/api/send.php` вернул 404
   parking-страницы, то есть запрос не дошел ни до PHP handler, ни до Node app.
 
 Node-схема:
@@ -145,7 +146,10 @@ Node-схема:
 - Для Project 42 предпочтителен static export ради надежности и SEO.
 - Домен должен быть направлен на Node22-приложение или проксироваться на
   `127.0.0.1:$NODE_APP_PORT`.
-- `.env` хранится на сервере в `NODE_APP_DIR/.env`; GitHub Actions его не заливает.
+- `.env` хранится на сервере в `/home/a1256071/project42-node/.env`; GitHub
+  Actions его не заливает.
+- Workflow явно падает с понятной ошибкой, если `SSH_HOST`, `SSH_PRIVATE_KEY`,
+  `SSH_USER` или `NODE_APP_DIR` не заведены в GitHub Actions.
 - Production deploy идет через SSH workflow, не через FTP mirror.
 - Существующие незакоммиченные изменения в блоге, sitemap, header/footer и стилях
   не откатывать и не перетирать.

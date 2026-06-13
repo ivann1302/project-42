@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: 'Не ещё одна веб-студия',
   description:
     'Решаем задачи бизнеса, а не просто делаем сайты. Полный цикл: дизайн, разработка, SEO, GEO-оптимизация и поддержка. Не конвейер — не более 5 проектов одновременно.',
-  url: 'https://project-42.ru',
+  url: 'https://project42-studio.ru',
   locale: 'ru_RU',
   twitterHandle: '@project42studio',
   keywords: [
