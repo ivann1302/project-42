@@ -68,6 +68,7 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST || vars.SSH_HOST }}
           SSH_PORT: ${{ secrets.SSH_PORT || vars.SSH_PORT || '22' }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_PRIVATE_KEY_B64: ${{ secrets.SSH_PRIVATE_KEY_B64 }}
         run: |
           set -e
 
@@ -76,18 +77,24 @@ jobs:
             exit 1
           fi
 
-          if [ -z "$SSH_PRIVATE_KEY" ]; then
-            echo "::error::SSH_PRIVATE_KEY is empty. Add the private SSH key as a GitHub Actions secret."
+          if [ -z "$SSH_PRIVATE_KEY" ] && [ -z "$SSH_PRIVATE_KEY_B64" ]; then
+            echo "::error::SSH_PRIVATE_KEY or SSH_PRIVATE_KEY_B64 is empty. Add the private SSH key as a GitHub Actions secret."
             exit 1
           fi
 
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          printf '%s\n' "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_project42
+
+          if [ -n "$SSH_PRIVATE_KEY_B64" ]; then
+            printf '%s' "$SSH_PRIVATE_KEY_B64" | base64 --decode > ~/.ssh/id_project42
+          else
+            printf '%s\n' "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_project42
+          fi
+
           chmod 600 ~/.ssh/id_project42
 
           if ! ssh-keygen -y -f ~/.ssh/id_project42 > /dev/null; then
-            echo "::error::SSH_PRIVATE_KEY is not a valid unencrypted private key. Make sure you pasted the private key, not the .pub key, with BEGIN/END lines and line breaks."
+            echo "::error::Deploy SSH key is not a valid unencrypted private key. Prefer SSH_PRIVATE_KEY_B64: base64 -w0 ~/.ssh/project42_github_actions"
             exit 1
           fi
 
