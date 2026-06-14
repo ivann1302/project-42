@@ -74,12 +74,9 @@ export function PainSolutionsCarousel() {
       <Container className={styles.sectionContent}>
         <div className={styles.painSolutionsHeader}>
           <SectionTitle eyebrow="Решаем реальные задачи" align="center">
-            <span id="pain-solutions-title">С какой болью приходят клиенты</span>
+            <span id="pain-solutions-title">Примеры наших работ</span>
           </SectionTitle>
-          <p>
-            Показываем не просто проекты, а сценарии: с какой проблемой пришёл клиент, что мы
-            сделали и какой результат получил бизнес.
-          </p>
+          <p>Сайты, которые уже приносят прибыль</p>
         </div>
 
         <div className={styles.painCarouselShell}>
@@ -100,6 +97,7 @@ export function PainSolutionsCarousel() {
                         height={item.desktopImageSize.height}
                         className={styles.painCardImg}
                         sizes="(min-width: 1024px) 31vw, (min-width: 768px) 45vw, 88vw"
+                        loading="eager"
                       />
                     </div>
                   )}

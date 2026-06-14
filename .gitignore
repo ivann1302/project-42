@@ -42,6 +42,7 @@ yarn-error.log*
 next-env.d.ts
 
 # local deployment notes and manual release bundles
+PROJECT42_HOSTING_GUIDE.local.md
 PROJECT42_SERVER_TECH_NOTES.local.md
 project42-static-public-html-*.tar.gz
 project42-node-release*.tar.gz

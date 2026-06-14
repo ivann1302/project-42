@@ -29,7 +29,7 @@ describe('Hero', () => {
   it('renders secondary gradient subheading when provided', () => {
     render(
       <Hero
-        gradientSubheading="от 10 000 рублей"
+        gradientSubheading="от 20 000 рублей"
         gradientSubheadingSecondary="от 5 рабочих дней"
       />,
     )

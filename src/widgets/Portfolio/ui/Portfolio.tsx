@@ -16,16 +16,22 @@ type Props = {
 }
 
 const VISIBLE_DESKTOP_CARDS = 3
-const AUTOPLAY_DELAY = 4200
+const AUTOPLAY_DELAY = 3000
 
-export function Portfolio({ desktopCarousel = false }: Props) {
+export function Portfolio({ desktopCarousel = true }: Props) {
+  const sectionRef = useRef<HTMLElement>(null)
   const gridRef = useRef<HTMLUListElement>(null)
   const [open, setOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isDesktopCarousel, setIsDesktopCarousel] = useState(false)
+  const [isCarouselViewport, setIsCarouselViewport] = useState(false)
+  const [isDesktopViewport, setIsDesktopViewport] = useState(false)
+  const [sectionInView, setSectionInView] = useState(false)
   const [carouselPaused, setCarouselPaused] = useState(false)
   const canUseCarousel = desktopCarousel && projects.length > VISIBLE_DESKTOP_CARDS
-  const maxIndex = Math.max(projects.length - VISIBLE_DESKTOP_CARDS, 0)
+  const maxIndex = Math.max(
+    projects.length - (desktopCarousel && isDesktopViewport ? VISIBLE_DESKTOP_CARDS : 1),
+    0,
+  )
 
   useScrollReveal(gridRef, { threshold: 0.1 })
 
@@ -58,22 +64,44 @@ export function Portfolio({ desktopCarousel = false }: Props) {
   )
 
   useEffect(() => {
-    if (!canUseCarousel || !window.matchMedia) {
-      setIsDesktopCarousel(false)
+    if (!window.matchMedia) {
+      setIsCarouselViewport(true)
       return
     }
 
-    const mediaQuery = window.matchMedia('(min-width: 1024px)')
-    const handleChange = () => setIsDesktopCarousel(mediaQuery.matches)
+    const mobileQuery = window.matchMedia('(max-width: 767px)')
+    const desktopQuery = window.matchMedia('(min-width: 1024px)')
+    const handleChange = () => {
+      setIsDesktopViewport(desktopQuery.matches)
+      setIsCarouselViewport(mobileQuery.matches || (desktopCarousel && desktopQuery.matches))
+    }
 
     handleChange()
-    mediaQuery.addEventListener('change', handleChange)
+    mobileQuery.addEventListener('change', handleChange)
+    desktopQuery.addEventListener('change', handleChange)
 
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [canUseCarousel])
+    return () => {
+      mobileQuery.removeEventListener('change', handleChange)
+      desktopQuery.removeEventListener('change', handleChange)
+    }
+  }, [desktopCarousel])
 
   useEffect(() => {
-    if (!canUseCarousel || !isDesktopCarousel) return
+    const section = sectionRef.current
+
+    if (!section) return
+
+    const observer = new IntersectionObserver(([entry]) => setSectionInView(entry.isIntersecting), {
+      threshold: 0.35,
+    })
+
+    observer.observe(section)
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!isCarouselViewport) return
 
     const handleResize = () => scrollToIndex(activeIndex, 'auto')
 
@@ -81,19 +109,19 @@ export function Portfolio({ desktopCarousel = false }: Props) {
     window.addEventListener('resize', handleResize)
 
     return () => window.removeEventListener('resize', handleResize)
-  }, [activeIndex, canUseCarousel, isDesktopCarousel, scrollToIndex])
+  }, [activeIndex, isCarouselViewport, scrollToIndex])
 
   useEffect(() => {
-    if (!canUseCarousel || !isDesktopCarousel || carouselPaused) return
+    if (!isCarouselViewport || !sectionInView || carouselPaused) return
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
 
     const intervalId = window.setInterval(() => moveCarousel(1), AUTOPLAY_DELAY)
 
     return () => window.clearInterval(intervalId)
-  }, [canUseCarousel, carouselPaused, isDesktopCarousel, moveCarousel])
+  }, [carouselPaused, isCarouselViewport, moveCarousel, sectionInView])
 
   return (
-    <section className={styles.root} id="portfolio">
+    <section ref={sectionRef} className={styles.root} id="portfolio">
       <StarField />
       <Container>
         <SectionTitle eyebrow="Наши работы" align="center">
@@ -122,6 +150,7 @@ export function Portfolio({ desktopCarousel = false }: Props) {
                             ? '(max-width: 768px) 100vw, 33vw'
                             : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
                         }
+                        loading={idx === 0 ? undefined : desktopCarousel ? 'eager' : 'lazy'}
                         priority={idx === 0}
                       />
                     ) : (

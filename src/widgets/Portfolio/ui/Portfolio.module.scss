@@ -30,6 +30,7 @@
     grid-template-columns: none;
     max-width: 100%;
     overflow-x: auto;
+    scroll-behavior: smooth;
     scroll-padding-inline: 0;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;

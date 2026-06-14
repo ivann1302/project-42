@@ -11,9 +11,30 @@ export function MobileConsultationButton() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const timeoutId = window.setTimeout(() => setVisible(true), 5000)
+    const hero = document.getElementById('hero')
 
-    return () => window.clearTimeout(timeoutId)
+    if (!hero) {
+      const timeoutId = window.setTimeout(() => setVisible(true), 5000)
+
+      return () => window.clearTimeout(timeoutId)
+    }
+
+    const updateVisibility = () => {
+      setVisible(hero.getBoundingClientRect().bottom <= 0)
+    }
+
+    updateVisibility()
+
+    const observer = new IntersectionObserver(updateVisibility, { threshold: 0 })
+    observer.observe(hero)
+    window.addEventListener('scroll', updateVisibility, { passive: true })
+    window.addEventListener('resize', updateVisibility)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', updateVisibility)
+      window.removeEventListener('resize', updateVisibility)
+    }
   }, [])
 
   if (!visible) return null
