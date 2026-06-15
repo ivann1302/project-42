@@ -1,0 +1,281 @@
+.root {
+  padding: $space-6 $container-pad-mobile $space-20;
+  color: $text-inverse;
+  background: $surface-page;
+}
+
+.inner {
+  display: grid;
+  gap: $space-4;
+  max-width: $container-inner;
+  margin: 0 auto;
+}
+
+.statementCard,
+.scopeCard,
+.priceCard {
+  border: 1px solid transparent;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-none;
+}
+
+.statementCard {
+  display: grid;
+  gap: $space-8;
+  padding: $space-6;
+  background: $surface-card-blue;
+}
+
+.title {
+  max-width: 9ch;
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(46px, 13vw, 72px);
+  font-weight: $font-weight-display;
+  line-height: $line-height-heading;
+  text-transform: uppercase;
+}
+
+.statement {
+  max-width: 760px;
+  margin: 0;
+  font-size: 22px;
+  font-weight: $font-weight-bold;
+  line-height: 1.18;
+}
+
+.cards {
+  display: grid;
+  gap: $space-4;
+}
+
+.scopeCard {
+  display: grid;
+  gap: $space-6;
+  padding: $space-6;
+  background: $surface-card-orange;
+}
+
+.payment {
+  max-width: 12ch;
+  margin: 0;
+  font-size: 18px;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+}
+
+.blockHeading {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 34px;
+  font-weight: $font-weight-display;
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.2px $text-inverse;
+}
+
+.scopeList {
+  display: grid;
+  gap: $space-2;
+  max-width: 860px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 18px;
+  font-weight: $font-weight-bold;
+  line-height: 1.18;
+}
+
+.scopeList li {
+  position: relative;
+  padding-left: 24px;
+}
+
+.scopeList li::before {
+  content: '';
+  position: absolute;
+  top: 0.42em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: $text-inverse;
+  border-radius: 50%;
+}
+
+.priceCard {
+  display: grid;
+  gap: $space-8;
+  position: relative;
+  align-content: space-between;
+  min-height: 260px;
+  padding: $space-6;
+  overflow: hidden;
+  isolation: isolate;
+  background: $surface-card-mint;
+}
+
+.price {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: $font-body;
+  font-size: clamp(72px, 22vw, 116px);
+  font-weight: $font-weight-display;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  line-height: 0.86;
+}
+
+.priceImage {
+  --price-image-enter-x: 32px;
+  --price-image-enter-y: 22px;
+
+  position: absolute;
+  top: 112px;
+  right: -72px;
+  z-index: 0;
+  width: 230px;
+  height: auto;
+  pointer-events: none;
+  opacity: var(--price-image-opacity, 0);
+  transition:
+    opacity 560ms ease,
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(
+      calc(var(--price-image-enter-x) + var(--price-image-scroll-x, 0)),
+      var(--price-image-enter-y),
+      0
+    )
+    rotate(8deg) scale(0.92);
+}
+
+.imageVisible .priceImage {
+  transform: translate3d(var(--price-image-scroll-x, 0), 0, 0) rotate(0deg) scale(1);
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-10 $container-pad-tablet $space-24;
+  }
+
+  .inner {
+    gap: $space-5;
+  }
+
+  .statementCard {
+    align-items: end;
+    grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1fr);
+    padding: $space-8;
+  }
+
+  .title {
+    font-size: clamp(64px, 8vw, 96px);
+  }
+
+  .statement {
+    justify-self: end;
+    font-size: clamp(28px, 3.2vw, 44px);
+  }
+
+  .cards {
+    align-items: stretch;
+    gap: $space-5;
+    grid-template-columns: minmax(0, 1.65fr) minmax(240px, 0.85fr);
+  }
+
+  .scopeCard,
+  .priceCard {
+    min-height: 360px;
+    padding: $space-8;
+  }
+
+  .blockHeading {
+    font-size: 52px;
+    -webkit-text-stroke-width: 1.4px;
+  }
+
+  .scopeList {
+    align-self: end;
+    gap: $space-2;
+    font-size: clamp(22px, 2.05vw, 30px);
+    line-height: 1.16;
+  }
+
+  .scopeList li {
+    padding-left: 28px;
+  }
+
+  .scopeList li::before {
+    top: 0.44em;
+    width: 11px;
+    height: 11px;
+  }
+
+  .priceImage {
+    --price-image-enter-x: 36px;
+    --price-image-enter-y: 28px;
+
+    top: 300px;
+    right: -40px;
+    width: 300px;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-12 $container-pad-desktop $space-32;
+  }
+
+  .statementCard,
+  .scopeCard,
+  .priceCard {
+    border-radius: $radius-xl;
+  }
+
+  .statementCard {
+    min-height: 420px;
+    padding: $space-10;
+  }
+
+  .scopeCard,
+  .priceCard {
+    min-height: 420px;
+    padding: $space-10;
+  }
+
+  .priceCard {
+    align-content: space-between;
+    grid-template-rows: none;
+  }
+
+  .blockHeading {
+    font-size: 58px;
+  }
+
+  .price {
+    margin-top: 0;
+    font-size: clamp(96px, 8vw, 132px);
+  }
+
+  .payment {
+    align-self: end;
+  }
+
+  .priceImage {
+    --price-image-enter-x: 34px;
+    --price-image-enter-y: 24px;
+
+    top: 230px;
+    right: -34px;
+    width: 250px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .priceImage {
+    transition: none;
+  }
+}

@@ -1,59 +1,113 @@
-// ─── Neutral scale ───────────────────────────────────────────────
-$color-black: #03030d;
-$color-dark: #080812;
-$color-dark-alt: #0a0a1a;
-$color-card: #12122a;
-$color-gray-dark: #88b;
-$color-gray-mid: #8080b0;
-$color-gray-light: #a0a0c0;
-$color-white: #fff;
+// ─── Project 42 design tokens ────────────────────────────────────
+// These variables are the reusable foundation for the new editorial/brutalist
+// design system. Keep component styles mapped to semantic tokens, not raw
+// palette values.
+
+// ─── Palette: neutral ────────────────────────────────────────────
+$neutral-0: #000;
+$neutral-50: #050505;
+$neutral-100: #0e0e0e;
+$neutral-150: #161616;
+$neutral-200: #202020;
+$neutral-300: #333;
+$neutral-400: #4d4d4d;
+$neutral-500: #767676;
+$neutral-600: rgba(245 245 245 / 70%);
+$neutral-700: #d8d8d6;
+$neutral-800: #f3f3f1;
+$neutral-900: #f5f5f5;
+
+// ─── Palette: accent ─────────────────────────────────────────────
+$accent-yellow: #d4a635;
+$accent-yellow-hover: #e2b849;
+$accent-yellow-pressed: #b98c20;
+$accent-mint: #b8f0d4;
+$accent-orange: #f19a63;
+$accent-blue-gray: #b9c7d6;
+$accent-red: #f87171;
 
 // ─── Semantic surfaces ───────────────────────────────────────────
-$color-bg: $color-dark;
-$color-bg-dark: $color-black;
-$color-bg-section: $color-dark-alt;
+$surface-canvas: $neutral-0;
+$surface-page: $neutral-50;
+$surface-section: $neutral-100;
+$surface-card-dark: $neutral-100;
+$surface-card-light: $neutral-800;
+$surface-card-mint: $accent-mint;
+$surface-card-orange: $accent-orange;
+$surface-card-yellow: $accent-yellow;
+$surface-card-blue: $accent-blue-gray;
+$surface-panel: $surface-card-dark;
+$surface-panel-raised: $neutral-150;
+$surface-inverse: $surface-card-light;
+$surface-scrim: rgba($neutral-0, 72%);
 
-// ─── Text ────────────────────────────────────────────────────────
-$color-text: $color-white;
-$color-text-muted: $color-gray-dark;
-$color-text-inv: $color-dark;
+// ─── Semantic text ───────────────────────────────────────────────
+$text-primary: $neutral-900;
+$text-secondary: $neutral-600;
+$text-muted: $neutral-600;
+$text-subtle: $neutral-500;
+$text-inverse: $neutral-50;
+$text-accent: $accent-yellow;
+$text-outline-stroke: rgba(245 245 245 / 40%);
 
-// ─── Accent ──────────────────────────────────────────────────────
-$color-purple: #7c5cf6;
-$color-purple-dark: #6344e0;
-$color-blue: #4f8ef7;
-$color-mint: #2dd4bf;
-$color-accent: $color-purple;
-$color-accent-dark: $color-purple-dark;
-$color-accent-alt: $color-blue;
-$color-accent-mint: $color-mint;
+// ─── Semantic actions ────────────────────────────────────────────
+$action-primary: $accent-yellow;
+$action-primary-hover: $accent-yellow-hover;
+$action-primary-pressed: $accent-yellow-pressed;
+$action-secondary: transparent;
+$action-secondary-hover: rgba($neutral-900, 8%);
+$action-danger: $accent-red;
+$action-warning: $accent-orange;
+$action-success: $accent-mint;
 
-// ─── Borders ─────────────────────────────────────────────────────
-$color-border: rgba(255 255 255 / 10%);
-$color-border-dark: rgba(255 255 255 / 6%);
-$color-border-card: rgba($color-purple, 30%);
+// ─── Borders and focus ───────────────────────────────────────────
+$border-subtle: rgba(255 255 255 / 8%);
+$border-default: rgba(255 255 255 / 12%);
+$border-strong: rgba(255 255 255 / 24%);
+$border-accent: rgba($action-primary, 72%);
+$focus-ring: rgba($action-primary, 48%);
 
 // ─── Typography ──────────────────────────────────────────────────
 $font-display: var(--font-display), sans-serif;
+$font-poster: var(--font-poster), var(--font-poster-fallback), $font-display;
 $font-body: var(--font-body), sans-serif;
+$font-size-2xs: 11px;
 $font-size-xs: 12px;
 $font-size-sm: 14px;
 $font-size-base: 16px;
 $font-size-md: 16px;
-$font-size-lg: 20px;
+$font-size-lg: 18px;
 $font-size-xl: 32px;
-$font-size-2xl: 48px;
-$font-size-3xl: 72px;
-$font-size-hero: 96px;
+$font-size-2xl: 64px;
+$font-size-3xl: 96px;
+$font-size-hero: clamp(76px, 16vw, 220px);
+$font-size-section-heading: clamp(56px, 8vw, 96px);
+$font-size-card-number: clamp(48px, 6vw, 72px);
+$line-height-tight: 0.88;
+$line-height-heading: 0.95;
+$line-height-body: 1.6;
+$line-height-ui: 1.2;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 700;
+$font-weight-bold: 800;
+$font-weight-display: 900;
 
 // ─── Spacing ─────────────────────────────────────────────────────
-$spacing-xs: 4px;
-$spacing-sm: 8px;
-$spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 40px;
-$spacing-2xl: 64px;
-$spacing-3xl: 100px;
+$space-0: 0;
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+$space-8: 32px;
+$space-10: 40px;
+$space-12: 48px;
+$space-16: 64px;
+$space-20: 80px;
+$space-24: 96px;
+$space-32: 128px;
 
 // ─── Breakpoints ─────────────────────────────────────────────────
 $bp-mobile: 480px;
@@ -63,14 +117,74 @@ $bp-wide: 1440px;
 
 // ─── Layout ──────────────────────────────────────────────────────
 $container-max: 1440px;
+$container-inner: 1280px;
+$container-readable: 760px;
+$container-narrow: 1040px;
 $container-pad-desktop: 80px;
-$container-pad-tablet: 40px;
-$container-pad-mobile: 20px;
+$container-pad-tablet: 48px;
+$container-pad-mobile: 24px;
+$section-pad-desktop: $space-24;
+$section-pad-tablet: $space-20;
+$section-pad-mobile: $space-12;
 
-// ─── Misc ────────────────────────────────────────────────────────
-$radius-sm: 8px;
-$radius-md: 16px;
+// ─── Radius ──────────────────────────────────────────────────────
+$radius-none: 0;
+$radius-xs: 4px;
+$radius-sm: 12px;
+$radius-md: 12px;
 $radius-lg: 20px;
-$radius-pill: 100px;
-$transition-base: 0.25s ease;
-$transition-slow: 0.4s ease;
+$radius-xl: 24px;
+$radius-pill: 999px;
+
+// ─── Shadows and overlays ────────────────────────────────────────
+$shadow-none: none;
+$shadow-soft: none;
+$shadow-panel: none;
+$shadow-focus: 0 0 0 4px $focus-ring;
+$outline-heading-stroke: 2px $text-outline-stroke;
+$overlay-panel: none;
+$overlay-accent: none;
+
+// ─── Motion ──────────────────────────────────────────────────────
+$ease-standard: cubic-bezier(0.2, 0, 0, 1);
+$ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+$duration-fast: 160ms;
+$duration-base: 240ms;
+$duration-slow: 420ms;
+$transition-base: $duration-base $ease-standard;
+$transition-slow: $duration-slow $ease-emphasized;
+
+// ─── Legacy aliases ──────────────────────────────────────────────
+// Keep these while the existing site is migrated to the new token names.
+$color-black: $neutral-0;
+$color-dark: $surface-page;
+$color-dark-alt: $surface-section;
+$color-card: $surface-panel;
+$color-gray-dark: $text-muted;
+$color-gray-mid: $text-secondary;
+$color-gray-light: $text-secondary;
+$color-white: $neutral-900;
+$color-bg: $surface-page;
+$color-bg-dark: $surface-canvas;
+$color-bg-section: $surface-section;
+$color-text: $text-primary;
+$color-text-muted: $text-muted;
+$color-text-inv: $text-inverse;
+$color-purple: $accent-yellow;
+$color-purple-dark: $accent-yellow-pressed;
+$color-blue: $accent-blue-gray;
+$color-mint: $accent-mint;
+$color-accent: $action-primary;
+$color-accent-dark: $action-primary-pressed;
+$color-accent-alt: $accent-orange;
+$color-accent-mint: $accent-mint;
+$color-border: $border-default;
+$color-border-dark: $border-subtle;
+$color-border-card: $border-accent;
+$spacing-xs: $space-1;
+$spacing-sm: $space-2;
+$spacing-md: $space-4;
+$spacing-lg: $space-6;
+$spacing-xl: $space-10;
+$spacing-2xl: $space-16;
+$spacing-3xl: $section-pad-desktop;

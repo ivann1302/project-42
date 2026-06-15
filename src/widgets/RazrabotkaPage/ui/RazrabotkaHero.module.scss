@@ -1,0 +1,198 @@
+.root {
+  padding: 124px $container-pad-mobile $space-6;
+  overflow: clip;
+  color: $text-primary;
+}
+
+.inner {
+  display: grid;
+  gap: $space-8;
+  max-width: $container-inner;
+  margin: 0 auto;
+}
+
+.content {
+  display: grid;
+  gap: $space-4;
+  place-items: start center;
+  min-height: calc(100svh - 124px - #{$space-6});
+  text-align: center;
+}
+
+.kicker {
+  width: fit-content;
+  margin: 0;
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-primary;
+  border: 1px solid $border-default;
+  border-radius: $radius-md;
+}
+
+.title {
+  display: grid;
+  gap: $space-1;
+  justify-self: center;
+  max-width: 100%;
+  margin: 0;
+  font-family: $font-poster;
+  font-size: clamp(48px, 14.4vw, 76px);
+  font-weight: $font-weight-semibold;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+
+  span {
+    display: block;
+    transform: scaleX(0.9);
+    transform-origin: center center;
+  }
+}
+
+.outlineWord {
+  margin-top: $space-4;
+  font-size: 1.58em;
+  font-weight: $font-weight-semibold;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: clamp(1.25px, 0.24vw, 2.4px) rgba($neutral-900, 86%);
+  transform: scaleX(0.78);
+  transform-origin: center center;
+}
+
+.accentWord {
+  color: $text-accent;
+}
+
+.text {
+  max-width: 36ch;
+  margin: 0 auto;
+  font-size: $font-size-base;
+  line-height: $line-height-body;
+  color: $text-secondary;
+}
+
+.actions {
+  display: grid;
+  align-items: stretch;
+  gap: $space-3;
+  place-self: end center;
+  width: min(100%, 342px);
+  margin-top: auto;
+}
+
+.visual {
+  position: relative;
+  width: min(100%, 460px);
+  height: 340px;
+  margin: $space-2 auto 0;
+  overflow: clip;
+}
+
+.image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  transform: translate(calc(-50% + var(--hero-visual-scroll-shift, 0px)), -50%);
+  will-change: transform;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: 136px $container-pad-tablet $space-12;
+  }
+
+  .inner {
+    align-items: center;
+    gap: $space-10;
+    grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1fr);
+    min-height: auto;
+  }
+
+  .content {
+    place-items: start;
+    min-height: auto;
+    text-align: left;
+  }
+
+  .title {
+    gap: $space-2;
+    justify-self: start;
+    max-width: 13ch;
+    font-size: clamp(58px, 6.2vw, 96px);
+    text-align: left;
+
+    span {
+      transform-origin: left center;
+    }
+  }
+
+  .outlineWord {
+    margin-top: $space-2;
+    transform-origin: left center;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    place-self: auto start;
+    width: auto;
+    margin-top: $space-1;
+  }
+
+  .visual {
+    justify-self: end;
+    width: min(112%, 660px);
+    height: clamp(420px, 52vw, 560px);
+    overflow: visible;
+    transform: none;
+  }
+
+  .image {
+    left: 50%;
+    transform: translate(calc(-50% + var(--hero-visual-scroll-shift, 0px)), -50%);
+    will-change: auto;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: 136px $container-pad-desktop $space-12;
+  }
+
+  .inner {
+    gap: $space-12;
+    grid-template-columns: minmax(0, 0.94fr) minmax(520px, 1fr);
+  }
+
+  .content {
+    gap: $space-6;
+  }
+
+  .title {
+    gap: $space-2;
+    max-width: 13.4ch;
+    font-size: clamp(72px, 6vw, 106px);
+  }
+
+  .outlineWord {
+    font-size: 1.96em;
+  }
+
+  .visual {
+    width: min(110%, 740px);
+    height: clamp(500px, 44vw, 640px);
+    overflow: clip;
+  }
+
+  .image {
+    will-change: transform;
+  }
+}

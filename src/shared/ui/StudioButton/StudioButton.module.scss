@@ -1,0 +1,68 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  min-width: 0;
+  min-height: 56px;
+  font-family: $font-body;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $text-inverse;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  transition:
+    color $transition-base,
+    background $transition-base,
+    border-color $transition-base,
+    transform $transition-base;
+  cursor: pointer;
+
+  span {
+    min-width: 0;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $shadow-focus;
+  }
+}
+
+.md {
+  min-height: 48px;
+  padding: 0 $space-5;
+  font-size: $font-size-xs;
+}
+
+.lg {
+  padding: 0 $space-6;
+  font-size: $font-size-sm;
+}
+
+.mint {
+  background: $surface-card-mint;
+}
+
+.peach {
+  background: $surface-card-orange;
+}
+
+.yellow {
+  background: $action-primary;
+}
+
+.outline {
+  color: $text-primary;
+  background: transparent;
+  border-color: $border-default;
+}

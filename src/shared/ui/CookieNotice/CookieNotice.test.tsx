@@ -3,9 +3,15 @@ import userEvent from '@testing-library/user-event'
 import { CookieNotice } from './CookieNotice'
 
 const STORAGE_KEY = 'webstudio-cookie-notice-accepted'
+let mockPathname = '/'
+
+jest.mock('next/navigation', () => ({
+  usePathname: () => mockPathname,
+}))
 
 describe('CookieNotice', () => {
   beforeEach(() => {
+    mockPathname = '/'
     window.localStorage.clear()
   })
 
@@ -25,6 +31,14 @@ describe('CookieNotice', () => {
 
   it('does not show notice when acceptance is already stored', () => {
     window.localStorage.setItem(STORAGE_KEY, 'true')
+
+    render(<CookieNotice />)
+
+    expect(screen.queryByLabelText('Уведомление о cookie')).not.toBeInTheDocument()
+  })
+
+  it('does not show notice on the blank razrabotka page', () => {
+    mockPathname = '/razrabotka-sayta'
 
     render(<CookieNotice />)
 

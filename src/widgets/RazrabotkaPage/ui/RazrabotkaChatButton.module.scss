@@ -1,0 +1,143 @@
+.root {
+  display: grid;
+  justify-items: end;
+  gap: $space-3;
+  position: fixed;
+  right: max($container-pad-mobile, env(safe-area-inset-right));
+  bottom: max($space-5, env(safe-area-inset-bottom));
+  z-index: 80;
+  pointer-events: none;
+}
+
+.links {
+  display: grid;
+  justify-items: end;
+  gap: $space-2;
+  pointer-events: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-3;
+  min-height: 44px;
+  padding: $space-2 $space-4 $space-2 $space-2;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $text-primary;
+  background: $surface-canvas;
+  border: 1px solid $border-strong;
+  border-radius: $radius-pill;
+  opacity: 0;
+  transition:
+    opacity $transition-base,
+    transform $transition-base,
+    border-color $transition-base;
+  transform: translateY(14px) scale(0.94);
+  transform-origin: right bottom;
+}
+
+.link:hover {
+  border-color: $surface-card-mint;
+  transform: translateY(0) scale(1);
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  pointer-events: auto;
+  color: $text-inverse;
+  background: $surface-card-mint;
+  border: 1px solid $border-strong;
+  border-radius: $radius-pill;
+  transition:
+    transform $transition-base,
+    border-color $transition-base;
+  cursor: pointer;
+  animation: chat-button-colors 9s ease-in-out infinite;
+}
+
+.button:hover {
+  border-color: $text-primary;
+  transform: translateY(-2px);
+}
+
+.open {
+  .links {
+    pointer-events: auto;
+  }
+
+  .link {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    transition-delay: calc(var(--chat-link-index) * 42ms);
+  }
+}
+
+.button:focus-visible,
+.link:focus-visible {
+  outline: none;
+  box-shadow: $shadow-focus;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    right: max($container-pad-tablet, env(safe-area-inset-right));
+    bottom: max($space-6, env(safe-area-inset-bottom));
+  }
+
+  .button {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    right: max($container-pad-desktop, env(safe-area-inset-right));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    animation: none;
+  }
+
+  .button,
+  .link {
+    transition: none;
+  }
+}
+
+@keyframes chat-button-colors {
+  0%,
+  100% {
+    background: $surface-card-mint;
+  }
+
+  25% {
+    background: $surface-card-orange;
+  }
+
+  50% {
+    background: $surface-card-yellow;
+  }
+
+  75% {
+    background: $surface-card-blue;
+  }
+}

@@ -1,0 +1,196 @@
+.root {
+  padding: $space-6 0 $space-20;
+  color: $text-primary;
+  background: $surface-page;
+}
+
+.header {
+  max-width: $container-inner;
+  margin: 0 auto;
+  padding: 0 $container-pad-mobile;
+}
+
+.title {
+  display: grid;
+  max-width: 8ch;
+  margin: 0;
+  font-family: $font-display;
+  font-size: 54px;
+  font-weight: $font-weight-display;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.outlineWord {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.1px $text-primary;
+}
+
+.carousel {
+  max-width: 100%;
+  margin-top: $space-6;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 0 $container-pad-mobile $space-2;
+  scroll-padding-left: $container-pad-mobile;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.steps {
+  display: grid;
+  grid-auto-columns: calc(100vw - 72px);
+  grid-auto-flow: column;
+  gap: $space-4;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: grid;
+  gap: $space-5;
+  min-height: 430px;
+  padding: $space-4;
+  background: transparent;
+  border: 1px solid rgba($surface-card-yellow, 82%);
+  border-radius: $radius-lg;
+  scroll-snap-align: start;
+}
+
+.cardTop {
+  display: grid;
+  gap: $space-3;
+}
+
+.number {
+  font-family: $font-body;
+  font-size: 40px;
+  font-weight: $font-weight-display;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  line-height: 0.9;
+  color: $surface-card-yellow;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+
+.cardText {
+  display: grid;
+  align-self: end;
+  gap: $space-3;
+}
+
+.cardTitle {
+  max-width: 12ch;
+  margin: 0;
+  font-family: $font-display;
+  font-size: 30px;
+  font-weight: $font-weight-display;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.cardTitlePlain {
+  max-width: 13ch;
+  margin: 0;
+  font-family: $font-body;
+  font-size: 28px;
+  font-weight: $font-weight-display;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.cardDescription {
+  margin: 0;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  line-height: 1.35;
+  color: $text-secondary;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-10 $container-pad-tablet $space-24;
+  }
+
+  .header {
+    padding: 0;
+  }
+
+  .title {
+    max-width: 10ch;
+    font-size: 82px;
+  }
+
+  .outlineWord {
+    -webkit-text-stroke-width: 1.4px;
+  }
+
+  .carousel {
+    max-width: $container-inner;
+    margin: $space-8 auto 0;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .steps {
+    gap: $space-5;
+    grid-auto-columns: unset;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .card {
+    min-height: 520px;
+    padding: $space-5;
+    border-radius: $radius-xl;
+    scroll-snap-align: none;
+  }
+
+  .number {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-12 $container-pad-desktop $space-32;
+  }
+
+  .title {
+    font-size: 104px;
+  }
+
+  .card {
+    min-height: 560px;
+    padding: $space-6;
+  }
+
+  .cardTitle {
+    font-size: 34px;
+  }
+
+  .cardTitlePlain {
+    font-size: 32px;
+  }
+
+  .cardDescription {
+    max-width: 28ch;
+    font-size: 15px;
+  }
+}

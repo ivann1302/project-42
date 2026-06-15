@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
-import { Header } from '@/widgets/Header'
-import { Footer } from '@/widgets/Footer'
 import { RazrabotkaPage } from '@/widgets/RazrabotkaPage'
 import { razrabotkaConfig } from '@/entities/ServicePage'
 import { siteConfig } from '@/shared/config/seo'
-import { MobileConsultationButton } from '@/shared/ui'
 
 export const metadata: Metadata = {
   title: razrabotkaConfig.seo.title,
@@ -117,12 +114,9 @@ export default function RazrabotkaPageRoute() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <Header />
       <main>
         <RazrabotkaPage config={razrabotkaConfig} />
       </main>
-      <Footer />
-      <MobileConsultationButton />
     </>
   )
 }

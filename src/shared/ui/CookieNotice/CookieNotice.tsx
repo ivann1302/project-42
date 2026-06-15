@@ -1,22 +1,31 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Button } from '../Button'
 import { Icon } from '../Icon'
 import styles from './CookieNotice.module.scss'
 
 const STORAGE_KEY = 'webstudio-cookie-notice-accepted'
+const HIDDEN_PATHS = new Set(['/razrabotka-sayta'])
 
 export function CookieNotice() {
+  const pathname = usePathname()
   const [isVisible, setIsVisible] = useState(false)
+  const isHiddenPage = HIDDEN_PATHS.has(pathname)
 
   useEffect(() => {
+    if (isHiddenPage) {
+      setIsVisible(false)
+      return
+    }
+
     try {
       setIsVisible(window.localStorage.getItem(STORAGE_KEY) !== 'true')
     } catch {
       setIsVisible(true)
     }
-  }, [])
+  }, [isHiddenPage])
 
   const handleAccept = () => {
     try {
@@ -28,7 +37,7 @@ export function CookieNotice() {
     setIsVisible(false)
   }
 
-  if (!isVisible) return null
+  if (isHiddenPage || !isVisible) return null
 
   return (
     <section className={styles.root} role="region" aria-label="Уведомление о cookie">

@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import type { PropsWithClassName } from '@/shared/types'
 import styles from './SocialLinks.module.scss'
 
-const SOCIAL_LINKS = [
+export const SOCIAL_LINKS = [
   {
     label: 'Telegram',
     href: 'https://t.me/ivann97n',
@@ -16,7 +16,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: 'WhatsApp',
-    href: 'https://wa.me/79998589878',
+    href: 'https://wa.me/79955571589',
     icon: '/images/social-Icons/whatsappIcon.png',
   },
 ] as const

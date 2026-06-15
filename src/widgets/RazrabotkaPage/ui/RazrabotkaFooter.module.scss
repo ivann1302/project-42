@@ -1,0 +1,330 @@
+.root {
+  padding: $space-6 $container-pad-mobile $space-4;
+  color: $text-primary;
+  background: $surface-canvas;
+  border-top: 1px solid $border-strong;
+}
+
+.inner {
+  display: grid;
+  gap: $space-5;
+  max-width: $container-inner;
+  margin: 0 auto;
+  padding-top: $space-5;
+}
+
+.brandColumn,
+.column,
+.contactColumn {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: $space-3;
+  text-align: center;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  width: fit-content;
+  font-family: $font-body;
+  font-size: clamp(20px, 5vw, 28px);
+  font-weight: $font-weight-display;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $text-primary;
+}
+
+.logoNumber {
+  color: $surface-card-mint;
+  animation: footer-logo-number-colors 9s ease-in-out infinite;
+}
+
+.socials {
+  justify-content: center;
+  gap: $space-2;
+}
+
+.socials a {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.socials a:hover {
+  opacity: 0.82;
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+}
+
+.columnTitle {
+  margin: 0;
+  font-family: $font-poster;
+  font-size: clamp(20px, 4vw, 24px);
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-primary;
+}
+
+.linkList,
+.contactList {
+  display: grid;
+  justify-items: center;
+  gap: $space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link,
+.contactLink {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-ui;
+  text-decoration: none;
+  color: $text-secondary;
+  transition: color $transition-base;
+}
+
+.link:hover,
+.contactLink:hover {
+  color: $text-primary;
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-3;
+}
+
+.contactLink svg {
+  flex: 0 0 auto;
+  color: $text-primary;
+}
+
+.ctaLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  width: 100%;
+  max-width: 260px;
+  min-height: 46px;
+  margin-top: $space-1;
+  padding: 0 $space-4;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $text-primary;
+  border: 1px solid $border-strong;
+  border-radius: $radius-xs;
+  transition:
+    color $transition-base,
+    background $transition-base,
+    border-color $transition-base;
+}
+
+.ctaLink:hover {
+  color: $text-inverse;
+  background: $action-primary;
+  border-color: $action-primary;
+}
+
+.bottom {
+  display: grid;
+  justify-items: center;
+  gap: $space-2;
+  padding-top: $space-3;
+  text-align: center;
+  border-top: 1px solid $border-strong;
+}
+
+.bottom p {
+  margin: 0;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-ui;
+  color: $text-secondary;
+}
+
+.legalEntity {
+  justify-self: center;
+}
+
+.legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-2 $space-5;
+}
+
+.legalLink {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-ui;
+  text-decoration: none;
+  color: $text-secondary;
+  transition: color $transition-base;
+}
+
+.legalLink:hover {
+  color: $text-primary;
+}
+
+.logo:focus-visible,
+.link:focus-visible,
+.contactLink:focus-visible,
+.ctaLink:focus-visible,
+.legalLink:focus-visible {
+  outline: none;
+  box-shadow: $shadow-focus;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-8 $container-pad-tablet $space-5;
+  }
+
+  .inner {
+    gap: $space-6;
+    grid-template-columns: minmax(250px, 1.25fr) repeat(2, minmax(180px, 0.8fr));
+    padding-top: $space-6;
+  }
+
+  .contactColumn {
+    grid-column: 1 / -1;
+    align-items: start;
+    grid-template-columns: minmax(180px, auto) minmax(280px, 1fr) minmax(220px, auto);
+  }
+
+  .contactColumn .columnTitle {
+    grid-column: 1 / -1;
+  }
+
+  .contactList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ctaLink {
+    justify-self: end;
+  }
+
+  .bottom {
+    align-items: center;
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(180px, 1fr) auto;
+  }
+
+  .legalEntity {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-8 $container-pad-desktop $space-5;
+  }
+
+  .inner {
+    grid-template-columns:
+      minmax(250px, 1.25fr)
+      minmax(180px, 0.92fr)
+      minmax(250px, 1fr);
+  }
+
+  .contactColumn {
+    display: grid;
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .contactColumn .columnTitle {
+    grid-column: auto;
+  }
+
+  .contactList {
+    grid-template-columns: 1fr;
+  }
+
+  .brandColumn,
+  .column,
+  .contactColumn {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+
+  .linkList,
+  .contactList {
+    justify-items: center;
+  }
+
+  .contactLink {
+    justify-content: center;
+  }
+
+  .ctaLink {
+    justify-self: center;
+  }
+
+  .bottom {
+    justify-items: stretch;
+    grid-template-columns: minmax(180px, 1fr) auto;
+    text-align: left;
+  }
+
+  .bottom p {
+    justify-self: start;
+  }
+
+  .legalLinks {
+    justify-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoNumber {
+    animation: none;
+  }
+
+  .link,
+  .contactLink,
+  .ctaLink,
+  .legalLink {
+    transition: none;
+  }
+}
+
+@keyframes footer-logo-number-colors {
+  0%,
+  100% {
+    color: $surface-card-mint;
+  }
+
+  25% {
+    color: $surface-card-orange;
+  }
+
+  50% {
+    color: $surface-card-yellow;
+  }
+
+  75% {
+    color: $surface-card-blue;
+  }
+}

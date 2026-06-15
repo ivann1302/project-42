@@ -1,0 +1,231 @@
+.root {
+  position: relative;
+  padding: $space-4 $container-pad-mobile $space-4 0;
+  color: $text-inverse;
+  background: $surface-page;
+  scroll-margin-top: 96px;
+}
+
+.shell {
+  display: grid;
+  align-items: start;
+  gap: $space-4;
+  grid-template-columns: minmax(0, 1fr) 86px;
+  max-width: $container-inner;
+  margin: 0 auto 0 0;
+  padding: $space-5;
+  overflow: hidden;
+  background: $surface-card-yellow;
+  border: 1px solid rgba($neutral-0, 10%);
+  border-radius: 0 $radius-xl $radius-xl 0;
+  transform: scaleX(0.045);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.root:global(.visible) .shell {
+  animation: founder-rubber-reveal 920ms $ease-emphasized forwards;
+}
+
+.content {
+  display: contents;
+}
+
+.photoCard,
+.title,
+.speech {
+  opacity: 0;
+  transition:
+    opacity $duration-base $ease-standard 260ms,
+    transform $duration-slow $ease-emphasized 220ms;
+  transform: translateX(-$space-4);
+}
+
+.root:global(.visible) .photoCard,
+.root:global(.visible) .title,
+.root:global(.visible) .speech {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.title,
+.speech,
+.speech p {
+  margin: 0;
+}
+
+.title {
+  grid-column: 1 / -1;
+  max-width: 9ch;
+  font-family: $font-poster;
+  font-size: clamp(42px, 11vw, 52px);
+  font-weight: $font-weight-semibold;
+  line-height: 0.88;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.speech {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: $space-2;
+  max-width: 58ch;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: 1.42;
+}
+
+.photoCard {
+  display: grid;
+  gap: $space-3;
+  grid-row: 1;
+  grid-column: 2;
+  justify-self: end;
+  width: 86px;
+  margin: 0;
+}
+
+.photo {
+  width: 86px;
+  height: 86px;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border: 2px solid rgba($neutral-0, 78%);
+  border-radius: $radius-lg;
+}
+
+.caption {
+  display: none;
+  margin: 0;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-10 $container-pad-tablet $space-10;
+  }
+
+  .shell {
+    align-items: center;
+    gap: $space-8;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.45fr);
+    margin: 0 auto;
+    padding: $space-10;
+    border-radius: $radius-xl;
+  }
+
+  .content {
+    display: grid;
+    gap: $space-4;
+  }
+
+  .title,
+  .speech {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  .title {
+    max-width: 10ch;
+    font-size: clamp(64px, 8vw, 92px);
+  }
+
+  .speech {
+    gap: $space-3;
+    font-size: $font-size-lg;
+    line-height: 1.5;
+  }
+
+  .photoCard {
+    grid-row: auto;
+    grid-column: auto;
+    justify-self: end;
+    width: min(100%, 320px);
+  }
+
+  .photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-width: 3px;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-12 $container-pad-desktop $space-12 0;
+  }
+
+  .shell {
+    gap: $space-12;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.36fr);
+    width: 100%;
+    max-width: none;
+    min-height: 520px;
+    margin-right: auto;
+    margin-left: 0;
+    padding: $space-12;
+    border-radius: 0 $radius-xl $radius-xl 0;
+  }
+
+  .photoCard {
+    width: min(22vw, 300px);
+  }
+
+  .caption {
+    display: block;
+  }
+
+  .title {
+    font-size: clamp(72px, 6vw, 104px);
+  }
+
+  .speech {
+    max-width: 68ch;
+    font-size: clamp(18px, 1.32vw, 22px);
+  }
+}
+
+@media (min-width: $bp-wide) {
+  .shell {
+    padding: $space-16 $space-20;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .photoCard,
+  .title,
+  .speech {
+    opacity: 1;
+    transition: none;
+    transform: none;
+  }
+}
+
+@keyframes founder-rubber-reveal {
+  0% {
+    transform: scaleX(0.045);
+  }
+
+  62% {
+    transform: scaleX(1.035);
+  }
+
+  78% {
+    transform: scaleX(0.985);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
