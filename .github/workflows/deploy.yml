@@ -60,6 +60,18 @@ jobs:
           test -s server/contact-handler.mjs
           test "$(find out -type f | wc -l)" -gt 0
 
+      - name: Write deploy metadata
+        run: |
+          cat > out/__deploy.json <<EOF
+          {
+            "sha": "${GITHUB_SHA}",
+            "ref": "${GITHUB_REF_NAME}",
+            "runId": "${GITHUB_RUN_ID}",
+            "runNumber": "${GITHUB_RUN_NUMBER}",
+            "builtAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+
       - name: Package release
         run: |
           tar -czf project42-node-release.tar.gz out server package.json
@@ -169,6 +181,17 @@ jobs:
           ln -sfn "$APP_DIR/.env" "$RELEASE_DIR/.env"
           ln -sfn "$RELEASE_DIR" "$CURRENT_DIR"
 
+          echo "Activated release:"
+          echo "  release_id=$RELEASE_ID"
+          echo "  release_dir=$RELEASE_DIR"
+          echo "  current_dir=$CURRENT_DIR"
+          echo "  current_target=$(readlink -f "$CURRENT_DIR")"
+          if [ -f "$CURRENT_DIR/out/__deploy.json" ]; then
+            echo "  deploy_metadata=$(cat "$CURRENT_DIR/out/__deploy.json")"
+          else
+            echo "  deploy_metadata=missing"
+          fi
+
           if [ -z "${PUBLIC_HTML_DIR:-}" ]; then
             PUBLIC_HTML_DIR="$(dirname "$APP_DIR")/public_html"
           fi
@@ -190,6 +213,10 @@ jobs:
           SetEnv STATIC_DIR $CURRENT_DIR/out
           HTACCESS
 
+          echo "Public document root:"
+          echo "  public_html_dir=$PUBLIC_HTML_DIR"
+          echo "  htaccess=$(sed ':a;N;$!ba;s/\n/ | /g' "$PUBLIC_HTML_DIR/.htaccess")"
+
           mkdir -p "$CURRENT_DIR/tmp"
           touch "$CURRENT_DIR/tmp/restart.txt"
 
@@ -208,6 +235,7 @@ jobs:
               --interpreter "$NODE_BIN" \
               --time
             pm2 save || true
+            pm2 describe "$APP_NAME" || true
           else
             if [ -f "$APP_DIR/app.pid" ]; then
               kill "$(cat "$APP_DIR/app.pid")" 2>/dev/null || true
@@ -243,6 +271,9 @@ jobs:
             fi
             exit 1
           fi
+
+          echo "Local deploy metadata from Node port:"
+          curl --fail --silent --show-error --max-time 20 "http://127.0.0.1:$APP_PORT/__deploy.json" || true
 
           rm -f "$RELEASE_ARCHIVE"
           find "$APP_DIR/releases" -mindepth 1 -maxdepth 1 -type d | sort | head -n -5 | xargs -r rm -rf
