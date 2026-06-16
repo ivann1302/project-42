@@ -35,6 +35,8 @@ server. Node нужен для отдачи готовых HTML-файлов и 
 - [x] Node static server адаптирован для запуска через Phusion Passenger.
 - [x] Production workflow генерирует `.htaccess` в `public_html` и дергает
       `tmp/restart.txt` для Passenger.
+- [x] Production workflow переносит старые файлы из `public_html` в backup, чтобы
+      они не перекрывали Passenger/Node.
 - [ ] Проверить production-деплой и форму после GitHub Actions.
 
 ## Key Changes
@@ -62,6 +64,8 @@ server. Node нужен для отдачи готовых HTML-файлов и 
   - загружать релиз по SSH в `NODE_APP_DIR/releases`;
   - переключать symlink `NODE_APP_DIR/current`;
   - создавать `.htaccess` в `public_html` для Phusion Passenger;
+  - перед этим переносить старую статику из `public_html` в backup внутри
+    `NODE_APP_DIR`, оставляя `.htaccess`, `.well-known` и `cgi-bin`;
   - дергать `tmp/restart.txt` в текущем релизе для перезапуска Passenger;
   - сохранять локальный `pm2`/`nohup` запуск как диагностический health-check
     на `127.0.0.1:$NODE_APP_PORT`.
@@ -120,6 +124,8 @@ server. Node нужен для отдачи готовых HTML-файлов и 
 - После деплоя GitHub Actions:
   - local health check на сервере через `http://127.0.0.1:$NODE_APP_PORT/`;
   - внешний health check через `APP_URL`, если secret задан;
+  - внешний `/` должен обслуживаться через Passenger, а не старым HTML-файлом из
+    `public_html`;
   - ручная проверка `https://project42-studio.ru`;
   - проверить отправку формы на production endpoint.
 

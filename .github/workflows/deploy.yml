@@ -198,8 +198,31 @@ jobs:
 
           mkdir -p "$PUBLIC_HTML_DIR"
 
-          if [ -f "$PUBLIC_HTML_DIR/scripts/api/send.php" ]; then
-            mv "$PUBLIC_HTML_DIR/scripts/api/send.php" "$APP_DIR/send.php.backup.$RELEASE_ID"
+          PUBLIC_HTML_BACKUP_DIR="$APP_DIR/public_html.backup.$RELEASE_ID"
+          mkdir -p "$PUBLIC_HTML_BACKUP_DIR"
+          MOVED_PUBLIC_HTML_ENTRIES=0
+
+          for entry in "$PUBLIC_HTML_DIR"/* "$PUBLIC_HTML_DIR"/.[!.]* "$PUBLIC_HTML_DIR"/..?*; do
+            if [ ! -e "$entry" ]; then
+              continue
+            fi
+
+            entry_name="$(basename "$entry")"
+            case "$entry_name" in
+              .|..|.htaccess|.well-known|cgi-bin)
+                continue
+                ;;
+            esac
+
+            mv "$entry" "$PUBLIC_HTML_BACKUP_DIR/"
+            MOVED_PUBLIC_HTML_ENTRIES=1
+          done
+
+          if [ "$MOVED_PUBLIC_HTML_ENTRIES" -eq 1 ]; then
+            echo "Moved stale public_html entries to $PUBLIC_HTML_BACKUP_DIR"
+          else
+            rmdir "$PUBLIC_HTML_BACKUP_DIR"
+            echo "No stale public_html entries found"
           fi
 
           cat > "$PUBLIC_HTML_DIR/.htaccess" <<HTACCESS
@@ -291,14 +314,32 @@ jobs:
           APP_URL="${APP_URL%/}"
 
           curl \
+            --http1.1 \
             --fail \
             --silent \
             --show-error \
             --max-time 20 \
-            "$APP_URL" > /dev/null
+            "$APP_URL/__health" > /dev/null
+
+          echo "Public root headers from $APP_URL/:"
+          PUBLIC_ROOT_HEADERS="$(curl \
+            --http1.1 \
+            --fail \
+            --silent \
+            --show-error \
+            --max-time 20 \
+            --head \
+            "$APP_URL/")"
+          echo "$PUBLIC_ROOT_HEADERS"
+
+          if ! printf '%s' "$PUBLIC_ROOT_HEADERS" | grep -Fi "X-Powered-By: Phusion Passenger" > /dev/null; then
+            echo "::error::Public root is not served through Passenger. Check for stale files in public_html shadowing the Node app."
+            exit 1
+          fi
 
           echo "Public deploy metadata from $APP_URL/__deploy.json:"
           PUBLIC_DEPLOY_METADATA="$(curl \
+            --http1.1 \
             --fail \
             --silent \
             --show-error \
