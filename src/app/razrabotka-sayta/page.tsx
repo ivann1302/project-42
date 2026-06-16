@@ -78,6 +78,30 @@ const faqSchema = {
   })),
 }
 
+function getOfferPriceFields(price: string) {
+  const numericPrice = price.match(/\d[\d\s]*/u)?.[0].replace(/\s/g, '')
+
+  if (!numericPrice) {
+    return {
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        priceCurrency: 'RUB',
+        description: price,
+      },
+    }
+  }
+
+  return {
+    price: numericPrice,
+    priceCurrency: 'RUB',
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      minPrice: numericPrice,
+      priceCurrency: 'RUB',
+    },
+  }
+}
+
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -93,8 +117,7 @@ const serviceSchema = {
     '@type': 'Offer',
     name: plan.name,
     description: plan.description,
-    price: plan.price,
-    priceCurrency: 'RUB',
+    ...getOfferPriceFields(plan.price),
     url: `${siteConfig.url}/razrabotka-sayta`,
   })),
 }

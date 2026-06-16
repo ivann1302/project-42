@@ -19,6 +19,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteConfig.url}/razrabotka-sayta`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${siteConfig.url}/seo-prodvizhenie`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${siteConfig.url}/blog`,
       lastModified: new Date('2026-06-04'),
       changeFrequency: 'weekly',
