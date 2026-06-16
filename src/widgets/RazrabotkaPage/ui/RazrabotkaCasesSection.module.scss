@@ -85,7 +85,7 @@
 .list::after {
   content: '';
   display: block;
-  min-height: 165svh;
+  min-height: 76svh;
 }
 
 .row {
@@ -274,7 +274,7 @@
 @media (min-width: $bp-tablet) {
   .list {
     &::after {
-      min-height: 158svh;
+      min-height: 68svh;
     }
   }
 
@@ -353,7 +353,7 @@
 @media (min-width: $bp-desktop) {
   .list {
     &::after {
-      min-height: 172svh;
+      min-height: 72svh;
     }
   }
 

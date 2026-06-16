@@ -1,5 +1,5 @@
 .root {
-  padding: $space-6 $container-pad-mobile $space-20;
+  padding: $space-6 $container-pad-mobile $space-5;
   color: $text-inverse;
   background: $surface-page;
 }
@@ -182,7 +182,7 @@
 
 @media (min-width: $bp-tablet) {
   .root {
-    padding: $space-10 $container-pad-tablet $space-24;
+    padding: $space-10 $container-pad-tablet $space-6;
   }
 
   .inner {
@@ -289,7 +289,7 @@
 
 @media (min-width: $bp-desktop) {
   .root {
-    padding: $space-12 $container-pad-desktop $space-32;
+    padding: $space-12 $container-pad-desktop $space-8;
   }
 
   .statementCard,

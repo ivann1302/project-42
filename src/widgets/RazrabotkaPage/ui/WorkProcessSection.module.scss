@@ -1,5 +1,5 @@
 .root {
-  padding: $space-6 0 $space-20;
+  padding: $space-6 0 0;
   color: $text-primary;
   background: $surface-page;
   opacity: 0;
@@ -136,7 +136,7 @@
 
 @media (min-width: $bp-tablet) {
   .root {
-    padding: $space-10 $container-pad-tablet $space-24;
+    padding: $space-10 $container-pad-tablet 0;
   }
 
   .header {
@@ -185,7 +185,7 @@
 
 @media (min-width: $bp-desktop) {
   .root {
-    padding: $space-12 $container-pad-desktop $space-32;
+    padding: $space-12 $container-pad-desktop 0;
   }
 
   .title {
