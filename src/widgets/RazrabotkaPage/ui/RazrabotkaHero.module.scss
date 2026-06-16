@@ -1,6 +1,6 @@
 .root {
   padding: 124px $container-pad-mobile $space-6;
-  overflow: clip;
+  overflow: visible;
   color: $text-primary;
 }
 
@@ -30,6 +30,7 @@
   color: $text-primary;
   border: 1px solid $border-default;
   border-radius: $radius-md;
+  animation: hero-kicker-border-colors 9s ease-in-out infinite;
 }
 
 .title {
@@ -54,13 +55,14 @@
 
 .outlineWord {
   margin-top: $space-4;
+  font-family: $font-poster;
   font-size: 1.58em;
   font-weight: $font-weight-semibold;
   line-height: 0.9;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px $text-primary;
-  transform: scaleX(0.78);
+  -webkit-text-stroke: 0.7px $text-primary;
+  transform: none;
   transform-origin: center center;
 }
 
@@ -90,7 +92,7 @@
   width: min(100%, 460px);
   height: 340px;
   margin: $space-2 auto 0;
-  overflow: clip;
+  overflow: visible;
 }
 
 .image {
@@ -99,7 +101,7 @@
   left: 50%;
   width: 100%;
   height: auto;
-  transform: translate(calc(-50% - 35px + var(--hero-visual-scroll-shift, 0px)), -50%);
+  transform: translate(calc(-50% + 15px + var(--hero-visual-scroll-shift, 0px)), -50%);
   will-change: transform;
 }
 
@@ -135,6 +137,8 @@
 
   .outlineWord {
     margin-top: $space-2;
+    -webkit-text-stroke-width: 1px;
+    transform: scaleX(0.78);
     transform-origin: left center;
   }
 
@@ -165,6 +169,7 @@
 @media (min-width: $bp-desktop) {
   .root {
     padding: 136px $container-pad-desktop $space-12;
+    overflow: visible;
   }
 
   .inner {
@@ -189,10 +194,35 @@
   .visual {
     width: min(110%, 740px);
     height: clamp(500px, 44vw, 640px);
-    overflow: clip;
+    overflow: visible;
   }
 
   .image {
     will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kicker {
+    animation: none;
+  }
+}
+
+@keyframes hero-kicker-border-colors {
+  0%,
+  100% {
+    border-color: $surface-card-mint;
+  }
+
+  25% {
+    border-color: $surface-card-orange;
+  }
+
+  50% {
+    border-color: $surface-card-yellow;
+  }
+
+  75% {
+    border-color: $surface-card-blue;
   }
 }

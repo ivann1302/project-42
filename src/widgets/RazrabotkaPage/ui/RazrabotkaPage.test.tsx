@@ -80,10 +80,7 @@ describe('RazrabotkaPage', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
     expect(screen.getByRole('heading', { level: 2, name: 'Наши кейсы' })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Смотреть все кейсы' })).toHaveAttribute(
-      'href',
-      '/portfolio',
-    )
+    expect(screen.queryByRole('link', { name: 'Смотреть все кейсы' })).not.toBeInTheDocument()
     expect(screen.getByText('ROSA')).toBeInTheDocument()
     expect(screen.getAllByText('Корпоративный сайт строительной компании').length).toBeGreaterThan(
       0,

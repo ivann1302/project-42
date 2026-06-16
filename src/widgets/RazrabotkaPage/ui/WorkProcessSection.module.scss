@@ -2,6 +2,18 @@
   padding: $space-6 0 $space-20;
   color: $text-primary;
   background: $surface-page;
+  opacity: 0;
+  transition:
+    opacity 860ms $ease-emphasized,
+    transform 920ms $ease-emphasized;
+  transform: translateY($space-8);
+  will-change: opacity, transform;
+}
+
+.root:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
 }
 
 .header {
@@ -22,9 +34,10 @@
 }
 
 .outlineWord {
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.1px $text-primary;
+  font-family: $font-poster;
+  color: $text-primary;
+  -webkit-text-fill-color: currentcolor;
+  -webkit-text-stroke: 0;
 }
 
 .carousel {
@@ -136,7 +149,10 @@
   }
 
   .outlineWord {
-    -webkit-text-stroke-width: 1.4px;
+    font-family: inherit;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.4px $text-primary;
   }
 
   .carousel {
@@ -192,5 +208,14 @@
   .cardDescription {
     max-width: 28ch;
     font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
   }
 }

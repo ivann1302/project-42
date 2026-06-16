@@ -1,10 +1,59 @@
 .root {
-  @include section-pad;
-  @include section-fade-bottom($color-bg-section);
+  scroll-margin-top: 104px;
+  padding: $space-12 $container-pad-mobile $space-20;
+  color: $text-primary;
+  background: $surface-page;
+}
 
-  position: relative;
-  overflow: clip;
-  background: $color-bg;
+.inner {
+  display: grid;
+  gap: $space-10;
+  max-width: $container-inner;
+  margin: 0 auto;
+}
+
+.header {
+  display: grid;
+  gap: $space-8;
+  padding-bottom: $space-6;
+  border-bottom: 1px solid $border-strong;
+}
+
+.kicker {
+  max-width: 34ch;
+  margin: 0 0 $space-4;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-body;
+  color: $text-secondary;
+}
+
+.heading {
+  display: grid;
+  row-gap: $space-2;
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(76px, 19vw, 168px);
+  font-weight: $font-weight-display;
+  line-height: 0.84;
+  text-transform: uppercase;
+}
+
+.outlineWord {
+  font-family: $font-poster;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.7px $text-primary;
+}
+
+.description {
+  align-self: end;
+  max-width: 38ch;
+  margin: 0;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-body;
+  color: $text-primary;
 }
 
 .carouselShell {
@@ -14,142 +63,93 @@
 
 .grid {
   display: grid;
-  gap: $spacing-lg;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: $spacing-2xl;
+  gap: $space-4;
+  margin: 0;
   padding: 0;
   list-style: none;
-
-  @include tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include mobile {
-    display: flex;
-    gap: $spacing-md;
-    grid-template-columns: none;
-    max-width: 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-padding-inline: 0;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    overscroll-behavior-x: contain;
-    -webkit-overflow-scrolling: touch;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-}
-
-.desktopCarousel {
-  @include desktop {
-    margin-top: $spacing-2xl;
-
-    .grid {
-      display: flex;
-      gap: $spacing-lg;
-      grid-template-columns: none;
-      margin-top: 0;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      scroll-padding-inline: 0;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-      overscroll-behavior-x: contain;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-
-    .card {
-      flex: 0 0 calc(33.3333% - 16px);
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-  }
 }
 
 .card {
-  @include card-base;
-  @include card-hover;
-  @include scroll-scale-in(0.92, 20px);
+  --portfolio-accent: #{$surface-card-mint};
+  --i: 0;
 
   overflow: hidden;
-  transition-delay: calc(var(--i, 0) * 60ms);
-
-  // Re-declare hover transform after scroll reveal (both use transform)
-  &:hover {
-    transform: translateY(-4px);
-  }
-
-  @include mobile {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-
-    &:hover {
-      transform: none;
-    }
-  }
-}
-
-.carouselControls {
-  display: none;
-
-  @include desktop {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    right: -22px;
-    left: -22px;
-    z-index: 2;
-    pointer-events: none;
-    transform: translateY(-50%);
-  }
-}
-
-.carouselButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  color: $color-text;
-  background: rgba($color-card, 0.9);
-  border: 1px solid rgba($color-purple, 0.36);
-  border-radius: 50%;
-  box-shadow: 0 14px 34px rgba(0 0 0 / 28%);
+  background: $surface-page;
+  border: 1px solid $border-strong;
+  border-radius: $radius-sm;
+  opacity: 0;
   transition:
-    background $transition-base,
+    opacity 720ms $ease-emphasized,
     border-color $transition-base,
-    color $transition-base,
-    transform $transition-base;
-  cursor: pointer;
-  pointer-events: auto;
+    transform 760ms $ease-emphasized;
+  transition-delay: calc(var(--i) * 60ms);
+  transform: translateY($space-5);
+}
 
-  &:hover,
-  &:focus-visible {
-    color: $color-accent-mint;
-    background: rgba($color-purple, 0.2);
-    border-color: rgba($color-accent-mint, 0.62);
-    transform: scale(1.06);
-  }
+.card:nth-child(4n + 2) {
+  --portfolio-accent: #{$surface-card-orange};
+}
+
+.card:nth-child(4n + 3) {
+  --portfolio-accent: #{$surface-card-yellow};
+}
+
+.card:nth-child(4n + 4) {
+  --portfolio-accent: #{$surface-card-blue};
+}
+
+.grid:global(.visible) .card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  border-color: var(--portfolio-accent);
 }
 
 .cardLink {
-  display: block;
+  display: grid;
+  min-height: 100%;
   text-decoration: none;
   color: inherit;
+}
+
+.strip {
+  display: grid;
+  align-items: center;
+  gap: $space-3;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-height: 44px;
+  padding: 0 $space-4;
+  color: $text-inverse;
+  background: var(--portfolio-accent);
+}
+
+.index,
+.stripText {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+}
+
+.index {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.stripText {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .image {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  background: $surface-section;
+  border-bottom: 1px solid $border-default;
 }
 
 .img {
@@ -157,105 +157,338 @@
   height: 100%;
   object-fit: cover;
   transition: transform $transition-slow;
+}
 
-  .card:hover & {
-    transform: scale(1.03);
-  }
+.card:hover .img {
+  transform: scale(1.025);
 }
 
 .placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba($color-purple, 0.08), rgba($color-blue, 0.05));
+  background: $surface-section;
 }
 
 .meta {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
-  padding: $spacing-lg;
+  display: grid;
+  gap: $space-4;
+  padding: $space-5;
 }
 
 .title {
-  @include body-text($font-size-md);
-
-  font-weight: 600;
-  color: $color-text;
+  margin: 0;
+  font-family: $font-poster;
+  font-size: clamp(30px, 8vw, 44px);
+  font-weight: $font-weight-semibold;
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: $text-primary;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-xs;
-  list-style: none;
+  gap: $space-2;
+  margin: 0;
   padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: $space-1 $space-2;
+  font-size: $font-size-2xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-secondary;
+  border: 1px solid $border-default;
+  border-radius: $radius-xs;
 }
 
 .hoverLabel {
-  display: block;
-  padding: 0 $spacing-lg $spacing-md;
-  font-family: $font-body;
-  font-size: $font-size-sm;
-  color: $color-accent;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  width: fit-content;
+  margin: 0 $space-5 $space-5;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: var(--portfolio-accent);
   opacity: 0;
   transition:
     opacity $transition-base,
     transform $transition-base;
-  transform: translateY(4px);
+  transform: translateY($space-1);
+}
 
-  .card:hover & {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.card:hover .hoverLabel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carouselControls {
+  display: none;
+}
+
+.carouselButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: $text-primary;
+  background: $surface-page;
+  border: 1px solid $border-strong;
+  border-radius: $radius-xs;
+  transition:
+    color $transition-base,
+    background $transition-base,
+    border-color $transition-base,
+    transform $transition-base;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.carouselButton:hover,
+.carouselButton:focus-visible {
+  color: $text-inverse;
+  background: $surface-card-mint;
+  border-color: $surface-card-mint;
+  transform: translateY(-2px);
+}
+
+.carouselButton:focus-visible,
+.cardLink:focus-visible {
+  outline: none;
+  box-shadow: $shadow-focus;
 }
 
 .footer {
   display: flex;
   justify-content: center;
-  margin-top: $spacing-2xl;
-}
-
-.tag {
-  @include eyebrow-text;
-
-  padding: 4px 10px;
-  font-size: 10px;
-  color: $color-accent;
-  background: rgba($color-purple, 0.1);
-  border: 1px solid rgba($color-purple, 0.2);
-  border-radius: $radius-pill;
 }
 
 .cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: $spacing-lg;
-  margin-top: $spacing-3xl;
-  padding-top: $spacing-3xl;
-  border-top: 1px solid $color-border;
-  text-align: center;
+  display: grid;
+  justify-items: start;
+  gap: $space-4;
+  padding: $space-5;
+  color: $text-inverse;
+  background: $surface-card-light;
+  border: 1px solid rgba($neutral-0, 10%);
+  border-radius: $radius-xl 0 0 $radius-xl;
+}
+
+.ctaKicker,
+.ctaHeading,
+.ctaSub {
+  margin: 0;
+}
+
+.ctaKicker {
+  font-family: $font-poster;
+  font-size: clamp(24px, 7vw, 30px);
+  font-weight: $font-weight-semibold;
+  line-height: 0.95;
+  text-transform: uppercase;
 }
 
 .ctaHeading {
-  margin: 0;
-  font-family: $font-display;
-  font-size: $font-size-2xl;
-  font-weight: 700;
-  line-height: 1.15;
-  background: linear-gradient(90deg, $color-purple, $color-blue, $color-mint);
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  display: grid;
+  gap: $space-1;
+  max-width: 10ch;
+  font-family: $font-poster;
+  font-size: clamp(42px, 12vw, 58px);
+  font-weight: $font-weight-semibold;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
 
-  @include mobile {
-    font-size: $font-size-xl;
-  }
+.ctaHeading span {
+  color: $surface-card-mint;
+  -webkit-text-stroke: 0.6px rgba($neutral-0, 24%);
 }
 
 .ctaSub {
-  max-width: 480px;
-  margin: 0;
-  font-size: $font-size-md;
-  line-height: 1.6;
-  color: $color-text-muted;
+  max-width: 45ch;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: 1.45;
+}
+
+@media (max-width: #{$bp-tablet - 1px}) {
+  .grid {
+    display: flex;
+    gap: $space-4;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .card:hover .img {
+    transform: none;
+  }
+
+  .hoverLabel {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-16 $container-pad-tablet $space-24;
+  }
+
+  .header {
+    grid-template-columns: minmax(360px, 0.95fr) minmax(280px, 0.55fr);
+  }
+
+  .description {
+    justify-self: end;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .outlineWord {
+    font-family: inherit;
+    -webkit-text-stroke-width: 1px;
+  }
+
+  .cta {
+    gap: $space-6;
+    max-width: 1040px;
+    margin-left: auto;
+    padding: $space-10;
+    border-radius: $radius-xl 0 0 $radius-xl;
+  }
+
+  .ctaHeading {
+    max-width: 11ch;
+    font-size: clamp(58px, 8vw, 82px);
+  }
+
+  .ctaSub {
+    font-size: $font-size-lg;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-20 $container-pad-desktop $space-32;
+  }
+
+  .inner {
+    gap: $space-12;
+  }
+
+  .header {
+    padding-bottom: $space-8;
+  }
+
+  .heading {
+    font-size: clamp(120px, 11vw, 178px);
+  }
+
+  .outlineWord {
+    -webkit-text-stroke-width: 1.2px;
+  }
+
+  .description {
+    font-size: $font-size-lg;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .desktopCarousel {
+    margin-top: 0;
+  }
+
+  .desktopCarousel .grid {
+    display: flex;
+    gap: $space-5;
+    grid-template-columns: none;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .desktopCarousel .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .desktopCarousel .card {
+    flex: 0 0 calc(33.3333% - 14px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .carouselControls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    right: -24px;
+    left: -24px;
+    z-index: 2;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .title {
+    font-size: clamp(32px, 3vw, 46px);
+  }
+
+  .cta {
+    align-items: end;
+    grid-template-columns: minmax(0, 0.8fr) minmax(260px, 0.7fr) auto;
+    max-width: none;
+  }
+
+  .ctaKicker {
+    align-self: start;
+    font-size: clamp(30px, 3vw, 42px);
+  }
+
+  .ctaHeading {
+    max-width: 100%;
+    font-size: clamp(58px, 5.6vw, 86px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .img,
+  .hoverLabel,
+  .carouselButton {
+    transition: none;
+  }
+
+  .card {
+    opacity: 1;
+    transform: none;
+  }
 }

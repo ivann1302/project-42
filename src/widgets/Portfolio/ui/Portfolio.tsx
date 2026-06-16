@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { Container, SectionTitle, StarField, Button, Modal, Icon } from '@/shared/ui'
+import { Icon, Modal, StudioButton } from '@/shared/ui'
 import { ContactForm } from '@/features/ContactForm'
 import { useScrollReveal } from '@/shared/lib'
 import { getProjectCaseHref, projects } from '@/entities/Project'
@@ -122,11 +122,20 @@ export function Portfolio({ desktopCarousel = true }: Props) {
 
   return (
     <section ref={sectionRef} className={styles.root} id="portfolio">
-      <StarField />
-      <Container>
-        <SectionTitle eyebrow="Наши работы" align="center">
-          Проекты
-        </SectionTitle>
+      <div className={styles.inner}>
+        <div className={styles.header}>
+          <div>
+            <p className={styles.kicker}>Реальные проекты, реальные результаты</p>
+            <h2 className={styles.heading} aria-label="Наши проекты">
+              <span>Наши</span>
+              <span className={styles.outlineWord}>проекты</span>
+            </h2>
+          </div>
+          <p className={styles.description}>
+            Показываем сайты, где дизайн, смысл и разработка работают как единая система.
+          </p>
+        </div>
+
         <div
           className={clsx(styles.carouselShell, canUseCarousel && styles.desktopCarousel)}
           onMouseEnter={() => setCarouselPaused(true)}
@@ -138,6 +147,10 @@ export function Portfolio({ desktopCarousel = true }: Props) {
             {projects.map((project, idx) => (
               <li key={project.id} className={styles.card} style={{ '--i': idx } as CSSProperties}>
                 <Link href={getProjectCaseHref(project.id)} className={styles.cardLink}>
+                  <div className={styles.strip}>
+                    <span className={styles.index}>{String(idx + 1).padStart(2, '0')}</span>
+                    <span className={styles.stripText}>{project.tags[0] ?? 'Project 42'}</span>
+                  </div>
                   <div className={styles.image}>
                     {project.desktopImageUrl ? (
                       <Image
@@ -168,7 +181,8 @@ export function Portfolio({ desktopCarousel = true }: Props) {
                     </ul>
                   </div>
                   <span className={styles.hoverLabel} aria-hidden="true">
-                    Смотреть проект →
+                    <span>Смотреть проект</span>
+                    <Icon name="arrowRight" size={16} />
                   </span>
                 </Link>
               </li>
@@ -196,17 +210,22 @@ export function Portfolio({ desktopCarousel = true }: Props) {
           )}
         </div>
         <div className={styles.footer}>
-          <Button variant="secondary" href="/portfolio">
+          <StudioButton variant="outline" href="/portfolio" icon="externalLink">
             Перейти в портфолио
-          </Button>
+          </StudioButton>
         </div>
 
         <div className={styles.cta}>
-          <p className={styles.ctaHeading}>Понравились работы?</p>
+          <p className={styles.ctaKicker}>Понравились работы?</p>
+          <p className={styles.ctaHeading}>
+            Обсудим <span>ваш проект</span>
+          </p>
           <p className={styles.ctaSub}>Хотите похожий проект? Расскажите о задаче — обсудим.</p>
-          <Button onClick={() => setOpen(true)}>Оставить заявку</Button>
+          <StudioButton variant="yellow" icon={null} onClick={() => setOpen(true)}>
+            Оставить заявку
+          </StudioButton>
         </div>
-      </Container>
+      </div>
 
       <Modal open={open} onClose={() => setOpen(false)} title="Оставить заявку">
         <ContactForm onSuccess={() => setOpen(false)} />

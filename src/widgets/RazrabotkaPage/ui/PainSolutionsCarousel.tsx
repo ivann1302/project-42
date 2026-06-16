@@ -2,9 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button, Container, SectionTitle, StarField } from '@/shared/ui'
-import { getProjectCaseHref, projects } from '@/entities/Project'
+import { Container, SectionTitle, StarField } from '@/shared/ui'
+import { projects } from '@/entities/Project'
 import styles from './RazrabotkaPage.module.scss'
 
 const VISIBLE_DESKTOP_CARDS = 3
@@ -23,7 +22,6 @@ const items = projects
   .map((project) => ({
     id: project.id,
     title: project.title,
-    href: getProjectCaseHref(project.id),
     desktopImageUrl: project.desktopImageUrl,
     desktopImageSize: desktopImageSizes[project.id],
   }))
@@ -83,7 +81,7 @@ export function PainSolutionsCarousel() {
           <ul ref={listRef} className={styles.painCarousel} role="list">
             {items.map((item) => (
               <li key={item.id} className={styles.painCard}>
-                <Link href={item.href} className={styles.painCardLink}>
+                <div className={styles.painCardLink}>
                   <div className={styles.painCardHeader}>
                     <h3>{item.title}</h3>
                     <span className={styles.painCardArrow} aria-hidden="true" />
@@ -101,7 +99,7 @@ export function PainSolutionsCarousel() {
                       />
                     </div>
                   )}
-                </Link>
+                </div>
               </li>
             ))}
           </ul>
@@ -128,11 +126,7 @@ export function PainSolutionsCarousel() {
           )}
         </div>
 
-        <div className={styles.painSolutionsFooter}>
-          <Button href="/portfolio" variant="secondary">
-            Смотреть все кейсы
-          </Button>
-        </div>
+        <div className={styles.painSolutionsFooter} />
       </Container>
     </section>
   )

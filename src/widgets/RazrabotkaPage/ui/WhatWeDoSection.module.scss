@@ -47,6 +47,18 @@
 .cards {
   display: grid;
   gap: $space-4;
+  opacity: 0;
+  transition:
+    opacity 860ms $ease-emphasized,
+    transform 960ms $ease-emphasized;
+  transform: translateY($space-4);
+  will-change: opacity, transform;
+}
+
+.cards:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
 }
 
 .scopeCard {
@@ -67,14 +79,14 @@
 
 .blockHeading {
   margin: 0;
-  font-family: $font-display;
+  font-family: $font-poster;
   font-size: 34px;
   font-weight: $font-weight-display;
   line-height: 0.92;
   text-transform: uppercase;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.2px $text-inverse;
+  color: $text-inverse;
+  -webkit-text-fill-color: currentcolor;
+  -webkit-text-stroke: 0;
 }
 
 .scopeList {
@@ -181,6 +193,18 @@
     align-items: end;
     grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1fr);
     padding: $space-8;
+    opacity: 0;
+    transition:
+      opacity 820ms $ease-emphasized,
+      transform 880ms $ease-emphasized;
+    transform: translateY(-$space-8);
+    will-change: opacity, transform;
+  }
+
+  .statementCard:global(.visible) {
+    opacity: 1;
+    transform: translateY(0);
+    will-change: auto;
   }
 
   .title {
@@ -196,17 +220,44 @@
     align-items: stretch;
     gap: $space-5;
     grid-template-columns: minmax(0, 1.65fr) minmax(240px, 0.85fr);
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
   }
 
   .scopeCard,
   .priceCard {
     min-height: 360px;
     padding: $space-8;
+    opacity: 0;
+    transition:
+      opacity 720ms $ease-emphasized,
+      transform 820ms $ease-emphasized;
+    will-change: opacity, transform;
+  }
+
+  .scopeCard {
+    transform: translateX(-$space-16);
+  }
+
+  .priceCard {
+    transform: translateX($space-16);
+  }
+
+  .cards:global(.visible) .scopeCard,
+  .cards:global(.visible) .priceCard {
+    opacity: 1;
+    transform: translateX(0);
+    will-change: auto;
   }
 
   .blockHeading {
+    font-family: $font-display;
     font-size: 52px;
-    -webkit-text-stroke-width: 1.4px;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1.4px $text-inverse;
   }
 
   .scopeList {
@@ -287,6 +338,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cards,
+  .statementCard,
+  .scopeCard,
+  .priceCard {
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+
   .priceImage {
     transition: none;
   }

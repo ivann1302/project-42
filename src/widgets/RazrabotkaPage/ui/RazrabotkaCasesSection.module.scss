@@ -3,6 +3,18 @@
   padding: $space-12 $container-pad-mobile $space-20;
   color: $text-primary;
   background: $surface-page;
+  opacity: 0;
+  transition:
+    opacity 860ms $ease-emphasized,
+    transform 920ms $ease-emphasized;
+  transform: translateY($space-8);
+  will-change: opacity, transform;
+}
+
+.root:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
 }
 
 .inner {
@@ -40,9 +52,10 @@
 }
 
 .outlineWord {
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px $text-primary;
+  font-family: $font-poster;
+  color: $text-primary;
+  -webkit-text-fill-color: currentcolor;
+  -webkit-text-stroke: 0;
 }
 
 .headerAside {
@@ -59,32 +72,6 @@
   font-weight: $font-weight-medium;
   line-height: $line-height-body;
   color: $text-primary;
-}
-
-.allCasesLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 50px;
-  padding: 0 $space-6;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-ui;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: $text-primary;
-  border: 1px solid $border-strong;
-  border-radius: $radius-xs;
-  transition:
-    color $transition-base,
-    background $transition-base,
-    border-color $transition-base;
-}
-
-.allCasesLink:hover {
-  color: $text-inverse;
-  background: $surface-card-mint;
-  border-color: $surface-card-mint;
 }
 
 .list {
@@ -227,7 +214,6 @@
   display: grid;
   align-self: center;
   overflow: hidden;
-  text-decoration: none;
   color: inherit;
   background: $surface-canvas;
   border: 1px solid $border-strong;
@@ -285,12 +271,6 @@
   background: $surface-card-light;
 }
 
-.allCasesLink:focus-visible,
-.mockup:focus-visible {
-  outline: none;
-  box-shadow: $shadow-focus;
-}
-
 @media (min-width: $bp-tablet) {
   .list {
     &::after {
@@ -309,6 +289,13 @@
   .headerAside {
     justify-items: end;
     text-align: left;
+  }
+
+  .outlineWord {
+    font-family: inherit;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px $text-primary;
   }
 
   .row {
@@ -421,7 +408,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .allCasesLink,
+  .root {
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+
   .mockup {
     transition: none;
   }

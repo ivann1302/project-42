@@ -2,8 +2,9 @@
 
 import type { CSSProperties } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { getProjectCaseHref, projects } from '@/entities/Project'
+import { useRef } from 'react'
+import { projects } from '@/entities/Project'
+import { useScrollReveal } from '@/shared/lib'
 import styles from './RazrabotkaCasesSection.module.scss'
 
 const getProject = (id: string) => {
@@ -52,8 +53,17 @@ const caseRows = [
 ] as const
 
 export function RazrabotkaCasesSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useScrollReveal(sectionRef, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' })
+
   return (
-    <section className={styles.root} id="projects" aria-labelledby="razrabotka-cases-title">
+    <section
+      ref={sectionRef}
+      className={styles.root}
+      id="projects"
+      aria-labelledby="razrabotka-cases-title"
+    >
       <div className={styles.inner}>
         <div className={styles.header}>
           <div>
@@ -69,9 +79,6 @@ export function RazrabotkaCasesSection() {
               Показываем задачи, решения и эффект для бизнеса. Не просто запускаем сайты - собираем
               точки роста.
             </p>
-            <Link className={styles.allCasesLink} href="/portfolio">
-              Смотреть все кейсы
-            </Link>
           </div>
         </div>
 
@@ -99,11 +106,7 @@ export function RazrabotkaCasesSection() {
                   <p className={styles.summary}>{item.summary}</p>
                 </div>
 
-                <Link
-                  className={styles.mockup}
-                  href={getProjectCaseHref(item.project.id)}
-                  aria-label={`Смотреть кейс: ${item.project.title}`}
-                >
+                <div className={styles.mockup}>
                   <div className={styles.browserBar} aria-hidden="true">
                     <span />
                     <span />
@@ -120,7 +123,7 @@ export function RazrabotkaCasesSection() {
                       />
                     )}
                   </div>
-                </Link>
+                </div>
               </div>
             </li>
           ))}

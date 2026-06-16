@@ -44,7 +44,7 @@
   text-transform: uppercase;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px $text-primary;
+  -webkit-text-stroke: 0.7px $text-primary;
   opacity: 0;
   transition:
     opacity $duration-slow $ease-emphasized,
@@ -81,6 +81,7 @@
 
   .title {
     font-size: clamp(54px, 6.2vw, 86px);
+    -webkit-text-stroke-width: 1px;
     transform: translateX(-14vw);
   }
 }

@@ -38,7 +38,7 @@ export function RazrabotkaHero() {
         ? clamp((viewportHeight - rect.top) / (viewportHeight * 0.72), 0, 1)
         : clamp(window.scrollY / (viewportHeight * 0.82), 0, 1)
       const easedProgress = 1 - Math.pow(1 - progress, 3)
-      const maxShift = mobileQuery.matches ? -20 : 16
+      const maxShift = mobileQuery.matches ? -60 : 96
       const shift = maxShift * easedProgress
 
       visual.style.setProperty('--hero-visual-scroll-shift', `${shift.toFixed(2)}px`)

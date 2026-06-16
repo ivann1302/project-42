@@ -3,6 +3,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import { useScrollReveal } from '@/shared/lib'
 import styles from './WhatWeDoSection.module.scss'
 
 const MOBILE_QUERY = '(max-width: 767px)'
@@ -10,9 +11,14 @@ const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
 
 export function WhatWeDoSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const statementRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
   const priceCardRef = useRef<HTMLElement>(null)
   const imageVisibleRef = useRef(false)
   const [imageVisible, setImageVisible] = useState(false)
+
+  useScrollReveal(statementRef, { threshold: 0.22, rootMargin: '0px 0px -8% 0px' })
+  useScrollReveal(cardsRef, { threshold: 0.12, rootMargin: '0px 0px -2% 0px' })
 
   useEffect(() => {
     const section = sectionRef.current
@@ -87,7 +93,7 @@ export function WhatWeDoSection() {
       aria-labelledby="what-we-do-title"
     >
       <div className={styles.inner}>
-        <div className={styles.statementCard}>
+        <div ref={statementRef} className={styles.statementCard}>
           <h2 className={styles.title} id="what-we-do-title">
             Что мы делаем?
           </h2>
@@ -97,7 +103,7 @@ export function WhatWeDoSection() {
           </p>
         </div>
 
-        <div className={styles.cards}>
+        <div ref={cardsRef} className={styles.cards}>
           <article className={styles.scopeCard}>
             <p className={styles.blockHeading}>В каждый лендинг входит</p>
             <ul className={styles.scopeList}>

@@ -1,4 +1,8 @@
+'use client'
+
 import Image from 'next/image'
+import { useRef } from 'react'
+import { useScrollReveal } from '@/shared/lib'
 import styles from './WorkProcessSection.module.scss'
 
 const steps = [
@@ -26,8 +30,17 @@ const steps = [
 ]
 
 export function WorkProcessSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useScrollReveal(sectionRef, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' })
+
   return (
-    <section className={styles.root} id="process" aria-labelledby="work-process-title">
+    <section
+      ref={sectionRef}
+      className={styles.root}
+      id="process"
+      aria-labelledby="work-process-title"
+    >
       <div className={styles.header}>
         <h2 className={styles.title} id="work-process-title">
           <span>Как мы</span>

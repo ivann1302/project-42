@@ -109,7 +109,7 @@
 
 .accentWord {
   color: $surface-card-mint;
-  -webkit-text-stroke: 1px rgba($neutral-0, 28%);
+  -webkit-text-stroke: 0;
 }
 
 .text {
@@ -191,6 +191,10 @@
     grid-column: auto;
     max-width: 11ch;
     font-size: clamp(58px, 8vw, 82px);
+  }
+
+  .accentWord {
+    -webkit-text-stroke: 1px rgba($neutral-0, 28%);
   }
 
   .text {

@@ -27,11 +27,9 @@ describe('PortfolioPage', () => {
     expect(links).toHaveLength(projects.filter((project) => project.href).length)
   })
 
-  it('renders the home page return link', () => {
+  it('renders the CTA without a secondary cases link', () => {
     render(<PortfolioPage />)
-    expect(screen.getByRole('link', { name: /вернуться на главную/i })).toHaveAttribute(
-      'href',
-      '/razrabotka-sayta',
-    )
+    expect(screen.getByRole('button', { name: /оставить заявку/i })).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /смотреть кейсы/i })).not.toBeInTheDocument()
   })
 })

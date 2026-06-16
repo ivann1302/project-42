@@ -4,6 +4,18 @@
   overflow: hidden;
   color: $text-primary;
   background: $surface-page;
+  opacity: 0;
+  transition:
+    opacity $duration-slow $ease-emphasized,
+    transform 720ms $ease-emphasized;
+  transform: translateY($space-8);
+  will-change: opacity, transform;
+}
+
+.root:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
 }
 
 .inner {
@@ -95,28 +107,44 @@
   text-transform: uppercase;
   color: $text-inverse;
   border: 1px solid transparent;
+  opacity: 0;
+  transition:
+    opacity 680ms $ease-emphasized,
+    transform 780ms $ease-emphasized;
+  will-change: opacity, transform;
 }
 
 .signals li:nth-child(odd) {
   justify-self: start;
   border-radius: 0 $radius-lg $radius-lg 0;
+  transform: translateX(-34vw);
 }
 
 .signals li:nth-child(even) {
   justify-self: end;
   border-radius: $radius-lg 0 0 $radius-lg;
+  transform: translateX(34vw);
 }
 
 .signals li:nth-child(1) {
   background: $surface-card-mint;
+  transition-delay: 500ms;
 }
 
 .signals li:nth-child(2) {
   background: $surface-card-orange;
+  transition-delay: 682ms;
 }
 
 .signals li:nth-child(3) {
   background: $surface-card-blue;
+  transition-delay: 864ms;
+}
+
+.signals:global(.visible) li {
+  opacity: 1;
+  transform: translateX(0);
+  will-change: auto;
 }
 
 .signalLink {
@@ -178,6 +206,10 @@
     justify-self: stretch;
     width: auto;
     border-radius: $radius-md;
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
   }
 }
 
@@ -207,8 +239,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .root {
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+
   .number {
     animation: none;
+  }
+
+  .signals li {
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
   }
 }
 
