@@ -230,6 +230,22 @@ describe('RazrabotkaPage', () => {
     )
   })
 
+  it('renders the aftercare section', () => {
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    expect(screen.getByRole('heading', { level: 2, name: 'И да...' })).toBeInTheDocument()
+    expect(screen.getByText('После запуска')).toBeInTheDocument()
+    expect(screen.getByText('Правки')).toBeInTheDocument()
+    expect(screen.getByText('14 дней')).toBeInTheDocument()
+    expect(screen.getByText('помогаем внести изменения после запуска')).toBeInTheDocument()
+    expect(screen.getByText('Ошибки')).toBeInTheDocument()
+    expect(screen.getByText('1 год')).toBeInTheDocument()
+    expect(screen.getByText('исправляем возможные ошибки разработки')).toBeInTheDocument()
+    expect(screen.getByText('Защита')).toBeInTheDocument()
+    expect(screen.getByText('В подарок')).toBeInTheDocument()
+    expect(screen.getByText('подключаем защиту от перехвата клиентов и спама')).toBeInTheDocument()
+  })
+
   it('renders the level-up banner above the footer', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 

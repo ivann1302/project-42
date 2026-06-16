@@ -1,6 +1,6 @@
 .root {
   position: relative;
-  padding: $space-4 0 $space-12 $container-pad-mobile;
+  padding: $space-4 0 $space-6 $container-pad-mobile;
   color: $text-inverse;
   background: $surface-page;
   scroll-margin-top: 96px;
@@ -149,7 +149,7 @@
 
 @media (min-width: $bp-tablet) {
   .root {
-    padding: $space-10 $container-pad-tablet $space-24;
+    padding: $space-10 $container-pad-tablet $space-12;
   }
 
   .shell {
@@ -227,7 +227,7 @@
 
 @media (min-width: $bp-desktop) {
   .root {
-    padding: $space-12 0 $space-32 $container-pad-desktop;
+    padding: $space-12 0 $space-16 $container-pad-desktop;
   }
 
   .shell {

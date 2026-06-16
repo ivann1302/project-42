@@ -1,5 +1,6 @@
 import type { RazrabotkaPageConfig } from '@/entities/ServicePage'
 import { RazrabotkaChatButton } from './RazrabotkaChatButton'
+import { RazrabotkaAftercareSection } from './RazrabotkaAftercareSection'
 import { DecisionWindowSection } from './DecisionWindowSection'
 import { RazrabotkaCasesSection } from './RazrabotkaCasesSection'
 import { RazrabotkaCtaSection } from './RazrabotkaCtaSection'
@@ -31,6 +32,7 @@ export function RazrabotkaPage({ config }: Props) {
         <RazrabotkaCasesSection />
         <RazrabotkaFounderSection />
         <RazrabotkaCtaSection />
+        <RazrabotkaAftercareSection />
         <RazrabotkaQuizSection />
         <RazrabotkaLevelUpBanner />
       </main>
