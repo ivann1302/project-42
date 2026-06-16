@@ -6,6 +6,8 @@ import { Icon, StudioButton } from '@/shared/ui'
 import styles from './RazrabotkaQuizSection.module.scss'
 
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
+const PHONE_PATTERN = /^\+?[\d\s\-()]{7,20}$/u
+const TELEGRAM_USERNAME_PATTERN = /^@?[a-zA-Z0-9_]{5,32}$/u
 
 const contactMethods = [
   { label: 'Telegram', value: 'telegram' },
@@ -33,6 +35,21 @@ export function RazrabotkaQuizSection() {
   const fieldLabel = isTelegram ? 'Ваш ник в Telegram' : 'Ваш телефон'
   const fieldPlaceholder = isTelegram ? '@username' : '+7 (___) ___-__-__'
   const inputType = isTelegram ? 'text' : 'tel'
+
+  const getNormalizedContact = () => {
+    const value = contact.trim()
+
+    if (!isTelegram) return value
+    if (!value) return value
+
+    return value.startsWith('@') ? value : `@${value}`
+  }
+
+  const isValidPhone = (value: string) => {
+    const digits = value.replace(/\D/g, '')
+
+    return PHONE_PATTERN.test(value) && digits.length >= 10 && digits.length <= 15
+  }
 
   const openModal = () => {
     setStep(1)
@@ -144,7 +161,7 @@ export function RazrabotkaQuizSection() {
   const handleSubmit = async () => {
     setError('')
 
-    const normalizedContact = contact.trim()
+    const normalizedContact = getNormalizedContact()
     const normalizedName = name.trim()
     const normalizedActivity = activity.trim()
 
@@ -165,6 +182,16 @@ export function RazrabotkaQuizSection() {
       return
     }
 
+    if (isTelegram && !TELEGRAM_USERNAME_PATTERN.test(normalizedContact)) {
+      setError('Введите ник в Telegram: @username')
+      return
+    }
+
+    if (!isTelegram && !isValidPhone(normalizedContact)) {
+      setError('Введите телефон в формате +7 999 000-00-00')
+      return
+    }
+
     setStatus('loading')
 
     try {
@@ -174,6 +201,7 @@ export function RazrabotkaQuizSection() {
         body: JSON.stringify({
           name: normalizedName,
           phone: isTelegram ? undefined : normalizedContact,
+          contact: isTelegram ? normalizedContact : undefined,
           message: `Модальное окно. Сфера деятельности: ${normalizedActivity}. Предпочтительный способ связи: ${method}. Контакт: ${normalizedContact}.`,
           service: 'Разработка сайта',
           _page: window.location.pathname,

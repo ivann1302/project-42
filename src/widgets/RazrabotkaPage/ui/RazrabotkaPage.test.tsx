@@ -166,6 +166,52 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByLabelText('Как вас зовут?')).toBeInTheDocument()
   })
 
+  it('submits the consultation quiz with a Telegram username', async () => {
+    const fetchMock = jest.fn().mockResolvedValue({ ok: true })
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined)
+    global.fetch = fetchMock as unknown as typeof fetch
+
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    await userEvent.click(screen.getByRole('link', { name: /Получить консультацию/ }))
+    await userEvent.type(await screen.findByLabelText('Как вас зовут?'), 'Иван')
+    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
+    await userEvent.type(screen.getByLabelText('Сфера деятельности'), 'Разработка')
+    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
+    await userEvent.type(screen.getByLabelText('Ваш ник в Telegram'), 'project42')
+    await userEvent.click(screen.getByRole('button', { name: 'Получить консультацию' }))
+
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({
+      name: 'Иван',
+      contact: '@project42',
+      service: 'Разработка сайта',
+      _contactMethod: 'telegram',
+      _contact: '@project42',
+    })
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).not.toHaveProperty('phone')
+    consoleErrorSpy.mockRestore()
+  })
+
+  it('validates phone before submitting the consultation quiz', async () => {
+    const fetchMock = jest.fn()
+    global.fetch = fetchMock as unknown as typeof fetch
+
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    await userEvent.click(screen.getByRole('link', { name: /Получить консультацию/ }))
+    await userEvent.type(await screen.findByLabelText('Как вас зовут?'), 'Иван')
+    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
+    await userEvent.type(screen.getByLabelText('Сфера деятельности'), 'Разработка')
+    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
+    await userEvent.click(screen.getByLabelText('WhatsApp'))
+    await userEvent.type(screen.getByLabelText('Ваш телефон'), '123')
+    await userEvent.click(screen.getByRole('button', { name: 'Получить консультацию' }))
+
+    expect(screen.getByText('Введите телефон в формате +7 999 000-00-00')).toBeInTheDocument()
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+
   it('renders the new CTA section', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 

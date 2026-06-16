@@ -11,6 +11,9 @@ const CONTENT_OPTIONS = ['Да, всё готово', 'Частично гото
 const URGENCY_OPTIONS = ['Как можно быстрее', 'В течение недели', 'Не тороплюсь'] as const
 const CONTACT_METHOD_OPTIONS = ['Telegram', 'WhatsApp', 'MAX', 'По телефону'] as const
 const TOTAL_STEPS = 4
+const PHONE_CONTACT_METHODS = new Set<string>(['WhatsApp', 'По телефону'])
+const PHONE_PATTERN = /^\+?[\d\s\-()]{7,20}$/u
+const TELEGRAM_USERNAME_PATTERN = /^@?[a-zA-Z0-9_]{5,32}$/u
 
 type Props = {
   eyebrow?: string
@@ -67,6 +70,20 @@ export function Cta({
     return values.contact.trim() && values.contactMethod
   }
 
+  const normalizeContact = (values: QuizAnswers) => {
+    const contact = values.contact.trim()
+
+    if (values.contactMethod !== 'Telegram' || !contact) return contact
+
+    return contact.startsWith('@') ? contact : `@${contact}`
+  }
+
+  const isValidPhone = (value: string) => {
+    const digits = value.replace(/\D/g, '')
+
+    return PHONE_PATTERN.test(value) && digits.length >= 10 && digits.length <= 15
+  }
+
   const nextStep = (override?: Partial<QuizAnswers>) => {
     if (!getCurrentAnswer(override)) {
       setError('Заполните этот шаг, чтобы продолжить.')
@@ -83,13 +100,25 @@ export function Cta({
   const submitQuiz = async (override: Partial<QuizAnswers> = {}) => {
     const values = { ...answers, ...override }
 
-    if (!values.contact.trim()) {
+    const normalizedContact = normalizeContact(values)
+
+    if (!normalizedContact) {
       setError('Укажите телефон или ник в Telegram.')
       return
     }
 
     if (!values.contactMethod) {
       setError('Выберите удобный способ связи.')
+      return
+    }
+
+    if (values.contactMethod === 'Telegram' && !TELEGRAM_USERNAME_PATTERN.test(normalizedContact)) {
+      setError('Введите ник в Telegram: @username')
+      return
+    }
+
+    if (PHONE_CONTACT_METHODS.has(values.contactMethod) && !isValidPhone(normalizedContact)) {
+      setError('Введите телефон в формате +7 999 000-00-00')
       return
     }
 
@@ -102,16 +131,18 @@ export function Cta({
         `Сфера деятельности: ${values.sphere}`,
         `Контент для сайта: ${values.content}`,
         `Срочность: ${values.urgency}`,
-        `Контакт: ${values.contact}`,
+        `Контакт: ${normalizedContact}`,
         `Удобнее связаться: ${values.contactMethod}`,
       ].join('\n')
+      const isPhoneContact = PHONE_CONTACT_METHODS.has(values.contactMethod)
 
       const res = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: 'Заявка из квиза CTA',
-          contact: values.contact,
+          phone: isPhoneContact ? normalizedContact : undefined,
+          contact: isPhoneContact ? undefined : normalizedContact,
           service: 'Квиз на сайте',
           message,
           _honeypot: values._honeypot,
@@ -120,7 +151,7 @@ export function Cta({
             sphere: values.sphere,
             content: values.content,
             urgency: values.urgency,
-            contact: values.contact,
+            contact: normalizedContact,
             contactMethod: values.contactMethod,
           },
         }),

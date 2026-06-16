@@ -120,4 +120,25 @@ describe('Cta', () => {
     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).not.toHaveProperty('phone')
     await waitFor(() => expect(mockPush).toHaveBeenCalledWith('/thank-you'))
   })
+
+  it('validates phone contact methods before submitting', async () => {
+    const user = userEvent.setup()
+    const fetchMock = jest.fn()
+    global.fetch = fetchMock as unknown as typeof fetch
+
+    render(<Cta />)
+
+    await user.type(screen.getByLabelText('Сфера деятельности'), 'Клиника')
+    await user.click(screen.getByRole('button', { name: 'Далее' }))
+    await user.click(screen.getByRole('button', { name: 'Да, всё готово' }))
+    await user.click(screen.getByRole('button', { name: 'Далее' }))
+    await user.click(screen.getByRole('button', { name: 'Как можно быстрее' }))
+    await user.click(screen.getByRole('button', { name: 'Далее' }))
+    await user.type(screen.getByLabelText('Телефон или ник в Telegram'), '123')
+    await user.click(screen.getByRole('button', { name: 'По телефону' }))
+    await user.click(screen.getByRole('button', { name: 'Забронировать место' }))
+
+    expect(screen.getByText('Введите телефон в формате +7 999 000-00-00')).toBeInTheDocument()
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
 })
