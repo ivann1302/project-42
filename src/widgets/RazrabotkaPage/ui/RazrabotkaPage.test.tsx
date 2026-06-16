@@ -224,9 +224,9 @@ describe('RazrabotkaPage', () => {
       'href',
       'mailto:project42studio@gmail.com',
     )
-    expect(within(footer).getByRole('link', { name: '+7 995 557 15 89' })).toHaveAttribute(
+    expect(within(footer).getByRole('link', { name: '+7 999 858 98 78' })).toHaveAttribute(
       'href',
-      'https://wa.me/79955571589',
+      'https://wa.me/79998589878',
     )
     expect(within(footer).getByText('Самозанятый Нарчук Иван Валериевич')).toBeInTheDocument()
     expect(within(footer).getByRole('link', { name: 'Написать в Telegram' })).toHaveAttribute(
@@ -304,7 +304,7 @@ describe('RazrabotkaPage', () => {
     )
     expect(screen.getByRole('link', { name: 'WhatsApp' })).toHaveAttribute(
       'href',
-      'https://wa.me/79955571589',
+      'https://wa.me/79998589878',
     )
 
     await userEvent.click(screen.getByRole('button', { name: 'Закрыть чат' }))

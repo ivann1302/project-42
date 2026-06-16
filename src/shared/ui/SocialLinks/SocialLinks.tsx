@@ -16,7 +16,7 @@ export const SOCIAL_LINKS = [
   },
   {
     label: 'WhatsApp',
-    href: 'https://wa.me/79955571589',
+    href: 'https://wa.me/79998589878',
     icon: '/images/social-Icons/whatsappIcon.png',
   },
 ] as const

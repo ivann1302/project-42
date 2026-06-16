@@ -21,8 +21,8 @@ const contactLinks = [
     icon: 'mail',
   },
   {
-    label: '+7 995 557 15 89',
-    href: 'https://wa.me/79955571589',
+    label: '+7 999 858 98 78',
+    href: 'https://wa.me/79998589878',
     icon: 'phone',
   },
   {
