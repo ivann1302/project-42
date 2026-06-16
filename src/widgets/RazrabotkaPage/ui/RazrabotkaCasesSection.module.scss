@@ -119,8 +119,8 @@
 .strip {
   display: grid;
   gap: $space-1;
-  min-height: 42px;
-  padding: $space-3 $space-4;
+  min-height: 34px;
+  padding: $space-2 $space-3;
   background: $surface-page;
   border-bottom: 1px solid $border-strong;
 }
@@ -141,13 +141,14 @@
 }
 
 .stripTitle {
+  display: none;
   color: $text-primary;
 }
 
 .rowBody {
   display: grid;
-  gap: $space-6;
-  padding: $space-6 $space-4 $space-8;
+  gap: $space-4;
+  padding: $space-4 $space-3 calc(76px + env(safe-area-inset-bottom));
 }
 
 .row:nth-child(2) {
@@ -177,13 +178,13 @@
 .metricColumn {
   display: grid;
   align-content: center;
-  gap: $space-3;
+  gap: $space-2;
 }
 
 .metric {
   margin: 0;
   font-family: $font-body;
-  font-size: clamp(84px, 24vw, 148px);
+  font-size: clamp(52px, 18vw, 76px);
   font-weight: $font-weight-display;
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum';
@@ -194,15 +195,16 @@
 .result {
   display: grid;
   gap: $space-1;
-  max-width: 14ch;
+  max-width: 16ch;
   font-family: $font-poster;
-  font-size: clamp(28px, 8vw, 46px);
+  font-size: clamp(20px, 6vw, 28px);
   font-weight: $font-weight-semibold;
   line-height: 0.94;
   text-transform: uppercase;
 }
 
 .projectTitle {
+  display: none;
   max-width: 34ch;
   margin: $space-2 0 0;
   font-size: $font-size-base;
@@ -212,6 +214,7 @@
 }
 
 .summary {
+  display: none;
   max-width: 42ch;
   margin: 0;
   font-size: $font-size-sm;
@@ -245,14 +248,14 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  min-height: 30px;
+  min-height: 22px;
   padding: 0 $space-4;
   border-bottom: 1px solid $border-default;
 }
 
 .browserBar span {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: var(--case-accent);
   border-radius: $radius-pill;
 }
@@ -267,8 +270,8 @@
 
 .screenshot {
   position: relative;
-  aspect-ratio: 16 / 6.7;
-  min-height: 180px;
+  aspect-ratio: 16 / 7.8;
+  min-height: 118px;
   overflow: hidden;
 }
 
@@ -320,6 +323,10 @@
     padding: 0 $space-5;
   }
 
+  .stripTitle {
+    display: block;
+  }
+
   .rowBody {
     align-items: center;
     gap: $space-8;
@@ -336,7 +343,22 @@
     font-size: clamp(32px, 3vw, 48px);
   }
 
+  .projectTitle,
+  .summary {
+    display: block;
+  }
+
+  .browserBar {
+    min-height: 30px;
+  }
+
+  .browserBar span {
+    width: 8px;
+    height: 8px;
+  }
+
   .screenshot {
+    aspect-ratio: 16 / 6.7;
     min-height: 230px;
   }
 }

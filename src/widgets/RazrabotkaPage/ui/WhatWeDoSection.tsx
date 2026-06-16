@@ -119,6 +119,7 @@ export function WhatWeDoSection() {
           >
             <p className={styles.blockHeading}>Цена под ключ</p>
             <p className={styles.price}>25 тыс.</p>
+            <p className={styles.priceCaption}>За одностраничный сайт</p>
             <Image
               className={styles.priceImage}
               src="/images/razrabotka/price.webp"

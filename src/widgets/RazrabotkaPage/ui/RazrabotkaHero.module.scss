@@ -59,7 +59,7 @@
   line-height: 0.9;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: clamp(1.25px, 0.24vw, 2.4px) rgba($neutral-900, 86%);
+  -webkit-text-stroke: 1px $text-primary;
   transform: scaleX(0.78);
   transform-origin: center center;
 }
@@ -99,7 +99,7 @@
   left: 50%;
   width: 100%;
   height: auto;
-  transform: translate(calc(-50% + var(--hero-visual-scroll-shift, 0px)), -50%);
+  transform: translate(calc(-50% - 35px + var(--hero-visual-scroll-shift, 0px)), -50%);
   will-change: transform;
 }
 

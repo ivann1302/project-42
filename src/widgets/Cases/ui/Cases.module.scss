@@ -18,6 +18,12 @@
   }
 }
 
+.sectionHeading {
+  @include desktop {
+    line-height: 1.22;
+  }
+}
+
 .card {
   display: flex;
   flex-direction: column;

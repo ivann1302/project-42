@@ -6,17 +6,26 @@ type Props = PropsWithClassName & {
   children: React.ReactNode
   align?: 'left' | 'center'
   light?: boolean
+  headingClassName?: string
 }
 
-export function SectionTitle({ eyebrow, children, align = 'left', light, className }: Props) {
+export function SectionTitle({
+  eyebrow,
+  children,
+  align = 'left',
+  light,
+  className,
+  headingClassName,
+}: Props) {
   const cls = [styles.root, styles[align], light && styles.light, className]
     .filter(Boolean)
     .join(' ')
+  const headingCls = [styles.heading, headingClassName].filter(Boolean).join(' ')
 
   return (
     <div className={cls}>
       {eyebrow && <span className={styles.eyebrow}>{eyebrow}</span>}
-      <h2 className={styles.heading}>{children}</h2>
+      <h2 className={headingCls}>{children}</h2>
     </div>
   )
 }

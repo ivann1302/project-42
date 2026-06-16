@@ -7,6 +7,7 @@ import { RazrabotkaFooter } from './RazrabotkaFooter'
 import { RazrabotkaFounderSection } from './RazrabotkaFounderSection'
 import { RazrabotkaHeader } from './RazrabotkaHeader'
 import { RazrabotkaHero } from './RazrabotkaHero'
+import { RazrabotkaLevelUpBanner } from './RazrabotkaLevelUpBanner'
 import { RazrabotkaQuizSection } from './RazrabotkaQuizSection'
 import { WhatWeDoSection } from './WhatWeDoSection'
 import { WorkProcessSection } from './WorkProcessSection'
@@ -31,9 +32,11 @@ export function RazrabotkaPage({ config }: Props) {
         <RazrabotkaFounderSection />
         <RazrabotkaCtaSection />
         <RazrabotkaQuizSection />
+        <RazrabotkaLevelUpBanner />
       </main>
       <RazrabotkaChatButton />
       <RazrabotkaFooter />
+      <RazrabotkaLevelUpBanner placement="mobile" decorative />
     </div>
   )
 }

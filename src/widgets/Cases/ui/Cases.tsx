@@ -20,7 +20,7 @@ export function Cases({ items, eyebrow = 'Результаты', title = 'Кей
     <section className={styles.root} id="cases">
       <StarField />
       <Container>
-        <SectionTitle eyebrow={eyebrow} align="center">
+        <SectionTitle eyebrow={eyebrow} align="center" headingClassName={styles.sectionHeading}>
           {title}
         </SectionTitle>
         <ul ref={gridRef} className={styles.grid} role="list">

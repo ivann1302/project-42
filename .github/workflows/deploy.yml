@@ -288,11 +288,25 @@ jobs:
             exit 0
           fi
 
+          APP_URL="${APP_URL%/}"
+
           curl \
             --fail \
             --silent \
             --show-error \
             --max-time 20 \
-            "$APP_URL" > /dev/null || {
-              echo "::warning::External health check failed for $APP_URL. Check DNS/domain/proxy settings."
-            }
+            "$APP_URL" > /dev/null
+
+          echo "Public deploy metadata from $APP_URL/__deploy.json:"
+          PUBLIC_DEPLOY_METADATA="$(curl \
+            --fail \
+            --silent \
+            --show-error \
+            --max-time 20 \
+            "$APP_URL/__deploy.json")"
+          echo "$PUBLIC_DEPLOY_METADATA"
+
+          if ! printf '%s' "$PUBLIC_DEPLOY_METADATA" | grep -F "\"sha\": \"${GITHUB_SHA}\"" > /dev/null; then
+            echo "::error::Public site is not serving the deployed SHA ${GITHUB_SHA}. Check domain document root, Passenger/Apache configuration, CDN/cache, or APP_URL."
+            exit 1
+          fi

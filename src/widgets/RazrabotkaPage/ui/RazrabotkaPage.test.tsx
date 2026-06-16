@@ -60,6 +60,7 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText(/перехвата лидов/)).toBeInTheDocument()
     expect(screen.getByText('Цена под ключ')).toBeInTheDocument()
     expect(screen.getByText('25 тыс.')).toBeInTheDocument()
+    expect(screen.getByText('За одностраничный сайт')).toBeInTheDocument()
     expect(screen.getByText('Оплата 50/50')).toBeInTheDocument()
   })
 
@@ -108,13 +109,11 @@ describe('RazrabotkaPage', () => {
   })
 
   it('renders the quick consultation quiz', async () => {
-    let triggerIntersect: (entries: Partial<IntersectionObserverEntry>[]) => void = () => {}
+    const observerCallbacks: Array<(entries: IntersectionObserverEntry[]) => void> = []
     const originalIntersectionObserver = global.IntersectionObserver
 
     global.IntersectionObserver = jest.fn().mockImplementation((callback) => {
-      triggerIntersect = (entries) => {
-        callback(entries as IntersectionObserverEntry[], {} as IntersectionObserver)
-      }
+      observerCallbacks.push(callback)
 
       return {
         observe: jest.fn(),
@@ -128,7 +127,9 @@ describe('RazrabotkaPage', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 
     await act(async () => {
-      triggerIntersect([{ isIntersecting: true }])
+      observerCallbacks.forEach((callback) => {
+        callback([{ isIntersecting: true } as IntersectionObserverEntry])
+      })
     })
 
     expect(
@@ -184,6 +185,14 @@ describe('RazrabotkaPage', () => {
       'href',
       '#projects',
     )
+  })
+
+  it('renders the level-up banner above the footer', () => {
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'ВЫВЕДЕМ ВАШ БИЗНЕС НА НОВЫЙ УРОВЕНЬ' }),
+    ).toBeInTheDocument()
   })
 
   it('renders the project-specific footer', () => {

@@ -1,56 +1,97 @@
 .root {
-  display: flex;
-  align-items: center;
-  gap: $spacing-md;
+  display: grid;
+  align-items: end;
+  gap: $space-5;
+  grid-template-columns: minmax(0, 1fr) auto;
   position: fixed;
-  bottom: 24px;
-  left: 50%;
+  right: $container-pad-mobile;
+  bottom: calc($space-6 + env(safe-area-inset-bottom));
+  left: $container-pad-mobile;
   z-index: 1100;
-  width: min(calc(100% - 48px), 640px);
-  padding: 14px 16px 14px 14px;
-  color: $color-white;
-  background: rgba($color-card, 92%);
-  border: 1px solid $color-border;
-  border-radius: $radius-sm;
-  box-shadow: 0 18px 60px rgba($color-black, 45%);
-  transform: translateX(-50%);
-  backdrop-filter: blur(18px);
-  animation: notice-in 0.28s ease;
+  max-width: 560px;
+  padding: $space-5;
+  color: $text-primary;
+  background: $surface-canvas;
+  border: 1px solid $border-strong;
+  border-radius: $radius-xs;
+  animation: notice-in $duration-base $ease-standard;
 }
 
-.icon {
-  @include flex-center;
+.content {
+  display: grid;
+  gap: $space-2;
+  min-width: 0;
+}
 
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
-  color: $color-mint;
-  background: rgba($color-mint, 9%);
-  border: 1px solid rgba($color-mint, 28%);
-  border-radius: $radius-sm;
+.title {
+  margin: 0;
+  font-family: $font-body;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-primary;
 }
 
 .text {
-  flex: 1;
-  min-width: 0;
+  margin: 0;
   font-size: $font-size-sm;
-  line-height: 1.55;
-  color: $color-gray-light;
+  line-height: 1.45;
+  color: $text-secondary;
 }
 
 .action {
-  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 $space-4;
+  font-family: $font-body;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: $text-inverse;
+  background: $surface-inverse;
+  border: 1px solid $surface-inverse;
+  border-radius: $radius-xs;
+  transition:
+    color $transition-base,
+    background $transition-base,
+    border-color $transition-base;
+  cursor: pointer;
+}
+
+.action:hover {
+  color: $text-primary;
+  background: $surface-canvas;
+  border-color: $border-strong;
+}
+
+.action:focus-visible {
+  outline: none;
+  box-shadow: $shadow-focus;
 }
 
 @keyframes notice-in {
   from {
     opacity: 0;
-    transform: translate(-50%, 12px);
+    transform: translateY($space-3);
   }
 
   to {
     opacity: 1;
-    transform: translateX(-50%);
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    right: $container-pad-tablet;
+    bottom: $space-8;
+    left: auto;
+    width: min(560px, calc(100vw - #{$container-pad-tablet * 2}));
   }
 }
 
@@ -58,25 +99,18 @@
   .root {
     animation: none;
   }
+
+  .action {
+    transition: none;
+  }
 }
 
 @include mobile {
   .root {
-    flex-wrap: wrap;
-    align-items: flex-start;
-    bottom: calc(86px + env(safe-area-inset-bottom));
-    width: min(calc(100% - #{$container-pad-mobile * 2}), 420px);
-    padding: 14px;
-  }
-
-  .icon {
-    flex-basis: 36px;
-    width: 36px;
-    height: 36px;
-  }
-
-  .text {
-    flex: 1 1 calc(100% - 52px);
+    align-items: stretch;
+    gap: $space-4;
+    grid-template-columns: 1fr;
+    padding: $space-4;
   }
 
   .action {

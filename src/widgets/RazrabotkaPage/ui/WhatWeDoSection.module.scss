@@ -120,13 +120,25 @@
 .price {
   position: relative;
   z-index: 1;
-  margin: 0;
+  margin: 0 0 calc(-1 * #{$space-6});
   font-family: $font-body;
   font-size: clamp(72px, 22vw, 116px);
   font-weight: $font-weight-display;
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum';
   line-height: 0.86;
+}
+
+.priceCaption {
+  position: relative;
+  z-index: 1;
+  max-width: 20ch;
+  margin: 0;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: rgba($neutral-0, 72%);
 }
 
 .priceImage {

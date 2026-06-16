@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Button } from '../Button'
-import { Icon } from '../Icon'
 import styles from './CookieNotice.module.scss'
 
 const STORAGE_KEY = 'webstudio-cookie-notice-accepted'
@@ -41,15 +39,15 @@ export function CookieNotice() {
 
   return (
     <section className={styles.root} role="region" aria-label="Уведомление о cookie">
-      <span className={styles.icon} aria-hidden>
-        <Icon name="shield" size={20} />
-      </span>
-      <p className={styles.text}>
-        Используем cookie и Яндекс Метрику, чтобы понимать, как пользуются сайтом, и улучшать его.
-      </p>
-      <Button variant="secondary" size="sm" className={styles.action} onClick={handleAccept}>
+      <div className={styles.content}>
+        <h2 className={styles.title}>Cookies</h2>
+        <p className={styles.text}>
+          Используем cookie и Яндекс Метрику, чтобы понимать, как пользуются сайтом, и улучшать его.
+        </p>
+      </div>
+      <button className={styles.action} type="button" onClick={handleAccept}>
         Понятно
-      </Button>
+      </button>
     </section>
   )
 }

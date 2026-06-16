@@ -1,62 +1,63 @@
 .root {
-  position: relative;
+  display: grid;
+  place-items: center;
   min-height: 100svh;
-  padding-top: 96px;
-  padding-bottom: $spacing-3xl;
-  overflow: clip;
-  background:
-    radial-gradient(circle at 50% 18%, rgba($color-mint, 0.16), transparent 34%),
-    linear-gradient(180deg, $color-bg 0%, $color-bg-section 100%);
-}
-
-.inner {
-  position: relative;
-  z-index: 1;
-}
-
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 66svh;
-  text-align: center;
-
-  @include tablet-down {
-    min-height: auto;
-    padding-top: $spacing-3xl;
-  }
-}
-
-.eyebrow {
-  margin-bottom: $spacing-md;
-  font-family: $font-display;
-  font-size: $font-size-sm;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  color: $color-mint;
+  padding: $space-8 $container-pad-mobile;
+  color: $text-primary;
+  background: $surface-canvas;
 }
 
 .title {
-  @include display-text(56px);
+  max-width: 1120px;
+  margin: 0;
+  font-family: $font-body;
+  font-size: clamp(48px, 13vw, 118px);
+  font-weight: $font-weight-display;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  line-height: 1;
+  text-align: center;
+  color: $surface-card-mint;
+  animation: thank-you-title-colors 9s ease-in-out infinite;
+}
 
-  max-width: 900px;
-  color: transparent;
-  background: linear-gradient(135deg, $color-white 0%, $color-blue 52%, $color-mint 100%);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  @include tablet {
-    font-size: $font-size-2xl;
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-10 $container-pad-tablet;
   }
 
-  @include mobile {
-    font-size: 34px;
-    line-height: 1.14;
+  .title {
+    font-size: clamp(92px, 9vw, 168px);
   }
 }
 
-.action {
-  margin-top: $spacing-xl;
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-12 $container-pad-desktop;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title {
+    animation: none;
+  }
+}
+
+@keyframes thank-you-title-colors {
+  0%,
+  100% {
+    color: $surface-card-mint;
+  }
+
+  25% {
+    color: $surface-card-orange;
+  }
+
+  50% {
+    color: $surface-card-yellow;
+  }
+
+  75% {
+    color: $surface-card-blue;
+  }
 }

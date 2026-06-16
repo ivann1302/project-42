@@ -24,9 +24,21 @@ export function DecisionWindowSection() {
         </p>
 
         <ul className={styles.signals} aria-label="Что должно быть понятно за 30 секунд">
-          <li>что вы делаете</li>
-          <li>почему вам можно доверять</li>
-          <li>куда нажать дальше</li>
+          <li>
+            <a className={styles.signalLink} href="#services">
+              что вы делаете
+            </a>
+          </li>
+          <li>
+            <a className={styles.signalLink} href="#projects">
+              почему вам можно доверять
+            </a>
+          </li>
+          <li>
+            <a className={styles.signalLink} href="#cta">
+              куда нажать дальше
+            </a>
+          </li>
         </ul>
       </div>
     </section>
