@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
+import { getLeadSourcePayload } from '@/shared/lib/leadSource'
 import { Icon, StudioButton } from '@/shared/ui'
 import styles from './RazrabotkaQuizSection.module.scss'
 
@@ -170,7 +171,7 @@ export function RazrabotkaQuizSection() {
           message: `Модальное окно. Сфера деятельности: ${normalizedActivity}. Предпочтительный способ связи: ${method}. Контакт: ${normalizedContact}.`,
           service: 'Разработка сайта',
           _page: window.location.pathname,
-          _source: 'razrabotka_time_modal',
+          ...getLeadSourcePayload('razrabotka_time_modal', 'Модальный квиз на странице разработки'),
           _activity: normalizedActivity,
           _contactMethod: method,
           _contact: normalizedContact,

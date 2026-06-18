@@ -6,6 +6,7 @@ import clsx from 'clsx'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Select } from '@/shared/ui'
+import { getLeadSourcePayload } from '@/shared/lib/leadSource'
 import { YANDEX_METRIKA_ID } from '@/shared/lib/metrika'
 import { contactSchema, type ContactFormData } from '../model/schema'
 import styles from './ContactForm.module.scss'
@@ -43,7 +44,11 @@ export function ContactForm({ onSuccess }: Props) {
       const res = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, _page: window.location.pathname }),
+        body: JSON.stringify({
+          ...data,
+          _page: window.location.pathname,
+          ...getLeadSourcePayload('contact_form', 'Обычная форма заявки'),
+        }),
       })
       if (!res.ok) throw new Error()
       reset()

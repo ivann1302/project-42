@@ -25,6 +25,22 @@ export default {
     const email   = String(data.email   ?? '').trim()
     const service = String(data.service ?? '').trim()
     const message = String(data.message ?? '').trim()
+    const sourceLabel = String(data._sourceLabel ?? data._source ?? '').trim()
+    const sourceUrl = String(data._sourceUrl ?? '').trim()
+    const landingPage = String(data._landingPage ?? '').trim()
+    const referrer = String(data._referrer ?? '').trim()
+    const utm = [
+      ['utm_source', data._utm_source],
+      ['utm_medium', data._utm_medium],
+      ['utm_campaign', data._utm_campaign],
+      ['utm_term', data._utm_term],
+      ['utm_content', data._utm_content],
+      ['yclid', data._yclid],
+      ['gclid', data._gclid],
+    ]
+      .map(([key, value]) => [key, String(value ?? '').trim()])
+      .filter(([, value]) => value)
+      .map(([key, value]) => `${key}=${value}`)
 
     const now = new Intl.DateTimeFormat('ru', {
       timeZone: 'Europe/Moscow',
@@ -40,6 +56,15 @@ export default {
       email   ? `✉️ <b>Email:</b> ${email}`      : null,
       service ? `🎯 <b>Услуга:</b> ${service}`   : null,
       message ? `💬 <b>Сообщение:</b> ${message}` : null,
+      sourceLabel || sourceUrl || landingPage || referrer || utm.length ? `` : null,
+      sourceLabel || sourceUrl || landingPage || referrer || utm.length
+        ? `🏷 <b>Источник лида</b>`
+        : null,
+      sourceLabel ? `Метка: ${sourceLabel}` : null,
+      sourceUrl ? `URL заявки: ${sourceUrl}` : null,
+      landingPage && landingPage !== sourceUrl ? `Первый вход: ${landingPage}` : null,
+      referrer ? `Referrer: ${referrer}` : null,
+      utm.length ? `UTM: ${utm.join(', ')}` : null,
       ``,
       `🕐 ${now} (МСК)`,
     ].filter((l) => l !== null).join('\n')

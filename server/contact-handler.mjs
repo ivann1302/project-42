@@ -158,6 +158,18 @@ function normalizeContactBody(body) {
     service: toStringValue(body.service),
     message: toStringValue(body.message),
     page: toStringValue(body._page),
+    source: toStringValue(body._source),
+    sourceLabel: toStringValue(body._sourceLabel),
+    sourceUrl: toStringValue(body._sourceUrl),
+    landingPage: toStringValue(body._landingPage),
+    referrer: toStringValue(body._referrer),
+    utmSource: toStringValue(body._utm_source),
+    utmMedium: toStringValue(body._utm_medium),
+    utmCampaign: toStringValue(body._utm_campaign),
+    utmTerm: toStringValue(body._utm_term),
+    utmContent: toStringValue(body._utm_content),
+    yclid: toStringValue(body._yclid),
+    gclid: toStringValue(body._gclid),
   }
 }
 
@@ -212,9 +224,42 @@ function buildTelegramMessage(body) {
   if (body.message) lines.push(`💬 <b>Сообщение:</b> ${escapeHtml(body.message)}`)
   if (body.page) lines.push(`🌐 <b>Страница:</b> ${escapeHtml(body.page)}`)
 
+  const sourceLines = buildSourceLines(body)
+  if (sourceLines.length > 0) {
+    lines.push('', '🏷 <b>Источник лида</b>', ...sourceLines)
+  }
+
   lines.push('', `🕒 <b>Время:</b> ${now} МСК`)
 
   return lines.join('\n')
+}
+
+function buildSourceLines(body) {
+  const label = body.sourceLabel || body.source
+  const lines = []
+
+  if (label) lines.push(`Метка: ${escapeHtml(label)}`)
+  if (body.sourceUrl) lines.push(`URL заявки: ${escapeHtml(body.sourceUrl)}`)
+  if (body.landingPage && body.landingPage !== body.sourceUrl) {
+    lines.push(`Первый вход: ${escapeHtml(body.landingPage)}`)
+  }
+  if (body.referrer) lines.push(`Referrer: ${escapeHtml(body.referrer)}`)
+
+  const utm = [
+    ['utm_source', body.utmSource],
+    ['utm_medium', body.utmMedium],
+    ['utm_campaign', body.utmCampaign],
+    ['utm_term', body.utmTerm],
+    ['utm_content', body.utmContent],
+    ['yclid', body.yclid],
+    ['gclid', body.gclid],
+  ]
+    .filter(([, value]) => value)
+    .map(([key, value]) => `${key}=${value}`)
+
+  if (utm.length > 0) lines.push(`UTM: ${escapeHtml(utm.join(', '))}`)
+
+  return lines
 }
 
 async function sendTelegramMessage({ botToken, chatId, text }) {

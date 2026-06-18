@@ -4,6 +4,7 @@ import { useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button, Container, StarField } from '@/shared/ui'
 import { useScrollReveal } from '@/shared/lib'
+import { getLeadSourcePayload } from '@/shared/lib/leadSource'
 import styles from './Cta.module.scss'
 
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
@@ -147,6 +148,7 @@ export function Cta({
           message,
           _honeypot: values._honeypot,
           _page: window.location.pathname,
+          ...getLeadSourcePayload('cta_quiz', 'CTA-квиз на сайте'),
           quiz: {
             sphere: values.sphere,
             content: values.content,
