@@ -1,0 +1,237 @@
+.main {
+  min-height: 100vh;
+  color: $text-primary;
+  background: $surface-canvas;
+}
+
+.heroScroll {
+  --hero-progress: 0;
+
+  height: 200svh;
+  background: $surface-canvas;
+}
+
+.hero {
+  display: grid;
+  place-items: center;
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  padding: clamp(120px, 16vh, 176px) $container-pad-mobile $space-16;
+  overflow: hidden;
+  background: $surface-canvas;
+}
+
+.heroInner {
+  display: grid;
+  justify-items: center;
+  gap: clamp($space-5, 4vw, $space-10);
+  width: min(100%, $container-inner);
+  text-align: center;
+  transform: translate3d(calc(var(--hero-progress) * 118vw), 0, 0);
+  will-change: transform;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.18em;
+  margin: 0;
+  font-family: $font-body;
+  font-size: clamp(64px, 13vw, 190px);
+  font-weight: $font-weight-display;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.titleWord {
+  color: $surface-card-mint;
+  -webkit-text-stroke: 0;
+  animation: hero-title-colors 9s ease-in-out infinite;
+}
+
+.titleNumber {
+  color: $surface-card-mint;
+  animation: hero-title-colors 9s ease-in-out infinite;
+}
+
+.subtitle {
+  max-width: 1200px;
+  margin: 0;
+  font-family: $font-poster;
+  font-size: clamp(30px, 4vw, 58px);
+  font-weight: $font-weight-semibold;
+  line-height: 0.98;
+  text-transform: uppercase;
+  color: $text-primary;
+  text-wrap: balance;
+}
+
+.trustScroll {
+  --trust-progress: 0;
+
+  height: 200svh;
+  background: $surface-canvas;
+}
+
+.trustSection {
+  display: grid;
+  align-items: end;
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  padding: $space-24 $container-pad-mobile $space-16;
+  overflow: hidden;
+  background: $surface-canvas;
+}
+
+.trustInner {
+  width: 100%;
+  transform: translate3d(calc(var(--trust-progress) * 118vw), 0, 0);
+  will-change: transform;
+}
+
+.trustTitle {
+  max-width: 1280px;
+  margin: 0 auto;
+  font-family: $font-body;
+  font-size: clamp(38px, 6.6vw, 96px);
+  font-weight: $font-weight-display;
+  line-height: 0.9;
+  text-align: center;
+  text-transform: uppercase;
+  color: $text-primary;
+  text-wrap: balance;
+}
+
+.trustAccent {
+  color: $surface-card-blue;
+  animation: trust-accent-colors 10s ease-in-out infinite;
+}
+
+@media (min-width: $bp-tablet) {
+  .hero {
+    padding-right: $container-pad-tablet;
+    padding-left: $container-pad-tablet;
+  }
+
+  .trustSection {
+    padding-right: $container-pad-tablet;
+    padding-left: $container-pad-tablet;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .hero {
+    padding-right: $container-pad-desktop;
+    padding-left: $container-pad-desktop;
+  }
+
+  .trustSection {
+    padding-right: $container-pad-desktop;
+    padding-left: $container-pad-desktop;
+  }
+}
+
+@media (width <= 560px) {
+  .title {
+    flex-direction: column;
+    align-items: center;
+    gap: $space-3;
+    font-size: clamp(50px, 16vw, 68px);
+  }
+
+  .subtitle {
+    font-size: clamp(26px, 9vw, 42px);
+  }
+
+  .trustSection {
+    min-height: 82svh;
+    padding-top: $space-20;
+    padding-bottom: $space-12;
+  }
+
+  .trustTitle {
+    font-size: clamp(30px, 10vw, 44px);
+    text-align: center;
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroScroll {
+    height: auto;
+  }
+
+  .trustScroll {
+    height: auto;
+  }
+
+  .hero {
+    position: relative;
+  }
+
+  .trustSection {
+    position: relative;
+  }
+
+  .heroInner {
+    transform: none;
+    will-change: auto;
+  }
+
+  .trustInner {
+    transform: none;
+    will-change: auto;
+  }
+
+  .titleWord,
+  .titleNumber,
+  .trustAccent {
+    animation: none;
+  }
+}
+
+@keyframes trust-accent-colors {
+  0%,
+  100% {
+    color: $surface-card-blue;
+  }
+
+  20% {
+    color: $surface-card-orange;
+  }
+
+  40% {
+    color: $text-primary;
+  }
+
+  60% {
+    color: $surface-card-mint;
+  }
+
+  80% {
+    color: $surface-card-yellow;
+  }
+}
+
+@keyframes hero-title-colors {
+  0%,
+  100% {
+    color: $surface-card-mint;
+  }
+
+  25% {
+    color: $surface-card-orange;
+  }
+
+  50% {
+    color: $surface-card-yellow;
+  }
+
+  75% {
+    color: $surface-card-blue;
+  }
+}

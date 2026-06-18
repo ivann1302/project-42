@@ -11,7 +11,7 @@ jest.mock('next/navigation', () => ({
 
 describe('CookieNotice', () => {
   beforeEach(() => {
-    mockPathname = '/'
+    mockPathname = '/blog'
     window.localStorage.clear()
   })
 
@@ -31,6 +31,14 @@ describe('CookieNotice', () => {
 
   it('does not show notice when acceptance is already stored', () => {
     window.localStorage.setItem(STORAGE_KEY, 'true')
+
+    render(<CookieNotice />)
+
+    expect(screen.queryByLabelText('Уведомление о cookie')).not.toBeInTheDocument()
+  })
+
+  it('does not show notice on the blank home page', () => {
+    mockPathname = '/'
 
     render(<CookieNotice />)
 

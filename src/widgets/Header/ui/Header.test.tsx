@@ -9,11 +9,6 @@ jest.mock('next/navigation', () => ({
 
 beforeEach(() => {
   mockPathname = '/'
-  global.IntersectionObserver = jest.fn().mockImplementation(() => ({
-    observe: jest.fn(),
-    disconnect: jest.fn(),
-    unobserve: jest.fn(),
-  }))
 })
 
 describe('Header', () => {
@@ -22,50 +17,32 @@ describe('Header', () => {
     expect(screen.getByText(/project/i)).toBeInTheDocument()
   })
 
-  it('renders the Портфолио nav link pointing to /portfolio', () => {
+  it('renders the logo pointing to home', () => {
     render(<Header />)
-    const link = screen.getByRole('link', { name: 'Портфолио' })
-    expect(link).toHaveAttribute('href', '/portfolio')
+    expect(screen.getByRole('link', { name: /project\s*42/i })).toHaveAttribute('href', '/')
   })
 
-  it('renders hash nav links as anchors with correct hrefs', () => {
+  it('points section links to razrabotka page outside razrabotka route', () => {
     render(<Header />)
     const servicesLink = screen.getByRole('link', { name: 'Услуги' })
-    expect(servicesLink).toHaveAttribute('href', '#services')
+    expect(servicesLink).toHaveAttribute('href', '/razrabotka-sayta#services')
   })
 
-  it('renders page-local links on razrabotka page', () => {
+  it('renders page-local links on razrabotka route', () => {
     mockPathname = '/razrabotka-sayta'
     render(<Header />)
 
-    expect(screen.getByRole('link', { name: /project\s*42/i })).toHaveAttribute('href', '#hero')
-    expect(screen.getByRole('link', { name: 'Как работаем' })).toHaveAttribute('href', '#process')
-    expect(screen.getByRole('link', { name: 'Проекты' })).toHaveAttribute('href', '#portfolio')
-    expect(screen.getByRole('link', { name: 'Цены' })).toHaveAttribute('href', '#pricing')
-    expect(screen.getByRole('link', { name: 'Обсудить' })).toHaveAttribute('href', '#cta')
+    expect(screen.getByRole('link', { name: 'Услуги' })).toHaveAttribute('href', '#services')
+    expect(screen.getByRole('link', { name: 'Проекты' })).toHaveAttribute('href', '#projects')
+    expect(screen.getByRole('link', { name: 'О нас' })).toHaveAttribute('href', '#about')
+    expect(screen.getByRole('link', { name: 'Этапы' })).toHaveAttribute('href', '#process')
+    expect(screen.getByRole('link', { name: 'Контакты' })).toHaveAttribute('href', '#contacts')
   })
 
-  it('points razrabotka nav links to razrabotka page from portfolio page', () => {
-    mockPathname = '/portfolio'
+  it('points cta links to razrabotka page outside razrabotka route', () => {
     render(<Header />)
 
-    expect(screen.getByRole('link', { name: /project\s*42/i })).toHaveAttribute(
-      'href',
-      '/razrabotka-sayta',
-    )
-    expect(screen.getByRole('link', { name: 'Как работаем' })).toHaveAttribute(
-      'href',
-      '/razrabotka-sayta#process',
-    )
-    expect(screen.getByRole('link', { name: 'Проекты' })).toHaveAttribute(
-      'href',
-      '/razrabotka-sayta#portfolio',
-    )
-    expect(screen.getByRole('link', { name: 'Цены' })).toHaveAttribute(
-      'href',
-      '/razrabotka-sayta#pricing',
-    )
-    expect(screen.getByRole('link', { name: 'Обсудить' })).toHaveAttribute(
+    expect(screen.getAllByRole('link', { name: /обсудить проект/i })[0]).toHaveAttribute(
       'href',
       '/razrabotka-sayta#cta',
     )

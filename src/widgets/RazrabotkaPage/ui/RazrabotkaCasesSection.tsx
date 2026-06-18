@@ -18,7 +18,7 @@ const caseRows = [
     project: getProject('project-1'),
     company: 'ROSA',
     accent: 'mint',
-    imageMode: 'cover',
+    imageMode: 'fill',
     metric: '3x',
     result: ['Стоимость заявки', 'ниже после рекламы'],
     summary: 'Корпоративный сайт на 300+ страниц с SEO, GEO и заявками в Telegram-бот.',
@@ -27,7 +27,7 @@ const caseRows = [
     project: getProject('project-3'),
     company: 'TrueTell',
     accent: 'pink',
-    imageMode: 'cover',
+    imageMode: 'fill',
     metric: 'x10+',
     result: ['Рост дохода', 'после запуска лендинга'],
     summary: 'B2B-лендинг, который объяснил сложную модель и помог привлечь крупных клиентов.',
@@ -49,6 +49,24 @@ const caseRows = [
     metric: 'APP',
     result: ['Промо сайт', 'для шеринга вещей'],
     summary: 'Промо страница для приложения, где соседи делятся вещами и экономят бюджет.',
+  },
+  {
+    project: getProject('project-8'),
+    company: 'Ziptron',
+    accent: 'mint',
+    imageMode: 'fill',
+    metric: 'E-BIKE',
+    result: ['Промо сайт', 'для аренды электровелосипедов'],
+    summary: 'Промо-страница для приложения аренды электровелосипедов с быстрым сценарием старта.',
+  },
+  {
+    project: getProject('project-9'),
+    company: 'AKS-FIT',
+    accent: 'pink',
+    imageMode: 'fill',
+    metric: 'FIT',
+    result: ['Атмосферная страница', 'для ознакомления и записи на проект'],
+    summary: 'Сайт-визитка для фитнес-проекта с ясной подачей программы и записью на участие.',
   },
 ] as const
 
@@ -118,7 +136,7 @@ export function RazrabotkaCasesSection() {
                         src={item.project.desktopImageUrl}
                         alt={item.project.title}
                         fill
-                        className={`${styles.image} ${item.imageMode === 'contain' ? styles.imageContain : ''}`}
+                        className={`${styles.image} ${item.imageMode === 'contain' ? styles.imageContain : ''} ${item.imageMode === 'fill' ? styles.imageFill : ''}`}
                         sizes="(max-width: 767px) 92vw, (max-width: 1439px) 58vw, 760px"
                       />
                     )}

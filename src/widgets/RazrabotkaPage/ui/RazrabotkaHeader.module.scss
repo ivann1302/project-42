@@ -30,6 +30,7 @@
   display: grid;
   align-items: center;
   grid-template-columns: minmax(0, 1fr) auto;
+  position: relative;
   min-height: 64px;
   padding: $space-3 $space-4;
   background: $surface-page;
@@ -266,8 +267,16 @@
   }
 
   .bar {
+    grid-template-columns: minmax(0, 1fr) auto;
     min-height: 76px;
     padding: $space-3 $space-6;
+  }
+
+  .nav {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 

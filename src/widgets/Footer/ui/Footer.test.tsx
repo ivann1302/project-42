@@ -14,20 +14,23 @@ beforeEach(() => {
 describe('Footer', () => {
   it('renders the logo', () => {
     render(<Footer />)
-    const logo = screen.getByRole('link', { name: /project/i })
+    const logo = screen.getByRole('link', { name: 'Project 42 - на главную' })
     expect(logo).toHaveAttribute('href', '/')
   })
 
-  it('renders the Портфолио nav link pointing to /portfolio', () => {
+  it('points section links to razrabotka page outside razrabotka route', () => {
     render(<Footer />)
-    const links = screen.getAllByRole('link', { name: 'Портфолио' })
-    expect(links[0]).toHaveAttribute('href', '/portfolio')
+    expect(screen.getByRole('link', { name: 'Что входит' })).toHaveAttribute(
+      'href',
+      '/razrabotka-sayta#services',
+    )
   })
 
-  it('renders process hash nav link with correct href', () => {
+  it('renders page-local section links on razrabotka route', () => {
+    mockPathname = '/razrabotka-sayta'
     render(<Footer />)
     const processLink = screen.getByRole('link', { name: 'Как работаем' })
-    expect(processLink).toHaveAttribute('href', '/#process')
+    expect(processLink).toHaveAttribute('href', '#process')
   })
 
   it('renders privacy policy link', () => {
@@ -40,24 +43,15 @@ describe('Footer', () => {
 
   it('renders offer link', () => {
     render(<Footer />)
-    expect(screen.getByRole('link', { name: 'Договор-оферта' })).toHaveAttribute('href', '/offer')
+    expect(screen.getByRole('link', { name: 'Публичная оферта' })).toHaveAttribute('href', '/offer')
   })
 
-  it('points home links to razrabotka page from portfolio page', () => {
-    mockPathname = '/portfolio'
+  it('points contact cta to razrabotka page outside razrabotka route', () => {
     render(<Footer />)
 
-    expect(screen.getByRole('link', { name: /project/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /разобрать задачу/i })).toHaveAttribute(
       'href',
-      '/razrabotka-sayta',
-    )
-    expect(screen.getByRole('link', { name: 'Как работаем' })).toHaveAttribute(
-      'href',
-      '/razrabotka-sayta#process',
-    )
-    expect(screen.getByRole('link', { name: 'Цены' })).toHaveAttribute(
-      'href',
-      '/razrabotka-sayta#pricing',
+      '/razrabotka-sayta#cta',
     )
   })
 })

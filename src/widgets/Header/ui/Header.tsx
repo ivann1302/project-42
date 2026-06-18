@@ -1,145 +1,108 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
-import { Button, Container, Icon, Modal, SocialLinks } from '@/shared/ui'
-import { ContactForm } from '@/features/ContactForm'
+import { Icon } from '@/shared/ui'
 import styles from './Header.module.scss'
 
-const NAV_LINKS = [
-  { label: 'Услуги', href: '#services' },
-  { label: 'Разработка лендингов', href: '/razrabotka-sayta' },
-  { label: 'Как работаем', href: '#process' },
-  { label: 'Портфолио', href: '/portfolio' },
-  { label: 'Блог', href: '/blog' },
-  { label: 'Цены', href: '#pricing' },
-]
+const SCROLL_THRESHOLD = 24
+const RAZRABOTKA_PATH = '/razrabotka-sayta'
 
-const RAZRABOTKA_NAV_LINKS = [
-  { label: 'Как работаем', href: '#process' },
-  { label: 'Проекты', href: '#portfolio' },
-  { label: 'Цены', href: '#pricing' },
-  { label: 'Обсудить', href: '#cta' },
-]
+const navLinks = [
+  { label: 'Услуги', href: '#services' },
+  { label: 'Проекты', href: '#projects' },
+  { label: 'О нас', href: '#about' },
+  { label: 'Этапы', href: '#process' },
+  { label: 'Контакты', href: '#contacts' },
+] as const
+
+function getSectionHref(pathname: string, hash: string) {
+  return pathname === RAZRABOTKA_PATH ? hash : `${RAZRABOTKA_PATH}${hash}`
+}
 
 export function Header() {
   const pathname = usePathname()
-  const isHome = pathname === '/'
-  const isPortfolioPage = pathname === '/portfolio'
-  const isRazrabotkaPage = pathname === '/razrabotka-sayta'
-  const navLinks = isRazrabotkaPage || isPortfolioPage ? RAZRABOTKA_NAV_LINKS : NAV_LINKS
-  const logoHref = isRazrabotkaPage ? '#hero' : isPortfolioPage ? '/razrabotka-sayta' : '/'
-  const [scrolled, setScrolled] = useState(false)
+  const [isPinned, setIsPinned] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [modalOpen, setModalOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handler, { passive: true })
-    return () => window.removeEventListener('scroll', handler)
+    const updateHeaderState = () => {
+      setIsPinned(window.scrollY > SCROLL_THRESHOLD)
+    }
+
+    updateHeaderState()
+    window.addEventListener('scroll', updateHeaderState, { passive: true })
+
+    return () => window.removeEventListener('scroll', updateHeaderState)
   }, [])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
-          }
-        }
-      },
-      { rootMargin: '-40% 0px -55% 0px' },
-    )
+    if (!menuOpen) return
 
-    const sectionIds = navLinks
-      .map((link) => link.href.replace('#', ''))
-      .filter((id) => !id.startsWith('/'))
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
+    window.addEventListener('keydown', closeOnEscape)
 
-    return () => observer.disconnect()
-  }, [navLinks])
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [menuOpen])
+
+  const closeMenu = () => setMenuOpen(false)
+  const ctaHref = getSectionHref(pathname, '#cta')
 
   return (
-    <>
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Обсудить проект">
-        <ContactForm onSuccess={() => setModalOpen(false)} />
-      </Modal>
-      <header className={clsx(styles.root, scrolled && !menuOpen && styles.scrolled)}>
-        <Container className={styles.inner}>
-          <Link href={logoHref} className={styles.logo} onClick={() => setMenuOpen(false)}>
-            Project<span className={styles.logoNumber}>42</span>
+    <header
+      className={clsx(styles.root, isPinned && styles.pinned, menuOpen && styles.menuOpen)}
+      data-testid="site-header"
+    >
+      <div className={styles.shell}>
+        <div className={styles.bar}>
+          <Link className={styles.logo} href="/" onClick={closeMenu}>
+            <span className={styles.logoTitle}>
+              <span>Project</span>
+              <span className={styles.logoNumber}>42</span>
+            </span>
+            <span className={styles.logoCaption}>Веб-студия</span>
           </Link>
 
-          <nav className={clsx(styles.nav, menuOpen && styles.navOpen)}>
-            {navLinks.map((link) =>
-              link.href.startsWith('/') ? (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={styles.navLink}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  href={
-                    isHome || isRazrabotkaPage
-                      ? link.href
-                      : isPortfolioPage
-                        ? `/razrabotka-sayta${link.href}`
-                        : `/${link.href}`
-                  }
-                  className={clsx(
-                    styles.navLink,
-                    activeSection === link.href.replace('#', '') && styles.navLinkActive,
-                  )}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ),
-            )}
-            <div className={styles.mobileSocials}>
-              <SocialLinks onLinkClick={() => setMenuOpen(false)} />
-            </div>
-            <Button
-              size="md"
-              onClick={() => {
-                setModalOpen(true)
-                setMenuOpen(false)
-              }}
-              className={styles.mobileCtaInNav}
-            >
+          <nav className={styles.nav} id="site-header-menu" aria-label="Основная навигация">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                className={styles.navLink}
+                href={getSectionHref(pathname, link.href)}
+                onClick={closeMenu}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link className={styles.mobileCta} href={ctaHref} onClick={closeMenu}>
               Обсудить проект
-            </Button>
+              <Icon name="externalLink" size={16} />
+            </Link>
           </nav>
 
-          <div className={styles.headerSocials}>
-            <SocialLinks />
-          </div>
-          <Button size="sm" onClick={() => setModalOpen(true)} className={styles.cta}>
+          <Link className={styles.cta} href={ctaHref}>
             Обсудить проект
-          </Button>
+            <Icon name="externalLink" size={16} />
+          </Link>
 
           <button
             className={styles.burger}
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label="Меню"
+            type="button"
+            aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-controls="site-header-menu"
             aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((current) => !current)}
           >
-            <Icon name={menuOpen ? 'close' : 'menu'} size={22} />
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
           </button>
-        </Container>
-      </header>
-    </>
+        </div>
+      </div>
+    </header>
   )
 }

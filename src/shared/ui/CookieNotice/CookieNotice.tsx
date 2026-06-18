@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import styles from './CookieNotice.module.scss'
 
 const STORAGE_KEY = 'webstudio-cookie-notice-accepted'
-const HIDDEN_PATHS = new Set(['/razrabotka-sayta'])
+const HIDDEN_PATHS = new Set(['/', '/razrabotka-sayta'])
 
 export function CookieNotice() {
   const pathname = usePathname()

@@ -1,150 +1,293 @@
 .root {
   position: fixed;
-  top: 0;
+  top: $space-3;
   right: 0;
   left: 0;
-  z-index: 100;
-  background: $color-bg;
-  transition: border-color $transition-slow;
-  border-bottom: 1px solid transparent;
+  z-index: 1000;
+  padding: 0 $container-pad-mobile;
+  color: $text-primary;
+  transition:
+    top $transition-slow,
+    padding $transition-slow;
 }
 
-.scrolled {
-  backdrop-filter: blur(16px);
-  border-bottom-color: $color-border;
+.pinned {
+  top: 0;
+  padding: 0;
 }
 
-.inner {
-  @include flex-between;
+.shell {
+  max-width: $container-inner;
+  margin: 0 auto;
+  transition: max-width $transition-slow;
+}
 
-  gap: $spacing-xl;
-  height: 72px;
+.pinned .shell {
+  max-width: none;
+}
 
-  @include mobile {
-    justify-content: flex-start;
-  }
+.bar {
+  display: grid;
+  align-items: center;
+  grid-template-columns: minmax(0, 1fr) auto;
+  position: relative;
+  min-height: 64px;
+  padding: $space-3 $space-4;
+  background: $surface-page;
+  border: 1px solid $border-default;
+  border-radius: $radius-lg;
+  transition:
+    color $transition-slow,
+    background $transition-slow,
+    border-color $transition-slow,
+    border-radius $transition-slow,
+    padding $transition-slow;
+}
+
+.pinned .bar {
+  color: $text-inverse;
+  background: $surface-card-light;
+  border-color: $surface-card-light;
+  border-radius: 0 0 $radius-lg $radius-lg;
 }
 
 .logo {
-  @include display-text($font-size-lg);
-
-  letter-spacing: -0.02em;
+  display: inline-grid;
+  grid-row: 1;
+  grid-column: 1;
+  gap: $space-1;
+  justify-self: start;
+  min-width: 0;
   text-decoration: none;
-  color: $color-text;
-  flex-shrink: 0;
+  color: inherit;
+}
+
+.logoTitle {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3em;
+  font-family: $font-body;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-display;
+  line-height: 1;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
 }
 
 .logoNumber {
   display: inline-block;
-  font-family: var(--font-body), sans-serif;
-  font-weight: 700;
-  color: $color-accent;
+  line-height: 1;
+  transform: translateY(-0.01em);
+}
+
+.logoCaption {
+  font-size: $font-size-2xs;
+  font-weight: $font-weight-semibold;
+  line-height: 1;
+  text-transform: uppercase;
+  color: currentcolor;
+  opacity: 0.72;
 }
 
 .nav {
-  display: flex;
-  flex: 1;
+  display: grid;
+  grid-row: 2;
+  grid-column: 1 / -1;
+  gap: $space-1;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    max-height $transition-slow,
+    opacity $transition-base,
+    padding $transition-slow;
+}
+
+.menuOpen .nav {
+  max-height: 360px;
+  padding-top: $space-4;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navLink,
+.mobileCta,
+.cta {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: clamp(16px, 2.3vw, $spacing-xl);
-
-  @include tablet {
-    gap: $spacing-md;
-  }
-
-  @include mobile {
-    display: none;
-
-    &.navOpen {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: $spacing-lg;
-      position: fixed;
-      inset: 72px 0 0;
-      z-index: 99;
-      padding: $spacing-xl $container-pad-mobile;
-      background: $color-bg;
-      border-top: 1px solid $color-border;
-    }
-  }
+  min-height: 44px;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    color $transition-base,
+    background $transition-base,
+    border-color $transition-base,
+    transform $transition-base;
 }
 
 .navLink {
-  @include body-text($font-size-base);
+  padding: $space-2 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+}
 
-  text-decoration: none;
-  color: $color-text-muted;
-  white-space: nowrap;
-  transition: color $transition-base;
+.mobileCta,
+.cta {
+  justify-content: center;
+  gap: $space-2;
+  min-height: 48px;
+  padding: 0 $space-4;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  border: 1px solid currentcolor;
+  border-radius: $radius-md;
+}
 
-  &:hover {
-    color: $color-text;
-  }
-
-  &.navLinkActive {
-    color: $color-text;
-  }
-
-  @include mobile {
-    font-size: $font-size-lg;
-  }
+.mobileCta {
+  margin-top: $space-2;
 }
 
 .cta {
-  flex-shrink: 0;
-
-  @include mobile {
-    display: none;
-  }
-}
-
-.mobileCtaInNav {
   display: none;
-
-  @include mobile {
-    display: flex;
-    margin-top: $spacing-md;
-  }
 }
 
-.headerSocials {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  @media (width <= 1180px) {
-    display: none;
-  }
-
-  @include mobile {
-    display: none;
-  }
-}
-
-.mobileSocials {
-  display: none;
-
-  @include mobile {
-    display: flex;
-    align-items: center;
-    margin-top: $spacing-sm;
-  }
+.navLink:hover,
+.mobileCta:hover,
+.cta:hover {
+  transform: translateY(-2px);
 }
 
 .burger {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: $spacing-sm;
-  color: $color-text;
-  background: none;
-  border: none;
-  cursor: pointer;
+  display: inline-grid;
+  grid-row: 1;
+  grid-column: 2;
+  place-items: center;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  color: inherit;
+  border: 1px solid currentcolor;
+  border-radius: $radius-md;
+}
 
-  @include mobile {
+.burgerLine {
+  display: block;
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background: currentcolor;
+  border-radius: $radius-pill;
+  transition:
+    transform $transition-base,
+    opacity $transition-base;
+}
+
+.burgerLine:first-child {
+  transform: translateY(-4px);
+}
+
+.burgerLine:last-child {
+  transform: translateY(4px);
+}
+
+.menuOpen .burgerLine:first-child {
+  transform: rotate(45deg);
+}
+
+.menuOpen .burgerLine:last-child {
+  transform: rotate(-45deg);
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    top: $space-5;
+    padding: 0 $container-pad-tablet;
+  }
+
+  .pinned {
+    top: 0;
+    padding: 0;
+  }
+
+  .bar {
+    gap: $space-6;
+    grid-template-columns: minmax(120px, 0.55fr) minmax(0, 1.5fr) auto;
+    min-height: 72px;
+    padding: $space-3 $space-5;
+  }
+
+  .nav {
     display: flex;
-    margin-left: auto;
+    grid-row: auto;
+    grid-column: auto;
+    align-items: center;
+    justify-content: center;
+    gap: clamp($space-4, 2vw, $space-8);
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .navLink {
+    padding: 0;
+    font-size: $font-size-xs;
+  }
+
+  .mobileCta {
+    display: none;
+  }
+
+  .cta {
+    display: inline-flex;
+    grid-row: auto;
+    grid-column: auto;
+    min-height: 48px;
+    white-space: nowrap;
+  }
+
+  .burger {
+    display: none;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: 0 $container-pad-desktop;
+  }
+
+  .pinned {
+    padding: 0;
+  }
+
+  .bar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    min-height: 76px;
+    padding: $space-3 $space-6;
+  }
+
+  .nav {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .bar,
+  .nav,
+  .navLink,
+  .mobileCta,
+  .cta,
+  .burgerLine {
+    transition: none;
   }
 }

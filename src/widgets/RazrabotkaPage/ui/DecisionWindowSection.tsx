@@ -45,12 +45,12 @@ export function DecisionWindowSection() {
         >
           <li>
             <a className={styles.signalLink} href="#services">
-              что вы делаете
+              Что делаем
             </a>
           </li>
           <li>
             <a className={styles.signalLink} href="#projects">
-              почему вам можно доверять
+              Почему можно доверять
             </a>
           </li>
           <li>
