@@ -1,6 +1,6 @@
 .root {
   padding: 124px $container-pad-mobile $space-6;
-  overflow: visible;
+  overflow: clip visible;
   color: $text-primary;
 }
 
@@ -66,8 +66,34 @@
   transform-origin: center center;
 }
 
+.titleLine {
+  white-space: normal;
+}
+
+.joinLetter {
+  display: inline;
+  font-family: $font-body;
+  font-size: 0.9em;
+  font-weight: $font-weight-display;
+  line-height: 0;
+  color: $surface-card-mint;
+  animation: hero-join-letter-colors 9s ease-in-out infinite;
+  transform: none;
+}
+
+.title .joinLetter {
+  display: inline;
+  transform: none;
+}
+
 .accentWord {
+  display: inline;
   color: $text-accent;
+}
+
+.title .accentWord {
+  display: inline;
+  transform: none;
 }
 
 .text {
@@ -101,8 +127,7 @@
   left: 50%;
   width: 100%;
   height: auto;
-  transform: translate(calc(-50% + 15px + var(--hero-visual-scroll-shift, 0px)), -50%);
-  will-change: transform;
+  transform: translate(-50%, -50%);
 }
 
 @media (min-width: $bp-tablet) {
@@ -142,6 +167,12 @@
     transform-origin: left center;
   }
 
+  .text {
+    margin-right: 0;
+    margin-left: 0;
+    text-align: left;
+  }
+
   .actions {
     display: flex;
     flex-wrap: wrap;
@@ -161,8 +192,7 @@
 
   .image {
     left: 50%;
-    transform: translate(calc(-50% + var(--hero-visual-scroll-shift, 0px)), -50%);
-    will-change: auto;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -183,8 +213,13 @@
 
   .title {
     gap: $space-2;
-    max-width: 13.4ch;
+    max-width: 15ch;
+    margin-top: 20px;
     font-size: clamp(72px, 6vw, 106px);
+  }
+
+  .titleLine {
+    white-space: nowrap;
   }
 
   .outlineWord {
@@ -196,14 +231,14 @@
     height: clamp(500px, 44vw, 640px);
     overflow: visible;
   }
-
-  .image {
-    will-change: transform;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .kicker {
+    animation: none;
+  }
+
+  .joinLetter {
     animation: none;
   }
 }
@@ -224,5 +259,24 @@
 
   75% {
     border-color: $surface-card-blue;
+  }
+}
+
+@keyframes hero-join-letter-colors {
+  0%,
+  100% {
+    color: $surface-card-mint;
+  }
+
+  25% {
+    color: $surface-card-orange;
+  }
+
+  50% {
+    color: $surface-card-yellow;
+  }
+
+  75% {
+    color: $surface-card-blue;
   }
 }

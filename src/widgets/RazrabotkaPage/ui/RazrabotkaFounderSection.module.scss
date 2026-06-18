@@ -10,7 +10,6 @@
   display: grid;
   align-items: start;
   gap: $space-4;
-  grid-template-columns: minmax(0, 1fr) 86px;
   max-width: $container-inner;
   margin: 0 auto 0 0;
   padding: $space-5;
@@ -28,12 +27,13 @@
 }
 
 .content {
-  display: contents;
+  display: grid;
+  gap: $space-5;
 }
 
-.photoCard,
 .title,
-.speech {
+.reasonList {
+  margin: 0;
   opacity: 0;
   transition:
     opacity $duration-base $ease-standard 260ms,
@@ -41,22 +41,14 @@
   transform: translateX(-$space-4);
 }
 
-.root:global(.visible) .photoCard,
 .root:global(.visible) .title,
-.root:global(.visible) .speech {
+.root:global(.visible) .reasonList {
   opacity: 1;
   transform: translateX(0);
 }
 
-.title,
-.speech,
-.speech p {
-  margin: 0;
-}
-
 .title {
-  grid-column: 1 / -1;
-  max-width: 9ch;
+  max-width: 12ch;
   font-family: $font-poster;
   font-size: clamp(42px, 11vw, 52px);
   font-weight: $font-weight-semibold;
@@ -65,43 +57,36 @@
   text-transform: uppercase;
 }
 
-.speech {
+.reasonList {
   display: grid;
-  grid-column: 1 / -1;
-  gap: $space-2;
-  max-width: 58ch;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
-  line-height: 1.42;
-}
-
-.photoCard {
-  display: grid;
-  gap: $space-3;
-  grid-row: 1;
-  grid-column: 2;
-  justify-self: end;
-  width: 86px;
-  margin: 0;
-}
-
-.photo {
-  width: 86px;
-  height: 86px;
-  object-fit: cover;
-  object-position: 50% 20%;
-  border: 2px solid rgba($neutral-0, 78%);
-  border-radius: $radius-lg;
-}
-
-.caption {
-  display: none;
-  margin: 0;
-  font-size: $font-size-xs;
+  gap: $space-4;
+  max-width: 72ch;
+  padding: 0;
+  list-style: none;
+  font-size: $font-size-base;
   font-weight: $font-weight-bold;
-  line-height: $line-height-ui;
-  text-align: center;
-  text-transform: uppercase;
+  line-height: 1.28;
+}
+
+.reasonList li {
+  display: grid;
+  align-items: start;
+  gap: $space-3;
+  grid-template-columns: 28px minmax(0, 1fr);
+}
+
+.reasonList li::before {
+  content: '✓';
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  font-size: 20px;
+  font-weight: $font-weight-display;
+  line-height: 1;
+  color: $neutral-0;
+  border: 2px solid $neutral-0;
+  border-radius: 50%;
 }
 
 @media (min-width: $bp-tablet) {
@@ -112,46 +97,24 @@
   .shell {
     align-items: center;
     gap: $space-8;
-    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.45fr);
     margin: 0 auto;
     padding: $space-10;
     border-radius: $radius-xl;
   }
 
   .content {
-    display: grid;
-    gap: $space-4;
-  }
-
-  .title,
-  .speech {
-    grid-row: auto;
-    grid-column: auto;
+    gap: $space-8;
   }
 
   .title {
-    max-width: 10ch;
+    max-width: 12ch;
     font-size: clamp(64px, 8vw, 92px);
   }
 
-  .speech {
-    gap: $space-3;
-    font-size: $font-size-lg;
-    line-height: 1.5;
-  }
-
-  .photoCard {
-    grid-row: auto;
-    grid-column: auto;
-    justify-self: end;
-    width: min(100%, 320px);
-  }
-
-  .photo {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    border-width: 3px;
+  .reasonList {
+    gap: $space-5;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.18;
   }
 }
 
@@ -162,7 +125,6 @@
 
   .shell {
     gap: $space-12;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.36fr);
     width: 100%;
     max-width: none;
     min-height: 520px;
@@ -172,21 +134,24 @@
     border-radius: 0 $radius-xl $radius-xl 0;
   }
 
-  .photoCard {
-    width: min(22vw, 300px);
-  }
-
-  .caption {
-    display: block;
-  }
-
   .title {
     font-size: clamp(72px, 6vw, 104px);
   }
 
-  .speech {
-    max-width: 68ch;
-    font-size: clamp(18px, 1.32vw, 22px);
+  .reasonList {
+    max-width: 74ch;
+    font-size: clamp(24px, 1.75vw, 34px);
+  }
+
+  .reasonList li {
+    gap: $space-4;
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .reasonList li::before {
+    width: 34px;
+    height: 34px;
+    font-size: 24px;
   }
 }
 
@@ -203,9 +168,8 @@
     will-change: auto;
   }
 
-  .photoCard,
   .title,
-  .speech {
+  .reasonList {
     opacity: 1;
     transition: none;
     transform: none;

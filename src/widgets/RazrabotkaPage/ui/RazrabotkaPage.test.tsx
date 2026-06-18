@@ -4,6 +4,10 @@ import { razrabotkaConfig } from '@/entities/ServicePage'
 import { RazrabotkaPage } from './RazrabotkaPage'
 
 describe('RazrabotkaPage', () => {
+  afterEach(() => {
+    jest.useRealTimers()
+  })
+
   it('renders the new design-system header', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
@@ -21,10 +25,10 @@ describe('RazrabotkaPage', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: 'Создаём сайты которые продают',
+        name: 'Сайты и приложения для бизнеса',
       }),
     ).toBeInTheDocument()
-    expect(screen.getByText('Разработка лендинга от 5 дней')).toBeInTheDocument()
+    expect(screen.getByText('Создание и продвижение')).toBeInTheDocument()
     expect(
       screen.getByText('Если вам нужен результат, а не просто красивый дизайн, то вы по адресу.'),
     ).toBeInTheDocument()
@@ -59,8 +63,8 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText('Мобильная версия сайта')).toBeInTheDocument()
     expect(screen.getByText(/перехвата лидов/)).toBeInTheDocument()
     expect(screen.getByText('Цена под ключ')).toBeInTheDocument()
-    expect(screen.getByText('25 тыс.')).toBeInTheDocument()
-    expect(screen.getByText('За одностраничный сайт')).toBeInTheDocument()
+    expect(screen.getByText('Без скрытых доплат')).toBeInTheDocument()
+    expect(screen.queryByText('За одностраничный сайт')).not.toBeInTheDocument()
     expect(screen.getByText('Оплата 50/50')).toBeInTheDocument()
   })
 
@@ -79,62 +83,92 @@ describe('RazrabotkaPage', () => {
   it('renders the cases section', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
-    expect(screen.getByRole('heading', { level: 2, name: 'Наши кейсы' })).toBeInTheDocument()
+    const casesTitle = screen.getByRole('heading', { level: 2, name: 'Наши кейсы' })
+    const casesSection = casesTitle.closest('section')
+    expect(casesTitle).toBeInTheDocument()
+    expect(casesSection).not.toBeNull()
+
+    const cases = within(casesSection as HTMLElement)
+
     expect(screen.queryByRole('link', { name: 'Смотреть все кейсы' })).not.toBeInTheDocument()
-    expect(screen.getByText('ROSA')).toBeInTheDocument()
-    expect(screen.getAllByText('Корпоративный сайт строительной компании').length).toBeGreaterThan(
-      0,
-    )
-    expect(screen.getByText('TrueTell')).toBeInTheDocument()
-    expect(screen.getAllByText('Лендинг TrueTell').length).toBeGreaterThan(0)
-    expect(screen.getByText('Красим.ру')).toBeInTheDocument()
+    expect(cases.getByText('ROSA')).toBeInTheDocument()
+    expect(cases.getAllByText('Корпоративный сайт строительной компании').length).toBeGreaterThan(0)
+    expect(cases.getByText('TrueTell')).toBeInTheDocument()
+    expect(cases.getAllByText('Лендинг TrueTell').length).toBeGreaterThan(0)
+    expect(cases.getByText('Красим.ру')).toBeInTheDocument()
     expect(
-      screen.getAllByText('Лендинг для Красим.ру и настройка рекламы в Яндекс.Директ').length,
+      cases.getAllByText('Лендинг для Красим.ру и настройка рекламы в Яндекс.Директ').length,
     ).toBeGreaterThan(0)
-    expect(screen.getByText('Sosedi')).toBeInTheDocument()
-    expect(screen.getAllByText('Промо сайт приложения Sosedi').length).toBeGreaterThan(0)
+    expect(cases.getByText('Sosedi')).toBeInTheDocument()
+    expect(cases.getAllByText('Промо сайт приложения Sosedi').length).toBeGreaterThan(0)
   })
 
-  it('renders the founder message section', () => {
+  it('renders the testimonials section between cases and services', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
-    expect(screen.getByRole('heading', { level: 2, name: 'Привет' })).toBeInTheDocument()
-    expect(screen.getByText(/Мы студия разработки Project 42/)).toBeInTheDocument()
-    expect(screen.getByText(/нижней границе рынка/)).toBeInTheDocument()
-    expect(screen.getByAltText('Иван, основатель Project 42')).toBeInTheDocument()
-    expect(screen.getByText('Иван - основатель Project 42')).toBeInTheDocument()
+    const casesTitle = screen.getByRole('heading', { level: 2, name: 'Наши кейсы' })
+    const testimonialsTitle = screen.getByRole('heading', { level: 2, name: 'Отзывы клиентов' })
+    const servicesTitle = screen.getByRole('heading', { level: 2, name: 'Наши услуги' })
+
+    expect(testimonialsTitle).toBeInTheDocument()
+    expect(
+      casesTitle.compareDocumentPosition(testimonialsTitle) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+    expect(
+      testimonialsTitle.compareDocumentPosition(servicesTitle) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+    const testimonialsSection = testimonialsTitle.closest('section')
+    expect(testimonialsSection).not.toBeNull()
+
+    const testimonials = within(testimonialsSection as HTMLElement)
+
+    expect(testimonials.getByText('TrueTell')).toBeInTheDocument()
+    expect(testimonials.getByText('ROSA')).toBeInTheDocument()
+    expect(testimonials.getByText('AKS-FIT')).toBeInTheDocument()
+    expect(testimonials.getByText('Tutor Online')).toBeInTheDocument()
+    expect(testimonials.getByText('Красим.ру')).toBeInTheDocument()
+    expect(testimonials.getByText(/помог привлечь несколько крупных клиентов/)).toBeInTheDocument()
+    expect(testimonials.getByText(/первые обращения из ChatGPT/)).toBeInTheDocument()
+    expect(testimonials.getByText(/стоимость лида стала ниже/)).toBeInTheDocument()
   })
 
-  it('renders the quick consultation quiz', async () => {
-    const observerCallbacks: Array<(entries: IntersectionObserverEntry[]) => void> = []
-    const originalIntersectionObserver = global.IntersectionObserver
+  it('renders the reasons to trust section', () => {
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
 
-    global.IntersectionObserver = jest.fn().mockImplementation((callback) => {
-      observerCallbacks.push(callback)
+    expect(screen.getByRole('heading', { level: 2, name: 'Почему мы?' })).toBeInTheDocument()
+    expect(screen.getByText('Разработка точно в срок + поддержка')).toBeInTheDocument()
+    expect(screen.getByText(/Понимание пути клиента/)).toBeInTheDocument()
+    expect(screen.getByText(/защите информации и персональных данных/)).toBeInTheDocument()
+    expect(screen.getByText(/Защита сайта от перехвата клиентов/)).toBeInTheDocument()
+    expect(screen.getByText(/по сравнению с Tilda/)).toBeInTheDocument()
+  })
 
-      return {
-        observe: jest.fn(),
-        disconnect: jest.fn(),
-        unobserve: jest.fn(),
-      }
-    })
+  it('opens the quick consultation quiz after 10 seconds on the page', async () => {
+    jest.useFakeTimers()
 
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 
     await act(async () => {
-      observerCallbacks.forEach((callback) => {
-        callback([{ isIntersecting: true } as IntersectionObserverEntry])
-      })
+      jest.advanceTimersByTime(9_999)
+    })
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+
+    await act(async () => {
+      jest.advanceTimersByTime(1)
     })
 
     expect(
       await screen.findByRole('heading', {
         level: 2,
-        name: 'Мы проконсультируем вас в течение дня',
+        name: 'Оставьте заявку',
       }),
     ).toBeInTheDocument()
+    expect(screen.getByText(/совершенно бесплатно/)).toBeInTheDocument()
+    jest.useRealTimers()
+
     expect(screen.getByLabelText('Как вас зовут?')).toBeInTheDocument()
 
     await userEvent.type(screen.getByLabelText('Как вас зовут?'), 'Иван')
@@ -151,8 +185,6 @@ describe('RazrabotkaPage', () => {
 
     expect(screen.getByLabelText('Ваш телефон')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Получить консультацию' })).toBeInTheDocument()
-
-    global.IntersectionObserver = originalIntersectionObserver
   })
 
   it('opens the consultation quiz from CTA links', async () => {
@@ -230,6 +262,31 @@ describe('RazrabotkaPage', () => {
     )
   })
 
+  it('renders the services carousel section above the trust reasons', () => {
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    const servicesTitle = screen.getByRole('heading', { level: 2, name: 'Наши услуги' })
+    const reasonsTitle = screen.getByRole('heading', { level: 2, name: 'Почему мы?' })
+
+    expect(servicesTitle).toBeInTheDocument()
+    expect(reasonsTitle).toBeInTheDocument()
+    expect(
+      servicesTitle.compareDocumentPosition(reasonsTitle) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+    expect(screen.getByText('Разработка лендинга')).toBeInTheDocument()
+    expect(screen.getByText('Разработка сайта-визитки')).toBeInTheDocument()
+    expect(screen.getByText('Разработка корпоративного сайта')).toBeInTheDocument()
+    expect(screen.getByText('Разработка интернет-магазина')).toBeInTheDocument()
+    expect(screen.getByText('Разработка Telegram-бота')).toBeInTheDocument()
+    expect(screen.getByText('Разработка мобильного приложения')).toBeInTheDocument()
+    expect(screen.getByText('SEO и продвижение в ИИ')).toBeInTheDocument()
+    expect(screen.getByText('Настройка и ведение рекламы в Яндекс.Директ')).toBeInTheDocument()
+    expect(screen.getByText('от 15 тыс')).toBeInTheDocument()
+    expect(screen.getByText('от 100 тыс')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Предыдущие услуги' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Следующие услуги' })).toBeInTheDocument()
+  })
+
   it('renders the aftercare section', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
@@ -238,7 +295,7 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText('Правки')).toBeInTheDocument()
     expect(screen.getByText('14 дней')).toBeInTheDocument()
     expect(screen.getByText('помогаем внести изменения после запуска')).toBeInTheDocument()
-    expect(screen.getByText('Ошибки')).toBeInTheDocument()
+    expect(screen.getByText('Гарантия')).toBeInTheDocument()
     expect(screen.getByText('1 год')).toBeInTheDocument()
     expect(screen.getByText('исправляем возможные ошибки разработки')).toBeInTheDocument()
     expect(screen.getByText('Защита')).toBeInTheDocument()

@@ -1,0 +1,377 @@
+$services-tablet-gap-total: $space-5;
+$services-desktop-gap-total: $space-5 * 3;
+$services-desktop-width: $container-inner + 220px;
+
+.root {
+  padding: $space-12 0;
+  color: $text-primary;
+  background: $surface-canvas;
+  opacity: 0;
+  transition:
+    opacity 860ms $ease-emphasized,
+    transform 920ms $ease-emphasized;
+  transform: translateY($space-8);
+  will-change: opacity, transform;
+}
+
+.root:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+.inner {
+  max-width: $container-inner;
+  margin: 0 auto;
+}
+
+.header {
+  display: grid;
+  gap: $space-2;
+  padding: 0 $container-pad-mobile;
+}
+
+.kicker {
+  margin: 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $surface-card-yellow;
+}
+
+.title {
+  display: grid;
+  max-width: 9ch;
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(48px, 13vw, 72px);
+  font-weight: $font-weight-display;
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.outlineWord {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px $text-primary;
+}
+
+.carouselShell {
+  position: relative;
+  margin-top: $space-6;
+}
+
+.carousel {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 0 $container-pad-mobile $space-2;
+  scroll-padding-left: $container-pad-mobile;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.list {
+  display: grid;
+  grid-auto-columns: calc(100vw - 72px);
+  grid-auto-flow: column;
+  gap: $space-4;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: minmax(132px, auto) 1fr;
+  min-height: 392px;
+  padding: $space-4;
+  overflow: hidden;
+  color: $text-primary;
+  background: transparent;
+  border: 1px solid rgba($neutral-900, 24%);
+  border-radius: 8px;
+  scroll-snap-align: start;
+}
+
+.cardVisual {
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+  margin: (-$space-2) (-$space-2) 0;
+}
+
+.image {
+  width: min(86%, 260px);
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+
+.cardBody {
+  display: grid;
+  align-self: end;
+  gap: $space-3;
+}
+
+.number {
+  font-family: $font-body;
+  font-size: 20px;
+  font-weight: $font-weight-display;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  line-height: 1;
+  color: $surface-card-blue;
+}
+
+.cardTitle {
+  max-width: 13ch;
+  margin: 0;
+  font-family: $font-body;
+  font-size: 24px;
+  font-weight: $font-weight-display;
+  line-height: 0.95;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.description {
+  max-width: 32ch;
+  margin: 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: 1.42;
+  color: rgba($neutral-900, 70%);
+}
+
+.price {
+  margin: $space-1 0 0;
+  font-size: 22px;
+  font-weight: $font-weight-display;
+  line-height: 1;
+  text-transform: uppercase;
+  color: $surface-card-yellow;
+}
+
+.controls {
+  display: none;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-16 $container-pad-tablet;
+  }
+
+  .header {
+    padding: 0;
+  }
+
+  .title {
+    max-width: none;
+    font-size: clamp(76px, 10vw, 112px);
+  }
+
+  .carouselShell {
+    margin-top: $space-8;
+  }
+
+  .carousel {
+    padding: 0;
+    scroll-padding-left: 0;
+  }
+
+  .list {
+    grid-auto-columns: calc((100% - #{$services-tablet-gap-total}) / 2);
+    gap: $space-5;
+    width: 100%;
+  }
+
+  .card {
+    min-height: 430px;
+    padding: $space-5;
+    scroll-snap-align: start;
+  }
+
+  .cardVisual {
+    min-height: 168px;
+  }
+
+  .cardTitle {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-20 $container-pad-desktop;
+  }
+
+  .inner {
+    max-width: $services-desktop-width;
+  }
+
+  .header {
+    align-items: end;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.38fr);
+  }
+
+  .kicker {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    max-width: 18ch;
+    text-align: right;
+  }
+
+  .title {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(86px, 7.4vw, 124px);
+  }
+
+  .carouselShell {
+    margin-top: $space-10;
+  }
+
+  .list {
+    grid-auto-columns: calc((100% - #{$services-desktop-gap-total}) / 4);
+  }
+
+  .card {
+    min-height: 470px;
+    padding: $space-5;
+    transition:
+      background $duration-base $ease-standard,
+      border-color $duration-base $ease-standard,
+      color $duration-base $ease-standard;
+  }
+
+  .card:hover {
+    color: $text-inverse;
+    background: $neutral-900;
+    border-color: $neutral-900;
+  }
+
+  .card:hover .number,
+  .card:hover .description,
+  .card:hover .price {
+    color: $text-inverse;
+  }
+
+  .cardVisual {
+    min-height: 182px;
+  }
+
+  .image {
+    width: min(92%, 250px);
+  }
+
+  .cardTitle {
+    font-size: clamp(22px, 1.55vw, 26px);
+  }
+
+  .description {
+    font-size: 13px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    left: -60px;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .control {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    color: $surface-card-yellow;
+    pointer-events: auto;
+    background: transparent;
+    border: 1.5px solid currentcolor;
+    border-radius: $radius-pill;
+    transition:
+      background $duration-base $ease-standard,
+      border-color $duration-base $ease-standard,
+      color $duration-base $ease-standard,
+      transform $duration-base $ease-standard;
+  }
+
+  .controlIcon {
+    width: 14px;
+    height: 14px;
+    border-color: currentcolor;
+    border-style: solid;
+    transition: border-color $duration-base $ease-standard;
+  }
+
+  .controlIconPrevious {
+    margin-left: $space-1;
+    border-width: 0 0 2px 2px;
+    transform: rotate(45deg);
+  }
+
+  .controlIconNext {
+    margin-right: $space-1;
+    border-width: 2px 2px 0 0;
+    transform: rotate(45deg);
+  }
+
+  .control:hover {
+    color: $text-inverse;
+    background: $surface-card-yellow;
+    border-color: $surface-card-yellow;
+  }
+
+  .control:first-child:hover {
+    transform: scale(1.04);
+  }
+
+  .control:last-child:hover {
+    transform: scale(1.04);
+  }
+}
+
+@media (min-width: $bp-wide) {
+  .card {
+    min-height: 500px;
+    padding: $space-6;
+  }
+
+  .cardTitle {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: $font-size-sm;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .card,
+  .control {
+    transition: none;
+  }
+}

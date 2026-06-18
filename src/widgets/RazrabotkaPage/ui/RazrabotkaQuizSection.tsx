@@ -8,6 +8,7 @@ import styles from './RazrabotkaQuizSection.module.scss'
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
 const PHONE_PATTERN = /^\+?[\d\s\-()]{7,20}$/u
 const TELEGRAM_USERNAME_PATTERN = /^@?[a-zA-Z0-9_]{5,32}$/u
+const AUTO_OPEN_DELAY_MS = 10_000
 
 const contactMethods = [
   { label: 'Telegram', value: 'telegram' },
@@ -59,52 +60,16 @@ export function RazrabotkaQuizSection() {
   }
 
   useEffect(() => {
-    const target = document.getElementById('process')
-
     const openOnce = () => {
       if (openedRef.current) return
-      if (window.location.hash && window.location.hash !== '#process') return
       openedRef.current = true
       openModal()
     }
 
-    const handleScroll = () => {
-      const processSection = document.getElementById('process')
-      if (!processSection) return
-
-      const rect = processSection.getBoundingClientRect()
-      const triggerLine = window.innerHeight * 0.62
-      if (rect.top <= triggerLine && rect.bottom >= triggerLine) {
-        openOnce()
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', handleScroll)
-    window.setTimeout(handleScroll, 250)
-
-    if (!target || typeof IntersectionObserver === 'undefined') {
-      return () => {
-        window.removeEventListener('scroll', handleScroll)
-        window.removeEventListener('resize', handleScroll)
-      }
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return
-        openOnce()
-        observer.disconnect()
-      },
-      { threshold: 0.36 },
-    )
-
-    observer.observe(target)
+    const timerId = window.setTimeout(openOnce, AUTO_OPEN_DELAY_MS)
 
     return () => {
-      observer.disconnect()
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleScroll)
+      window.clearTimeout(timerId)
     }
   }, [])
 
@@ -205,7 +170,7 @@ export function RazrabotkaQuizSection() {
           message: `Модальное окно. Сфера деятельности: ${normalizedActivity}. Предпочтительный способ связи: ${method}. Контакт: ${normalizedContact}.`,
           service: 'Разработка сайта',
           _page: window.location.pathname,
-          _source: 'razrabotka_scroll_modal',
+          _source: 'razrabotka_time_modal',
           _activity: normalizedActivity,
           _contactMethod: method,
           _contact: normalizedContact,
@@ -241,27 +206,15 @@ export function RazrabotkaQuizSection() {
         </button>
 
         <div className={styles.content}>
-          <p className={styles.kicker}>Быстрая консультация</p>
           <h2 className={styles.title} id="razrabotka-quiz-title">
-            <span>Мы проконсультируем</span>
-            <span>вас в течение дня</span>
+            <span>Оставьте заявку</span>
           </h2>
           <p className={styles.text}>
-            Оставьте удобный контакт, и мы вернёмся с первыми вопросами по проекту.
+            Мы проконсультируем вас совершенно бесплатно. Это вас ни к чему не обязывает.
           </p>
         </div>
 
         <div className={styles.form}>
-          <div className={styles.steps} aria-label="Шаг заявки">
-            {[1, 2, 3].map((item) => (
-              <span
-                key={item}
-                className={clsx(styles.stepDot, step >= item && styles.stepDotActive)}
-                aria-hidden="true"
-              />
-            ))}
-          </div>
-
           {step === 1 && (
             <div className={styles.field}>
               <label className={styles.label} htmlFor="razrabotka-quiz-name">
@@ -375,22 +328,10 @@ export function RazrabotkaQuizSection() {
           )}
 
           <div className={styles.controls}>
-            {step > 1 && (
-              <button
-                className={styles.back}
-                type="button"
-                onClick={() => {
-                  setError('')
-                  setStep((currentStep) => Math.max(currentStep - 1, 1) as QuizStep)
-                }}
-              >
-                Назад
-              </button>
-            )}
             <StudioButton
               className={styles.submit}
               type="button"
-              variant="mint"
+              variant="yellow"
               size="md"
               icon={null}
               onClick={step === 3 ? handleSubmit : goToNextStep}

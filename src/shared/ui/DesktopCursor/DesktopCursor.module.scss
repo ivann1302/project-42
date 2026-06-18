@@ -1,0 +1,79 @@
+.cursorEnabled {
+  cursor: none;
+}
+
+.cursorEnabled :global(a),
+.cursorEnabled :global(button),
+.cursorEnabled :global(label),
+.cursorEnabled :global(summary),
+.cursorEnabled :global([role='button']) {
+  cursor: none;
+}
+
+.cursorEnabled :global(input),
+.cursorEnabled :global(textarea),
+.cursorEnabled :global(select) {
+  cursor: text;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  background: $neutral-900;
+  border: 2px solid $neutral-0;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2px rgba($neutral-900, 86%),
+    0 8px 24px rgba($neutral-0, 22%);
+  opacity: 0;
+  transition:
+    width $duration-base $ease-emphasized,
+    height $duration-base $ease-emphasized,
+    opacity $duration-fast $ease-standard,
+    background $duration-base $ease-standard,
+    border-color $duration-base $ease-standard,
+    box-shadow $duration-base $ease-standard;
+  will-change: transform, width, height, opacity;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.text {
+  width: 20px;
+  height: 20px;
+  background: rgba($neutral-900, 72%);
+  border-color: $neutral-0;
+  box-shadow:
+    0 0 0 2px rgba($neutral-900, 88%),
+    0 8px 24px rgba($neutral-0, 18%);
+}
+
+.interactive {
+  width: 36px;
+  height: 36px;
+  background: rgba($neutral-900, 14%);
+  border-color: $neutral-0;
+  box-shadow:
+    0 0 0 2px rgba($neutral-900, 90%),
+    0 0 0 6px rgba($neutral-0, 18%);
+}
+
+.pressed {
+  width: 28px;
+  height: 28px;
+  background: $neutral-0;
+  border-color: $neutral-900;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    transition: none;
+  }
+}

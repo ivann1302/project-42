@@ -45,7 +45,7 @@ const caseRows = [
     project: getProject('project-7'),
     company: 'Sosedi',
     accent: 'orange',
-    imageMode: 'contain',
+    imageMode: 'fill',
     metric: 'APP',
     result: ['Промо сайт', 'для шеринга вещей'],
     summary: 'Промо страница для приложения, где соседи делятся вещами и экономят бюджет.',
@@ -136,7 +136,7 @@ export function RazrabotkaCasesSection() {
                         src={item.project.desktopImageUrl}
                         alt={item.project.title}
                         fill
-                        className={`${styles.image} ${item.imageMode === 'contain' ? styles.imageContain : ''} ${item.imageMode === 'fill' ? styles.imageFill : ''}`}
+                        className={`${styles.image} ${item.imageMode === 'fill' ? styles.imageFill : ''}`}
                         sizes="(max-width: 767px) 92vw, (max-width: 1439px) 58vw, 760px"
                       />
                     )}

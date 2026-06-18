@@ -46,6 +46,16 @@
   text-transform: uppercase;
 }
 
+.heroKicker {
+  margin: 0;
+  font-family: $font-body;
+  font-size: clamp(13px, 1.6vw, 18px);
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-primary;
+}
+
 .titleWord {
   color: $surface-card-mint;
   -webkit-text-stroke: 0;

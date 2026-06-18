@@ -8,6 +8,8 @@ import { RazrabotkaFounderSection } from './RazrabotkaFounderSection'
 import { RazrabotkaHero } from './RazrabotkaHero'
 import { RazrabotkaLevelUpBanner } from './RazrabotkaLevelUpBanner'
 import { RazrabotkaQuizSection } from './RazrabotkaQuizSection'
+import { RazrabotkaServicesCarouselSection } from './RazrabotkaServicesCarouselSection'
+import { RazrabotkaTestimonialsSection } from './RazrabotkaTestimonialsSection'
 import { WhatWeDoSection } from './WhatWeDoSection'
 import { WorkProcessSection } from './WorkProcessSection'
 import { RazrabotkaFooter } from './RazrabotkaFooter'
@@ -30,6 +32,8 @@ export function RazrabotkaPage({ config }: Props) {
         <WhatWeDoSection />
         <WorkProcessSection />
         <RazrabotkaCasesSection />
+        <RazrabotkaTestimonialsSection />
+        <RazrabotkaServicesCarouselSection />
         <RazrabotkaFounderSection />
         <RazrabotkaCtaSection />
         <RazrabotkaAftercareSection />

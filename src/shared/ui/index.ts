@@ -1,5 +1,6 @@
 export { Button } from './Button'
 export { CookieNotice } from './CookieNotice'
+export { DesktopCursor } from './DesktopCursor'
 export { IconCard } from './IconCard'
 export { SectionTitle } from './SectionTitle'
 export { Container } from './Container'

@@ -1,6 +1,6 @@
 .root {
   scroll-margin-top: 104px;
-  padding: $space-12 $container-pad-mobile $space-20;
+  padding: $space-12 $container-pad-mobile $space-6;
   color: $text-primary;
   background: $surface-page;
   opacity: 0;
@@ -283,7 +283,7 @@
   }
 
   .root {
-    padding: $space-16 $container-pad-tablet $space-24;
+    padding: $space-16 $container-pad-tablet $space-8;
   }
 
   .header {
@@ -362,7 +362,7 @@
   }
 
   .root {
-    padding: $space-20 $container-pad-desktop $space-32;
+    padding: $space-20 $container-pad-desktop $space-10;
   }
 
   .inner {

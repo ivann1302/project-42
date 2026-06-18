@@ -141,16 +141,9 @@
   line-height: 0.86;
 }
 
-.priceCaption {
-  position: relative;
-  z-index: 1;
-  max-width: 20ch;
-  margin: 0;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-ui;
-  text-transform: uppercase;
-  color: rgba($neutral-0, 72%);
+.priceText {
+  max-width: 10ch;
+  font-size: clamp(42px, 12vw, 72px);
 }
 
 .priceImage {
@@ -158,7 +151,7 @@
   --price-image-enter-y: 22px;
 
   position: absolute;
-  top: 112px;
+  top: 128px;
   right: -72px;
   z-index: 0;
   width: 230px;
@@ -281,7 +274,7 @@
     --price-image-enter-x: 36px;
     --price-image-enter-y: 28px;
 
-    top: 300px;
+    top: 370px;
     right: -40px;
     width: 300px;
   }
@@ -323,6 +316,10 @@
     font-size: clamp(96px, 8vw, 132px);
   }
 
+  .priceText {
+    font-size: clamp(52px, 4.4vw, 72px);
+  }
+
   .payment {
     align-self: end;
   }
@@ -331,7 +328,7 @@
     --price-image-enter-x: 34px;
     --price-image-enter-y: 24px;
 
-    top: 230px;
+    top: 440px;
     right: -34px;
     width: 250px;
   }

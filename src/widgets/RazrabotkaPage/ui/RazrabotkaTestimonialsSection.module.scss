@@ -1,0 +1,394 @@
+$testimonials-tablet-gap-total: $space-5;
+$testimonials-desktop-width: $container-inner + 220px;
+
+.root {
+  padding: $space-12 0;
+  color: $text-primary;
+  background: $surface-canvas;
+  opacity: 0;
+  transition:
+    opacity 860ms $ease-emphasized,
+    transform 920ms $ease-emphasized;
+  transform: translateY($space-8);
+  will-change: opacity, transform;
+}
+
+.root:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+.inner {
+  max-width: $container-inner;
+  margin: 0 auto;
+}
+
+.header {
+  display: grid;
+  gap: $space-2;
+  padding: 0 $container-pad-mobile;
+}
+
+.kicker {
+  margin: 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $surface-card-yellow;
+}
+
+.title {
+  display: grid;
+  max-width: 11ch;
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(48px, 13vw, 72px);
+  font-weight: $font-weight-display;
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.outlineWord {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px $text-primary;
+}
+
+.carouselShell {
+  position: relative;
+  margin-top: $space-6;
+}
+
+.carousel {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 0 $container-pad-mobile $space-2;
+  scroll-padding-left: $container-pad-mobile;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.list {
+  display: grid;
+  grid-auto-columns: calc(100vw - 72px);
+  grid-auto-flow: column;
+  gap: $space-4;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: grid;
+  gap: $space-5;
+  grid-template-rows: auto 1fr auto;
+  min-height: 368px;
+  padding: $space-5;
+  color: $text-inverse;
+  background: $neutral-900;
+  border: 1px solid $neutral-900;
+  border-radius: 8px;
+  scroll-snap-align: start;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $space-4;
+}
+
+.number {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-display;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  line-height: 1;
+  color: rgba($neutral-0, 52%);
+}
+
+.avatarSlot {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid rgba($neutral-0, 18%);
+  border-radius: $radius-pill;
+}
+
+.avatarImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card:nth-child(2) .avatarImage {
+  transform: scale(1.36);
+}
+
+.avatarInitial {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-display;
+  line-height: 1;
+  color: rgba($neutral-0, 62%);
+}
+
+.quote {
+  align-self: center;
+  margin: 0;
+  font-size: clamp(18px, 5.1vw, 24px);
+  font-weight: $font-weight-semibold;
+  line-height: 1.16;
+  text-wrap: pretty;
+}
+
+.author {
+  display: grid;
+  gap: $space-1;
+}
+
+.company,
+.meta {
+  margin: 0;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+}
+
+.company {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-display;
+}
+
+.meta {
+  max-width: 28ch;
+  font-size: $font-size-2xs;
+  font-weight: $font-weight-bold;
+  color: rgba($neutral-0, 58%);
+}
+
+.controls {
+  display: none;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-16 $container-pad-tablet;
+  }
+
+  .header {
+    padding: 0;
+  }
+
+  .title {
+    max-width: none;
+    font-size: clamp(76px, 10vw, 112px);
+  }
+
+  .carouselShell {
+    margin-top: $space-8;
+  }
+
+  .carousel {
+    padding: 0;
+    scroll-padding-left: 0;
+  }
+
+  .list {
+    grid-auto-columns: calc((100% - #{$testimonials-tablet-gap-total}) / 2);
+    gap: $space-5;
+    width: 100%;
+  }
+
+  .card {
+    min-height: 390px;
+    padding: $space-6;
+  }
+
+  .quote {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-20 $container-pad-desktop $space-24;
+  }
+
+  .inner {
+    max-width: $testimonials-desktop-width;
+  }
+
+  .header {
+    align-items: end;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.38fr);
+  }
+
+  .kicker {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    max-width: 18ch;
+    text-align: right;
+  }
+
+  .title {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(86px, 7.4vw, 124px);
+  }
+
+  .carouselShell {
+    margin-top: $space-10;
+  }
+
+  .carousel {
+    overflow: visible;
+  }
+
+  .list {
+    align-items: stretch;
+    grid-auto-columns: unset;
+    grid-auto-flow: row;
+    gap: $space-5;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .card {
+    min-height: 360px;
+    padding: $space-6;
+    color: $text-inverse;
+    border-color: transparent;
+    box-shadow: 0 24px 70px rgba($neutral-0, 18%);
+    scroll-snap-align: none;
+    transition:
+      box-shadow $duration-base $ease-standard,
+      border-color $duration-base $ease-standard;
+  }
+
+  .card:nth-child(1) {
+    background: $surface-card-mint;
+  }
+
+  .card:nth-child(2) {
+    background: $surface-card-yellow;
+  }
+
+  .card:nth-child(3) {
+    background: $surface-card-blue;
+  }
+
+  .card:nth-child(4) {
+    background: $surface-card-orange;
+  }
+
+  .card:nth-child(5) {
+    grid-column: 1 / -1;
+    background: #e7bdc4;
+  }
+
+  .card:hover {
+    border-color: rgba($neutral-50, 16%);
+    box-shadow: 0 30px 86px rgba($neutral-0, 28%);
+  }
+
+  .number {
+    color: rgba($neutral-50, 42%);
+  }
+
+  .avatarSlot {
+    border-color: rgba($neutral-50, 20%);
+  }
+
+  .avatarInitial {
+    color: rgba($neutral-50, 62%);
+  }
+
+  .quote {
+    font-size: clamp(22px, 1.75vw, 28px);
+  }
+
+  .meta {
+    max-width: none;
+    color: rgba($neutral-50, 62%);
+  }
+
+  .controls {
+    display: none;
+  }
+
+  .control {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    color: $surface-card-yellow;
+    pointer-events: auto;
+    background: transparent;
+    border: 1.5px solid currentcolor;
+    border-radius: $radius-pill;
+    transition:
+      background $duration-base $ease-standard,
+      border-color $duration-base $ease-standard,
+      color $duration-base $ease-standard,
+      transform $duration-base $ease-standard;
+  }
+
+  .controlIcon {
+    width: 14px;
+    height: 14px;
+    border-color: currentcolor;
+    border-style: solid;
+    transition: border-color $duration-base $ease-standard;
+  }
+
+  .controlIconPrevious {
+    margin-left: $space-1;
+    border-width: 0 0 2px 2px;
+    transform: rotate(45deg);
+  }
+
+  .controlIconNext {
+    margin-right: $space-1;
+    border-width: 2px 2px 0 0;
+    transform: rotate(45deg);
+  }
+
+  .control:hover {
+    color: $text-inverse;
+    background: $surface-card-yellow;
+    border-color: $surface-card-yellow;
+  }
+
+  .control:first-child:hover {
+    transform: scale(1.04);
+  }
+
+  .control:last-child:hover {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .control {
+    transition: none;
+  }
+}

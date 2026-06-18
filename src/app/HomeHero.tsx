@@ -50,15 +50,12 @@ export function HomeHero() {
     <div className={styles.heroScroll} ref={rootRef}>
       <section className={styles.hero} aria-labelledby="home-hero-title">
         <div className={styles.heroInner}>
+          <p className={styles.heroKicker}>Создание и продвижение</p>
           <h1 className={styles.title} id="home-hero-title">
             <span className={styles.titleWord}>Project</span>
             <span className={styles.titleNumber}>42</span>
           </h1>
-          <p className={styles.subtitle}>
-            Разработка, продвижение, поддержка
-            <br />
-            сайтов и мобильных приложений
-          </p>
+          <p className={styles.subtitle}>Сайты и приложения для бизнеса</p>
         </div>
       </section>
     </div>

@@ -1,9 +1,16 @@
 'use client'
 
-import Image from 'next/image'
 import { useRef } from 'react'
 import { useScrollReveal } from '@/shared/lib'
 import styles from './RazrabotkaFounderSection.module.scss'
+
+const reasons = [
+  'Разработка точно в срок + поддержка',
+  'Понимание пути клиента и его психологии гарантирует, что ваш сайт будет бить точно в цель',
+  'Соблюдение законодательства о защите информации и персональных данных в РФ',
+  'Защита сайта от перехвата клиентов со стороны недобросовестных конкурентов и взлома',
+  'Выгодные условия обслуживания по сравнению с Tilda помогают сэкономить денежные средства и получить сайт лучшего качества',
+] as const
 
 export function RazrabotkaFounderSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -20,36 +27,14 @@ export function RazrabotkaFounderSection() {
       <div className={styles.shell}>
         <div className={styles.content}>
           <h2 className={styles.title} id="razrabotka-founder-title">
-            Привет
+            Почему мы?
           </h2>
-          <div className={styles.speech}>
-            <p>
-              Мы студия разработки Project 42. Наша миссия - донести до ваших клиентов суть вашего
-              дела максимально эффективно, понятно и красиво.
-            </p>
-            <p>
-              Небольшой штат профессионалов, четко налаженные процессы и отсутствие лишней
-              менеджерской прослойки помогают нам качественно подходить к работе, держать ценник по
-              нижней границе рынка и сохранять индивидуальный подход к каждому заказчику.
-            </p>
-            <p>
-              Уверен, что мы сможем помочь вашему бизнесу выйти на новый уровень и выделиться среди
-              конкурентов.
-            </p>
-          </div>
+          <ul className={styles.reasonList}>
+            {reasons.map((reason) => (
+              <li key={reason}>{reason}</li>
+            ))}
+          </ul>
         </div>
-
-        <figure className={styles.photoCard}>
-          <Image
-            className={styles.photo}
-            src="/images/chief-photo.webp"
-            alt="Иван, основатель Project 42"
-            width={540}
-            height={720}
-            sizes="(max-width: 767px) 86px, (max-width: 1023px) 320px, 300px"
-          />
-          <figcaption className={styles.caption}>Иван - основатель Project 42</figcaption>
-        </figure>
       </div>
     </section>
   )
