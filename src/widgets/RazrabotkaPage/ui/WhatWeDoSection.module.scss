@@ -144,6 +144,7 @@
 .priceText {
   max-width: 10ch;
   font-size: clamp(42px, 12vw, 72px);
+  transform: translateY(-20px);
 }
 
 .priceImage {
@@ -318,6 +319,7 @@
 
   .priceText {
     font-size: clamp(52px, 4.4vw, 72px);
+    transform: translateY(-55px);
   }
 
   .payment {

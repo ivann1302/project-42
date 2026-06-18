@@ -116,7 +116,7 @@ export function RazrabotkaTestimonialsSection() {
     >
       <div className={styles.inner}>
         <div className={styles.header}>
-          <p className={styles.kicker}>Говорят клиенты</p>
+          <p className={styles.kicker}>Убедитесь сами</p>
           <h2 className={styles.title} id="razrabotka-testimonials-title">
             <span>Отзывы</span>
             <span className={styles.outlineWord}>клиентов</span>

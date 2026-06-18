@@ -52,9 +52,9 @@ $testimonials-desktop-width: $container-inner + 220px;
 }
 
 .outlineWord {
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px $text-primary;
+  color: $surface-card-yellow;
+  -webkit-text-fill-color: currentcolor;
+  -webkit-text-stroke: 0 currentcolor;
 }
 
 .carouselShell {
@@ -193,6 +193,12 @@ $testimonials-desktop-width: $container-inner + 220px;
   .title {
     max-width: none;
     font-size: clamp(76px, 10vw, 112px);
+  }
+
+  .outlineWord {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px $text-primary;
   }
 
   .carouselShell {
