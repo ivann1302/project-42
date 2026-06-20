@@ -1,6 +1,6 @@
 import { Button, Container, Icon } from '@/shared/ui'
 import { Header } from '@/widgets/Header'
-import { Footer } from '@/widgets/Footer'
+import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
 import styles from './not-found.module.scss'
 
 export default function NotFound() {
@@ -27,7 +27,7 @@ export default function NotFound() {
           </section>
         </Container>
       </main>
-      <Footer />
+      <RazrabotkaFooter />
     </>
   )
 }

@@ -3,9 +3,8 @@ import { notFound } from 'next/navigation'
 import { ArticlePage } from '@/widgets/ArticlePage'
 import { articles, getArticleBySlug } from '@/entities/Article'
 import { Header } from '@/widgets/Header'
-import { Footer } from '@/widgets/Footer'
+import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
 import { siteConfig } from '@/shared/config/seo'
-import { MobileConsultationButton } from '@/shared/ui'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -75,8 +74,7 @@ export default async function ArticleRoute({ params }: Props) {
       <main>
         <ArticlePage article={article} />
       </main>
-      <Footer />
-      <MobileConsultationButton />
+      <RazrabotkaFooter />
     </>
   )
 }

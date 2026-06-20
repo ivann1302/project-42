@@ -1,6 +1,11 @@
+'use client'
+
 import Link from 'next/link'
-import { Icon, SocialLinks } from '@/shared/ui'
+import { usePathname } from 'next/navigation'
+import { Icon, SocialLinks, WaveDivider } from '@/shared/ui'
 import styles from './RazrabotkaFooter.module.scss'
+
+const RAZRABOTKA_PATH = '/razrabotka-sayta'
 
 const sectionLinks = [
   { label: 'Что входит', href: '#services' },
@@ -37,14 +42,34 @@ type LinkItem = {
   href: string
 }
 
-function FooterColumn({ title, links }: { title: string; links: readonly LinkItem[] }) {
+type Props = {
+  usePageAnchors?: boolean
+}
+
+function getSectionHref(pathname: string, hash: string, usePageAnchors = false) {
+  return usePageAnchors || pathname === RAZRABOTKA_PATH ? hash : `${RAZRABOTKA_PATH}${hash}`
+}
+
+function FooterColumn({
+  title,
+  links,
+  usePageAnchors,
+}: {
+  title: string
+  links: readonly LinkItem[]
+  usePageAnchors?: boolean
+}) {
+  const pathname = usePathname()
   return (
     <nav className={styles.column} aria-label={title}>
       <h2 className={styles.columnTitle}>{title}</h2>
       <ul className={styles.linkList}>
         {links.map((link) => (
           <li key={`${title}-${link.href}-${link.label}`}>
-            <Link className={styles.link} href={link.href}>
+            <Link
+              className={styles.link}
+              href={getSectionHref(pathname, link.href, usePageAnchors)}
+            >
               {link.label}
             </Link>
           </li>
@@ -54,33 +79,48 @@ function FooterColumn({ title, links }: { title: string; links: readonly LinkIte
   )
 }
 
-export function RazrabotkaFooter() {
+export function RazrabotkaFooter({ usePageAnchors = false }: Props) {
+  const pathname = usePathname()
+  const logoHref = usePageAnchors || pathname === RAZRABOTKA_PATH ? '#top' : RAZRABOTKA_PATH
+  const logoLabel =
+    usePageAnchors || pathname === RAZRABOTKA_PATH
+      ? 'Project 42 - к началу страницы'
+      : 'Project 42 - к странице разработки сайта'
+
   return (
     <footer className={styles.root} id="footer" aria-label="Футер страницы разработки сайта">
+      <WaveDivider />
       <div className={styles.inner}>
         <div className={styles.brandColumn}>
-          <Link className={styles.logo} href="#top" aria-label="Project 42 - к началу страницы">
+          <Link className={styles.logo} href={logoHref} aria-label={logoLabel}>
             <span>Project</span>
             <span className={styles.logoNumber}>42</span>
           </Link>
           <SocialLinks className={styles.socials} />
         </div>
 
-        <FooterColumn title="По странице" links={sectionLinks} />
+        <FooterColumn title="По странице" links={sectionLinks} usePageAnchors={usePageAnchors} />
 
         <div className={styles.contactColumn}>
           <h2 className={styles.columnTitle}>Связаться с нами</h2>
           <ul className={styles.contactList}>
             {contactLinks.map((contact) => (
               <li key={contact.href}>
-                <a className={styles.contactLink} href={contact.href}>
+                <Link
+                  className={styles.contactLink}
+                  href={
+                    contact.href.startsWith('#')
+                      ? getSectionHref(pathname, contact.href, usePageAnchors)
+                      : contact.href
+                  }
+                >
                   <Icon name={contact.icon} size={18} />
                   <span>{contact.label}</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <Link className={styles.ctaLink} href="#cta">
+          <Link className={styles.ctaLink} href={getSectionHref(pathname, '#cta', usePageAnchors)}>
             <span>Разобрать задачу</span>
             <Icon name="arrowRight" size={18} />
           </Link>

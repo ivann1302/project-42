@@ -1,4 +1,4 @@
-import { Footer } from '@/widgets/Footer'
+import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
 import { Header } from '@/widgets/Header'
 import { HomeHero } from './HomeHero'
 import { HomeTrust } from './HomeTrust'
@@ -12,7 +12,7 @@ export default function HomePage() {
         <HomeHero />
         <HomeTrust />
       </main>
-      <Footer />
+      <RazrabotkaFooter />
     </>
   )
 }

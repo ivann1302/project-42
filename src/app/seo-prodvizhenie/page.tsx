@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Header } from '@/widgets/Header'
-import { Footer } from '@/widgets/Footer'
+import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
 import { SeoPage } from '@/widgets/SeoPage'
 import { seoConfig } from '@/entities/ServicePage'
 import { siteConfig } from '@/shared/config/seo'
@@ -120,7 +120,7 @@ export default function SeoProdvizheniePageRoute() {
       <main>
         <SeoPage config={seoConfig} />
       </main>
-      <Footer />
+      <RazrabotkaFooter />
     </>
   )
 }

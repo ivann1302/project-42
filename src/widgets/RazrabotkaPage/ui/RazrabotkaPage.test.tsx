@@ -57,10 +57,10 @@ describe('RazrabotkaPage', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
     expect(screen.getByRole('heading', { level: 2, name: 'Что мы делаем?' })).toBeInTheDocument()
-    expect(screen.getByText(/понятно донесёт до вашего клиента/)).toBeInTheDocument()
+    expect(screen.getByText(/понятно объясняет ваш бизнес клиенту/)).toBeInTheDocument()
     expect(screen.getByText('В каждый лендинг входит')).toBeInTheDocument()
-    expect(screen.getByText(/GEO\/AEO/)).toBeInTheDocument()
-    expect(screen.getByText('Мобильная версия сайта')).toBeInTheDocument()
+    expect(screen.getByText('Оптимизация под ИИ')).toBeInTheDocument()
+    expect(screen.getByText('Мобильная версия')).toBeInTheDocument()
     expect(screen.getByText(/перехвата лидов/)).toBeInTheDocument()
     expect(screen.getByText('Цена под ключ')).toBeInTheDocument()
     expect(screen.getByText('Без скрытых доплат')).toBeInTheDocument()
@@ -72,7 +72,7 @@ describe('RazrabotkaPage', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
     expect(screen.getByRole('heading', { level: 2, name: 'Как мы работаем' })).toBeInTheDocument()
-    expect(screen.getByText('Анализ ниши и конкурентов')).toBeInTheDocument()
+    expect(screen.getAllByText('Анализ ниши и конкурентов').length).toBeGreaterThan(0)
     expect(screen.getByText('Создание прототипа и дизайна')).toBeInTheDocument()
     expect(screen.getByText('Разработка сайта и SEO')).toBeInTheDocument()
     expect(screen.getAllByText('01').length).toBeGreaterThan(0)

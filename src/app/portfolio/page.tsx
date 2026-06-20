@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { Header } from '@/widgets/Header'
 import { PortfolioPage } from '@/widgets/PortfolioPage'
-import { Footer } from '@/widgets/Footer'
+import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
 import { siteConfig } from '@/shared/config/seo'
-import { MobileConsultationButton } from '@/shared/ui'
 
 export const metadata: Metadata = {
   title: 'Портфолио',
@@ -17,8 +16,7 @@ export default function PortfolioRoute() {
       <main>
         <PortfolioPage />
       </main>
-      <Footer />
-      <MobileConsultationButton />
+      <RazrabotkaFooter />
     </>
   )
 }

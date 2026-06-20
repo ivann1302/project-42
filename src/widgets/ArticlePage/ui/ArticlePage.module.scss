@@ -1,153 +1,307 @@
 .root {
-  @include section-pad;
-
-  position: relative;
-  min-height: 100vh;
-  padding-top: calc(72px + $spacing-xl);
-  overflow: clip;
-  background: linear-gradient(180deg, rgba($color-purple, 0.09), transparent 300px), $color-bg;
+  padding: 96px $container-pad-mobile $space-20;
+  overflow-x: clip;
+  color: $text-primary;
+  background: #000;
 }
 
-.container {
-  position: relative;
-  z-index: 1;
+.inner {
+  display: grid;
+  justify-items: center;
+  gap: $space-8;
+  max-width: 1120px;
+  margin: 0 auto;
 }
 
-.backLink {
-  display: inline-flex;
-  align-items: center;
-  gap: $spacing-sm;
-  margin-bottom: $spacing-xl;
+.hero {
+  display: grid;
+  gap: $space-5;
+  grid-template-rows: auto 1fr;
+  align-content: start;
+  justify-items: center;
+  width: 100%;
+  min-height: calc(100vh - 96px);
+}
+
+.backLink,
+.sourceLink,
+.section a {
+  width: fit-content;
   font-size: $font-size-sm;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
   text-decoration: none;
-  color: $color-text-muted;
+  color: $text-secondary;
   transition: color $transition-base;
+}
 
-  &:hover {
-    color: $color-text;
-  }
+.backLink:hover,
+.sourceLink:hover,
+.section a:hover {
+  color: $text-primary;
 }
 
 .header {
   display: grid;
-  gap: $spacing-md;
-  max-width: 920px;
-  padding-bottom: $spacing-2xl;
-}
-
-.category {
-  @include eyebrow-text;
-
-  color: $color-accent-mint;
+  gap: $space-5;
+  transform: translateY(35px);
 }
 
 .heading {
-  @include display-text(clamp(34px, 6vw, 72px));
-
+  max-width: 1040px;
   margin: 0;
+  font-family: $font-body;
+  font-size: clamp(34px, 9vw, 48px);
+  font-weight: $font-weight-display;
+  line-height: 0.94;
   letter-spacing: 0;
-  color: $color-text;
-
-  @include mobile {
-    font-size: 34px;
-  }
+  color: $surface-card-mint;
 }
 
 .description {
-  @include body-text($font-size-lg);
-
-  max-width: 760px;
+  max-width: 900px;
   margin: 0;
-  color: $color-text-muted;
-
-  @include mobile {
-    font-size: $font-size-base;
-  }
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: $font-weight-medium;
+  line-height: 1.36;
+  color: $text-secondary;
 }
 
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-sm $spacing-md;
+  gap: $space-2 $space-4;
   font-size: $font-size-sm;
-  color: $color-gray-light;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-secondary;
 }
 
-.layout {
-  display: grid;
-  align-items: start;
-  gap: $spacing-2xl;
-  grid-template-columns: minmax(190px, 260px) minmax(0, 760px);
-  padding-top: $spacing-2xl;
-  border-top: 1px solid $color-border;
-
-  @include tablet-down {
-    gap: $spacing-xl;
-    grid-template-columns: 1fr;
-  }
-}
-
-.sidebar {
-  display: grid;
-  gap: $spacing-md;
-  position: sticky;
-  top: 104px;
-  padding: $spacing-lg;
-  background: rgba($color-white, 0.035);
-  border: 1px solid $color-border;
-  border-radius: $radius-sm;
-
-  @include tablet-down {
-    position: static;
-  }
-}
-
-.sidebarTitle {
-  @include eyebrow-text;
-
-  color: $color-accent;
-}
-
-.highlights {
-  display: grid;
-  gap: $spacing-sm;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    font-size: $font-size-sm;
-    line-height: 1.5;
-    color: $color-text-muted;
-  }
+.cover {
+  align-self: end;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  background: #000;
+  transform: translateX(-45px);
 }
 
 .content {
   display: grid;
-  gap: $spacing-xl;
+  justify-items: center;
+  gap: $space-10;
+  width: min(100%, 880px);
 }
 
 .section {
   display: grid;
-  gap: $spacing-md;
+  justify-items: start;
+  gap: $space-4;
+  width: 100%;
+}
 
-  h2 {
-    margin: 0;
-    font-family: $font-display;
-    font-size: $font-size-xl;
-    line-height: 1.2;
-    color: $color-text;
+.highlightSection {
+  box-sizing: border-box;
+  width: 100vw;
+  margin-left: -$container-pad-mobile;
+  padding: $space-8 $container-pad-mobile;
+  color: #000;
+  background: $surface-card-mint;
+}
 
-    @include mobile {
-      font-size: 26px;
-    }
+.section h2 {
+  margin: 0;
+  font-family: $font-body;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: $font-weight-bold;
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.section p {
+  margin: 0;
+  font-size: clamp(18px, 2vw, 21px);
+  font-weight: $font-weight-regular;
+  line-height: 1.55;
+  color: $text-primary;
+}
+
+.highlightSection h2,
+.highlightSection p,
+.highlightSection .list {
+  color: #000;
+}
+
+.list {
+  display: grid;
+  justify-items: start;
+  gap: $space-3;
+  margin: 0;
+  padding: 0 0 0 $space-5;
+  list-style-position: outside;
+  font-size: clamp(18px, 2vw, 21px);
+  font-weight: $font-weight-regular;
+  line-height: 1.5;
+  color: $text-primary;
+}
+
+.highlightSection .list {
+  padding: 0;
+  list-style: none;
+}
+
+.highlightSection .list li {
+  position: relative;
+  padding-left: $space-8;
+}
+
+.highlightSection .list li::before {
+  content: '✓';
+  display: grid;
+  position: absolute;
+  top: 0.06em;
+  left: 0;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  border: 1px solid rgba(#000, 0.42);
+  border-radius: 50%;
+}
+
+.list li::marker {
+  color: $text-secondary;
+}
+
+.highlightSection .list li::marker {
+  color: rgba(#000, 0.58);
+}
+
+.section a {
+  font-size: inherit;
+  text-transform: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  color: $text-primary;
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-3 $space-6;
+}
+
+.footerLinks .sourceLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 $space-5;
+  color: #000;
+  background: $surface-card-mint;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  transition:
+    color $transition-base,
+    background $transition-base,
+    border-color $transition-base,
+    transform $transition-base;
+}
+
+.footerLinks .sourceLink:nth-child(2) {
+  background: $surface-card-orange;
+}
+
+.footerLinks .sourceLink:nth-child(3) {
+  background: $surface-card-blue;
+}
+
+.footerLinks .sourceLink:hover {
+  color: #000;
+  border-color: rgba(#000, 0.32);
+  transform: translateY(-2px);
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: 156px $container-pad-tablet $space-24;
   }
 
-  p {
-    @include body-text($font-size-md);
+  .hero {
+    display: grid;
+    gap: $space-8;
+    align-content: center;
+    grid-template-rows: none;
+    min-height: auto;
+  }
 
-    margin: 0;
-    color: $color-gray-light;
+  .highlightSection {
+    width: 100%;
+    margin-left: 0;
+    padding: $space-10;
+    border-radius: $radius-md;
+  }
+
+  .heading {
+    font-size: clamp(44px, 8vw, 92px);
+  }
+
+  .header {
+    transform: none;
+  }
+
+  .cover {
+    transform: none;
+  }
+
+  .inner {
+    justify-items: center;
+  }
+
+  .footerLinks {
+    justify-content: center;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding-right: $container-pad-desktop;
+    padding-left: $container-pad-desktop;
+  }
+
+  .inner {
+    max-width: 1280px;
+  }
+
+  .heading {
+    max-width: 1180px;
+  }
+
+  .description,
+  .content {
+    width: min(100%, 1080px);
+    max-width: none;
+  }
+
+  .content {
+    width: min(100%, 1280px);
+  }
+
+  .section {
+    justify-items: center;
+  }
+
+  .section h2,
+  .section p,
+  .list {
+    width: min(100%, 1080px);
   }
 }

@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { BlogPage } from '@/widgets/BlogPage'
 import { Header } from '@/widgets/Header'
-import { Footer } from '@/widgets/Footer'
+import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
 import { siteConfig } from '@/shared/config/seo'
-import { MobileConsultationButton } from '@/shared/ui'
 
 export const metadata: Metadata = {
   title: 'Блог',
@@ -22,8 +21,7 @@ export default function BlogRoute() {
       <main>
         <BlogPage />
       </main>
-      <Footer />
-      <MobileConsultationButton />
+      <RazrabotkaFooter />
     </>
   )
 }

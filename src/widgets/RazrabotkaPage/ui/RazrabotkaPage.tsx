@@ -41,7 +41,7 @@ export function RazrabotkaPage({ config }: Props) {
         <RazrabotkaLevelUpBanner />
       </main>
       <RazrabotkaChatButton />
-      <RazrabotkaFooter />
+      <RazrabotkaFooter usePageAnchors />
       <RazrabotkaLevelUpBanner placement="mobile" decorative />
     </div>
   )

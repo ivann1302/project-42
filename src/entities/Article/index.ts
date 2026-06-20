@@ -1,2 +1,9 @@
 export { articles, getArticleBySlug } from './model/data'
-export type { Article, ArticleCategory, ArticleSection } from './model/types'
+export type {
+  Article,
+  ArticleCategory,
+  ArticleImage,
+  ArticleLink,
+  ArticleParagraph,
+  ArticleSection,
+} from './model/types'

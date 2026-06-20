@@ -2,7 +2,7 @@
 
 import { Container } from '@/shared/ui'
 import { Header } from '@/widgets/Header'
-import { Footer } from '@/widgets/Footer'
+import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
 import styles from '../privacy-policy/privacy-policy.module.scss'
 
 const acceptanceActions = [
@@ -434,7 +434,7 @@ export function OfferContent() {
           </article>
         </Container>
       </main>
-      <Footer />
+      <RazrabotkaFooter />
     </>
   )
 }

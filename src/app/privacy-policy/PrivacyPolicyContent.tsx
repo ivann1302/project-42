@@ -2,7 +2,7 @@
 
 import { Container } from '@/shared/ui'
 import { Header } from '@/widgets/Header'
-import { Footer } from '@/widgets/Footer'
+import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
 import styles from './privacy-policy.module.scss'
 
 const collectedData = [
@@ -163,7 +163,7 @@ export function PrivacyPolicyContent() {
           </article>
         </Container>
       </main>
-      <Footer />
+      <RazrabotkaFooter />
     </>
   )
 }
