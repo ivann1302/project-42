@@ -113,6 +113,15 @@
   background: $surface-card-mint;
 }
 
+.blueHighlightSection {
+  box-sizing: border-box;
+  width: 100vw;
+  margin-left: -$container-pad-mobile;
+  padding: $space-8 $container-pad-mobile;
+  color: #000;
+  background: $surface-card-blue;
+}
+
 .section h2 {
   margin: 0;
   font-family: $font-body;
@@ -132,7 +141,10 @@
 
 .highlightSection h2,
 .highlightSection p,
-.highlightSection .list {
+.highlightSection .list,
+.blueHighlightSection h2,
+.blueHighlightSection p,
+.blueHighlightSection .list {
   color: #000;
 }
 
@@ -154,12 +166,14 @@
   list-style: none;
 }
 
-.highlightSection .list li {
+.highlightSection .list li,
+.blueHighlightSection .list li {
   position: relative;
   padding-left: $space-8;
 }
 
-.highlightSection .list li::before {
+.highlightSection .list li::before,
+.blueHighlightSection .list li::before {
   content: '✓';
   display: grid;
   position: absolute;
@@ -180,6 +194,15 @@
 }
 
 .highlightSection .list li::marker {
+  color: rgba(#000, 0.58);
+}
+
+.blueHighlightSection .list {
+  padding: 0;
+  list-style: none;
+}
+
+.blueHighlightSection .list li::marker {
   color: rgba(#000, 0.58);
 }
 
@@ -244,6 +267,13 @@
   }
 
   .highlightSection {
+    width: 100%;
+    margin-left: 0;
+    padding: $space-10;
+    border-radius: $radius-md;
+  }
+
+  .blueHighlightSection {
     width: 100%;
     margin-left: 0;
     padding: $space-10;

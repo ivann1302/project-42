@@ -1,7 +1,7 @@
 export const dynamic = 'force-static'
 
 import type { MetadataRoute } from 'next'
-import { articles } from '@/entities/Article'
+import { articles, getArticlePath } from '@/entities/Article'
 import { siteConfig } from '@/shared/config/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -37,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     ...articles.map((article) => ({
-      url: `${siteConfig.url}/blog/${article.slug}`,
+      url: `${siteConfig.url}${getArticlePath(article)}`,
       lastModified: new Date(article.publishedAt),
       changeFrequency: 'monthly' as const,
       priority: 0.65,

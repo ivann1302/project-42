@@ -1,4 +1,5 @@
 export type ArticleCategory = 'Разработка' | 'SEO' | 'Маркетинг' | 'Процессы'
+export type ArticleCategorySlug = 'razrabotka' | 'seo' | 'marketing' | 'processy'
 
 export type ArticleLink = {
   label: string
@@ -18,12 +19,22 @@ export type ArticleImage = {
   caption?: string
 }
 
+export type ArticleCta = {
+  kicker: string
+  title: string
+  accent: string
+  text: string
+  primary: ArticleLink
+  secondary?: ArticleLink
+  image: ArticleImage
+}
+
 export type ArticleSection = {
   heading: string
   paragraphs: ArticleParagraph[]
   list?: string[]
   image?: ArticleImage
-  variant?: 'highlight'
+  variant?: 'highlight' | 'blueHighlight'
 }
 
 export type Article = {
@@ -31,12 +42,15 @@ export type Article = {
   title: string
   description: string
   category: ArticleCategory
+  categorySlug: ArticleCategorySlug
   publishedAt: string
   readingTime: string
   author: string
+  keywords?: string[]
   coverImage?: string
   sourceUrl?: string
   sourceLabel?: string
   footerLinks?: ArticleLink[]
+  cta?: ArticleCta
   sections: ArticleSection[]
 }

@@ -14,6 +14,16 @@ const port = Number.parseInt(process.env.PORT || '3000', 10)
 const passenger = globalThis.PhusionPassenger
 
 const contactEndpoints = new Set(['/scripts/api/send.php', '/scripts/api/send', '/api/send'])
+const permanentRedirects = new Map([
+  [
+    '/blog/chatgpt-klient-stroitelnaya-kompaniya',
+    '/blog/marketing/chatgpt-klient-stroitelnaya-kompaniya',
+  ],
+  [
+    '/blog/zashchita-sayta-ot-botov-i-perekhvata-zayavok',
+    '/blog/razrabotka/zashchita-sayta-ot-botov-i-perekhvata-zayavok',
+  ],
+])
 
 passenger?.configure?.({ autoInstall: false })
 
@@ -35,6 +45,13 @@ const server = createServer(async (req, res) => {
 
   if (contactEndpoints.has(requestUrl.pathname)) {
     await handleContactRequest(req, res)
+    return
+  }
+
+  const redirectTarget = getPermanentRedirectTarget(requestUrl)
+
+  if (redirectTarget) {
+    sendRedirect(res, 301, redirectTarget)
     return
   }
 
@@ -120,6 +137,15 @@ function hasBlockedPathSegment(value) {
     .some((segment) => segment.startsWith('.') && segment !== '.well-known')
 }
 
+function getPermanentRedirectTarget(requestUrl) {
+  const pathname = requestUrl.pathname.replace(/\/+$/, '') || '/'
+  const target = permanentRedirects.get(pathname)
+
+  if (!target) return null
+
+  return `${target}${requestUrl.search}`
+}
+
 function getStaticCandidates(pathname) {
   const cleanPath = pathname.replace(/^\/+/, '')
 
@@ -173,6 +199,14 @@ async function serveFile(res, file, statusCode, headOnly) {
 function sendPlain(res, statusCode, message) {
   res.writeHead(statusCode, { 'Content-Type': 'text/plain; charset=utf-8' })
   res.end(message)
+}
+
+function sendRedirect(res, statusCode, location) {
+  res.writeHead(statusCode, {
+    Location: location,
+    'Cache-Control': 'public, max-age=3600',
+  })
+  res.end()
 }
 
 function getContentType(file) {

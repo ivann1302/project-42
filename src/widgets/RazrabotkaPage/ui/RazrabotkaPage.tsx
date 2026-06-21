@@ -2,6 +2,7 @@ import type { RazrabotkaPageConfig } from '@/entities/ServicePage'
 import { RazrabotkaChatButton } from './RazrabotkaChatButton'
 import { RazrabotkaAftercareSection } from './RazrabotkaAftercareSection'
 import { DecisionWindowSection } from './DecisionWindowSection'
+import { RazrabotkaBlogCarouselSection } from './RazrabotkaBlogCarouselSection'
 import { RazrabotkaCasesSection } from './RazrabotkaCasesSection'
 import { RazrabotkaCtaSection } from './RazrabotkaCtaSection'
 import { RazrabotkaFounderSection } from './RazrabotkaFounderSection'
@@ -38,6 +39,7 @@ export function RazrabotkaPage({ config }: Props) {
         <RazrabotkaCtaSection />
         <RazrabotkaAftercareSection />
         <RazrabotkaQuizSection />
+        <RazrabotkaBlogCarouselSection />
         <RazrabotkaLevelUpBanner />
       </main>
       <RazrabotkaChatButton />

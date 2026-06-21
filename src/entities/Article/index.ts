@@ -1,7 +1,14 @@
-export { articles, getArticleBySlug } from './model/data'
+export {
+  articles,
+  getArticleByCategoryAndSlug,
+  getArticleBySlug,
+  getArticlePath,
+} from './model/data'
 export type {
   Article,
   ArticleCategory,
+  ArticleCategorySlug,
+  ArticleCta,
   ArticleImage,
   ArticleLink,
   ArticleParagraph,

@@ -9,14 +9,65 @@ import { LeadAttribution } from '@/shared/ui/LeadAttribution'
 import { YandexMetrika } from '@/shared/ui/YandexMetrika'
 import '@/shared/styles/globals.scss'
 
+const organizationId = `${siteConfig.url}/#organization`
+const websiteId = `${siteConfig.url}/#website`
+const professionalServiceId = `${siteConfig.url}/#professional-service`
+
 const organizationSchema = {
-  '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': organizationId,
+  name: siteConfig.name,
+  legalName: siteConfig.legalName,
+  url: siteConfig.url,
+  email: siteConfig.email,
+  description: siteConfig.description,
+  founder: { '@type': 'Person', name: siteConfig.founderName },
+  sameAs: siteConfig.sameAs,
+  serviceType: siteConfig.services,
+}
+
+const websiteSchema = {
+  '@type': 'WebSite',
+  '@id': websiteId,
   name: siteConfig.name,
   url: siteConfig.url,
+  inLanguage: 'ru-RU',
   description: siteConfig.description,
-  founder: { '@type': 'Person', name: 'Иван Нарчук' },
-  serviceType: ['Веб-разработка', 'UI/UX дизайн', 'SEO', 'GEO-оптимизация'],
+  publisher: { '@id': organizationId },
+}
+
+const professionalServiceSchema = {
+  '@type': ['ProfessionalService', 'LocalBusiness'],
+  '@id': professionalServiceId,
+  name: siteConfig.name,
+  url: siteConfig.url,
+  email: siteConfig.email,
+  image: `${siteConfig.url}/og-image.jpg`,
+  description: siteConfig.description,
+  founder: { '@type': 'Person', name: siteConfig.founderName },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: siteConfig.addressLocality,
+    addressCountry: siteConfig.addressCountry,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Россия',
+  },
+  sameAs: siteConfig.sameAs,
+  knowsAbout: siteConfig.keywords,
+  makesOffer: siteConfig.services.map((service) => ({
+    '@type': 'Offer',
+    itemOffered: {
+      '@type': 'Service',
+      name: service,
+    },
+  })),
+}
+
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [organizationSchema, websiteSchema, professionalServiceSchema],
 }
 
 export const metadata: Metadata = {
@@ -62,7 +113,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
       </head>
       <body>

@@ -1,0 +1,254 @@
+$blog-tablet-gap-total: $space-5;
+
+.root {
+  padding: $space-12 0 $space-8;
+  color: $text-primary;
+  background: $surface-canvas;
+  opacity: 0;
+  transition:
+    opacity 860ms $ease-emphasized,
+    transform 920ms $ease-emphasized;
+  transform: translateY($space-8);
+  will-change: opacity, transform;
+}
+
+.root:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+.inner {
+  max-width: $container-inner;
+  margin: 0 auto;
+}
+
+.header {
+  display: grid;
+  gap: $space-3;
+  padding: 0 $container-pad-mobile;
+}
+
+.kicker {
+  width: fit-content;
+  margin: 0;
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-inverse;
+  background: $surface-card-mint;
+  border-radius: $radius-md;
+}
+
+.title {
+  max-width: 13ch;
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(36px, 9.4vw, 54px);
+  font-weight: $font-weight-display;
+  line-height: 0.94;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.carousel {
+  margin-top: $space-6;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 0 $container-pad-mobile $space-2;
+  scroll-padding-left: $container-pad-mobile;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.list {
+  display: grid;
+  grid-auto-columns: min(78vw, 320px);
+  grid-auto-flow: column;
+  gap: $space-4;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  scroll-snap-align: start;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: 132px 1fr;
+  min-height: 330px;
+  overflow: hidden;
+  text-decoration: none;
+  color: $text-primary;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+.imageWrap {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+.image {
+  width: min(78%, 240px);
+  height: auto;
+  max-height: 112px;
+  object-fit: contain;
+  transition: transform 620ms $ease-emphasized;
+}
+
+.cardBody {
+  display: grid;
+  align-content: end;
+  gap: $space-2;
+  padding: $space-3;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: $font-body;
+  font-size: 20px;
+  font-weight: $font-weight-display;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.description {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: $font-weight-medium;
+  line-height: 1.42;
+  color: rgba($neutral-900, 70%);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.linkLabel {
+  width: fit-content;
+  margin-top: $space-1;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $surface-card-yellow;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-16 $container-pad-tablet $space-10;
+  }
+
+  .header {
+    padding: 0;
+  }
+
+  .title {
+    max-width: 15ch;
+    font-size: clamp(52px, 6.8vw, 78px);
+  }
+
+  .carousel {
+    margin-top: $space-8;
+    padding: 0;
+    scroll-padding-left: 0;
+  }
+
+  .list {
+    grid-auto-columns: minmax(0, calc((100% - #{$blog-tablet-gap-total}) / 2));
+    gap: $space-5;
+    width: 100%;
+  }
+
+  .card {
+    grid-template-rows: 150px 1fr;
+    min-height: 356px;
+  }
+
+  .cardBody {
+    padding: $space-4;
+  }
+
+  .image {
+    width: min(70%, 280px);
+    max-height: 126px;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-20 $container-pad-desktop $space-12;
+  }
+
+  .header {
+    align-items: end;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.3fr);
+  }
+
+  .kicker {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .title {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(60px, 4.8vw, 86px);
+  }
+
+  .card {
+    grid-template-rows: 292px 1fr;
+    min-height: 506px;
+    transition:
+      border-color $duration-base $ease-standard,
+      box-shadow $duration-base $ease-standard,
+      transform $duration-base $ease-standard;
+  }
+
+  .image {
+    width: min(100%, 644px);
+    max-height: 290px;
+  }
+
+  .card:hover {
+    border-color: transparent;
+    box-shadow: none;
+    transform: translateY(-6px);
+  }
+
+  .card:hover .image {
+    transform: scale(1.035);
+  }
+
+  .cardTitle {
+    font-size: clamp(20px, 1.45vw, 24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .card,
+  .image {
+    transition: none;
+  }
+}

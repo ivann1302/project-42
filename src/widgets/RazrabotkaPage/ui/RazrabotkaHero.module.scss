@@ -30,7 +30,10 @@
   color: $text-primary;
   border: 1px solid $border-default;
   border-radius: $radius-md;
-  animation: hero-kicker-border-colors 9s ease-in-out infinite;
+  opacity: 0;
+  animation:
+    hero-kicker-border-colors 9s ease-in-out infinite,
+    hero-fade-rise 720ms $ease-emphasized 80ms forwards;
 }
 
 .title {
@@ -45,6 +48,8 @@
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
+  opacity: 0;
+  animation: hero-title-reveal 880ms $ease-emphasized 180ms forwards;
 
   span {
     display: block;
@@ -102,6 +107,8 @@
   font-size: $font-size-base;
   line-height: $line-height-body;
   color: $text-secondary;
+  opacity: 0;
+  animation: hero-fade-rise 760ms $ease-emphasized 360ms forwards;
 }
 
 .actions {
@@ -111,6 +118,8 @@
   place-self: end center;
   width: min(100%, 342px);
   margin-top: auto;
+  opacity: 0;
+  animation: hero-fade-rise 760ms $ease-emphasized 480ms forwards;
 }
 
 .visual {
@@ -119,6 +128,8 @@
   height: 340px;
   margin: $space-2 auto 0;
   overflow: visible;
+  opacity: 0;
+  animation: hero-visual-shell 920ms $ease-emphasized 300ms forwards;
 }
 
 .image {
@@ -127,7 +138,8 @@
   left: 38%;
   width: 100%;
   height: auto;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) rotate(-1deg) scale(0.96);
+  animation: hero-image-float-in 980ms $ease-emphasized 320ms forwards;
 }
 
 @media (min-width: $bp-tablet) {
@@ -236,10 +248,75 @@
 @media (prefers-reduced-motion: reduce) {
   .kicker {
     animation: none;
+    opacity: 1;
   }
 
   .joinLetter {
     animation: none;
+  }
+
+  .title,
+  .text,
+  .actions,
+  .visual {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+
+  .image {
+    animation: none;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes hero-fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-title-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-visual-shell {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-image-float-in {
+  from {
+    transform: translate(-50%, -46%) rotate(-4deg) scale(0.94);
+    filter: saturate(0.88) contrast(0.96);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    filter: saturate(1) contrast(1);
   }
 }
 

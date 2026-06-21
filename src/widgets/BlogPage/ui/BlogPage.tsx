@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { articles } from '@/entities/Article'
+import { articles, getArticlePath } from '@/entities/Article'
 import styles from './BlogPage.module.scss'
 
 const topics = ['Технологии', 'Маркетинг', 'Дизайн'] as const
@@ -16,7 +16,7 @@ const blogArticles = [
   ...articles.map((article) => ({
     title: article.title,
     image: article.coverImage ?? '/images/blog/article1.webp',
-    href: `/blog/${article.slug}`,
+    href: getArticlePath(article),
   })),
   ...upcomingArticles,
 ] as const

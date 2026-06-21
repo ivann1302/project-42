@@ -8,6 +8,7 @@
   background: rgba($neutral-0, 44%);
   inset: 0;
   backdrop-filter: blur(2px);
+  animation: quiz-overlay-in 320ms ease-out both;
 }
 
 .modal {
@@ -23,6 +24,8 @@
   border: 1px solid rgba($neutral-0, 10%);
   border-radius: $radius-lg;
   box-shadow: 0 24px 80px rgba($neutral-0, 18%);
+  transform-origin: 50% 58%;
+  animation: quiz-modal-in 620ms $ease-emphasized both;
 }
 
 .close {
@@ -37,10 +40,12 @@
   background: transparent;
   border: 1px solid rgba($neutral-0, 14%);
   border-radius: $radius-xs;
+  opacity: 0;
   transition:
     color $transition-base,
     background $transition-base,
     border-color $transition-base;
+  animation: quiz-fade-rise 520ms $ease-emphasized 170ms forwards;
 }
 
 .close:hover {
@@ -52,6 +57,8 @@
 .content {
   display: grid;
   gap: $space-2;
+  opacity: 0;
+  animation: quiz-fade-rise 560ms $ease-emphasized 120ms forwards;
 }
 
 .title {
@@ -80,6 +87,8 @@
   padding: 0;
   color: $neutral-0;
   background: transparent;
+  opacity: 0;
+  animation: quiz-fade-rise 560ms $ease-emphasized 220ms forwards;
 }
 
 .methods {
@@ -119,11 +128,29 @@
   background: transparent;
   border: 1px solid rgba($neutral-0, 16%);
   border-radius: $radius-xs;
+  opacity: 0;
   transition:
     color $transition-base,
     background $transition-base,
     border-color $transition-base;
   cursor: pointer;
+  animation: quiz-fade-rise 440ms $ease-emphasized forwards;
+}
+
+.method:nth-of-type(1) {
+  animation-delay: 280ms;
+}
+
+.method:nth-of-type(2) {
+  animation-delay: 340ms;
+}
+
+.method:nth-of-type(3) {
+  animation-delay: 400ms;
+}
+
+.method:nth-of-type(4) {
+  animation-delay: 460ms;
 }
 
 .method input {
@@ -141,6 +168,7 @@
 .field {
   display: grid;
   gap: $space-2;
+  animation: quiz-step-in 420ms $ease-emphasized both;
 }
 
 .input {
@@ -192,6 +220,7 @@
 
 .controls {
   display: grid;
+  animation: quiz-fade-rise 460ms $ease-emphasized 120ms both;
 }
 
 @media (min-width: $bp-tablet) {
@@ -202,8 +231,74 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .modal,
+  .close,
+  .content,
+  .form,
+  .field,
+  .controls,
+  .method {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+
   .close,
   .method {
     transition: none;
+  }
+}
+
+@keyframes quiz-overlay-in {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+
+  to {
+    opacity: 1;
+    backdrop-filter: blur(2px);
+  }
+}
+
+@keyframes quiz-modal-in {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes quiz-fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes quiz-step-in {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

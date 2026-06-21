@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import type { Article, ArticleParagraph } from '@/entities/Article'
+import { ArticleCta } from './ArticleCta'
 import { ArticleScreenshot } from './ArticleScreenshot'
 import styles from './ArticlePage.module.scss'
 
@@ -80,7 +81,7 @@ export function ArticlePage({ article }: Props) {
               key={section.heading}
               className={`${styles.section} ${
                 section.variant === 'highlight' ? styles.highlightSection : ''
-              }`}
+              } ${section.variant === 'blueHighlight' ? styles.blueHighlightSection : ''}`}
             >
               <h2>{section.heading}</h2>
               {section.paragraphs.map((paragraph) => (
@@ -99,6 +100,8 @@ export function ArticlePage({ article }: Props) {
             </section>
           ))}
         </div>
+
+        {article.cta ? <ArticleCta cta={article.cta} /> : null}
 
         <div className={styles.footerLinks}>
           <Link href="/blog" className={styles.sourceLink}>
