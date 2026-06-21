@@ -5,21 +5,11 @@ import styles from './BlogPage.module.scss'
 
 const topics = ['Технологии', 'Маркетинг', 'Дизайн'] as const
 
-const upcomingArticles = [
-  {
-    title: 'Что такое перехват лидов и как от него защититься?',
-    image: '/images/blog/article2.webp',
-  },
-] as const
-
-const blogArticles = [
-  ...articles.map((article) => ({
-    title: article.title,
-    image: article.coverImage ?? '/images/blog/article1.webp',
-    href: getArticlePath(article),
-  })),
-  ...upcomingArticles,
-] as const
+const blogArticles = articles.map((article) => ({
+  title: article.title,
+  image: article.coverImage ?? '/images/blog/article1.webp',
+  href: getArticlePath(article),
+}))
 
 export function BlogPage() {
   return (
@@ -46,8 +36,8 @@ export function BlogPage() {
         <div className={styles.articlesInner}>
           <div className={styles.articlesGrid}>
             {blogArticles.map((article) => {
-              const cardContent = (
-                <>
+              return (
+                <Link key={article.title} className={styles.articleCard} href={article.href}>
                   <span className={styles.articleImageWrap}>
                     <Image
                       className={styles.articleImage}
@@ -59,31 +49,7 @@ export function BlogPage() {
                     />
                   </span>
                   <h2 className={styles.articleTitle}>{article.title}</h2>
-                </>
-              )
-
-              if ('href' in article) {
-                return article.href.startsWith('http') ? (
-                  <a
-                    key={article.title}
-                    className={styles.articleCard}
-                    href={article.href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {cardContent}
-                  </a>
-                ) : (
-                  <Link key={article.title} className={styles.articleCard} href={article.href}>
-                    {cardContent}
-                  </Link>
-                )
-              }
-
-              return (
-                <article key={article.title} className={styles.articleCard}>
-                  {cardContent}
-                </article>
+                </Link>
               )
             })}
           </div>

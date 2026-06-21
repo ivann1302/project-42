@@ -53,7 +53,7 @@ export function RazrabotkaAftercareSection() {
         <figure className={styles.visual}>
           <Image
             className={styles.image}
-            src="/images/razrabotka/cta-image.webp"
+            src="/images/razrabotka/after-cta.webp"
             alt="Поддержка Project 42 после запуска лендинга"
             width={420}
             height={320}
