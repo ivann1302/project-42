@@ -351,3 +351,8 @@ jobs:
             echo "::error::Public site is not serving the deployed SHA ${GITHUB_SHA}. Check domain document root, Passenger/Apache configuration, CDN/cache, or APP_URL."
             exit 1
           fi
+
+      - name: Notify IndexNow
+        env:
+          INDEXNOW_ENDPOINT: ${{ secrets.INDEXNOW_ENDPOINT || vars.INDEXNOW_ENDPOINT || 'https://www.bing.com/indexnow' }}
+        run: npm run indexnow:submit

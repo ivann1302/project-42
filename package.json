@@ -12,6 +12,7 @@
     "preview": "npm run build:static && PORT=3003 npm run start:static-node",
     "start": "npm run start:static-node",
     "start:static-node": "node server/static-server.mjs",
+    "indexnow:submit": "node scripts/submit-indexnow.mjs",
     "lint": "eslint src",
     "lint:css": "stylelint \"src/**/*.scss\"",
     "typecheck": "tsc --noEmit",
