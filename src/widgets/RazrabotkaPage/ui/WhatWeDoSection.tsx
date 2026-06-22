@@ -105,11 +105,11 @@ export function WhatWeDoSection() {
 
         <div ref={cardsRef} className={styles.cards}>
           <article className={styles.scopeCard}>
-            <p className={styles.blockHeading}>В каждый лендинг входит</p>
+            <p className={styles.blockHeading}>В каждый проект входит</p>
             <ul className={styles.scopeList}>
               <li>Анализ ниши и конкурентов</li>
               <li>Прототип и дизайн</li>
-              <li>Разработка самого сайта</li>
+              <li>Разработка проекта</li>
               <li>Мобильная версия</li>
               <li>Базовое SEO</li>
               <li>Оптимизация под ИИ</li>

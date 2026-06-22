@@ -1,4 +1,4 @@
-import { act, render, screen, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { razrabotkaConfig } from '@/entities/ServicePage'
 import { RazrabotkaPage } from './RazrabotkaPage'
@@ -32,11 +32,53 @@ describe('RazrabotkaPage', () => {
     expect(
       screen.getByText('Если вам нужен результат, а не просто красивый дизайн, то вы по адресу.'),
     ).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: /Вращающаяся сфера Project 42/ })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Получить консультацию/ })).toHaveAttribute(
       'href',
       '#cta',
     )
     expect(screen.getByRole('link', { name: /Наши работы/ })).toHaveAttribute('href', '#projects')
+  })
+
+  it('tilts the hero sphere toward pointer movement', () => {
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    const sphere = screen.getByRole('img', { name: /Вращающаяся сфера Project 42/ })
+    sphere.getBoundingClientRect = jest.fn(() => ({
+      bottom: 100,
+      height: 100,
+      left: 0,
+      right: 100,
+      top: 0,
+      width: 100,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    }))
+
+    const pointerMove = new Event('pointermove', { bubbles: true })
+    Object.defineProperties(pointerMove, {
+      clientX: { value: 100 },
+      clientY: { value: 0 },
+    })
+
+    fireEvent(sphere, pointerMove)
+
+    expect(sphere).toHaveStyle({
+      '--sphere-shift-x': '16.00px',
+      '--sphere-shift-y': '-12.00px',
+      '--sphere-tilt-x': '8.00deg',
+      '--sphere-tilt-y': '8.00deg',
+    })
+
+    fireEvent.pointerLeave(sphere)
+
+    expect(sphere).toHaveStyle({
+      '--sphere-shift-x': '0px',
+      '--sphere-shift-y': '0px',
+      '--sphere-tilt-x': '0deg',
+      '--sphere-tilt-y': '0deg',
+    })
   })
 
   it('renders the decision window section', () => {
@@ -58,7 +100,8 @@ describe('RazrabotkaPage', () => {
 
     expect(screen.getByRole('heading', { level: 2, name: 'Что мы делаем?' })).toBeInTheDocument()
     expect(screen.getByText(/понятно объясняет ваш бизнес клиенту/)).toBeInTheDocument()
-    expect(screen.getByText('В каждый лендинг входит')).toBeInTheDocument()
+    expect(screen.getByText('В каждый проект входит')).toBeInTheDocument()
+    expect(screen.getByText('Разработка проекта')).toBeInTheDocument()
     expect(screen.getByText('Оптимизация под ИИ')).toBeInTheDocument()
     expect(screen.getByText('Мобильная версия')).toBeInTheDocument()
     expect(screen.getByText(/перехвата лидов/)).toBeInTheDocument()

@@ -36,22 +36,55 @@
   grid-column: 1 / -1;
   width: 36px;
   height: 36px;
-  color: $neutral-0;
-  background: transparent;
-  border: 1px solid rgba($neutral-0, 14%);
+  color: $neutral-900;
+  background: $neutral-0;
+  border: 2px solid rgba($neutral-0, 64%);
   border-radius: $radius-xs;
+  box-shadow:
+    0 5px 0 rgba($neutral-0, 48%),
+    0 9px 14px rgba($neutral-0, 18%),
+    inset 0 1px 0 rgba(255 255 255 / 42%);
   opacity: 0;
   transition:
     color $transition-base,
     background $transition-base,
-    border-color $transition-base;
+    border-color $transition-base,
+    box-shadow 180ms $ease-standard,
+    filter 180ms $ease-standard,
+    transform 180ms $ease-standard;
+  transform: translateY(0);
+  transform-origin: 50% 80%;
+  will-change: transform;
   animation: quiz-fade-rise 520ms $ease-emphasized 170ms forwards;
 }
 
 .close:hover {
   color: $neutral-900;
-  background: $neutral-0;
-  border-color: $neutral-0;
+  background: $neutral-200;
+  border-color: rgba($neutral-0, 78%);
+  box-shadow:
+    0 7px 0 rgba($neutral-0, 50%),
+    0 13px 18px rgba($neutral-0, 20%),
+    inset 0 1px 0 rgba(255 255 255 / 50%);
+  filter: saturate(1.04) contrast(1.03);
+}
+
+.close:active {
+  box-shadow:
+    0 2px 0 rgba($neutral-0, 48%),
+    0 5px 8px rgba($neutral-0, 16%),
+    inset 0 2px 5px rgba($neutral-0, 28%);
+  transform: translateY(3px);
+  animation: none;
+}
+
+.close:focus-visible {
+  outline: none;
+  box-shadow:
+    0 5px 0 rgba($neutral-0, 48%),
+    0 9px 14px rgba($neutral-0, 18%),
+    inset 0 1px 0 rgba(255 255 255 / 42%),
+    $shadow-focus;
 }
 
 .content {
@@ -206,16 +239,65 @@
 }
 
 .submit {
+  position: relative;
   width: 100%;
   color: $neutral-900;
   background: $neutral-0;
   border-color: $neutral-0;
+  border-width: 2px;
+  box-shadow:
+    0 7px 0 rgba($neutral-0, 52%),
+    0 12px 18px rgba($neutral-0, 18%),
+    inset 0 1px 0 rgba(255 255 255 / 22%);
+  transition:
+    color $transition-base,
+    background $transition-base,
+    border-color $transition-base,
+    box-shadow 180ms $ease-standard,
+    filter 180ms $ease-standard;
+  transform: translateY(0);
+  transform-origin: 50% 80%;
+  will-change: transform;
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 42%;
+    background: linear-gradient(180deg, rgba(255 255 255 / 18%), transparent);
+    border-radius: calc(#{$radius-md} - 4px);
+    opacity: 0.72;
+    inset: 4px 8px auto;
+    pointer-events: none;
+  }
 }
 
 .submit:hover {
   color: $neutral-900;
   background: $neutral-200;
   border-color: $neutral-200;
+  box-shadow:
+    0 10px 0 rgba($neutral-0, 52%),
+    0 18px 24px rgba($neutral-0, 20%),
+    inset 0 1px 0 rgba(255 255 255 / 28%);
+  filter: saturate(1.04) contrast(1.03);
+  animation: quiz-button-elastic 680ms cubic-bezier(0.22, 1.28, 0.36, 1) both;
+}
+
+.submit:active {
+  box-shadow:
+    0 2px 0 rgba($neutral-0, 52%),
+    0 5px 8px rgba($neutral-0, 18%),
+    inset 0 2px 5px rgba($neutral-0, 30%);
+  transform: translateY(5px) scale(0.985);
+  animation: none;
+}
+
+.submit:focus-visible {
+  box-shadow:
+    0 7px 0 rgba($neutral-0, 52%),
+    0 12px 18px rgba($neutral-0, 18%),
+    inset 0 1px 0 rgba(255 255 255 / 22%),
+    $shadow-focus;
 }
 
 .controls {
@@ -245,8 +327,14 @@
   }
 
   .close,
-  .method {
+  .method,
+  .submit {
     transition: none;
+  }
+
+  .submit:hover {
+    transform: translateY(-2px);
+    animation: none;
   }
 }
 
@@ -300,5 +388,27 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes quiz-button-elastic {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  36% {
+    transform: translateY(-7px) scale(1.08, 0.92);
+  }
+
+  54% {
+    transform: translateY(-4px) scale(0.97, 1.05);
+  }
+
+  72% {
+    transform: translateY(-5px) scale(1.025, 0.98);
+  }
+
+  100% {
+    transform: translateY(-4px) scale(1);
   }
 }

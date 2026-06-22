@@ -85,6 +85,7 @@ $blog-tablet-gap-total: $space-5;
 .card {
   display: grid;
   grid-template-rows: 132px 1fr;
+  position: relative;
   min-height: 330px;
   overflow: hidden;
   text-decoration: none;
@@ -92,6 +93,12 @@ $blog-tablet-gap-total: $space-5;
   background: transparent;
   border: 1px solid transparent;
   border-radius: 8px;
+  transition:
+    color $duration-base $ease-standard,
+    background $duration-base $ease-standard,
+    border-color $duration-base $ease-standard,
+    box-shadow $duration-base $ease-standard,
+    transform $duration-base $ease-standard;
 }
 
 .imageWrap {
@@ -102,9 +109,9 @@ $blog-tablet-gap-total: $space-5;
 }
 
 .image {
-  width: min(78%, 240px);
+  width: min(97.5%, 300px);
   height: auto;
-  max-height: 112px;
+  max-height: 140px;
   object-fit: contain;
   transition: transform 620ms $ease-emphasized;
 }
@@ -113,6 +120,8 @@ $blog-tablet-gap-total: $space-5;
   display: grid;
   align-content: end;
   gap: $space-2;
+  position: relative;
+  z-index: 1;
   padding: $space-3;
 }
 
@@ -128,13 +137,23 @@ $blog-tablet-gap-total: $space-5;
 
 .description {
   display: -webkit-box;
+  position: absolute;
+  right: $space-3;
+  bottom: calc(100% + #{$space-1});
+  left: $space-3;
   overflow: hidden;
   font-size: 13px;
   font-weight: $font-weight-medium;
   line-height: 1.42;
-  color: rgba($neutral-900, 70%);
+  color: rgba($neutral-0, 76%);
+  opacity: 0;
+  transition:
+    opacity $duration-base $ease-standard,
+    transform $duration-base $ease-standard;
+  transform: translateY($space-2);
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  pointer-events: none;
 }
 
 .linkLabel {
@@ -145,6 +164,7 @@ $blog-tablet-gap-total: $space-5;
   line-height: $line-height-ui;
   text-transform: uppercase;
   color: $surface-card-yellow;
+  transition: color $duration-base $ease-standard;
 }
 
 @media (min-width: $bp-tablet) {
@@ -182,6 +202,11 @@ $blog-tablet-gap-total: $space-5;
     padding: $space-4;
   }
 
+  .description {
+    right: $space-4;
+    left: $space-4;
+  }
+
   .image {
     width: min(70%, 280px);
     max-height: 126px;
@@ -213,20 +238,14 @@ $blog-tablet-gap-total: $space-5;
   .card {
     grid-template-rows: 292px 1fr;
     min-height: 506px;
-    transition:
-      border-color $duration-base $ease-standard,
-      box-shadow $duration-base $ease-standard,
-      transform $duration-base $ease-standard;
   }
 
   .image {
-    width: min(100%, 644px);
-    max-height: 290px;
+    width: min(100%, 741px);
+    max-height: 334px;
   }
 
   .card:hover {
-    border-color: transparent;
-    box-shadow: none;
     transform: translateY(-6px);
   }
 
@@ -236,6 +255,26 @@ $blog-tablet-gap-total: $space-5;
 
   .cardTitle {
     font-size: clamp(20px, 1.45vw, 24px);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover,
+  .card:focus-visible {
+    color: $neutral-0;
+    background: $neutral-900;
+    border-color: $neutral-900;
+  }
+
+  .card:hover .description,
+  .card:focus-visible .description {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card:hover .linkLabel,
+  .card:focus-visible .linkLabel {
+    color: $neutral-0;
   }
 }
 

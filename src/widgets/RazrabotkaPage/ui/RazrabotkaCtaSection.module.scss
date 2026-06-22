@@ -122,7 +122,7 @@
 .actions {
   display: grid;
   grid-column: 1 / -1;
-  gap: $space-2;
+  gap: $space-4;
   margin-top: $space-1;
 }
 
@@ -133,12 +133,71 @@
 
 .actions .primaryButton,
 .actions .secondaryButton {
+  position: relative;
   min-height: 48px;
   padding: 0 $space-4;
+  overflow: visible;
   font-size: $font-size-xs;
+  box-shadow:
+    0 7px 0 var(--cta-button-depth),
+    0 12px 18px rgba($neutral-0, 22%),
+    inset 0 1px 0 rgba(255 255 255 / 38%);
+  transition:
+    color $transition-base,
+    background $transition-base,
+    border-color $transition-base,
+    box-shadow 180ms $ease-standard,
+    filter 180ms $ease-standard;
+  transform: translateY(0);
+  border-width: 2px;
+  transform-origin: 50% 80%;
+  will-change: transform;
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 42%;
+    background: linear-gradient(180deg, rgba(255 255 255 / 36%), transparent);
+    border-radius: calc(#{$radius-md} - 4px);
+    opacity: 0.7;
+    inset: 4px 8px auto;
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow:
+      0 10px 0 var(--cta-button-depth),
+      0 18px 24px rgba($neutral-0, 24%),
+      inset 0 1px 0 rgba(255 255 255 / 46%);
+    filter: saturate(1.06) contrast(1.02);
+    animation: cta-button-elastic 680ms cubic-bezier(0.22, 1.28, 0.36, 1) both;
+  }
+
+  &:active {
+    box-shadow:
+      0 2px 0 var(--cta-button-depth),
+      0 5px 8px rgba($neutral-0, 22%),
+      inset 0 2px 5px rgba($neutral-0, 18%);
+    transform: translateY(5px) scale(0.985);
+    animation: none;
+  }
+
+  &:focus-visible {
+    box-shadow:
+      0 7px 0 var(--cta-button-depth),
+      0 12px 18px rgba($neutral-0, 22%),
+      inset 0 1px 0 rgba(255 255 255 / 38%),
+      $shadow-focus;
+  }
+}
+
+.primaryButton {
+  --cta-button-depth: #9f7416;
 }
 
 .secondaryButton {
+  --cta-button-depth: rgba(0 0 0 / 42%);
+
   color: $text-inverse;
   border-color: rgba($neutral-0, 84%);
 }
@@ -310,6 +369,16 @@
     transition: none;
     transform: none;
   }
+
+  .actions .primaryButton,
+  .actions .secondaryButton {
+    transition: none;
+
+    &:hover {
+      transform: translateY(-2px);
+      animation: none;
+    }
+  }
 }
 
 @keyframes cta-rubber-reveal {
@@ -327,5 +396,27 @@
 
   100% {
     transform: scaleX(1);
+  }
+}
+
+@keyframes cta-button-elastic {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  36% {
+    transform: translateY(-7px) scale(1.08, 0.92);
+  }
+
+  54% {
+    transform: translateY(-4px) scale(0.97, 1.05);
+  }
+
+  72% {
+    transform: translateY(-5px) scale(1.025, 0.98);
+  }
+
+  100% {
+    transform: translateY(-4px) scale(1);
   }
 }
