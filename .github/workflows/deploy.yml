@@ -299,7 +299,7 @@ jobs:
           curl --fail --silent --show-error --max-time 20 "http://127.0.0.1:$APP_PORT/__deploy.json" || true
 
           rm -f "$RELEASE_ARCHIVE"
-          find "$APP_DIR/releases" -mindepth 1 -maxdepth 1 -type d | sort | head -n -5 | xargs -r rm -rf
+          find "$APP_DIR/releases" -mindepth 1 -maxdepth 1 -type d | sort | head -n -30 | xargs -r rm -rf
           EOF
 
       - name: External health check

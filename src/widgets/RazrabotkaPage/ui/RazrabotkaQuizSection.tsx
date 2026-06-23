@@ -3,13 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { getLeadSourcePayload } from '@/shared/lib/leadSource'
+import { reachYandexMetrikaGoal, YANDEX_METRIKA_CONTACT_FORM_GOAL } from '@/shared/lib/metrika'
 import { Icon, StudioButton } from '@/shared/ui'
 import styles from './RazrabotkaQuizSection.module.scss'
 
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
 const PHONE_PATTERN = /^\+?[\d\s\-()]{7,20}$/u
 const TELEGRAM_USERNAME_PATTERN = /^@?[a-zA-Z0-9_]{5,32}$/u
-const AUTO_OPEN_DELAY_MS = 10_000
+const AUTO_OPEN_DELAY_MS = 18_000
 
 const contactMethods = [
   { label: 'Telegram', value: 'telegram' },
@@ -180,6 +181,7 @@ export function RazrabotkaQuizSection() {
 
       if (!response.ok) throw new Error('Request failed')
 
+      await reachYandexMetrikaGoal(YANDEX_METRIKA_CONTACT_FORM_GOAL)
       window.location.assign('/thank-you')
     } catch {
       setStatus('error')

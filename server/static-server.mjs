@@ -1,5 +1,5 @@
 import { createReadStream } from 'node:fs'
-import { stat } from 'node:fs/promises'
+import { readdir, stat } from 'node:fs/promises'
 import { createServer } from 'node:http'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -9,6 +9,10 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const projectRoot = path.resolve(__dirname, '..')
 const staticDir = path.resolve(process.env.STATIC_DIR || path.join(projectRoot, 'out'))
+const parsedLegacyStaticReleaseLimit = Number.parseInt(process.env.LEGACY_STATIC_RELEASES || '30', 10)
+const legacyStaticReleaseLimit = Number.isFinite(parsedLegacyStaticReleaseLimit)
+  ? parsedLegacyStaticReleaseLimit
+  : 30
 const hostname = process.env.HOSTNAME || '127.0.0.1'
 const port = Number.parseInt(process.env.PORT || '3000', 10)
 const passenger = globalThis.PhusionPassenger
@@ -119,6 +123,9 @@ async function resolveStaticFile(urlPathname) {
     }
   }
 
+  const legacyFile = await resolveLegacyNextStaticFile(pathname, candidates)
+  if (legacyFile) return legacyFile
+
   return null
 }
 
@@ -160,6 +167,49 @@ function getStaticCandidates(pathname) {
   }
 
   return [`${cleanPath}.html`, path.join(cleanPath, 'index.html')]
+}
+
+async function resolveLegacyNextStaticFile(pathname, candidates) {
+  const cleanPath = pathname.replace(/^\/+/, '')
+
+  if (!cleanPath.startsWith('_next/static/')) {
+    return null
+  }
+
+  const releasesDir = path.join(path.dirname(path.dirname(staticDir)), 'releases')
+  let releases
+
+  try {
+    releases = await readdir(releasesDir, { withFileTypes: true })
+  } catch {
+    return null
+  }
+
+  const releaseNames = releases
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort()
+    .reverse()
+    .slice(0, legacyStaticReleaseLimit)
+
+  for (const releaseName of releaseNames) {
+    const releaseOutDir = safeResolve(releasesDir, path.join(releaseName, 'out'))
+    if (!releaseOutDir) continue
+
+    for (const candidate of candidates) {
+      const file = safeResolve(releaseOutDir, candidate)
+      if (!file) continue
+
+      try {
+        const info = await stat(file)
+        if (info.isFile()) return file
+      } catch {
+        // Try the next release.
+      }
+    }
+  }
+
+  return null
 }
 
 function safeResolve(baseDir, relativePath) {
@@ -241,7 +291,7 @@ function getCacheControl(file) {
   }
 
   if (path.extname(file).toLowerCase() === '.html') {
-    return 'no-cache'
+    return 'no-store, max-age=0, must-revalidate'
   }
 
   return 'public, max-age=86400'

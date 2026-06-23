@@ -19,6 +19,8 @@ interface Window {
           url?: string
           webvisor?: boolean
         },
+    goalParams?: Record<string, unknown>,
+    callback?: () => void,
   ) => void
   dataLayer?: unknown[]
 }

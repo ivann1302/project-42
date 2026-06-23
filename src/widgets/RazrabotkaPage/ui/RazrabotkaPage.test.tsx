@@ -186,7 +186,7 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText(/по сравнению с Tilda/)).toBeInTheDocument()
   })
 
-  it('opens the quick consultation quiz after 10 seconds on the page', async () => {
+  it('opens the quick consultation quiz after 18 seconds on the page', async () => {
     jest.useFakeTimers()
 
     render(<RazrabotkaPage config={razrabotkaConfig} />)
@@ -194,7 +194,7 @@ describe('RazrabotkaPage', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 
     await act(async () => {
-      jest.advanceTimersByTime(9_999)
+      jest.advanceTimersByTime(17_999)
     })
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
