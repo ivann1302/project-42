@@ -15,3 +15,17 @@ export type {
   WhatIncludesColumn,
   CaseItem,
 } from './model/seo-prodvizhenie'
+export { geoAeoConfig } from './model/geo-aeo-prodvizhenie'
+export type {
+  GeoAeoComparisonConfig,
+  GeoAeoFaqConfig,
+  GeoAeoFinalCtaConfig,
+  GeoAeoHeroConfig,
+  GeoAeoDefinitionConfig,
+  GeoAeoPageConfig,
+  GeoAeoProblemConfig,
+  GeoAeoResultConfig,
+  GeoAeoShiftConfig,
+  GeoAeoScopeConfig,
+  GeoAeoWhyConfig,
+} from './model/geo-aeo-prodvizhenie'

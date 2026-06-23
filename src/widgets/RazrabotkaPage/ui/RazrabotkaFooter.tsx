@@ -7,7 +7,7 @@ import styles from './RazrabotkaFooter.module.scss'
 
 const RAZRABOTKA_PATH = '/razrabotka-sayta'
 
-const sectionLinks = [
+const defaultSectionLinks = [
   { label: 'Что входит', href: '#services' },
   { label: 'Как работаем', href: '#process' },
   { label: 'О студии', href: '#about' },
@@ -44,6 +44,8 @@ type LinkItem = {
 
 type Props = {
   usePageAnchors?: boolean
+  sectionLinks?: readonly LinkItem[]
+  ariaLabel?: string
 }
 
 function getSectionHref(pathname: string, hash: string, usePageAnchors = false) {
@@ -79,7 +81,11 @@ function FooterColumn({
   )
 }
 
-export function RazrabotkaFooter({ usePageAnchors = false }: Props) {
+export function RazrabotkaFooter({
+  usePageAnchors = false,
+  sectionLinks = defaultSectionLinks,
+  ariaLabel = 'Футер страницы разработки сайта',
+}: Props) {
   const pathname = usePathname()
   const logoHref = usePageAnchors || pathname === RAZRABOTKA_PATH ? '#top' : RAZRABOTKA_PATH
   const logoLabel =
@@ -88,7 +94,7 @@ export function RazrabotkaFooter({ usePageAnchors = false }: Props) {
       : 'Project 42 - к странице разработки сайта'
 
   return (
-    <footer className={styles.root} id="footer" aria-label="Футер страницы разработки сайта">
+    <footer className={styles.root} id="footer" aria-label={ariaLabel}>
       <WaveDivider />
       <div className={styles.inner}>
         <div className={styles.brandColumn}>

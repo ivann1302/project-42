@@ -52,4 +52,12 @@ describe('CookieNotice', () => {
 
     expect(screen.queryByLabelText('Уведомление о cookie')).not.toBeInTheDocument()
   })
+
+  it('does not show notice on the GEO/AEO service page', () => {
+    mockPathname = '/geo-aeo-prodvizhenie'
+
+    render(<CookieNotice />)
+
+    expect(screen.queryByLabelText('Уведомление о cookie')).not.toBeInTheDocument()
+  })
 })

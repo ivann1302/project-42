@@ -7,7 +7,22 @@ import styles from './RazrabotkaHeader.module.scss'
 
 const SCROLL_THRESHOLD = 24
 
-const navLinks = [
+type NavLink = {
+  label: string
+  href: string
+}
+
+type Props = {
+  logoHref?: string
+  logoCaption?: string
+  navLinks?: readonly NavLink[]
+  ctaLabel?: string
+  ctaHref?: string
+  menuId?: string
+  testId?: string
+}
+
+const defaultNavLinks = [
   { label: 'Услуги', href: '#services' },
   { label: 'Проекты', href: '#projects' },
   { label: 'О нас', href: '#about' },
@@ -15,7 +30,15 @@ const navLinks = [
   { label: 'Контакты', href: '#contacts' },
 ] as const
 
-export function RazrabotkaHeader() {
+export function RazrabotkaHeader({
+  logoHref = '/razrabotka-sayta',
+  logoCaption = 'Веб-студия',
+  navLinks = defaultNavLinks,
+  ctaLabel = 'Обсудить проект',
+  ctaHref = '#cta',
+  menuId = 'razrabotka-header-menu',
+  testId = 'razrabotka-header',
+}: Props = {}) {
   const [isPinned, setIsPinned] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -47,32 +70,32 @@ export function RazrabotkaHeader() {
   return (
     <header
       className={clsx(styles.root, isPinned && styles.pinned, menuOpen && styles.menuOpen)}
-      data-testid="razrabotka-header"
+      data-testid={testId}
     >
       <div className={styles.shell}>
         <div className={styles.bar}>
-          <a className={styles.logo} href="/razrabotka-sayta" onClick={closeMenu}>
+          <a className={styles.logo} href={logoHref} onClick={closeMenu}>
             <span className={styles.logoTitle}>
               <span>Project</span>
               <span className={styles.logoNumber}>42</span>
             </span>
-            <span className={styles.logoCaption}>Веб-студия</span>
+            <span className={styles.logoCaption}>{logoCaption}</span>
           </a>
 
-          <nav className={styles.nav} id="razrabotka-header-menu" aria-label="Основная навигация">
+          <nav className={styles.nav} id={menuId} aria-label="Основная навигация">
             {navLinks.map((link) => (
               <a key={link.href} className={styles.navLink} href={link.href} onClick={closeMenu}>
                 {link.label}
               </a>
             ))}
-            <a className={styles.mobileCta} href="#cta" onClick={closeMenu}>
-              Обсудить проект
+            <a className={styles.mobileCta} href={ctaHref} onClick={closeMenu}>
+              {ctaLabel}
               <Icon name="externalLink" size={16} />
             </a>
           </nav>
 
-          <a className={styles.cta} href="#cta">
-            Обсудить проект
+          <a className={styles.cta} href={ctaHref}>
+            {ctaLabel}
             <Icon name="externalLink" size={16} />
           </a>
 
@@ -80,7 +103,7 @@ export function RazrabotkaHeader() {
             className={styles.burger}
             type="button"
             aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
-            aria-controls="razrabotka-header-menu"
+            aria-controls={menuId}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((current) => !current)}
           >

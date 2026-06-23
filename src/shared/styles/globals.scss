@@ -118,3 +118,15 @@ h6 {
   background: rgba($color-purple, 50%);
   border-radius: $radius-pill;
 }
+
+body[data-scrollbar-theme='geo-aeo'] {
+  scrollbar-color: rgba($color-white, 28%) #030303;
+}
+
+body[data-scrollbar-theme='geo-aeo']::-webkit-scrollbar-track {
+  background: #030303;
+}
+
+body[data-scrollbar-theme='geo-aeo']::-webkit-scrollbar-thumb {
+  background: rgba($color-white, 28%);
+}
