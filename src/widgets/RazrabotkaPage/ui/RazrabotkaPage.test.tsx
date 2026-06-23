@@ -146,6 +146,46 @@ describe('RazrabotkaPage', () => {
     expect(cases.getAllByText('Промо сайт приложения Sosedi').length).toBeGreaterThan(0)
   })
 
+  it('opens a case modal and closes it from the controls', async () => {
+    const user = userEvent.setup()
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    await user.click(screen.getByRole('button', { name: 'Открыть кейс ROSA' }))
+
+    const dialog = screen.getByRole('dialog', { name: 'ROSA' })
+    const modal = within(dialog)
+
+    expect(
+      modal.getByRole('img', { name: 'Корпоративный сайт строительной компании' }),
+    ).toBeInTheDocument()
+    expect(modal.getByText(/Для ROSA собрали большой корпоративный сайт/)).toBeInTheDocument()
+    expect(modal.queryByText('Примеры экранов')).not.toBeInTheDocument()
+
+    await user.click(modal.getByRole('button', { name: 'Следующее изображение' }))
+
+    expect(
+      modal.getByRole('img', { name: 'Пример экрана ROSA: блок полезных ссылок и форма заявки' }),
+    ).toBeInTheDocument()
+
+    await user.click(modal.getByRole('button', { name: 'Следующее изображение' }))
+    await user.click(modal.getByRole('button', { name: 'Следующее изображение' }))
+
+    expect(
+      modal.getByRole('img', { name: 'Корпоративный сайт строительной компании' }),
+    ).toBeInTheDocument()
+
+    await user.click(modal.getByRole('button', { name: 'Закрыть' }))
+
+    expect(screen.queryByRole('dialog', { name: 'ROSA' })).not.toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: 'Открыть кейс TrueTell' }))
+    const overlay = screen.getByRole('dialog', { name: 'TrueTell' })
+
+    fireEvent.click(overlay)
+
+    expect(screen.queryByRole('dialog', { name: 'TrueTell' })).not.toBeInTheDocument()
+  })
+
   it('renders the testimonials section between cases and services', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
