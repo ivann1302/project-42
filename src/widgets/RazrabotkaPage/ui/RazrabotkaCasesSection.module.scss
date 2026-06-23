@@ -311,8 +311,8 @@
 
 .modalMockup {
   overflow: hidden;
-  background: $surface-canvas;
-  border: 1px solid $border-strong;
+  background: transparent;
+  border: 0;
   border-radius: $radius-sm;
 }
 
@@ -320,6 +320,42 @@
   position: relative;
   height: clamp(190px, 52vw, 560px);
   overflow: hidden;
+  background: $surface-canvas;
+  border-radius: inherit;
+}
+
+.modalSlide {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  will-change: transform, opacity;
+}
+
+.modalSlideActive {
+  z-index: 1;
+}
+
+.modalSlideLeaving {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.modalSlideEnteringNext {
+  animation: modal-slide-enter-next 460ms $ease-emphasized both;
+}
+
+.modalSlideEnteringPrevious {
+  animation: modal-slide-enter-previous 460ms $ease-emphasized both;
+}
+
+.modalSlideLeavingNext {
+  animation: modal-slide-leave-next 460ms $ease-emphasized both;
+}
+
+.modalSlideLeavingPrevious {
+  animation: modal-slide-leave-previous 460ms $ease-emphasized both;
 }
 
 .modalImageButton {
@@ -328,7 +364,7 @@
   justify-content: center;
   position: absolute;
   top: 50%;
-  z-index: 2;
+  z-index: 3;
   width: 40px;
   height: 40px;
   color: $color-black;
@@ -386,7 +422,7 @@
   position: absolute;
   right: $space-3;
   bottom: $space-3;
-  z-index: 2;
+  z-index: 3;
   padding: $space-1 $space-2;
   font-size: $font-size-xs;
   font-weight: $font-weight-bold;
@@ -419,6 +455,41 @@
   font-weight: $font-weight-medium;
   line-height: $line-height-body;
   color: $text-secondary;
+}
+
+.modalServicesBlock {
+  display: grid;
+  gap: $space-2;
+  padding-top: $space-1;
+}
+
+.modalServicesTitle {
+  margin: 0;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-primary;
+}
+
+.modalServicesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.modalService {
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-ui;
+  color: $text-primary;
+  background: rgba($surface-card-mint, 9%);
+  border: 1px solid rgba($surface-card-mint, 28%);
+  border-radius: $radius-xs;
 }
 
 @media (min-width: $bp-tablet) {
@@ -596,5 +667,53 @@
   .mockup,
   .mockup:hover {
     transform: none;
+  }
+}
+
+@keyframes modal-slide-enter-next {
+  from {
+    opacity: 0.96;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes modal-slide-leave-next {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0.96;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes modal-slide-enter-previous {
+  from {
+    opacity: 0.96;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes modal-slide-leave-previous {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0.96;
+    transform: translateX(100%);
   }
 }

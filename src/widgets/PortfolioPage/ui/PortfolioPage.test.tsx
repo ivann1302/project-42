@@ -21,6 +21,14 @@ describe('PortfolioPage', () => {
     expect(h2s).toHaveLength(projects.length)
   })
 
+  it('renders services provided for each project', () => {
+    render(<PortfolioPage />)
+    expect(screen.getAllByText('Оказанные услуги')).toHaveLength(
+      projects.filter((project) => project.services).length,
+    )
+    expect(screen.getByText('SEO и GEO-оптимизация')).toBeInTheDocument()
+  })
+
   it('renders "Посмотреть сайт" links for all projects with href', () => {
     render(<PortfolioPage />)
     const links = screen.queryAllByRole('link', { name: /посмотреть сайт/i })

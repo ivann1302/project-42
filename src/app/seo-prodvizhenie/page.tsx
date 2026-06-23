@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: seoConfig.seo.description,
     images: [
       {
-        url: '/og-seo-prodvizhenie.jpg',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'SEO-продвижение и GEO-оптимизация — Project 42',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     creator: siteConfig.twitterHandle,
     title: seoConfig.seo.title,
     description: seoConfig.seo.description,
-    images: ['/og-seo-prodvizhenie.jpg'],
+    images: ['/og-image.jpg'],
   },
 }
 

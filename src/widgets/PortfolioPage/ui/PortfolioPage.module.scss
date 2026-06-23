@@ -23,6 +23,8 @@
 .eyebrow,
 .index,
 .tag,
+.servicesTitle,
+.service,
 .link,
 .ctaKicker {
   font-size: $font-size-xs;
@@ -98,6 +100,7 @@
 }
 
 .tags,
+.servicesList,
 .achievements {
   display: flex;
   flex-wrap: wrap;
@@ -131,6 +134,32 @@
   font-weight: $font-weight-medium;
   line-height: $line-height-body;
   color: $text-secondary;
+}
+
+.servicesBlock {
+  display: grid;
+  gap: $space-2;
+}
+
+.servicesTitle {
+  margin: 0;
+  color: $text-primary;
+}
+
+.servicesList {
+  gap: $space-2;
+}
+
+.service {
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-ui;
+  text-transform: none;
+  color: $text-primary;
+  background: rgba($surface-card-mint, 9%);
+  border: 1px solid rgba($surface-card-mint, 28%);
+  border-radius: $radius-xs;
 }
 
 .achievements {

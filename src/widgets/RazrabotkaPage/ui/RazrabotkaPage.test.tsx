@@ -144,6 +144,8 @@ describe('RazrabotkaPage', () => {
     ).toBeGreaterThan(0)
     expect(cases.getByText('Sosedi')).toBeInTheDocument()
     expect(cases.getAllByText('Промо сайт приложения Sosedi').length).toBeGreaterThan(0)
+    expect(cases.getByText('Звезда')).toBeInTheDocument()
+    expect(cases.getAllByText('Завод трансформаторов «Звезда»').length).toBeGreaterThan(0)
   })
 
   it('opens a case modal and closes it from the controls', async () => {
@@ -159,6 +161,8 @@ describe('RazrabotkaPage', () => {
       modal.getByRole('img', { name: 'Корпоративный сайт строительной компании' }),
     ).toBeInTheDocument()
     expect(modal.getByText(/Для ROSA собрали большой корпоративный сайт/)).toBeInTheDocument()
+    expect(modal.getByText('Оказанные услуги')).toBeInTheDocument()
+    expect(modal.getByText('SEO и GEO-оптимизация')).toBeInTheDocument()
     expect(modal.queryByText('Примеры экранов')).not.toBeInTheDocument()
 
     await user.click(modal.getByRole('button', { name: 'Следующее изображение' }))

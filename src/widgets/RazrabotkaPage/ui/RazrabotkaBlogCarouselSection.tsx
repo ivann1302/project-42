@@ -16,9 +16,9 @@ export function RazrabotkaBlogCarouselSection() {
     <section ref={sectionRef} className={styles.root} aria-labelledby="razrabotka-blog-title">
       <div className={styles.inner}>
         <div className={styles.header}>
-          <p className={styles.kicker}>Делимся экспертизой</p>
+          <p className={styles.kicker}>Наш опыт</p>
           <h2 className={styles.title} id="razrabotka-blog-title">
-            Перед тем как заказать сайт
+            Делимся экспертизой
           </h2>
         </div>
 

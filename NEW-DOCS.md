@@ -1,6 +1,6 @@
 # Project 42 Design System
 
-Референсы лежат в папке `new-design`. Главный референс:
+Документ описывает новую дизайн-систему Project 42. Главный референс ранее лежал в папке `new-design`:
 
 ```text
 new-design/ChatGPT Image 15 июн. 2026 г., 10_41_35.png

@@ -49,6 +49,18 @@ export function PortfolioPage() {
                   </ul>
                   <h2 className={styles.title}>{project.title}</h2>
                   <p className={styles.description}>{project.description}</p>
+                  {project.services && (
+                    <div className={styles.servicesBlock}>
+                      <p className={styles.servicesTitle}>Оказанные услуги</p>
+                      <ul className={styles.servicesList} role="list">
+                        {project.services.map((service) => (
+                          <li key={service} className={styles.service}>
+                            {service}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                   {project.achievements && (
                     <ul className={styles.achievements} role="list">
                       {project.achievements.map((item) => (
