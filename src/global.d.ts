@@ -7,19 +7,22 @@ interface Window {
   ym?: (
     counterId: number,
     method: 'hit' | 'init' | 'reachGoal',
-    params?:
+    paramsOrTarget?:
       | string
       | {
           accurateTrackBounce?: boolean
+          callback?: () => void
           clickmap?: boolean
           ecommerce?: string
+          referer?: string
           referrer?: string
           ssr?: boolean
+          title?: string
           trackLinks?: boolean
           url?: string
           webvisor?: boolean
         },
-    goalParams?: Record<string, unknown>,
+    optionsOrParams?: Record<string, unknown>,
     callback?: () => void,
   ) => void
   dataLayer?: unknown[]

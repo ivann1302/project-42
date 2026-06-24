@@ -7,7 +7,10 @@ import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Select } from '@/shared/ui'
 import { getLeadSourcePayload } from '@/shared/lib/leadSource'
-import { reachYandexMetrikaGoal, YANDEX_METRIKA_CONTACT_FORM_GOAL } from '@/shared/lib/metrika'
+import {
+  trackYandexMetrikaLeadConversion,
+  YANDEX_METRIKA_LEAD_THANK_YOU_URL,
+} from '@/shared/lib/metrika'
 import { contactSchema, type ContactFormData } from '../model/schema'
 import styles from './ContactForm.module.scss'
 
@@ -52,9 +55,9 @@ export function ContactForm({ onSuccess }: Props) {
       })
       if (!res.ok) throw new Error()
       reset()
-      await reachYandexMetrikaGoal(YANDEX_METRIKA_CONTACT_FORM_GOAL)
+      await trackYandexMetrikaLeadConversion()
       onSuccess?.()
-      router.push('/thank-you')
+      router.push(YANDEX_METRIKA_LEAD_THANK_YOU_URL)
     } catch {
       setStatus('error')
     }

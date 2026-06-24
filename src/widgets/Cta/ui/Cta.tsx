@@ -5,7 +5,10 @@ import { useRouter } from 'next/navigation'
 import { Button, Container, StarField } from '@/shared/ui'
 import { useScrollReveal } from '@/shared/lib'
 import { getLeadSourcePayload } from '@/shared/lib/leadSource'
-import { reachYandexMetrikaGoal, YANDEX_METRIKA_CONTACT_FORM_GOAL } from '@/shared/lib/metrika'
+import {
+  trackYandexMetrikaLeadConversion,
+  YANDEX_METRIKA_LEAD_THANK_YOU_URL,
+} from '@/shared/lib/metrika'
 import styles from './Cta.module.scss'
 
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
@@ -161,8 +164,8 @@ export function Cta({
       })
 
       if (!res.ok) throw new Error()
-      await reachYandexMetrikaGoal(YANDEX_METRIKA_CONTACT_FORM_GOAL)
-      router.push('/thank-you')
+      await trackYandexMetrikaLeadConversion()
+      router.push(YANDEX_METRIKA_LEAD_THANK_YOU_URL)
     } catch {
       setStatus('error')
     }

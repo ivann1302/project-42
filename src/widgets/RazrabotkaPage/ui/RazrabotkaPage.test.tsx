@@ -3,7 +3,20 @@ import userEvent from '@testing-library/user-event'
 import { razrabotkaConfig } from '@/entities/ServicePage'
 import { RazrabotkaPage } from './RazrabotkaPage'
 
+const mockPush = jest.fn()
+
+jest.mock('next/navigation', () => ({
+  usePathname: () => '/razrabotka-sayta',
+  useRouter: () => ({
+    push: mockPush,
+  }),
+}))
+
 describe('RazrabotkaPage', () => {
+  beforeEach(() => {
+    mockPush.mockClear()
+  })
+
   afterEach(() => {
     jest.useRealTimers()
   })

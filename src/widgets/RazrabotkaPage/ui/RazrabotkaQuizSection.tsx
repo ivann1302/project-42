@@ -1,9 +1,13 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import clsx from 'clsx'
 import { getLeadSourcePayload } from '@/shared/lib/leadSource'
-import { reachYandexMetrikaGoal, YANDEX_METRIKA_CONTACT_FORM_GOAL } from '@/shared/lib/metrika'
+import {
+  trackYandexMetrikaLeadConversion,
+  YANDEX_METRIKA_LEAD_THANK_YOU_URL,
+} from '@/shared/lib/metrika'
 import { Icon, StudioButton } from '@/shared/ui'
 import styles from './RazrabotkaQuizSection.module.scss'
 
@@ -24,6 +28,7 @@ type FormStatus = 'idle' | 'loading' | 'error'
 type QuizStep = 1 | 2 | 3
 
 export function RazrabotkaQuizSection() {
+  const router = useRouter()
   const openedRef = useRef(false)
   const [open, setOpen] = useState(false)
   const [step, setStep] = useState<QuizStep>(1)
@@ -181,8 +186,8 @@ export function RazrabotkaQuizSection() {
 
       if (!response.ok) throw new Error('Request failed')
 
-      await reachYandexMetrikaGoal(YANDEX_METRIKA_CONTACT_FORM_GOAL)
-      window.location.assign('/thank-you')
+      await trackYandexMetrikaLeadConversion()
+      router.push(YANDEX_METRIKA_LEAD_THANK_YOU_URL)
     } catch {
       setStatus('error')
     }
