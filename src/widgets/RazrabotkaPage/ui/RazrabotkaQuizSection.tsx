@@ -14,7 +14,7 @@ import styles from './RazrabotkaQuizSection.module.scss'
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
 const PHONE_PATTERN = /^\+?[\d\s\-()]{7,20}$/u
 const TELEGRAM_USERNAME_PATTERN = /^@?[a-zA-Z0-9_]{5,32}$/u
-const AUTO_OPEN_DELAY_MS = 18_000
+const AUTO_OPEN_DELAY_MS = 26_000
 
 const contactMethods = [
   { label: 'Telegram', value: 'telegram' },
