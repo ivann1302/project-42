@@ -95,7 +95,7 @@ export function RazrabotkaFooter({
 
   return (
     <footer className={styles.root} id="footer" aria-label={ariaLabel}>
-      <WaveDivider />
+      <WaveDivider autoBounce />
       <div className={styles.inner}>
         <div className={styles.brandColumn}>
           <Link className={styles.logo} href={logoHref} aria-label={logoLabel}>

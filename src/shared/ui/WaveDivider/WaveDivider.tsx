@@ -5,14 +5,22 @@ import type { MouseEvent, TouchEvent } from 'react'
 import styles from './WaveDivider.module.scss'
 
 const LINE_Y = 100
+const AUTO_BOUNCE_MOBILE_QUERY = '(max-width: 767px)'
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
 const TOUCH_PULL_MULTIPLIER = 0.42
 const MAX_TOUCH_STEP = 36
 const BOTTOM_BOUNCE_PROGRESS = -26
+const VISIBLE_BOUNCE_PROGRESS = 44
 const BOTTOM_TRIGGER_DISTANCE = 4
 const BOTTOM_RESET_DISTANCE = 160
+const VISIBLE_TRIGGER_VIEWPORT_PART = 0.92
 
-export function WaveDivider() {
+type Props = {
+  autoBounce?: boolean
+  autoBounceOnMobile?: boolean
+}
+
+export function WaveDivider({ autoBounce = false, autoBounceOnMobile = false }: Props) {
   const lineRef = useRef<HTMLDivElement>(null)
   const pathRef = useRef<SVGPathElement>(null)
   const progressRef = useRef(0)
@@ -20,7 +28,11 @@ export function WaveDivider() {
   const timeRef = useRef(Math.PI / 2)
   const frameRef = useRef<number | null>(null)
   const lastTouchYRef = useRef<number | null>(null)
+  const lastScrollYRef = useRef(0)
+  const autoBounceRef = useRef(false)
+  const visibleBounceTriggeredRef = useRef(false)
   const bottomBounceTriggeredRef = useRef(false)
+  const returnBouncePendingRef = useRef(false)
   const reducedMotionRef = useRef(false)
 
   const setPath = useCallback((progress: number) => {
@@ -56,20 +68,31 @@ export function WaveDivider() {
     resetAnimation()
   }, [resetAnimation, setPath])
 
-  const triggerBottomBounce = useCallback(() => {
-    if (reducedMotionRef.current) return
+  const triggerBounce = useCallback(
+    (progress = BOTTOM_BOUNCE_PROGRESS) => {
+      if (reducedMotionRef.current) return
 
-    if (frameRef.current) {
-      window.cancelAnimationFrame(frameRef.current)
-      frameRef.current = null
-    }
+      if (frameRef.current) {
+        window.cancelAnimationFrame(frameRef.current)
+        frameRef.current = null
+      }
 
-    xRef.current = 0.5
-    timeRef.current = Math.PI / 2
-    progressRef.current = BOTTOM_BOUNCE_PROGRESS
-    setPath(progressRef.current)
-    frameRef.current = window.requestAnimationFrame(animateOut)
-  }, [animateOut, setPath])
+      xRef.current = 0.5
+      timeRef.current = Math.PI / 2
+      progressRef.current = progress
+      setPath(progressRef.current)
+      frameRef.current = window.requestAnimationFrame(animateOut)
+    },
+    [animateOut, setPath],
+  )
+
+  const isLineVisible = useCallback(() => {
+    const line = lineRef.current
+    if (!line) return false
+
+    const bounds = line.getBoundingClientRect()
+    return bounds.top <= window.innerHeight * VISIBLE_TRIGGER_VIEWPORT_PART && bounds.bottom >= 0
+  }, [])
 
   const handleMouseEnter = () => {
     if (frameRef.current) {
@@ -134,26 +157,59 @@ export function WaveDivider() {
   }
 
   useEffect(() => {
+    const syncAutoBounce = () => {
+      const isMobileViewport = window.matchMedia
+        ? window.matchMedia(AUTO_BOUNCE_MOBILE_QUERY).matches
+        : window.innerWidth <= 767
+
+      autoBounceRef.current = autoBounce || (autoBounceOnMobile && isMobileViewport)
+    }
+
     const handleWindowScroll = () => {
+      const currentScrollY = window.scrollY
+      const isScrollingUp = currentScrollY < lastScrollYRef.current
       const documentElement = document.documentElement
       const documentHeight = Math.max(document.body.scrollHeight, documentElement.scrollHeight)
-      const distanceToBottom = documentHeight - (window.scrollY + window.innerHeight)
+      const distanceToBottom = documentHeight - (currentScrollY + window.innerHeight)
+
+      if (autoBounceRef.current && !reducedMotionRef.current && isLineVisible()) {
+        if (!visibleBounceTriggeredRef.current) {
+          visibleBounceTriggeredRef.current = true
+          triggerBounce(VISIBLE_BOUNCE_PROGRESS)
+        } else if (
+          returnBouncePendingRef.current &&
+          isScrollingUp &&
+          distanceToBottom > BOTTOM_TRIGGER_DISTANCE
+        ) {
+          returnBouncePendingRef.current = false
+          triggerBounce(VISIBLE_BOUNCE_PROGRESS)
+        }
+      }
 
       if (distanceToBottom > BOTTOM_RESET_DISTANCE) {
         bottomBounceTriggeredRef.current = false
-        return
+      } else if (distanceToBottom <= BOTTOM_TRIGGER_DISTANCE) {
+        if (autoBounceRef.current) {
+          returnBouncePendingRef.current = true
+        }
+
+        if (!bottomBounceTriggeredRef.current) {
+          bottomBounceTriggeredRef.current = true
+          triggerBounce()
+        }
       }
 
-      if (distanceToBottom <= BOTTOM_TRIGGER_DISTANCE && !bottomBounceTriggeredRef.current) {
-        bottomBounceTriggeredRef.current = true
-        triggerBottomBounce()
-      }
+      lastScrollYRef.current = currentScrollY
     }
+
+    lastScrollYRef.current = window.scrollY
+    syncAutoBounce()
 
     if (!window.matchMedia) {
       resetAnimation()
       window.addEventListener('resize', resetAnimation)
       window.addEventListener('scroll', handleWindowScroll, { passive: true })
+      handleWindowScroll()
 
       return () => {
         if (frameRef.current) window.cancelAnimationFrame(frameRef.current)
@@ -163,6 +219,7 @@ export function WaveDivider() {
     }
 
     const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY)
+    const mobileQuery = window.matchMedia(AUTO_BOUNCE_MOBILE_QUERY)
 
     const syncReducedMotion = () => {
       reducedMotionRef.current = mediaQuery.matches
@@ -173,18 +230,21 @@ export function WaveDivider() {
     window.addEventListener('resize', resetAnimation)
     window.addEventListener('scroll', handleWindowScroll, { passive: true })
     mediaQuery.addEventListener('change', syncReducedMotion)
+    mobileQuery.addEventListener('change', syncAutoBounce)
+    handleWindowScroll()
 
     return () => {
       if (frameRef.current) window.cancelAnimationFrame(frameRef.current)
       window.removeEventListener('resize', resetAnimation)
       window.removeEventListener('scroll', handleWindowScroll)
       mediaQuery.removeEventListener('change', syncReducedMotion)
+      mobileQuery.removeEventListener('change', syncAutoBounce)
     }
-  }, [resetAnimation, triggerBottomBounce])
+  }, [autoBounce, autoBounceOnMobile, isLineVisible, resetAnimation, triggerBounce])
 
   return (
-    <div className={styles.root} aria-hidden="true">
-      <div ref={lineRef} className={styles.line}>
+    <div className={styles.root} aria-hidden="true" data-testid="wave-divider">
+      <div ref={lineRef} className={styles.line} data-testid="wave-divider-line">
         <div
           className={styles.hitArea}
           onMouseEnter={handleMouseEnter}
