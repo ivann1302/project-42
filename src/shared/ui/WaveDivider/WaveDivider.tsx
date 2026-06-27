@@ -69,10 +69,12 @@ export function WaveDivider({ autoBounce = false, autoBounceOnMobile = false }: 
   }, [resetAnimation, setPath])
 
   const triggerBounce = useCallback(
-    (progress = BOTTOM_BOUNCE_PROGRESS) => {
-      if (reducedMotionRef.current) return
+    (progress = BOTTOM_BOUNCE_PROGRESS, restartRunning = true) => {
+      if (reducedMotionRef.current) return false
 
       if (frameRef.current) {
+        if (!restartRunning) return false
+
         window.cancelAnimationFrame(frameRef.current)
         frameRef.current = null
       }
@@ -82,6 +84,8 @@ export function WaveDivider({ autoBounce = false, autoBounceOnMobile = false }: 
       progressRef.current = progress
       setPath(progressRef.current)
       frameRef.current = window.requestAnimationFrame(animateOut)
+
+      return true
     },
     [animateOut, setPath],
   )
@@ -171,18 +175,21 @@ export function WaveDivider({ autoBounce = false, autoBounceOnMobile = false }: 
       const documentElement = document.documentElement
       const documentHeight = Math.max(document.body.scrollHeight, documentElement.scrollHeight)
       const distanceToBottom = documentHeight - (currentScrollY + window.innerHeight)
+      let startedAutoBounce = false
 
       if (autoBounceRef.current && !reducedMotionRef.current && isLineVisible()) {
         if (!visibleBounceTriggeredRef.current) {
           visibleBounceTriggeredRef.current = true
-          triggerBounce(VISIBLE_BOUNCE_PROGRESS)
+          startedAutoBounce = triggerBounce(VISIBLE_BOUNCE_PROGRESS, false)
         } else if (
           returnBouncePendingRef.current &&
           isScrollingUp &&
           distanceToBottom > BOTTOM_TRIGGER_DISTANCE
         ) {
-          returnBouncePendingRef.current = false
-          triggerBounce(VISIBLE_BOUNCE_PROGRESS)
+          startedAutoBounce = triggerBounce(VISIBLE_BOUNCE_PROGRESS, false)
+          if (startedAutoBounce) {
+            returnBouncePendingRef.current = false
+          }
         }
       }
 
@@ -195,7 +202,9 @@ export function WaveDivider({ autoBounce = false, autoBounceOnMobile = false }: 
 
         if (!bottomBounceTriggeredRef.current) {
           bottomBounceTriggeredRef.current = true
-          triggerBounce()
+          if (!startedAutoBounce) {
+            triggerBounce(BOTTOM_BOUNCE_PROGRESS, false)
+          }
         }
       }
 

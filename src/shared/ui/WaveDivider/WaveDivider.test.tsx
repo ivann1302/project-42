@@ -150,6 +150,35 @@ describe('WaveDivider', () => {
   })
 
   it('springs again on upward scroll after the page bottom was reached', () => {
+    const frameCallbacks = new Map<number, FrameRequestCallback>()
+    let frameId = 0
+    const runAnimationFrames = (limit = 240) => {
+      let framesLeft = limit
+
+      while (frameCallbacks.size > 0 && framesLeft > 0) {
+        const callbacks = Array.from(frameCallbacks.entries())
+        frameCallbacks.clear()
+
+        callbacks.forEach(([, callback]) => callback(performance.now()))
+        framesLeft -= 1
+      }
+    }
+
+    Object.defineProperty(window, 'requestAnimationFrame', {
+      configurable: true,
+      value: jest.fn((callback: FrameRequestCallback) => {
+        frameId += 1
+        frameCallbacks.set(frameId, callback)
+        return frameId
+      }),
+    })
+    Object.defineProperty(window, 'cancelAnimationFrame', {
+      configurable: true,
+      value: jest.fn((id: number) => {
+        frameCallbacks.delete(id)
+      }),
+    })
+
     let lineTop = 560
     Element.prototype.getBoundingClientRect = function getBoundingClientRect() {
       if ((this as HTMLElement).dataset.testid === 'wave-divider-line') {
@@ -163,6 +192,7 @@ describe('WaveDivider', () => {
 
     const path = screen.getByTestId('wave-divider').querySelector('path')
     expect(path).toHaveAttribute('d', 'M0 100 Q180 126.4, 360 100')
+    runAnimationFrames()
 
     lineTop = -700
     setScrollY(2400)
@@ -172,6 +202,7 @@ describe('WaveDivider', () => {
     })
 
     expect(path).toHaveAttribute('d', 'M0 100 Q180 84.4, 360 100')
+    runAnimationFrames()
 
     lineTop = 420
     setScrollY(2280)
