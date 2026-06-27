@@ -4,6 +4,11 @@
   background: $surface-canvas;
 }
 
+.divider {
+  width: calc(100% + #{$container-pad-mobile * 2});
+  margin-inline: -$container-pad-mobile;
+}
+
 .inner {
   display: grid;
   gap: $space-5;
@@ -222,6 +227,11 @@
     padding: 0 $container-pad-tablet $space-5;
   }
 
+  .divider {
+    width: calc(100% + #{$container-pad-tablet * 2});
+    margin-inline: -$container-pad-tablet;
+  }
+
   .inner {
     gap: $space-6;
     grid-template-columns: minmax(250px, 1.25fr) repeat(2, minmax(180px, 0.8fr));
@@ -260,6 +270,11 @@
 @media (min-width: $bp-desktop) {
   .root {
     padding: 0 $container-pad-desktop $space-5;
+  }
+
+  .divider {
+    width: calc(100% + #{$container-pad-desktop * 2});
+    margin-inline: -$container-pad-desktop;
   }
 
   .inner {

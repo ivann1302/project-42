@@ -18,9 +18,10 @@ const VISIBLE_TRIGGER_VIEWPORT_PART = 0.92
 type Props = {
   autoBounce?: boolean
   autoBounceOnMobile?: boolean
+  className?: string
 }
 
-export function WaveDivider({ autoBounce = false, autoBounceOnMobile = false }: Props) {
+export function WaveDivider({ autoBounce = false, autoBounceOnMobile = false, className }: Props) {
   const lineRef = useRef<HTMLDivElement>(null)
   const pathRef = useRef<SVGPathElement>(null)
   const progressRef = useRef(0)
@@ -252,7 +253,11 @@ export function WaveDivider({ autoBounce = false, autoBounceOnMobile = false }: 
   }, [autoBounce, autoBounceOnMobile, isLineVisible, resetAnimation, triggerBounce])
 
   return (
-    <div className={styles.root} aria-hidden="true" data-testid="wave-divider">
+    <div
+      className={[styles.root, className].filter(Boolean).join(' ')}
+      aria-hidden="true"
+      data-testid="wave-divider"
+    >
       <div ref={lineRef} className={styles.line} data-testid="wave-divider-line">
         <div
           className={styles.hitArea}
