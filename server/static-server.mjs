@@ -15,6 +15,8 @@ const legacyStaticReleaseLimit = Number.isFinite(parsedLegacyStaticReleaseLimit)
   : 30
 const hostname = process.env.HOSTNAME || '127.0.0.1'
 const port = Number.parseInt(process.env.PORT || '3000', 10)
+const canonicalHost = (process.env.CANONICAL_HOST || 'project42-studio.ru').toLowerCase()
+const canonicalProtocol = (process.env.CANONICAL_PROTOCOL || 'https').replace(/:$/, '')
 const passenger = globalThis.PhusionPassenger
 
 const contactEndpoints = new Set(['/scripts/api/send.php', '/scripts/api/send', '/api/send'])
@@ -39,6 +41,13 @@ const server = createServer(async (req, res) => {
 
   if (!requestUrl) {
     sendPlain(res, 400, 'Bad Request')
+    return
+  }
+
+  const canonicalRedirectTarget = getCanonicalRedirectTarget(requestUrl)
+
+  if (canonicalRedirectTarget) {
+    sendRedirect(res, 301, canonicalRedirectTarget)
     return
   }
 
@@ -151,6 +160,14 @@ function getPermanentRedirectTarget(requestUrl) {
   if (!target) return null
 
   return `${target}${requestUrl.search}`
+}
+
+function getCanonicalRedirectTarget(requestUrl) {
+  if (requestUrl.hostname.toLowerCase() !== `www.${canonicalHost}`) {
+    return null
+  }
+
+  return `${canonicalProtocol}://${canonicalHost}${requestUrl.pathname}${requestUrl.search}`
 }
 
 function getStaticCandidates(pathname) {
