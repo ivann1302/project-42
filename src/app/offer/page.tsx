@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   title: 'Договор-оферта',
   description:
     'Договор-оферта Project 42 на оказание digital-услуг: порядок работ, оплата, гарантии, поддержка и реквизиты Исполнителя.',
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
   alternates: {
     canonical: `${siteConfig.url}/offer`,
   },

@@ -3,6 +3,7 @@ import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
 import { Header } from '@/widgets/Header'
 import { siteConfig } from '@/shared/config/seo'
 import { HomeHero } from './HomeHero'
+import { HomeServices } from './HomeServices'
 import { HomeTrust } from './HomeTrust'
 import styles from './page.module.scss'
 
@@ -51,6 +52,7 @@ export default function HomePage() {
       <main className={styles.main}>
         <HomeHero />
         <HomeTrust />
+        <HomeServices />
       </main>
       <RazrabotkaFooter />
     </>

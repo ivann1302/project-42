@@ -9,6 +9,9 @@
   display: grid;
   justify-items: center;
   gap: $space-8;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  min-width: 0;
   max-width: 1120px;
   margin: 0 auto;
 }
@@ -20,7 +23,18 @@
   align-content: start;
   justify-items: center;
   width: 100%;
+  min-width: 0;
   min-height: calc(100vh - 96px);
+}
+
+.heroNoCover {
+  grid-template-rows: auto;
+  min-height: auto;
+  padding: $space-10 0 $space-3;
+}
+
+.heroNoCover .header {
+  transform: none;
 }
 
 .backLink,
@@ -44,11 +58,17 @@
 
 .header {
   display: grid;
+  justify-items: center;
   gap: $space-5;
+  width: 100%;
+  min-width: 0;
+  text-align: center;
   transform: translateY(35px);
 }
 
 .heading {
+  width: 100%;
+  min-width: 0;
   max-width: 1040px;
   margin: 0;
   font-family: $font-body;
@@ -60,6 +80,8 @@
 }
 
 .description {
+  width: 100%;
+  min-width: 0;
   max-width: 900px;
   margin: 0;
   font-size: clamp(18px, 2.2vw, 24px);
@@ -71,6 +93,7 @@
 .meta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: $space-2 $space-4;
   font-size: $font-size-sm;
   font-weight: $font-weight-bold;
@@ -87,21 +110,26 @@
   aspect-ratio: 3 / 2;
   object-fit: contain;
   background: #000;
-  transform: translateX(-45px);
 }
 
 .content {
   display: grid;
   justify-items: center;
   gap: $space-10;
-  width: min(100%, 880px);
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  min-width: 0;
+  max-width: 880px;
 }
 
 .section {
   display: grid;
-  justify-items: start;
+  justify-items: center;
   gap: $space-4;
+  grid-template-columns: minmax(0, 1fr);
   width: 100%;
+  min-width: 0;
+  text-align: center;
 }
 
 .highlightSection {
@@ -123,6 +151,8 @@
 }
 
 .section h2 {
+  width: 100%;
+  min-width: 0;
   margin: 0;
   font-family: $font-body;
   font-size: clamp(28px, 4vw, 42px);
@@ -132,6 +162,8 @@
 }
 
 .section p {
+  width: 100%;
+  min-width: 0;
   margin: 0;
   font-size: clamp(18px, 2vw, 21px);
   font-weight: $font-weight-regular;
@@ -150,14 +182,16 @@
 
 .list {
   display: grid;
-  justify-items: start;
+  justify-items: center;
   gap: $space-3;
+  width: 100%;
   margin: 0;
-  padding: 0 0 0 $space-5;
-  list-style-position: outside;
+  padding: 0;
+  list-style-position: inside;
   font-size: clamp(18px, 2vw, 21px);
   font-weight: $font-weight-regular;
   line-height: 1.5;
+  text-align: center;
   color: $text-primary;
 }
 
@@ -169,7 +203,7 @@
 .highlightSection .list li,
 .blueHighlightSection .list li {
   position: relative;
-  padding-left: $space-8;
+  padding-top: $space-8;
 }
 
 .highlightSection .list li::before,
@@ -177,8 +211,8 @@
   content: '✓';
   display: grid;
   position: absolute;
-  top: 0.06em;
-  left: 0;
+  top: 0;
+  left: 50%;
   place-items: center;
   width: 22px;
   height: 22px;
@@ -187,6 +221,7 @@
   line-height: 1;
   border: 1px solid rgba(#000, 0.42);
   border-radius: 50%;
+  transform: translateX(-50%);
 }
 
 .list li::marker {
@@ -204,6 +239,40 @@
 
 .blueHighlightSection .list li::marker {
   color: rgba(#000, 0.58);
+}
+
+.tableWrap {
+  width: 100%;
+  margin: $space-6 0 0;
+  overflow-x: auto;
+  border: 1px solid color-mix(in srgb, $text-primary 18%, transparent);
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  font-size: clamp(16px, 2vw, 18px);
+  line-height: 1.45;
+}
+
+.table th,
+.table td {
+  padding: $space-4;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid color-mix(in srgb, $text-primary 14%, transparent);
+}
+
+.table th {
+  font-weight: $font-weight-bold;
+  color: #000;
+  background: $surface-card-mint;
+}
+
+.table tr:last-child td {
+  border-bottom: 0;
 }
 
 .section a {
@@ -285,10 +354,47 @@
   }
 
   .header {
+    justify-items: start;
+    text-align: left;
     transform: none;
   }
 
+  .meta {
+    justify-content: flex-start;
+  }
+
   .cover {
+    transform: none;
+  }
+
+  .section {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .list {
+    justify-items: start;
+    padding: 0 0 0 $space-5;
+    list-style-position: outside;
+    text-align: left;
+  }
+
+  .highlightSection .list,
+  .blueHighlightSection .list {
+    padding: 0;
+    list-style: none;
+  }
+
+  .highlightSection .list li,
+  .blueHighlightSection .list li {
+    padding-top: 0;
+    padding-left: $space-8;
+  }
+
+  .highlightSection .list li::before,
+  .blueHighlightSection .list li::before {
+    top: 0.06em;
+    left: 0;
     transform: none;
   }
 
@@ -317,12 +423,12 @@
 
   .description,
   .content {
-    width: min(100%, 1080px);
-    max-width: none;
+    width: 100%;
+    max-width: 1080px;
   }
 
   .content {
-    width: min(100%, 1280px);
+    max-width: 1280px;
   }
 
   .section {
@@ -332,6 +438,6 @@
   .section h2,
   .section p,
   .list {
-    width: min(100%, 1080px);
+    max-width: 1080px;
   }
 }

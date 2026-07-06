@@ -149,6 +149,15 @@
   background: #fff;
 }
 
+.articleCardNoImage {
+  min-height: 320px;
+  border-color: color-mix(in srgb, $text-primary 18%, transparent);
+}
+
+.articleCardNoImage .articleTitle {
+  align-self: end;
+}
+
 .articleImageWrap {
   display: block;
   overflow: hidden;

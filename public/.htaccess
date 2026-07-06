@@ -4,8 +4,9 @@ ErrorDocument 404 /404.html
 DirectorySlash On
 RewriteEngine On
 
-Redirect 301 /blog/chatgpt-klient-stroitelnaya-kompaniya /blog/marketing/chatgpt-klient-stroitelnaya-kompaniya
-Redirect 301 /blog/zashchita-sayta-ot-botov-i-perekhvata-zayavok /blog/razrabotka/zashchita-sayta-ot-botov-i-perekhvata-zayavok
+Redirect 301 /blog/marketing/chatgpt-klient-stroitelnaya-kompaniya /blog/chatgpt-klient-stroitelnaya-kompaniya
+Redirect 301 /blog/razrabotka/sayt-na-konstruktore-ili-sobstvennom-kode /blog/sayt-na-konstruktore-ili-sobstvennom-kode
+Redirect 301 /blog/razrabotka/zashchita-sayta-ot-botov-i-perekhvata-zayavok /blog/zashchita-sayta-ot-botov-i-perekhvata-zayavok
 
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d

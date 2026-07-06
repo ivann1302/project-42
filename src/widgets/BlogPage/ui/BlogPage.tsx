@@ -7,7 +7,7 @@ const topics = ['Технологии', 'Маркетинг', 'Дизайн'] as
 
 const blogArticles = articles.map((article) => ({
   title: article.title,
-  image: article.coverImage ?? '/images/blog/article1.webp',
+  image: article.coverImage,
   href: getArticlePath(article),
 }))
 
@@ -37,17 +37,23 @@ export function BlogPage() {
           <div className={styles.articlesGrid}>
             {blogArticles.map((article) => {
               return (
-                <Link key={article.title} className={styles.articleCard} href={article.href}>
-                  <span className={styles.articleImageWrap}>
-                    <Image
-                      className={styles.articleImage}
-                      src={article.image}
-                      alt=""
-                      width={1536}
-                      height={1024}
-                      sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
-                    />
-                  </span>
+                <Link
+                  key={article.title}
+                  className={`${styles.articleCard} ${article.image ? '' : styles.articleCardNoImage}`}
+                  href={article.href}
+                >
+                  {article.image ? (
+                    <span className={styles.articleImageWrap}>
+                      <Image
+                        className={styles.articleImage}
+                        src={article.image}
+                        alt=""
+                        width={1536}
+                        height={1024}
+                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                      />
+                    </span>
+                  ) : null}
                   <h2 className={styles.articleTitle}>{article.title}</h2>
                 </Link>
               )

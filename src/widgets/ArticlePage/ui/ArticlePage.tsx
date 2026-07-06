@@ -31,8 +31,15 @@ function renderParagraph(paragraph: ArticleParagraph) {
         const result: ReactNode[] = []
         if (textPart) result.push(textPart)
         if (index < splitParts.length - 1) {
+          const isExternalLink = /^https?:\/\//.test(link.href)
+
           result.push(
-            <Link key={`${link.href}-${index}`} href={link.href} target="_blank" rel="noreferrer">
+            <Link
+              key={`${link.href}-${index}`}
+              href={link.href}
+              target={isExternalLink ? '_blank' : undefined}
+              rel={isExternalLink ? 'noreferrer' : undefined}
+            >
               {link.label}
             </Link>,
           )
@@ -51,7 +58,7 @@ export function ArticlePage({ article }: Props) {
   return (
     <article className={styles.root}>
       <div className={styles.inner}>
-        <div className={styles.hero}>
+        <div className={`${styles.hero} ${article.coverImage ? '' : styles.heroNoCover}`}>
           <header className={styles.header}>
             <h1 className={styles.heading}>{article.title}</h1>
             <p className={styles.description}>{article.description}</p>
@@ -96,6 +103,28 @@ export function ArticlePage({ article }: Props) {
                   ))}
                 </ul>
               ) : null}
+              {section.table ? (
+                <div className={styles.tableWrap}>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        {section.table.headers.map((header) => (
+                          <th key={header}>{header}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.table.rows.map((row) => (
+                        <tr key={row.join('|')}>
+                          {row.map((cell, index) => (
+                            <td key={`${row[0]}-${index}`}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : null}
               {section.image ? <ArticleScreenshot image={section.image} /> : null}
             </section>
           ))}
@@ -122,8 +151,8 @@ export function ArticlePage({ article }: Props) {
               key={link.href}
               className={styles.sourceLink}
               href={link.href}
-              target="_blank"
-              rel="noreferrer"
+              target={/^https?:\/\//.test(link.href) ? '_blank' : undefined}
+              rel={/^https?:\/\//.test(link.href) ? 'noreferrer' : undefined}
             >
               {link.label}
             </Link>

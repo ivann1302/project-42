@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   title: 'Политика конфиденциальности',
   description:
     'Политика конфиденциальности Project 42: обработка персональных данных, cookies, Яндекс Метрика и контакты оператора.',
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
   alternates: {
     canonical: `${siteConfig.url}/privacy-policy`,
   },

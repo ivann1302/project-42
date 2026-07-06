@@ -22,12 +22,16 @@ const passenger = globalThis.PhusionPassenger
 const contactEndpoints = new Set(['/scripts/api/send.php', '/scripts/api/send', '/api/send'])
 const permanentRedirects = new Map([
   [
-    '/blog/chatgpt-klient-stroitelnaya-kompaniya',
     '/blog/marketing/chatgpt-klient-stroitelnaya-kompaniya',
+    '/blog/chatgpt-klient-stroitelnaya-kompaniya',
   ],
   [
-    '/blog/zashchita-sayta-ot-botov-i-perekhvata-zayavok',
+    '/blog/razrabotka/sayt-na-konstruktore-ili-sobstvennom-kode',
+    '/blog/sayt-na-konstruktore-ili-sobstvennom-kode',
+  ],
+  [
     '/blog/razrabotka/zashchita-sayta-ot-botov-i-perekhvata-zayavok',
+    '/blog/zashchita-sayta-ot-botov-i-perekhvata-zayavok',
   ],
 ])
 

@@ -14,7 +14,6 @@ export function buildArticleMetadata(article: Article): Metadata {
   return {
     title: article.title,
     description: article.description,
-    keywords: article.keywords,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -59,6 +58,10 @@ function buildArticleSchema(article: Article) {
     inLanguage: 'ru-RU',
     articleSection: article.category,
     keywords: article.keywords,
+    about: article.keywords?.slice(0, 8).map((keyword) => ({
+      '@type': 'Thing',
+      name: keyword,
+    })),
     image: article.coverImage ? `${siteConfig.url}${article.coverImage}` : undefined,
     author: {
       '@type': 'Organization',

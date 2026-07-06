@@ -37,6 +37,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
+      url: `${siteConfig.url}/geo-prodvizhenie`,
+      lastModified: new Date('2026-07-06'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${siteConfig.url}/ai-seo-prodvizhenie`,
+      lastModified: new Date('2026-07-06'),
+      changeFrequency: 'monthly',
+      priority: 0.86,
+    },
+    {
+      url: `${siteConfig.url}/aeo-prodvizhenie`,
+      lastModified: new Date('2026-07-06'),
+      changeFrequency: 'monthly',
+      priority: 0.82,
+    },
+    {
       url: `${siteConfig.url}/blog`,
       lastModified: new Date('2026-06-04'),
       changeFrequency: 'weekly',

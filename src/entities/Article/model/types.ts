@@ -19,6 +19,11 @@ export type ArticleImage = {
   caption?: string
 }
 
+export type ArticleTable = {
+  headers: string[]
+  rows: string[][]
+}
+
 export type ArticleCta = {
   kicker: string
   title: string
@@ -33,6 +38,7 @@ export type ArticleSection = {
   heading: string
   paragraphs: ArticleParagraph[]
   list?: string[]
+  table?: ArticleTable
   image?: ArticleImage
   variant?: 'highlight' | 'blueHighlight'
 }

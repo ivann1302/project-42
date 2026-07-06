@@ -24,7 +24,6 @@
   font-style: normal;
   font-display: swap;
   src: url('/fonts/open-sans-condensed-bold.ttf') format('truetype');
-  unicode-range: u+0301, u+0400-045f, u+0490-0491, u+04b0-04b1, u+2116;
 }
 
 @font-face {
@@ -40,7 +39,7 @@
 
 :root {
   --font-body: 'Inter';
-  --font-display: 'Syne';
+  --font-display: 'Open Sans Condensed';
   --font-poster: 'Open Sans Condensed';
   --font-poster-fallback: 'Arial Narrow';
 }
