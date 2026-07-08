@@ -1,0 +1,89 @@
+.root {
+  min-height: 100vh;
+  padding: 144px $container-pad-mobile $space-16;
+  color: $text-primary;
+  background: #000;
+}
+
+.inner {
+  display: grid;
+  gap: $space-8;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  width: fit-content;
+  margin: 0;
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: #000;
+  background: $surface-card-mint;
+  border-radius: $radius-md;
+}
+
+.heading {
+  margin: 0;
+  font-family: $font-body;
+  font-size: clamp(38px, 8vw, 84px);
+  font-weight: $font-weight-display;
+  line-height: 0.98;
+  letter-spacing: 0;
+  color: $surface-card-mint;
+}
+
+.lead {
+  max-width: 860px;
+  margin: 0;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: $font-weight-medium;
+  line-height: 1.45;
+  color: $text-secondary;
+}
+
+.section {
+  display: grid;
+  gap: $space-4;
+  padding: $space-6 0 0;
+  border-top: 1px solid color-mix(in srgb, $text-primary 18%, transparent);
+}
+
+.section h2 {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.1;
+}
+
+.list {
+  display: grid;
+  gap: $space-3;
+  margin: 0;
+  padding: 0 0 0 $space-5;
+  font-size: clamp(18px, 2vw, 21px);
+  line-height: 1.55;
+  color: $text-primary;
+}
+
+.note {
+  margin: 0;
+  font-size: $font-size-md;
+  line-height: 1.5;
+  color: $text-secondary;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: 176px $container-pad-tablet $space-20;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding-right: $container-pad-desktop;
+    padding-left: $container-pad-desktop;
+  }
+}

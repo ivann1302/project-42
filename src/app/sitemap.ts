@@ -2,6 +2,7 @@ export const dynamic = 'force-static'
 
 import type { MetadataRoute } from 'next'
 import { articles, getArticlePath } from '@/entities/Article'
+import { draftPages } from '@/entities/DraftPage'
 import { siteConfig } from '@/shared/config/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -62,9 +63,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...articles.map((article) => ({
       url: `${siteConfig.url}${getArticlePath(article)}`,
-      lastModified: new Date(article.publishedAt),
+      lastModified: new Date(article.updatedAt ?? article.publishedAt),
       changeFrequency: 'monthly' as const,
       priority: 0.65,
+    })),
+    ...draftPages.map((page) => ({
+      url: `${siteConfig.url}/${page.slug}`,
+      lastModified: new Date('2026-07-08'),
+      changeFrequency: 'monthly' as const,
+      priority: page.kind === 'service' ? 0.62 : 0.56,
     })),
     {
       url: `${siteConfig.url}/privacy-policy`,
