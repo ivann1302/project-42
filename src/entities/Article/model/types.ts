@@ -42,6 +42,11 @@ export type ArticleCta = {
   image: ArticleImage
 }
 
+export type ArticleFaqItem = {
+  question: string
+  answer: string
+}
+
 export type ArticleSection = {
   heading: string
   paragraphs: ArticleParagraph[]
@@ -54,7 +59,10 @@ export type ArticleSection = {
 export type Article = {
   slug: string
   title: string
+  seoTitle?: string
   description: string
+  ogTitle?: string
+  ogDescription?: string
   category: ArticleCategory
   categorySlug: ArticleCategorySlug
   publishedAt: string
@@ -71,5 +79,6 @@ export type Article = {
   sourceLabel?: string
   footerLinks?: ArticleLink[]
   cta?: ArticleCta
+  faq?: ArticleFaqItem[]
   sections: ArticleSection[]
 }

@@ -11,16 +11,24 @@ export function buildArticleMetadata(article: Article): Metadata {
   const canonicalUrl = `${siteConfig.url}${canonicalPath}`
   const image = article.coverImage ?? '/og-image.jpg'
   const authorName = article.authorProfile?.name ?? article.author
+  const authorUrl = article.authorProfile?.url
+    ? new URL(article.authorProfile.url, siteConfig.url).toString()
+    : siteConfig.url
 
   return {
-    title: article.title,
+    title: article.seoTitle ?? article.title,
     description: article.description,
+    authors: [{ name: authorName, url: authorUrl }],
+    creator: authorName,
+    publisher: siteConfig.name,
+    keywords: article.keywords,
+    category: article.category,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${article.title} | ${siteConfig.name}`,
-      description: article.description,
+      title: article.ogTitle ?? `${article.title} | ${siteConfig.name}`,
+      description: article.ogDescription ?? article.description,
       type: 'article',
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
@@ -41,9 +49,19 @@ export function buildArticleMetadata(article: Article): Metadata {
       card: 'summary_large_image',
       site: siteConfig.twitterHandle,
       creator: siteConfig.twitterHandle,
-      title: article.title,
-      description: article.description,
+      title: article.ogTitle ?? article.seoTitle ?? article.title,
+      description: article.ogDescription ?? article.description,
       images: [image],
+    },
+    other: {
+      'reviewed-by': article.reviewedBy ?? siteConfig.name,
+      'last-reviewed': article.updatedAt ?? article.publishedAt,
+      'author-role': article.authorProfile?.role ?? siteConfig.name,
+      'author-profile': authorUrl,
+      'content-evidence': article.evidence?.join('; ') ?? siteConfig.description,
+      'content-sources': article.sources?.map((source) => source.href).join('; ') ?? siteConfig.url,
+      'eeat-experience': article.evidence?.join('; ') ?? siteConfig.description,
+      'eeat-publisher': siteConfig.name,
     },
   }
 }
@@ -58,6 +76,7 @@ function buildArticleSchema(article: Article) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${canonicalUrl}#article`,
     headline: article.title,
     description: article.description,
     datePublished: article.publishedAt,
@@ -78,6 +97,7 @@ function buildArticleSchema(article: Article) {
           description: authorProfile.bio,
           url: authorUrl,
           sameAs: authorProfile.sameAs,
+          knowsAbout: article.keywords,
         }
       : {
           '@type': 'Organization',
@@ -93,16 +113,52 @@ function buildArticleSchema(article: Article) {
       : undefined,
     publisher: {
       '@type': 'Organization',
+      '@id': `${siteConfig.url}/#organization`,
       name: siteConfig.name,
       url: siteConfig.url,
+      email: siteConfig.email,
+      founder: {
+        '@type': 'Person',
+        name: siteConfig.founderName,
+      },
       sameAs: siteConfig.sameAs,
+    },
+    editor: article.reviewedBy
+      ? {
+          '@type': 'Organization',
+          name: article.reviewedBy,
+          url: siteConfig.url,
+        }
+      : undefined,
+    accountablePerson: {
+      '@type': 'Person',
+      name: siteConfig.founderName,
+      url: siteConfig.url,
+      sameAs: siteConfig.sameAs,
+    },
+    copyrightHolder: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
     },
     citation: article.sources?.map((source) => source.href),
     isBasedOn: article.evidence?.map((item) => ({
       '@type': 'CreativeWork',
       name: item,
     })),
-    mainEntityOfPage: canonicalUrl,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+      url: canonicalUrl,
+      reviewedBy: article.reviewedBy
+        ? {
+            '@type': 'Organization',
+            name: article.reviewedBy,
+            url: siteConfig.url,
+          }
+        : undefined,
+      dateModified: article.updatedAt ?? article.publishedAt,
+    },
   }
 }
 
@@ -135,7 +191,26 @@ function buildArticleBreadcrumbSchema(article: Article) {
   }
 }
 
+function buildArticleFaqSchema(article: Article) {
+  if (!article.faq?.length) return null
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: article.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+}
+
 export function ArticleRouteView({ article }: { article: Article }) {
+  const faqSchema = buildArticleFaqSchema(article)
+
   return (
     <>
       <script
@@ -146,6 +221,12 @@ export function ArticleRouteView({ article }: { article: Article }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildArticleBreadcrumbSchema(article)) }}
       />
+      {faqSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      ) : null}
       <Header />
       <main>
         <ArticlePage article={article} />

@@ -123,6 +123,7 @@ type ArticleForm = {
 
 type LeadSourceType = 'ads' | 'seo' | 'referral' | 'direct' | 'manual' | 'other'
 type AdminSection = 'summary' | 'expenses' | 'articles' | 'leads'
+type AdminTheme = 'light' | 'dark'
 
 const statusLabels: Record<LeadStatus, string> = {
   new: 'Новая',
@@ -207,6 +208,7 @@ export function AdminDashboard() {
   const [query, setQuery] = useState('')
   const [comment, setComment] = useState('')
   const [createOpen, setCreateOpen] = useState(false)
+  const [theme, setTheme] = useState<AdminTheme>('light')
   const [openSections, setOpenSections] = useState<Record<AdminSection, boolean>>({
     summary: true,
     expenses: true,
@@ -462,13 +464,20 @@ export function AdminDashboard() {
   }
 
   return (
-    <main className={styles.page}>
+    <main className={styles.page} data-theme={theme}>
       <header className={styles.header}>
         <div>
           <p className={styles.eyebrow}>Project 42 CRM</p>
           <h1>Заявки и финансы</h1>
         </div>
         <div className={styles.headerActions}>
+          <button
+            className={styles.secondaryButton}
+            type="button"
+            onClick={() => setTheme((current) => (current === 'light' ? 'dark' : 'light'))}
+          >
+            {theme === 'light' ? 'Темная тема' : 'Светлая тема'}
+          </button>
           <button
             className={styles.secondaryButton}
             type="button"

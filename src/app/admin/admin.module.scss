@@ -1,10 +1,44 @@
 @use '@/shared/styles/variables' as *;
 
 .page {
+  --admin-bg: #f4f2ec;
+  --admin-surface: #fffaf0;
+  --admin-surface-soft: #fffdf8;
+  --admin-surface-muted: #f8efd8;
+  --admin-text: #161616;
+  --admin-muted: #6b675d;
+  --admin-border: #d8d2c2;
+  --admin-border-soft: #ebe5d7;
+  --admin-control-border: #c6beaa;
+  --admin-accent: #d4a635;
+  --admin-accent-hover: #e2b849;
+  --admin-danger: #9b1c1c;
+  --admin-inverse: #161616;
+  --admin-inverse-text: #fffaf0;
+  --admin-select-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%236b675d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
   min-height: 100vh;
   padding: 32px;
-  color: #161616;
-  background: #f4f2ec;
+  color: var(--admin-text);
+  background: var(--admin-bg);
+}
+
+.page[data-theme='dark'] {
+  --admin-bg: #10100f;
+  --admin-surface: #191917;
+  --admin-surface-soft: #22221f;
+  --admin-surface-muted: #2c2a24;
+  --admin-text: #f5f1e8;
+  --admin-muted: #b9b0a0;
+  --admin-border: #3a372f;
+  --admin-border-soft: #302d27;
+  --admin-control-border: #514b3f;
+  --admin-accent: #d4a635;
+  --admin-accent-hover: #e2b849;
+  --admin-danger: #ff8f8f;
+  --admin-inverse: #f5f1e8;
+  --admin-inverse-text: #10100f;
+  --admin-select-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23b9b0a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }
 
 .header {
@@ -35,7 +69,7 @@
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .refreshButton,
@@ -46,8 +80,8 @@
   font: inherit;
   font-weight: 800;
   color: #161616;
-  background: #d4a635;
-  border: 1px solid #161616;
+  background: var(--admin-accent);
+  border: 1px solid var(--admin-text);
   border-radius: 8px;
   transition:
     transform 180ms ease,
@@ -58,7 +92,7 @@
 .refreshButton:hover,
 .primaryButton:hover,
 .secondaryButton:hover {
-  background: #e2b849;
+  background: var(--admin-accent-hover);
   transform: translateY(-1px);
 }
 
@@ -71,7 +105,8 @@
 }
 
 .secondaryButton {
-  background: #fffaf0;
+  color: var(--admin-text);
+  background: var(--admin-surface);
 }
 
 .headerActions {
@@ -85,8 +120,8 @@
   max-width: 1440px;
   margin: 0 auto 16px;
   padding: 20px;
-  background: #fffaf0;
-  border: 1px solid #d8d2c2;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
   border-radius: 8px;
 }
 
@@ -97,8 +132,8 @@
   max-width: 1440px;
   margin: 0 auto 16px;
   padding: 20px;
-  background: #fffaf0;
-  border: 1px solid #d8d2c2;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
   border-radius: 8px;
 }
 
@@ -137,15 +172,15 @@
   font: inherit;
   font-size: 12px;
   font-weight: 800;
-  color: #161616;
-  background: #fffaf0;
-  border: 1px solid #d8d2c2;
+  color: var(--admin-text);
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
   border-radius: 8px;
   cursor: pointer;
 }
 
 .sectionToggle:hover {
-  border-color: #161616;
+  border-color: var(--admin-text);
 }
 
 .expenseForm {
@@ -169,7 +204,7 @@
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .expenseList {
@@ -189,8 +224,8 @@
   gap: 12px;
   grid-template-columns: minmax(0, 1fr) auto auto;
   padding: 12px;
-  background: #fffdf8;
-  border: 1px solid #ebe5d7;
+  background: var(--admin-surface-soft);
+  border: 1px solid var(--admin-border-soft);
   border-radius: 8px;
 }
 
@@ -205,7 +240,7 @@
 .articleItem small {
   margin-top: 4px;
   font-size: 12px;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .articleItem {
@@ -220,9 +255,9 @@
   font: inherit;
   font-size: 12px;
   font-weight: 800;
-  color: #161616;
-  background: #fffaf0;
-  border: 1px solid #d8d2c2;
+  color: var(--admin-text);
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -230,14 +265,14 @@
 .articleItem a {
   display: inline-grid;
   text-decoration: none;
-  color: #161616;
+  color: var(--admin-text);
   place-items: center;
 }
 
 .expenseItem button:hover,
 .articleItem button:hover,
 .articleItem a:hover {
-  border-color: #9b1c1c;
+  border-color: var(--admin-danger);
 }
 
 .createPanel h2 {
@@ -258,7 +293,7 @@
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .createMessage,
@@ -282,8 +317,8 @@
 .metric {
   min-height: 96px;
   padding: 16px;
-  background: #fffaf0;
-  border: 1px solid #d8d2c2;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
   border-radius: 8px;
 }
 
@@ -293,7 +328,7 @@
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .metric strong {
@@ -303,18 +338,22 @@
 }
 
 .yellow {
+  color: #161616;
   background: #f4d77c;
 }
 
 .blue {
+  color: #161616;
   background: #dce7f2;
 }
 
 .mint {
+  color: #161616;
   background: #d9f5e4;
 }
 
 .red {
+  color: #161616;
   background: #ffd8d8;
 }
 
@@ -328,8 +367,8 @@
 
 .listPane,
 .detailPane {
-  background: #fffaf0;
-  border: 1px solid #d8d2c2;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
   border-radius: 8px;
 }
 
@@ -351,8 +390,8 @@
   top: 0;
   z-index: 1;
   padding: 12px;
-  background: #fffaf0;
-  border-bottom: 1px solid #d8d2c2;
+  background: var(--admin-surface);
+  border-bottom: 1px solid var(--admin-border);
 }
 
 .toolbar input,
@@ -368,10 +407,21 @@
   width: 100%;
   padding: 12px;
   font: inherit;
-  color: #161616;
-  background: #fffdf8;
-  border: 1px solid #c6beaa;
+  color: var(--admin-text);
+  background-color: var(--admin-surface-soft);
+  border: 1px solid var(--admin-control-border);
   border-radius: 8px;
+}
+
+.toolbar select,
+.createForm select,
+.controlsGrid select {
+  padding-right: 42px;
+  appearance: none;
+  background-image: var(--admin-select-icon);
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 18px;
 }
 
 .toolbar input:focus,
@@ -385,7 +435,7 @@
 .controlsGrid select:focus,
 .commentForm textarea:focus {
   outline: 3px solid rgba(212 166 53 / 35%);
-  border-color: #d4a635;
+  border-color: var(--admin-accent);
 }
 
 .leadList {
@@ -402,12 +452,12 @@
   background: transparent;
   border: 0;
   cursor: pointer;
-  border-bottom: 1px solid #ebe5d7;
+  border-bottom: 1px solid var(--admin-border-soft);
 }
 
 .leadRow:hover,
 .activeLead {
-  background: #f8efd8;
+  background: var(--admin-surface-muted);
 }
 
 .leadRow strong,
@@ -422,7 +472,7 @@
 .rowMeta {
   margin-top: 6px;
   font-size: 13px;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .rowMeta {
@@ -443,18 +493,22 @@
 }
 
 .new {
+  color: #161616;
   background: #f4d77c;
 }
 
 .in_progress {
+  color: #161616;
   background: #dce7f2;
 }
 
 .done {
+  color: #161616;
   background: #d9f5e4;
 }
 
 .archived {
+  color: #161616;
   background: #e3dfd3;
 }
 
@@ -480,14 +534,14 @@
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .toggle {
   min-height: 76px;
   padding: 12px;
-  background: #fffdf8;
-  border: 1px solid #c6beaa;
+  background: var(--admin-surface-soft);
+  border: 1px solid var(--admin-control-border);
   border-radius: 8px;
   align-content: center;
 }
@@ -495,15 +549,15 @@
 .toggle input {
   width: 22px;
   height: 22px;
-  accent-color: #d4a635;
+  accent-color: var(--admin-accent);
 }
 
 .profitBox {
   display: grid;
   min-height: 76px;
   padding: 12px;
-  background: #161616;
-  border: 1px solid #161616;
+  background: var(--admin-inverse);
+  border: 1px solid var(--admin-inverse);
   border-radius: 8px;
   align-content: center;
 }
@@ -512,24 +566,24 @@
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
-  color: rgba(255 250 240 / 70%);
+  color: color-mix(in srgb, var(--admin-inverse-text) 70%, transparent);
 }
 
 .profitBox strong {
   font-size: 24px;
-  color: #fffaf0;
+  color: var(--admin-inverse-text);
 }
 
 .controlsGrid small {
   font-size: 12px;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .stagePanel {
   margin-bottom: 24px;
   padding: 18px;
-  background: #fffdf8;
-  border: 1px solid #d8d2c2;
+  background: var(--admin-surface-soft);
+  border: 1px solid var(--admin-border);
   border-radius: 8px;
 }
 
@@ -576,16 +630,16 @@
   font-size: 13px;
   font-weight: 800;
   text-align: left;
-  color: #6b675d;
-  background: #f4f2ec;
+  color: var(--admin-muted);
+  background: var(--admin-bg);
   border: 1px solid #e3ddce;
   border-radius: 8px;
   cursor: pointer;
 }
 
 .stageList button:hover {
-  color: #161616;
-  border-color: #d4a635;
+  color: var(--admin-text);
+  border-color: var(--admin-accent);
 }
 
 .stageList button:disabled {
@@ -598,8 +652,8 @@
   width: 24px;
   height: 24px;
   font-size: 12px;
-  color: #6b675d;
-  background: #fffaf0;
+  color: var(--admin-muted);
+  background: var(--admin-surface);
   border-radius: 999px;
   place-items: center;
 }
@@ -613,7 +667,7 @@
 .stageCurrent button {
   color: #161616;
   background: #f4d77c;
-  border-color: #d4a635;
+  border-color: var(--admin-accent);
 }
 
 .infoGrid {
@@ -625,8 +679,8 @@
 
 .infoGrid div {
   padding: 14px;
-  background: #fffdf8;
-  border: 1px solid #ebe5d7;
+  background: var(--admin-surface-soft);
+  border: 1px solid var(--admin-border-soft);
   border-radius: 8px;
 }
 
@@ -639,7 +693,7 @@
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .infoGrid dd {
@@ -649,7 +703,7 @@
 }
 
 .comments {
-  border-top: 1px solid #d8d2c2;
+  border-top: 1px solid var(--admin-border);
   padding-top: 20px;
 }
 
@@ -666,14 +720,14 @@
 
 .comment {
   padding: 12px;
-  background: #f8efd8;
+  background: var(--admin-surface-muted);
   border-radius: 8px;
 }
 
 .comment time,
 .emptyComment {
   font-size: 12px;
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .comment p {
@@ -701,12 +755,12 @@
 .empty,
 .emptyInline {
   margin: 16px;
-  color: #9b1c1c;
+  color: var(--admin-danger);
 }
 
 .empty,
 .emptyInline {
-  color: #6b675d;
+  color: var(--admin-muted);
 }
 
 .emptyInline {

@@ -168,6 +168,7 @@
   font-size: clamp(18px, 2vw, 21px);
   font-weight: $font-weight-regular;
   line-height: 1.55;
+  text-align: left;
   color: $text-primary;
 }
 
@@ -282,6 +283,121 @@
   text-decoration-thickness: 1px;
   text-underline-offset: 0.16em;
   color: $text-primary;
+}
+
+.faqBlock {
+  display: grid;
+  gap: $space-5;
+  width: 100%;
+  max-width: 1080px;
+  padding: $space-6 0;
+}
+
+.faqHeader {
+  display: grid;
+  gap: $space-2;
+  justify-items: start;
+}
+
+.faqEyebrow {
+  width: fit-content;
+  margin: 0;
+  padding: $space-2 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: #000;
+  background: $surface-card-blue;
+  border-radius: $radius-sm;
+}
+
+.faqTitle {
+  margin: 0;
+  font-family: $font-body;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: $font-weight-bold;
+  line-height: 1.02;
+  letter-spacing: 0;
+  color: $surface-card-mint;
+}
+
+.faqList {
+  display: grid;
+  gap: $space-3;
+}
+
+.faqItem {
+  overflow: hidden;
+  background: rgba(#fff, 0.05);
+  border: 1px solid rgba(#fff, 0.12);
+  border-left: 3px solid rgba($surface-card-blue, 0.72);
+  border-radius: $radius-md;
+  transition:
+    background $transition-base,
+    border-color $transition-base;
+}
+
+.faqItem[open] {
+  background: rgba($surface-card-blue, 0.12);
+  border-color: rgba($surface-card-blue, 0.56);
+}
+
+.faqTrigger {
+  display: grid;
+  align-items: center;
+  gap: $space-3;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  width: 100%;
+  padding: $space-4;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faqTrigger::-webkit-details-marker {
+  display: none;
+}
+
+.faqNumber {
+  min-width: 30px;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  color: $surface-card-blue;
+}
+
+.faqQuestion {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: $font-weight-bold;
+  line-height: 1.28;
+  color: $text-primary;
+}
+
+.faqIcon {
+  display: grid;
+  place-items: center;
+  color: $text-secondary;
+  transition:
+    color $transition-base,
+    transform $transition-base;
+}
+
+.faqItem[open] .faqIcon {
+  color: $surface-card-blue;
+  transform: rotate(180deg);
+}
+
+.faqBody {
+  padding: 0 $space-4 $space-4 calc(#{$space-4} + 30px + #{$space-3});
+}
+
+.faqBody p {
+  max-width: 860px;
+  margin: 0;
+  font-size: clamp(17px, 1.9vw, 20px);
+  line-height: 1.55;
+  text-align: left;
+  color: $text-secondary;
 }
 
 .footerLinks {

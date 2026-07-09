@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import type { Article, ArticleParagraph } from '@/entities/Article'
+import { Icon } from '@/shared/ui'
 import { ArticleCta } from './ArticleCta'
 import { ArticleScreenshot } from './ArticleScreenshot'
 import styles from './ArticlePage.module.scss'
@@ -55,6 +56,8 @@ function renderParagraph(paragraph: ArticleParagraph) {
 }
 
 export function ArticlePage({ article }: Props) {
+  const hasFaq = Boolean(article.faq?.length)
+
   return (
     <article className={styles.root}>
       <div className={styles.inner}>
@@ -129,6 +132,35 @@ export function ArticlePage({ article }: Props) {
             </section>
           ))}
         </div>
+
+        {hasFaq ? (
+          <section className={styles.faqBlock} aria-labelledby="article-faq-title">
+            <div className={styles.faqHeader}>
+              <p className={styles.faqEyebrow}>FAQ</p>
+              <h2 className={styles.faqTitle} id="article-faq-title">
+                Частые вопросы
+              </h2>
+            </div>
+            <div className={styles.faqList}>
+              {article.faq?.map((item, index) => (
+                <details className={styles.faqItem} key={item.question}>
+                  <summary className={styles.faqTrigger}>
+                    <span className={styles.faqNumber} aria-hidden="true">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className={styles.faqQuestion}>{item.question}</span>
+                    <span className={styles.faqIcon} aria-hidden="true">
+                      <Icon name="chevronDown" size={20} />
+                    </span>
+                  </summary>
+                  <div className={styles.faqBody}>
+                    <p>{item.answer}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         {article.cta ? <ArticleCta cta={article.cta} /> : null}
 
