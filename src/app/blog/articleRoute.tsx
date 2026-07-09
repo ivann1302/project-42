@@ -10,6 +10,7 @@ export function buildArticleMetadata(article: Article): Metadata {
   const canonicalPath = getArticlePath(article)
   const canonicalUrl = `${siteConfig.url}${canonicalPath}`
   const image = article.coverImage ?? '/og-image.jpg'
+  const authorName = article.authorProfile?.name ?? article.author
 
   return {
     title: article.title,
@@ -22,7 +23,8 @@ export function buildArticleMetadata(article: Article): Metadata {
       description: article.description,
       type: 'article',
       publishedTime: article.publishedAt,
-      authors: [article.author],
+      modifiedTime: article.updatedAt,
+      authors: [authorName],
       url: canonicalUrl,
       section: article.category,
       tags: article.keywords,
@@ -48,6 +50,10 @@ export function buildArticleMetadata(article: Article): Metadata {
 
 function buildArticleSchema(article: Article) {
   const canonicalUrl = `${siteConfig.url}${getArticlePath(article)}`
+  const authorProfile = article.authorProfile
+  const authorUrl = authorProfile?.url
+    ? new URL(authorProfile.url, siteConfig.url).toString()
+    : siteConfig.url
 
   return {
     '@context': 'https://schema.org',
@@ -55,6 +61,7 @@ function buildArticleSchema(article: Article) {
     headline: article.title,
     description: article.description,
     datePublished: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
     inLanguage: 'ru-RU',
     articleSection: article.category,
     keywords: article.keywords,
@@ -63,16 +70,38 @@ function buildArticleSchema(article: Article) {
       name: keyword,
     })),
     image: article.coverImage ? `${siteConfig.url}${article.coverImage}` : undefined,
-    author: {
-      '@type': 'Organization',
-      name: article.author,
-      url: siteConfig.url,
-    },
+    author: authorProfile
+      ? {
+          '@type': 'Person',
+          name: authorProfile.name,
+          jobTitle: authorProfile.role,
+          description: authorProfile.bio,
+          url: authorUrl,
+          sameAs: authorProfile.sameAs,
+        }
+      : {
+          '@type': 'Organization',
+          name: article.author,
+          url: siteConfig.url,
+        },
+    reviewedBy: article.reviewedBy
+      ? {
+          '@type': 'Organization',
+          name: article.reviewedBy,
+          url: siteConfig.url,
+        }
+      : undefined,
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
       url: siteConfig.url,
+      sameAs: siteConfig.sameAs,
     },
+    citation: article.sources?.map((source) => source.href),
+    isBasedOn: article.evidence?.map((item) => ({
+      '@type': 'CreativeWork',
+      name: item,
+    })),
     mainEntityOfPage: canonicalUrl,
   }
 }

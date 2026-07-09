@@ -215,10 +215,11 @@ export function RazrabotkaQuizSection() {
 
         <div className={styles.content}>
           <h2 className={styles.title} id="razrabotka-quiz-title">
-            <span>Оставьте заявку</span>
+            <span>Подумаем над сайтом вместе</span>
           </h2>
           <p className={styles.text}>
-            Мы проконсультируем вас совершенно бесплатно. Это вас ни к чему не обязывает.
+            Опишите нишу, услуги и текущую ситуацию. Мы предложим понятный первый шаг без давления и
+            лишнего размаха.
           </p>
         </div>
 

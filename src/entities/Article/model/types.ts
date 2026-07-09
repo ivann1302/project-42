@@ -6,6 +6,14 @@ export type ArticleLink = {
   href: string
 }
 
+export type ArticleAuthor = {
+  name: string
+  role: string
+  bio: string
+  url?: string
+  sameAs?: string[]
+}
+
 export type ArticleParagraph =
   | string
   | {
@@ -50,8 +58,13 @@ export type Article = {
   category: ArticleCategory
   categorySlug: ArticleCategorySlug
   publishedAt: string
+  updatedAt?: string
   readingTime: string
   author: string
+  authorProfile?: ArticleAuthor
+  reviewedBy?: string
+  evidence?: string[]
+  sources?: ArticleLink[]
   keywords?: string[]
   coverImage?: string
   sourceUrl?: string

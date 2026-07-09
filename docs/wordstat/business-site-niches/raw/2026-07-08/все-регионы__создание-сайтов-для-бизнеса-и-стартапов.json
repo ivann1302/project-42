@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "seed": "создание сайтов для бизнеса и стартапов",
+    "region": "Все регионы",
+    "collected_at": "2026-07-08T09:16:28.850Z",
+    "script_version": "0.1.0",
+    "url": "https://wordstat.yandex.ru/?region=all&view=table&words=%D0%92%D1%81%D0%B5%20%D1%80%D0%B5%D0%B3%D0%B8%D0%BE%D0%BD%D1%8B",
+    "run_id": "2026-07-08T09:11:32.806Z",
+    "dry_run": false
+  },
+  "rows": [],
+  "errors": [
+    {
+      "message": "page.waitForTimeout: Target page, context or browser has been closed",
+      "stack": "page.waitForTimeout: Target page, context or browser has been closed\n    at setRegion (/home/ivan/wordstat_searcher/scripts/wordstat/collect-wordstat.mjs:235:16)\n    at async collectPair (/home/ivan/wordstat_searcher/scripts/wordstat/collect-wordstat.mjs:189:5)\n    at async main (/home/ivan/wordstat_searcher/scripts/wordstat/collect-wordstat.mjs:81:22)"
+    }
+  ]
+}

@@ -1,0 +1,1445 @@
+{
+  "meta": {
+    "seed": "сайт для интернет магазина",
+    "region": "Все регионы",
+    "collected_at": "2026-07-08T09:15:24.320Z",
+    "script_version": "0.1.0",
+    "url": "https://wordstat.yandex.ru/?region=all&view=table&words=%D1%81%D0%B0%D0%B9%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0",
+    "run_id": "2026-07-08T09:11:32.806Z",
+    "dry_run": false
+  },
+  "rows": [
+    {
+      "keyword": "сайт для интернет магазина",
+      "frequency": 11292,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.263Z"
+    },
+    {
+      "keyword": "официальный сайт интернет магазина для",
+      "frequency": 8798,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.263Z"
+    },
+    {
+      "keyword": "каталог товаров для интернет магазина сайта",
+      "frequency": 1863,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.263Z"
+    },
+    {
+      "keyword": "валберис интернет магазин официальный сайт для",
+      "frequency": 1539,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.263Z"
+    },
+    {
+      "keyword": "сайт для интернет магазина цена",
+      "frequency": 1419,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.263Z"
+    },
+    {
+      "keyword": "вайлдберриз интернет магазин официальный сайт для",
+      "frequency": 1247,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.264Z"
+    },
+    {
+      "keyword": "официальный сайт интернет магазин для женщин",
+      "frequency": 973,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.264Z"
+    },
+    {
+      "keyword": "купить сайт для интернет магазина",
+      "frequency": 882,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.264Z"
+    },
+    {
+      "keyword": "сайты одежды для интернет магазина",
+      "frequency": 666,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.264Z"
+    },
+    {
+      "keyword": "сайт интернет магазин одежды для женщин",
+      "frequency": 380,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.264Z"
+    },
+    {
+      "keyword": "конструктор сайтов для интернет магазина",
+      "frequency": 379,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.264Z"
+    },
+    {
+      "keyword": "сайт для осужденных интернет магазин",
+      "frequency": 333,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.264Z"
+    },
+    {
+      "keyword": "калужское интернет магазин для осужденных официальный сайт",
+      "frequency": 327,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.264Z"
+    },
+    {
+      "keyword": "продажа сайтов для интернет магазинов",
+      "frequency": 304,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.265Z"
+    },
+    {
+      "keyword": "заказ сайта для интернет магазина",
+      "frequency": 289,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.265Z"
+    },
+    {
+      "keyword": "бесплатный интернет магазин для сайта",
+      "frequency": 287,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.265Z"
+    },
+    {
+      "keyword": "интернет магазин запчастей для сайта",
+      "frequency": 284,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.265Z"
+    },
+    {
+      "keyword": "сайты интернет магазинов для дома",
+      "frequency": 277,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.265Z"
+    },
+    {
+      "keyword": "создать сайт для интернет магазина",
+      "frequency": 262,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.265Z"
+    },
+    {
+      "keyword": "интернет магазины сайты для волос",
+      "frequency": 261,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.265Z"
+    },
+    {
+      "keyword": "для волос официальный сайт интернет магазин",
+      "frequency": 254,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.265Z"
+    },
+    {
+      "keyword": "сайты интернет магазинов для животных",
+      "frequency": 251,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.265Z"
+    },
+    {
+      "keyword": "фото для сайта интернет магазина",
+      "frequency": 251,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.266Z"
+    },
+    {
+      "keyword": "какой сайт для интернет магазина",
+      "frequency": 230,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.266Z"
+    },
+    {
+      "keyword": "сайты интернет магазинов для иномарок",
+      "frequency": 229,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.266Z"
+    },
+    {
+      "keyword": "интернет магазин для дома официальный сайт",
+      "frequency": 228,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.266Z"
+    },
+    {
+      "keyword": "сайт интернет магазин для мужчин",
+      "frequency": 222,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.266Z"
+    },
+    {
+      "keyword": "интернет магазин сайты для заказа товаров",
+      "frequency": 194,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.266Z"
+    },
+    {
+      "keyword": "товары для дома интернет магазины сайты",
+      "frequency": 186,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.266Z"
+    },
+    {
+      "keyword": "сайты для интернет магазина автозапчастей",
+      "frequency": 183,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.266Z"
+    },
+    {
+      "keyword": "спб сайт для интернет магазина",
+      "frequency": 175,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.267Z"
+    },
+    {
+      "keyword": "сайт для интернет магазина с доставкой",
+      "frequency": 172,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.267Z"
+    },
+    {
+      "keyword": "сайт запчасти для иномарок интернет магазин",
+      "frequency": 171,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.267Z"
+    },
+    {
+      "keyword": "создание сайта для интернет магазина",
+      "frequency": 166,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.267Z"
+    },
+    {
+      "keyword": "сайты автозапчастей для иномарок интернет магазин",
+      "frequency": 165,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.267Z"
+    },
+    {
+      "keyword": "лучший сайт для интернет магазина",
+      "frequency": 160,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.267Z"
+    },
+    {
+      "keyword": "сайт для интернет магазина в москве",
+      "frequency": 155,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.267Z"
+    },
+    {
+      "keyword": "интернет магазин для садоводов официальный сайт",
+      "frequency": 145,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.267Z"
+    },
+    {
+      "keyword": "сайт для интернет магазина летуаль",
+      "frequency": 141,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.267Z"
+    },
+    {
+      "keyword": "сайты интернет магазинов для собак",
+      "frequency": 138,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.268Z"
+    },
+    {
+      "keyword": "сайты для маникюра интернет магазин",
+      "frequency": 132,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.268Z"
+    },
+    {
+      "keyword": "интернет магазин цветов для сайта",
+      "frequency": 130,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.268Z"
+    },
+    {
+      "keyword": "беккер интернет магазин для садоводов официальный сайт",
+      "frequency": 127,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.268Z"
+    },
+    {
+      "keyword": "сайт беккер интернет магазин для садоводов",
+      "frequency": 127,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.268Z"
+    },
+    {
+      "keyword": "купить сайт для интернет магазина цена",
+      "frequency": 125,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.268Z"
+    },
+    {
+      "keyword": "сайт интернет магазин для взрослых",
+      "frequency": 123,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.268Z"
+    },
+    {
+      "keyword": "яндекс для сайта интернет магазин",
+      "frequency": 119,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.268Z"
+    },
+    {
+      "keyword": "сайты интернет магазинов для дачи",
+      "frequency": 118,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.268Z"
+    },
+    {
+      "keyword": "для собак интернет магазин официальный сайт",
+      "frequency": 117,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.269Z"
+    },
+    {
+      "keyword": "гленфилд официальный сайт интернет магазин для женщин",
+      "frequency": 107,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.269Z"
+    },
+    {
+      "keyword": "вайлдберриз интернет магазин сайт для телефона",
+      "frequency": 105,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.269Z"
+    },
+    {
+      "keyword": "скачать сайта для интернет магазина",
+      "frequency": 103,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.269Z"
+    },
+    {
+      "keyword": "петербург сайт для интернет магазина",
+      "frequency": 99,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.269Z"
+    },
+    {
+      "keyword": "для ванн интернет магазин сайт",
+      "frequency": 97,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.269Z"
+    },
+    {
+      "keyword": "готовый сайт для интернет магазина",
+      "frequency": 96,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.269Z"
+    },
+    {
+      "keyword": "сайт для ногтей интернет магазин",
+      "frequency": 92,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.269Z"
+    },
+    {
+      "keyword": "интернет магазин для ногтей официальный сайт",
+      "frequency": 91,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.270Z"
+    },
+    {
+      "keyword": "закажите сайт для интернет магазина",
+      "frequency": 89,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.270Z"
+    },
+    {
+      "keyword": "нужен сайт для интернет магазина",
+      "frequency": 87,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.270Z"
+    },
+    {
+      "keyword": "сайт платья интернет магазин для женщин",
+      "frequency": 87,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.270Z"
+    },
+    {
+      "keyword": "конструктор сайтов для интернет магазина бесплатно",
+      "frequency": 86,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.270Z"
+    },
+    {
+      "keyword": "сделать сайт для интернет магазина",
+      "frequency": 86,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.270Z"
+    },
+    {
+      "keyword": "сайт интернет магазинов для рыбалки",
+      "frequency": 84,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.270Z"
+    },
+    {
+      "keyword": "сайт для интернет магазина отзывы",
+      "frequency": 83,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.270Z"
+    },
+    {
+      "keyword": "лучшие конструкторы сайтов для интернет магазинов",
+      "frequency": 81,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.270Z"
+    },
+    {
+      "keyword": "для интернет магазинов оплаты сайты",
+      "frequency": 81,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.271Z"
+    },
+    {
+      "keyword": "покупка сайта для интернет магазина",
+      "frequency": 80,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.271Z"
+    },
+    {
+      "keyword": "интернет магазин сайт для бизнеса",
+      "frequency": 75,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.271Z"
+    },
+    {
+      "keyword": "карта сайта для интернет магазина",
+      "frequency": 72,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.271Z"
+    },
+    {
+      "keyword": "создать сайт бесплатно для интернет магазина",
+      "frequency": 70,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.271Z"
+    },
+    {
+      "keyword": "сайт интернет магазина для рукоделия",
+      "frequency": 65,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.271Z"
+    },
+    {
+      "keyword": "разработка сайта для интернет магазина",
+      "frequency": 64,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.271Z"
+    },
+    {
+      "keyword": "интернет магазин арена для плавания официальный сайт",
+      "frequency": 64,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.271Z"
+    },
+    {
+      "keyword": "скачать бесплатные сайты для интернет магазина",
+      "frequency": 64,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.272Z"
+    },
+    {
+      "keyword": "сайт косметики интернет магазин для",
+      "frequency": 63,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.272Z"
+    },
+    {
+      "keyword": "сколько стоит сайт для интернет магазина",
+      "frequency": 61,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.272Z"
+    },
+    {
+      "keyword": "корпоративный сайт для интернет магазина",
+      "frequency": 60,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.272Z"
+    },
+    {
+      "keyword": "сайт ламода интернет магазин для женщин",
+      "frequency": 59,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.272Z"
+    },
+    {
+      "keyword": "сайт интернет магазинов для парикмахеров",
+      "frequency": 59,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.272Z"
+    },
+    {
+      "keyword": "создать сайт для интернет магазина самому",
+      "frequency": 59,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.272Z"
+    },
+    {
+      "keyword": "сайт для интернет магазина бесплатно самому",
+      "frequency": 58,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.272Z"
+    },
+    {
+      "keyword": "дизайн сайта для интернет магазина",
+      "frequency": 58,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.272Z"
+    },
+    {
+      "keyword": "интернет магазин официальный сайт для полных",
+      "frequency": 57,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.273Z"
+    },
+    {
+      "keyword": "создать сайт для интернет магазина бесплатно самому",
+      "frequency": 56,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.273Z"
+    },
+    {
+      "keyword": "сайт ламода интернет магазин для женщин каталог",
+      "frequency": 56,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.273Z"
+    },
+    {
+      "keyword": "сайт для детей интернет магазин",
+      "frequency": 56,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.273Z"
+    },
+    {
+      "keyword": "какой сайт выбрать для интернет магазина",
+      "frequency": 54,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.273Z"
+    },
+    {
+      "keyword": "сайт корм для кошек интернет магазин",
+      "frequency": 54,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.273Z"
+    },
+    {
+      "keyword": "для парикмахеров официальный сайт интернет магазин",
+      "frequency": 54,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.273Z"
+    },
+    {
+      "keyword": "сайты скидок для интернет магазинов",
+      "frequency": 54,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.273Z"
+    },
+    {
+      "keyword": "корзина для сайта интернет магазина",
+      "frequency": 53,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.274Z"
+    },
+    {
+      "keyword": "официальные сайты интернет магазинов для детей",
+      "frequency": 50,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.274Z"
+    },
+    {
+      "keyword": "сайт для интернет магазина продуктов",
+      "frequency": 50,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.274Z"
+    },
+    {
+      "keyword": "сайт интернет магазинов товары для сада",
+      "frequency": 48,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.274Z"
+    },
+    {
+      "keyword": "платформы для сайта интернет магазина",
+      "frequency": 47,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.274Z"
+    },
+    {
+      "keyword": "интернет магазин для заключенных сайт",
+      "frequency": 44,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.274Z"
+    },
+    {
+      "keyword": "модель сайта для интернет магазина",
+      "frequency": 43,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.274Z"
+    },
+    {
+      "keyword": "arena магазин для плавания официальный сайт интернет",
+      "frequency": 43,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.274Z"
+    },
+    {
+      "keyword": "интернет магазин одежды фото для сайта",
+      "frequency": 39,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.274Z"
+    },
+    {
+      "keyword": "разработать сайт для интернет магазина",
+      "frequency": 39,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.275Z"
+    },
+    {
+      "keyword": "шаблоны для сайтов интернет магазин",
+      "frequency": 38,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.275Z"
+    },
+    {
+      "keyword": "структура сайта для интернет магазина",
+      "frequency": 37,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.275Z"
+    },
+    {
+      "keyword": "код интернет магазина для сайта",
+      "frequency": 34,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.275Z"
+    },
+    {
+      "keyword": "сайты для поиска интернет магазинов",
+      "frequency": 34,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.275Z"
+    },
+    {
+      "keyword": "производства сайта для интернет магазина",
+      "frequency": 33,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.275Z"
+    },
+    {
+      "keyword": "сайты интернет магазинов для мыловаров",
+      "frequency": 32,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.275Z"
+    },
+    {
+      "keyword": "какой сайт лучше для интернет магазина",
+      "frequency": 31,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.275Z"
+    },
+    {
+      "keyword": "интернет магазин для любого сайта",
+      "frequency": 31,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.276Z"
+    },
+    {
+      "keyword": "создать сайт для интернет магазина конструктор",
+      "frequency": 31,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.276Z"
+    },
+    {
+      "keyword": "speedo интернет магазин для плавания официальный сайт",
+      "frequency": 31,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.276Z"
+    },
+    {
+      "keyword": "интернет магазин для собак москва сайт",
+      "frequency": 30,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.276Z"
+    },
+    {
+      "keyword": "документы для сайта интернет магазина",
+      "frequency": 29,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.276Z"
+    },
+    {
+      "keyword": "сайт для сравнения цен в интернет магазинах",
+      "frequency": 29,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.276Z"
+    },
+    {
+      "keyword": "какой конструктор сайта для интернет магазина",
+      "frequency": 28,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.276Z"
+    },
+    {
+      "keyword": "сайт интернет магазина для художников",
+      "frequency": 27,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.276Z"
+    },
+    {
+      "keyword": "сайты для новорожденных интернет магазин",
+      "frequency": 25,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.277Z"
+    },
+    {
+      "keyword": "диамарка официальный сайт интернет магазин для диабетиков",
+      "frequency": 25,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.277Z"
+    },
+    {
+      "keyword": "открыть сайт для интернет магазина",
+      "frequency": 25,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.277Z"
+    },
+    {
+      "keyword": "бетховен интернет магазин для животных сайт",
+      "frequency": 25,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.277Z"
+    },
+    {
+      "keyword": "деваль официальный сайт интернет магазин для парикмахеров",
+      "frequency": 24,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.277Z"
+    },
+    {
+      "keyword": "интернет магазин для новорожденных официальный сайт",
+      "frequency": 24,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.277Z"
+    },
+    {
+      "keyword": "написать сайт для интернет магазина",
+      "frequency": 24,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.277Z"
+    },
+    {
+      "keyword": "гришко интернет магазин для танцев официальный сайт",
+      "frequency": 24,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.277Z"
+    },
+    {
+      "keyword": "гришко сайт интернет магазин для танцев",
+      "frequency": 24,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.277Z"
+    },
+    {
+      "keyword": "интернет магазин для танцев официальный сайт",
+      "frequency": 24,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.278Z"
+    },
+    {
+      "keyword": "сайт косметики для волос интернет магазин",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.278Z"
+    },
+    {
+      "keyword": "сайта для интернет магазина под ключ",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.278Z"
+    },
+    {
+      "keyword": "разработка веб сайтов для интернет магазинов",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.278Z"
+    },
+    {
+      "keyword": "выдумщики официальный сайт интернет магазин для мыловаров",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.278Z"
+    },
+    {
+      "keyword": "сколько стоит сделать сайт для интернет магазина",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.278Z"
+    },
+    {
+      "keyword": "купить готовый сайт для интернет магазина",
+      "frequency": 21,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.278Z"
+    },
+    {
+      "keyword": "конструктор сайта для интернет магазина отзывы",
+      "frequency": 20,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.278Z"
+    },
+    {
+      "keyword": "интернет магазин для художников официальный сайт",
+      "frequency": 20,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.279Z"
+    },
+    {
+      "keyword": "стоимость сайта для интернет магазина",
+      "frequency": 20,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.279Z"
+    },
+    {
+      "keyword": "просвим интернет магазин для плавания официальный сайт",
+      "frequency": 19,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.279Z"
+    },
+    {
+      "keyword": "подиафарм официальный сайт интернет магазин для педикюра",
+      "frequency": 18,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.279Z"
+    },
+    {
+      "keyword": "интернет магазин для сайта html",
+      "frequency": 17,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.279Z"
+    },
+    {
+      "keyword": "интернет магазин официальный сайт одежды для полных",
+      "frequency": 17,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.279Z"
+    },
+    {
+      "keyword": "сайт товаров для рукоделие интернет магазин",
+      "frequency": 16,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.279Z"
+    },
+    {
+      "keyword": "сколько стоит создать сайт для интернет магазина",
+      "frequency": 16,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.279Z"
+    },
+    {
+      "keyword": "imkosmetik интернет магазин для ногтей официальный сайт",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.279Z"
+    },
+    {
+      "keyword": "валберис интернет магазин сайт для компьютера",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.280Z"
+    },
+    {
+      "keyword": "платформа для создания сайта интернет магазина",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.280Z"
+    },
+    {
+      "keyword": "касса для сайта интернет магазина",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.280Z"
+    },
+    {
+      "keyword": "сайты интернет магазинов товаров для рыбалки",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.280Z"
+    },
+    {
+      "keyword": "сайты интернет магазинов для охоты",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.280Z"
+    },
+    {
+      "keyword": "создание сайта для интернет магазина бесплатно",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.280Z"
+    },
+    {
+      "keyword": "ревлон для волос интернет магазин официальный сайт",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.280Z"
+    },
+    {
+      "keyword": "шаблон для сайта интернет магазина бесплатно",
+      "frequency": 10,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.280Z"
+    },
+    {
+      "keyword": "лучшие конструкторы сайтов для интернет магазинов бесплатно",
+      "frequency": 10,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.281Z"
+    },
+    {
+      "keyword": "создать сайт для интернет магазина цена",
+      "frequency": 9,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.281Z"
+    },
+    {
+      "keyword": "эми официальный сайт интернет магазин для ногтей",
+      "frequency": 9,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.281Z"
+    },
+    {
+      "keyword": "политика конфиденциальности для сайта интернет магазина",
+      "frequency": 8,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.281Z"
+    },
+    {
+      "keyword": "онлайн касса для сайта интернет магазина",
+      "frequency": 7,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.281Z"
+    },
+    {
+      "keyword": "озон интернет магазин официальный сайт для компьютера",
+      "frequency": 7,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.281Z"
+    },
+    {
+      "keyword": "купить сайт для интернет магазина под ключ",
+      "frequency": 7,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.281Z"
+    },
+    {
+      "keyword": "имкосметик интернет магазин для ногтей официальный сайт",
+      "frequency": 7,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.281Z"
+    },
+    {
+      "keyword": "политика возврата для сайта интернет магазина одежды",
+      "frequency": 6,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.282Z"
+    },
+    {
+      "keyword": "готовый сайт для реализации интернет магазина",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для интернет магазина",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:15:24.282Z"
+    }
+  ],
+  "errors": []
+}

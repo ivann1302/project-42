@@ -338,6 +338,7 @@
   font-feature-settings: 'tnum';
   line-height: 1;
   color: $surface-card-mint;
+  animation: decision-number-colors 9s ease-in-out infinite;
 }
 
 .unit {
@@ -487,10 +488,12 @@
 .priceCard {
   display: grid;
   gap: $space-8;
+  position: relative;
   align-content: space-between;
   min-height: 260px;
   padding: $space-6;
   overflow: hidden;
+  isolation: isolate;
   background: $surface-card-mint;
 }
 
@@ -533,6 +536,8 @@
 }
 
 .priceText {
+  position: relative;
+  z-index: 1;
   max-width: 100%;
   margin: 0;
   font-family: $font-body;
@@ -542,7 +547,21 @@
   overflow-wrap: anywhere;
 }
 
+.priceImage {
+  position: absolute;
+  top: 108px;
+  right: -66px;
+  z-index: 0;
+  width: 220px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0.86;
+  transform: rotate(8deg);
+}
+
 .payment {
+  position: relative;
+  z-index: 1;
   max-width: 14ch;
   margin: 0;
   font-size: 18px;
@@ -570,13 +589,24 @@
 
 .processTitle {
   display: grid;
-  max-width: 9ch;
+  justify-self: center;
+  justify-items: center;
+  width: fit-content;
+  max-width: 100%;
   margin: 0;
   font-family: $font-display;
   font-size: clamp(40px, 12vw, 50px);
   font-weight: $font-weight-display;
   line-height: 0.9;
+  text-align: center;
   text-transform: uppercase;
+}
+
+.processTitle span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .processOutline {
@@ -595,8 +625,7 @@
 }
 
 .taskCard,
-.stepCard,
-.faqList article {
+.stepCard {
   display: grid;
   gap: $space-4;
   min-height: 240px;
@@ -606,8 +635,7 @@
 }
 
 .taskCard h3,
-.stepCard h3,
-.faqList h3 {
+.stepCard h3 {
   margin: 0;
   font-family: $font-display;
   font-size: 30px;
@@ -617,13 +645,92 @@
 }
 
 .taskCard p,
-.stepCard p,
-.faqList p {
+.stepCard p {
   align-self: end;
   margin: 0;
   font-size: 15px;
   font-weight: $font-weight-medium;
   line-height: 1.35;
+  color: $text-secondary;
+}
+
+.faqItem {
+  display: grid;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba($surface-card-yellow, 82%);
+  border-radius: $radius-lg;
+}
+
+.faqItem h3 {
+  margin: 0;
+}
+
+.faqButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  width: 100%;
+  padding: $space-5;
+  font-family: $font-display;
+  font-size: 26px;
+  font-weight: $font-weight-display;
+  line-height: 0.98;
+  text-align: left;
+  text-transform: uppercase;
+  color: $text-primary;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.faqButton:focus-visible {
+  outline: 2px solid $surface-card-yellow;
+  outline-offset: -2px;
+}
+
+.faqIcon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  font-family: $font-body;
+  font-size: 28px;
+  line-height: 1;
+  color: #000;
+  background: $surface-card-yellow;
+  border-radius: 50%;
+  transition: transform $transition-base;
+}
+
+.faqButton[aria-expanded='true'] .faqIcon {
+  transform: rotate(45deg);
+}
+
+.faqAnswer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows $transition-base,
+    opacity $transition-base;
+}
+
+.faqAnswerOpen {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.faqAnswer p {
+  min-height: 0;
+  margin: 0;
+  padding: 0 $space-5 $space-5;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: $font-weight-medium;
+  line-height: 1.45;
   color: $text-secondary;
 }
 
@@ -636,14 +743,17 @@
 }
 
 .risksSection,
-.structureSection,
 .whyUsSection {
   padding: $space-8 $container-pad-mobile 0;
   background: $surface-page;
 }
 
+.whyUsSection {
+  padding-right: $container-pad-mobile;
+  padding-left: 0;
+}
+
 .riskPanel,
-.structurePanel,
 .whyUsPanel {
   display: grid;
   gap: $space-6;
@@ -655,12 +765,36 @@
   border-radius: $radius-lg;
 }
 
-.structurePanel {
-  background: $surface-card-blue;
+.whyUsPanel {
+  width: 100%;
+  max-width: $container-inner;
+  margin: 0 auto 0 0;
+  overflow: hidden;
+  background: $surface-card-orange;
+  border-radius: 0 $radius-lg $radius-lg 0;
+  transform: scaleX(0.045);
+  transform-origin: left center;
+  will-change: transform;
 }
 
-.whyUsPanel {
-  background: $surface-card-orange;
+.whyUsSection:global(.visible) .whyUsPanel {
+  animation: why-us-rubber-reveal 920ms $ease-emphasized forwards;
+}
+
+.whyUsPanel > div:first-child,
+.whyUsGrid {
+  opacity: 0;
+  transition:
+    opacity $duration-base $ease-standard 260ms,
+    transform $duration-slow $ease-emphasized 220ms;
+  transform: translateX(-$space-4);
+  will-change: opacity, transform;
+}
+
+.whyUsSection:global(.visible) .whyUsPanel > div:first-child,
+.whyUsSection:global(.visible) .whyUsGrid {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .whyUsPanel > div:first-child {
@@ -677,7 +811,6 @@
 }
 
 .riskPanel h2,
-.structurePanel h2,
 .whyUsPanel h2 {
   max-width: 11ch;
   margin: 0;
@@ -688,8 +821,7 @@
   text-transform: uppercase;
 }
 
-.riskPanel ul,
-.structurePanel ol {
+.riskPanel ul {
   display: grid;
   gap: $space-3;
   margin: 0;
@@ -700,22 +832,44 @@
   line-height: 1.18;
 }
 
-.riskPanel li,
-.structurePanel li {
+.riskPanel li {
+  position: relative;
   padding-top: $space-3;
-  border-top: 1px solid rgba(#000, 0.24);
+  padding-left: $space-6;
+}
+
+.riskPanel li::before {
+  content: '';
+  position: absolute;
+  top: calc(#{$space-3} + 0.42em);
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
 }
 
 .whyUsGrid {
   display: grid;
-  gap: $space-3;
+  gap: $space-5;
 }
 
 .whyUsGrid article {
   display: grid;
   gap: $space-3;
-  padding-top: $space-4;
-  border-top: 1px solid rgba(#000, 0.24);
+  position: relative;
+  padding-left: $space-6;
+}
+
+.whyUsGrid article::before {
+  content: '';
+  position: absolute;
+  top: 0.42em;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
 }
 
 .whyUsGrid h3 {
@@ -759,8 +913,13 @@
   background: $surface-card-light;
   border: 1px solid rgba($neutral-0, 10%);
   border-radius: $radius-xl 0 0 $radius-xl;
-  transform: scaleX(1);
+  transform: scaleX(0.045);
   transform-origin: right center;
+  will-change: transform;
+}
+
+.ctaSection:global(.visible) .ctaShell {
+  animation: cta-rubber-reveal 920ms $ease-emphasized forwards;
 }
 
 .ctaVisual {
@@ -785,6 +944,28 @@
 
 .ctaContent {
   display: contents;
+}
+
+.ctaVisual,
+.ctaKicker,
+.ctaTitle,
+.ctaText,
+.ctaActions {
+  opacity: 0;
+  transition:
+    opacity $duration-base $ease-standard 260ms,
+    transform $duration-slow $ease-emphasized 220ms;
+  transform: translateX($space-4);
+  will-change: opacity, transform;
+}
+
+.ctaSection:global(.visible) .ctaVisual,
+.ctaSection:global(.visible) .ctaKicker,
+.ctaSection:global(.visible) .ctaTitle,
+.ctaSection:global(.visible) .ctaText,
+.ctaSection:global(.visible) .ctaActions {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .ctaKicker {
@@ -1052,6 +1233,12 @@
     font-size: clamp(60px, 6vw, 88px);
   }
 
+  .priceImage {
+    top: 146px;
+    right: -84px;
+    width: 300px;
+  }
+
   .tasksHeader,
   .taskGrid,
   .steps,
@@ -1078,20 +1265,22 @@
   }
 
   .taskGrid,
-  .steps,
-  .faqList {
+  .steps {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .risksSection,
-  .structureSection,
   .whyUsSection {
     padding-right: $container-pad-tablet;
     padding-left: $container-pad-tablet;
   }
 
+  .whyUsSection {
+    padding-right: $container-pad-tablet;
+    padding-left: 0;
+  }
+
   .riskPanel,
-  .structurePanel,
   .whyUsPanel {
     grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1fr);
     padding: $space-8;
@@ -1182,10 +1371,14 @@
   .decision,
   .whatWeDo,
   .risksSection,
-  .structureSection,
   .whyUsSection,
   .ctaSection {
     padding: $space-12 0 $space-16 $container-pad-desktop;
+  }
+
+  .whyUsSection {
+    padding-right: $container-pad-desktop;
+    padding-left: 0;
   }
 
   .hero {
@@ -1201,7 +1394,18 @@
   }
 
   .processTitle {
+    grid-template-rows: repeat(2, auto);
+    row-gap: $space-2;
+    max-width: 12ch;
     font-size: 104px;
+  }
+
+  .processTitle span {
+    display: block;
+  }
+
+  .processTitle span:first-child {
+    white-space: nowrap;
   }
 
   .heroVisual {
@@ -1251,6 +1455,70 @@
 
   .ctaTitle span {
     white-space: nowrap;
+  }
+
+  .whyUsPanel {
+    max-width: none;
+    border-radius: 0 $radius-xl $radius-xl 0;
+  }
+
+  .whyUsGrid {
+    row-gap: $space-10;
+  }
+}
+
+@keyframes why-us-rubber-reveal {
+  0% {
+    transform: scaleX(0.045);
+  }
+
+  62% {
+    transform: scaleX(1.035);
+  }
+
+  82% {
+    transform: scaleX(0.985);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes decision-number-colors {
+  0%,
+  100% {
+    color: $surface-card-mint;
+  }
+
+  25% {
+    color: $surface-card-orange;
+  }
+
+  50% {
+    color: $surface-card-yellow;
+  }
+
+  75% {
+    color: $surface-card-blue;
+  }
+}
+
+@keyframes cta-rubber-reveal {
+  0% {
+    transform: scaleX(0.045);
+  }
+
+  62% {
+    transform: scaleX(1.035);
+  }
+
+  78% {
+    transform: scaleX(0.985);
+  }
+
+  100% {
+    transform: scaleX(1);
   }
 }
 

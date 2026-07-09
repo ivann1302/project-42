@@ -119,9 +119,9 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText('Мобильная версия')).toBeInTheDocument()
     expect(screen.getByText(/перехвата лидов/)).toBeInTheDocument()
     expect(screen.getByText('Цена под ключ')).toBeInTheDocument()
-    expect(screen.getByText('Без скрытых доплат')).toBeInTheDocument()
+    expect(screen.getByText('от 15 тыс рублей')).toBeInTheDocument()
     expect(screen.queryByText('За одностраничный сайт')).not.toBeInTheDocument()
-    expect(screen.getByText('Оплата 50/50')).toBeInTheDocument()
+    expect(screen.getByText('Оплата по этапам')).toBeInTheDocument()
   })
 
   it('renders the work process section', () => {
@@ -173,7 +173,7 @@ describe('RazrabotkaPage', () => {
     expect(
       modal.getByRole('img', { name: 'Корпоративный сайт строительной компании' }),
     ).toBeInTheDocument()
-    expect(modal.getByText(/Для ROSA собрали большой корпоративный сайт/)).toBeInTheDocument()
+    expect(modal.getByText(/понятная система привлечения заявок/)).toBeInTheDocument()
     expect(modal.getByText('Оказанные услуги')).toBeInTheDocument()
     expect(modal.getByText('SEO и GEO-оптимизация')).toBeInTheDocument()
     expect(modal.queryByText('Примеры экранов')).not.toBeInTheDocument()
@@ -240,7 +240,7 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText(/Понимание пути клиента/)).toBeInTheDocument()
     expect(screen.getByText(/защите информации и персональных данных/)).toBeInTheDocument()
     expect(screen.getByText(/Защита сайта от перехвата клиентов/)).toBeInTheDocument()
-    expect(screen.getByText(/по сравнению с Tilda/)).toBeInTheDocument()
+    expect(screen.getByText(/Не привязываем проект к шаблону/)).toBeInTheDocument()
   })
 
   it('opens the quick consultation quiz after 26 seconds on the page', async () => {
@@ -263,10 +263,10 @@ describe('RazrabotkaPage', () => {
     expect(
       await screen.findByRole('heading', {
         level: 2,
-        name: 'Оставьте заявку',
+        name: 'Подумаем над сайтом вместе',
       }),
     ).toBeInTheDocument()
-    expect(screen.getByText(/совершенно бесплатно/)).toBeInTheDocument()
+    expect(screen.getByText(/без давления и лишнего размаха/)).toBeInTheDocument()
     jest.useRealTimers()
 
     expect(screen.getByLabelText('Как вас зовут?')).toBeInTheDocument()
@@ -390,17 +390,22 @@ describe('RazrabotkaPage', () => {
   it('renders the aftercare section', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
-    expect(screen.getByRole('heading', { level: 2, name: 'И да...' })).toBeInTheDocument()
-    expect(screen.getByText('После запуска')).toBeInTheDocument()
-    expect(screen.getByText('Правки')).toBeInTheDocument()
-    expect(screen.getByText('14 дней')).toBeInTheDocument()
-    expect(screen.getByText('помогаем внести изменения после запуска')).toBeInTheDocument()
-    expect(screen.getByText('Гарантия')).toBeInTheDocument()
-    expect(screen.getByText('1 год')).toBeInTheDocument()
-    expect(screen.getByText('исправляем возможные ошибки разработки')).toBeInTheDocument()
-    expect(screen.getByText('Защита')).toBeInTheDocument()
-    expect(screen.getByText('В подарок')).toBeInTheDocument()
-    expect(screen.getByText('подключаем защиту от перехвата клиентов и спама')).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'Сайт под вашим контролем' }),
+    ).toBeInTheDocument()
+    expect(screen.getByText(/не зависеть от разработчика/)).toBeInTheDocument()
+    expect(screen.getAllByText('Сами меняете контент')).toHaveLength(2)
+    expect(
+      screen.getByText('тексты, цены, услуги, фото и контакты можно обновлять без программиста'),
+    ).toBeInTheDocument()
+    expect(screen.getAllByText('Гарантия от технических багов')).toHaveLength(2)
+    expect(
+      screen.getByText('если после запуска ломается наша техническая часть, исправляем'),
+    ).toBeInTheDocument()
+    expect(screen.getAllByText('SEO-настройка в подарок')).toHaveLength(2)
+    expect(
+      screen.getByText('готовим базовые мета-данные, индексацию и понятную структуру страниц'),
+    ).toBeInTheDocument()
   })
 
   it('renders the level-up banner above the footer', () => {

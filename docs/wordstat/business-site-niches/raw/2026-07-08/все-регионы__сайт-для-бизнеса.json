@@ -1,0 +1,1814 @@
+{
+  "meta": {
+    "seed": "сайт для бизнеса",
+    "region": "Все регионы",
+    "collected_at": "2026-07-08T09:11:26.625Z",
+    "script_version": "0.1.0",
+    "url": "https://wordstat.yandex.ru/?region=all&view=table&words=%D1%81%D0%B0%D0%B9%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81%D0%B0",
+    "run_id": "2026-07-08T09:11:09.185Z",
+    "dry_run": true
+  },
+  "rows": [
+    {
+      "keyword": "сайт для бизнеса",
+      "frequency": 7206,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.561Z"
+    },
+    {
+      "keyword": "официальный сайт для бизнеса",
+      "frequency": 2290,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.562Z"
+    },
+    {
+      "keyword": "бизнес сайты для малого бизнеса",
+      "frequency": 857,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.562Z"
+    },
+    {
+      "keyword": "сайт сбербанка для бизнеса",
+      "frequency": 640,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.562Z"
+    },
+    {
+      "keyword": "сбербанк для бизнеса официальный сайт",
+      "frequency": 523,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.562Z"
+    },
+    {
+      "keyword": "создать сайт для бизнеса",
+      "frequency": 448,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.562Z"
+    },
+    {
+      "keyword": "сайт для интернет бизнеса",
+      "frequency": 420,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.562Z"
+    },
+    {
+      "keyword": "купить сайт для бизнеса",
+      "frequency": 375,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.562Z"
+    },
+    {
+      "keyword": "официальный сайт для малого бизнеса",
+      "frequency": 374,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.562Z"
+    },
+    {
+      "keyword": "сайт для начинающих бизнес",
+      "frequency": 364,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.563Z"
+    },
+    {
+      "keyword": "сайт банка бизнес для бизнеса",
+      "frequency": 363,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.563Z"
+    },
+    {
+      "keyword": "сайт для начала бизнеса",
+      "frequency": 360,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.563Z"
+    },
+    {
+      "keyword": "создание сайта для бизнеса",
+      "frequency": 345,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.563Z"
+    },
+    {
+      "keyword": "яндекс сайт для бизнеса",
+      "frequency": 342,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.563Z"
+    },
+    {
+      "keyword": "сайт сбербанка для малого бизнеса",
+      "frequency": 331,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.563Z"
+    },
+    {
+      "keyword": "официальный сайт сбербанка для малого бизнеса",
+      "frequency": 302,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.563Z"
+    },
+    {
+      "keyword": "открыт сайт для бизнеса",
+      "frequency": 287,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.564Z"
+    },
+    {
+      "keyword": "открыть сайт для бизнеса",
+      "frequency": 284,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.564Z"
+    },
+    {
+      "keyword": "сайт ростелеком для бизнеса",
+      "frequency": 277,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.564Z"
+    },
+    {
+      "keyword": "анализ сайтов для бизнеса",
+      "frequency": 274,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.564Z"
+    },
+    {
+      "keyword": "веб сайты для бизнеса",
+      "frequency": 271,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.564Z"
+    },
+    {
+      "keyword": "банк бизнес для бизнеса официальный сайт",
+      "frequency": 265,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.564Z"
+    },
+    {
+      "keyword": "бесплатный сайт для бизнеса",
+      "frequency": 253,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.565Z"
+    },
+    {
+      "keyword": "проект сайт для бизнеса",
+      "frequency": 243,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.565Z"
+    },
+    {
+      "keyword": "ростелеком официальный сайт для бизнеса",
+      "frequency": 238,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.565Z"
+    },
+    {
+      "keyword": "разработка сайтов для бизнеса",
+      "frequency": 231,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.565Z"
+    },
+    {
+      "keyword": "новый сайт для бизнеса",
+      "frequency": 201,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.565Z"
+    },
+    {
+      "keyword": "сделать сайт для бизнеса",
+      "frequency": 199,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.566Z"
+    },
+    {
+      "keyword": "сайты для бизнеса онлайн",
+      "frequency": 188,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.566Z"
+    },
+    {
+      "keyword": "бизнес сайты для предпринимателей",
+      "frequency": 173,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.566Z"
+    },
+    {
+      "keyword": "one two trip официальный сайт для бизнеса",
+      "frequency": 172,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.566Z"
+    },
+    {
+      "keyword": "сайт 1 для бизнеса",
+      "frequency": 161,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.566Z"
+    },
+    {
+      "keyword": "ооо бизнес для бизнеса сайт",
+      "frequency": 160,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.566Z"
+    },
+    {
+      "keyword": "сайты россии для бизнеса",
+      "frequency": 153,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.567Z"
+    },
+    {
+      "keyword": "сайты товаров для бизнеса",
+      "frequency": 152,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.567Z"
+    },
+    {
+      "keyword": "сайт услуги для бизнеса",
+      "frequency": 145,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.567Z"
+    },
+    {
+      "keyword": "сайт для предпринимателей малого бизнеса",
+      "frequency": 137,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.567Z"
+    },
+    {
+      "keyword": "сайты для продажи бизнеса",
+      "frequency": 136,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.567Z"
+    },
+    {
+      "keyword": "создание сайта для малого бизнеса",
+      "frequency": 136,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.568Z"
+    },
+    {
+      "keyword": "сайты для рекламы бизнеса",
+      "frequency": 136,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.568Z"
+    },
+    {
+      "keyword": "сайт для бизнеса в сфере",
+      "frequency": 134,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.568Z"
+    },
+    {
+      "keyword": "нужен сайт для бизнеса",
+      "frequency": 129,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.568Z"
+    },
+    {
+      "keyword": "сайт для вашего бизнеса",
+      "frequency": 126,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.568Z"
+    },
+    {
+      "keyword": "сайт для бизнеса москва",
+      "frequency": 123,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.569Z"
+    },
+    {
+      "keyword": "сайты для владельцев бизнеса",
+      "frequency": 121,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.569Z"
+    },
+    {
+      "keyword": "сайты для бизнес процессов",
+      "frequency": 120,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.569Z"
+    },
+    {
+      "keyword": "сайт для бизнеса цена",
+      "frequency": 117,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.569Z"
+    },
+    {
+      "keyword": "решения для бизнеса сайты",
+      "frequency": 113,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.569Z"
+    },
+    {
+      "keyword": "конструктор сайтов для бизнеса",
+      "frequency": 112,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.570Z"
+    },
+    {
+      "keyword": "мобильный сайт для бизнеса",
+      "frequency": 111,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.570Z"
+    },
+    {
+      "keyword": "бизнес видео для сайта",
+      "frequency": 109,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.570Z"
+    },
+    {
+      "keyword": "создать сайт для бизнеса бесплатно",
+      "frequency": 109,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.570Z"
+    },
+    {
+      "keyword": "авиасейлс официальный сайт для бизнеса",
+      "frequency": 108,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.570Z"
+    },
+    {
+      "keyword": "ван ту трип для бизнеса официальный сайт",
+      "frequency": 108,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.570Z"
+    },
+    {
+      "keyword": "сайт втб для бизнеса",
+      "frequency": 102,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.571Z"
+    },
+    {
+      "keyword": "сбер бизнес сайт для бизнеса",
+      "frequency": 100,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.571Z"
+    },
+    {
+      "keyword": "сайты программ для бизнеса",
+      "frequency": 97,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.571Z"
+    },
+    {
+      "keyword": "сайт для альфа бизнес",
+      "frequency": 95,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.571Z"
+    },
+    {
+      "keyword": "бизнес модель для сайта",
+      "frequency": 94,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.571Z"
+    },
+    {
+      "keyword": "сайт для развития бизнеса",
+      "frequency": 91,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.571Z"
+    },
+    {
+      "keyword": "сайт для личного бизнеса",
+      "frequency": 90,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.572Z"
+    },
+    {
+      "keyword": "сайт для бизнеса под ключ",
+      "frequency": 88,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.572Z"
+    },
+    {
+      "keyword": "сайт метро для бизнеса",
+      "frequency": 87,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.572Z"
+    },
+    {
+      "keyword": "разработка сайта для малого бизнеса",
+      "frequency": 85,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.572Z"
+    },
+    {
+      "keyword": "сайт для регистрации бизнеса",
+      "frequency": 82,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.572Z"
+    },
+    {
+      "keyword": "альфа банк сайт для бизнеса",
+      "frequency": 82,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.573Z"
+    },
+    {
+      "keyword": "сайт rt ru для бизнеса",
+      "frequency": 81,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.573Z"
+    },
+    {
+      "keyword": "rt ru официальный сайт для бизнеса",
+      "frequency": 80,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.573Z"
+    },
+    {
+      "keyword": "картинки для сайта бизнеса",
+      "frequency": 79,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.573Z"
+    },
+    {
+      "keyword": "лучший сайт для бизнеса",
+      "frequency": 79,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.573Z"
+    },
+    {
+      "keyword": "rt ru официальный сайт ростелеком для бизнеса",
+      "frequency": 77,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.574Z"
+    },
+    {
+      "keyword": "готовые сайты для бизнеса",
+      "frequency": 75,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.574Z"
+    },
+    {
+      "keyword": "интернет магазин сайт для бизнеса",
+      "frequency": 75,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.574Z"
+    },
+    {
+      "keyword": "сайты для бизнес плана",
+      "frequency": 74,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.574Z"
+    },
+    {
+      "keyword": "скачать сайт для бизнеса",
+      "frequency": 74,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.574Z"
+    },
+    {
+      "keyword": "сайт и приложение для бизнеса",
+      "frequency": 73,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.574Z"
+    },
+    {
+      "keyword": "корпоративный сайт для бизнеса",
+      "frequency": 69,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.575Z"
+    },
+    {
+      "keyword": "создать сайт для бизнеса с нуля",
+      "frequency": 68,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.575Z"
+    },
+    {
+      "keyword": "тема для сайта бизнес",
+      "frequency": 68,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.575Z"
+    },
+    {
+      "keyword": "сбербанк для бизнеса официальный сайт вход",
+      "frequency": 67,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.575Z"
+    },
+    {
+      "keyword": "заказать сайт для бизнеса",
+      "frequency": 66,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.575Z"
+    },
+    {
+      "keyword": "разработка веб сайтов для бизнеса",
+      "frequency": 66,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.576Z"
+    },
+    {
+      "keyword": "сайт для выбора бизнеса",
+      "frequency": 64,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.576Z"
+    },
+    {
+      "keyword": "продвижения сайтов для бизнеса",
+      "frequency": 60,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.576Z"
+    },
+    {
+      "keyword": "сайт налоговой для бизнеса",
+      "frequency": 60,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.576Z"
+    },
+    {
+      "keyword": "втб официальный сайт для бизнеса",
+      "frequency": 60,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.576Z"
+    },
+    {
+      "keyword": "создать сайт для бизнеса самому",
+      "frequency": 56,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.576Z"
+    },
+    {
+      "keyword": "сайт сбербанка онлайн для бизнеса",
+      "frequency": 55,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.577Z"
+    },
+    {
+      "keyword": "разработка создания сайтов для бизнеса",
+      "frequency": 54,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.577Z"
+    },
+    {
+      "keyword": "сайт для организации бизнеса",
+      "frequency": 54,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.577Z"
+    },
+    {
+      "keyword": "альфа банк официальный сайт для бизнеса",
+      "frequency": 53,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.577Z"
+    },
+    {
+      "keyword": "поддержка сайт для бизнеса",
+      "frequency": 48,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.577Z"
+    },
+    {
+      "keyword": "бизнес идеи для сайта",
+      "frequency": 48,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.578Z"
+    },
+    {
+      "keyword": "делаем сайты для бизнеса",
+      "frequency": 48,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.578Z"
+    },
+    {
+      "keyword": "сайт для бизнеса рф",
+      "frequency": 47,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.578Z"
+    },
+    {
+      "keyword": "создать сайт для бизнеса бесплатно самому",
+      "frequency": 47,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.578Z"
+    },
+    {
+      "keyword": "виды сайтов для бизнеса",
+      "frequency": 46,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.578Z"
+    },
+    {
+      "keyword": "дизайн для бизнес сайта",
+      "frequency": 46,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.578Z"
+    },
+    {
+      "keyword": "т банк официальный сайт для бизнеса",
+      "frequency": 45,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.579Z"
+    },
+    {
+      "keyword": "сайт для покупки бизнеса",
+      "frequency": 45,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.579Z"
+    },
+    {
+      "keyword": "сайт для помощи бизнесу",
+      "frequency": 45,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.579Z"
+    },
+    {
+      "keyword": "сайт для бизнеса отзывы",
+      "frequency": 44,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.579Z"
+    },
+    {
+      "keyword": "сайты для бизнеса спб",
+      "frequency": 44,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.579Z"
+    },
+    {
+      "keyword": "сайт для бизнес центра",
+      "frequency": 44,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.580Z"
+    },
+    {
+      "keyword": "мебель для бизнеса сайт",
+      "frequency": 43,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.580Z"
+    },
+    {
+      "keyword": "сайт визитка для бизнеса",
+      "frequency": 43,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.580Z"
+    },
+    {
+      "keyword": "озон для бизнеса сайт",
+      "frequency": 42,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.580Z"
+    },
+    {
+      "keyword": "современный сайт для бизнеса",
+      "frequency": 42,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.580Z"
+    },
+    {
+      "keyword": "сайты для бизнеса примеры",
+      "frequency": 41,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.581Z"
+    },
+    {
+      "keyword": "кредит сайт для бизнеса",
+      "frequency": 41,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.581Z"
+    },
+    {
+      "keyword": "он ту трип для бизнеса официальный сайт",
+      "frequency": 41,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.581Z"
+    },
+    {
+      "keyword": "сайт сбербанк онлайн для малого бизнеса",
+      "frequency": 40,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.581Z"
+    },
+    {
+      "keyword": "сбербанк онлайн для бизнеса официальный сайт",
+      "frequency": 39,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.581Z"
+    },
+    {
+      "keyword": "типы сайтов для бизнеса",
+      "frequency": 38,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.581Z"
+    },
+    {
+      "keyword": "рекламные сайты для бизнеса",
+      "frequency": 37,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.582Z"
+    },
+    {
+      "keyword": "мебель для бизнеса и дома официальный сайт",
+      "frequency": 36,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.582Z"
+    },
+    {
+      "keyword": "мебель для бизнеса и дома сайт",
+      "frequency": 36,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.582Z"
+    },
+    {
+      "keyword": "продающие сайты для бизнеса",
+      "frequency": 36,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.582Z"
+    },
+    {
+      "keyword": "втб банк официальный сайт для бизнеса",
+      "frequency": 34,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.582Z"
+    },
+    {
+      "keyword": "сайт для аналитики бизнеса",
+      "frequency": 34,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.583Z"
+    },
+    {
+      "keyword": "официальный сайт сбербанка для бизнеса россии",
+      "frequency": 33,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.583Z"
+    },
+    {
+      "keyword": "мегафон сайт для бизнеса",
+      "frequency": 33,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.585Z"
+    },
+    {
+      "keyword": "салют для бизнеса сайт",
+      "frequency": 33,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.585Z"
+    },
+    {
+      "keyword": "сайт для поиска товаров для бизнеса",
+      "frequency": 33,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.586Z"
+    },
+    {
+      "keyword": "сайт для бизнеса описание",
+      "frequency": 33,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.586Z"
+    },
+    {
+      "keyword": "сайт для бизнеса санкт петербург",
+      "frequency": 33,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.586Z"
+    },
+    {
+      "keyword": "сбербанк россии для малого бизнеса официальный сайт",
+      "frequency": 32,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.586Z"
+    },
+    {
+      "keyword": "озон банк для бизнеса сайт",
+      "frequency": 31,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.586Z"
+    },
+    {
+      "keyword": "бизнес чат для сайта",
+      "frequency": 30,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.586Z"
+    },
+    {
+      "keyword": "сайты для малого и среднего бизнеса",
+      "frequency": 30,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.587Z"
+    },
+    {
+      "keyword": "конструктор сайтов для бизнеса бесплатно",
+      "frequency": 30,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.587Z"
+    },
+    {
+      "keyword": "инвесторы для бизнеса сайт",
+      "frequency": 30,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.587Z"
+    },
+    {
+      "keyword": "сайты для бизнеса под ключ в спб",
+      "frequency": 30,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.587Z"
+    },
+    {
+      "keyword": "макс для бизнеса сайт",
+      "frequency": 29,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.587Z"
+    },
+    {
+      "keyword": "сайт для собственного бизнеса",
+      "frequency": 29,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.587Z"
+    },
+    {
+      "keyword": "разработка сайта для бизнеса под ключ",
+      "frequency": 28,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.587Z"
+    },
+    {
+      "keyword": "сайт для открытия бизнеса",
+      "frequency": 28,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.587Z"
+    },
+    {
+      "keyword": "сайт сбер для малого бизнеса",
+      "frequency": 28,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.588Z"
+    },
+    {
+      "keyword": "государственные сайты для бизнеса",
+      "frequency": 27,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.588Z"
+    },
+    {
+      "keyword": "сайт псб для бизнеса",
+      "frequency": 27,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.588Z"
+    },
+    {
+      "keyword": "сайт для ведения бизнеса",
+      "frequency": 27,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.588Z"
+    },
+    {
+      "keyword": "создать сайт для бизнеса яндекс",
+      "frequency": 27,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.588Z"
+    },
+    {
+      "keyword": "шаблоны для сайта бизнеса",
+      "frequency": 27,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.588Z"
+    },
+    {
+      "keyword": "скачать сайт для бизнеса бесплатно",
+      "frequency": 26,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.588Z"
+    },
+    {
+      "keyword": "сайт для бизнеса сбербизнес",
+      "frequency": 26,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.588Z"
+    },
+    {
+      "keyword": "разработать сайт для бизнеса",
+      "frequency": 26,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.589Z"
+    },
+    {
+      "keyword": "бизнес требования для сайта",
+      "frequency": 25,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.589Z"
+    },
+    {
+      "keyword": "сайт для бизнеса сколько стоит",
+      "frequency": 25,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.589Z"
+    },
+    {
+      "keyword": "сайты для бизнеса список",
+      "frequency": 24,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.589Z"
+    },
+    {
+      "keyword": "сайты знакомств для бизнеса",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.589Z"
+    },
+    {
+      "keyword": "фото для бизнес сайта",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.589Z"
+    },
+    {
+      "keyword": "озон банк для бизнеса официальный сайт",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.589Z"
+    },
+    {
+      "keyword": "мегафон для бизнеса официальный сайт",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.589Z"
+    },
+    {
+      "keyword": "совкомбанк для бизнеса официальный сайт",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.590Z"
+    },
+    {
+      "keyword": "какой сайт нужен для бизнеса",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.590Z"
+    },
+    {
+      "keyword": "лукойл для бизнеса официальный сайт",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.590Z"
+    },
+    {
+      "keyword": "создать сайт для малого бизнеса",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.590Z"
+    },
+    {
+      "keyword": "сайт объявлений для бизнеса",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.590Z"
+    },
+    {
+      "keyword": "профессиональные сайты для бизнеса",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.590Z"
+    },
+    {
+      "keyword": "яндекс банк для бизнеса официальный сайт",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.590Z"
+    },
+    {
+      "keyword": "сбербизнес сайт для малого бизнеса",
+      "frequency": 21,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.590Z"
+    },
+    {
+      "keyword": "мсп сайт для бизнеса",
+      "frequency": 21,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.591Z"
+    },
+    {
+      "keyword": "мтс сайт для бизнеса",
+      "frequency": 20,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.591Z"
+    },
+    {
+      "keyword": "сайт для любого бизнеса",
+      "frequency": 19,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.591Z"
+    },
+    {
+      "keyword": "сайт оборудование для бизнеса",
+      "frequency": 19,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.591Z"
+    },
+    {
+      "keyword": "сайт для автоматизации бизнеса",
+      "frequency": 19,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.591Z"
+    },
+    {
+      "keyword": "мои глаза для бизнеса алкон официальный сайт",
+      "frequency": 19,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.591Z"
+    },
+    {
+      "keyword": "нужен ли сайт для бизнеса",
+      "frequency": 18,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.591Z"
+    },
+    {
+      "keyword": "сбер сайт онлайн для бизнеса",
+      "frequency": 18,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.592Z"
+    },
+    {
+      "keyword": "onetwotrip для бизнеса официальный сайт",
+      "frequency": 18,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.592Z"
+    },
+    {
+      "keyword": "аэрофлот для бизнеса официальный сайт",
+      "frequency": 17,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.592Z"
+    },
+    {
+      "keyword": "разработка сайта для малого бизнеса под ключ",
+      "frequency": 17,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.592Z"
+    },
+    {
+      "keyword": "псб банк официальный сайт для бизнеса",
+      "frequency": 17,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.592Z"
+    },
+    {
+      "keyword": "сайт деньги для бизнеса",
+      "frequency": 16,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.592Z"
+    },
+    {
+      "keyword": "сайты для поиска инвесторов для бизнеса",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.592Z"
+    },
+    {
+      "keyword": "сайт для ип малого бизнеса",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.592Z"
+    },
+    {
+      "keyword": "сайт упаковка для бизнеса",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.593Z"
+    },
+    {
+      "keyword": "сайты социальных сетей для бизнеса",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.593Z"
+    },
+    {
+      "keyword": "преимущества сайта для бизнеса",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.593Z"
+    },
+    {
+      "keyword": "яндекс команда для бизнеса официальный сайт",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.593Z"
+    },
+    {
+      "keyword": "ооо бизнес для бизнеса официальный сайт",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.593Z"
+    },
+    {
+      "keyword": "сайты полезные для бизнеса",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.593Z"
+    },
+    {
+      "keyword": "создам сайт для вашего бизнеса",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.593Z"
+    },
+    {
+      "keyword": "логистика для бизнеса сайт",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.593Z"
+    },
+    {
+      "keyword": "сайты для продажи готового бизнеса",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.594Z"
+    },
+    {
+      "keyword": "сайт для создания бизнес плана",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.594Z"
+    },
+    {
+      "keyword": "сайт рт ру для бизнеса",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.594Z"
+    },
+    {
+      "keyword": "сайт для поиска бизнес партнеров",
+      "frequency": 13,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.594Z"
+    },
+    {
+      "keyword": "топ сайты для бизнеса",
+      "frequency": 13,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.594Z"
+    },
+    {
+      "keyword": "генбанк официальный сайт интернет банк для бизнеса",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.594Z"
+    },
+    {
+      "keyword": "бизнес правила для сайта",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.594Z"
+    },
+    {
+      "keyword": "создание сайта для бизнеса бесплатно",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.594Z"
+    },
+    {
+      "keyword": "интерактивная разработка сайтов для бизнеса",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.595Z"
+    },
+    {
+      "keyword": "ростелеком ру официальный сайт для бизнеса",
+      "frequency": 11,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.595Z"
+    },
+    {
+      "keyword": "рт ру официальный сайт для бизнеса",
+      "frequency": 11,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.595Z"
+    },
+    {
+      "keyword": "рт ру ростелеком официальный сайт для бизнеса",
+      "frequency": 11,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.595Z"
+    },
+    {
+      "keyword": "офиц сайт сбербанка бизнес онлайн для юридических",
+      "frequency": 11,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.595Z"
+    },
+    {
+      "keyword": "скайп для бизнеса официальный сайт",
+      "frequency": 11,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.595Z"
+    },
+    {
+      "keyword": "создание сайтов для бизнеса и стартапов",
+      "frequency": 11,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.595Z"
+    },
+    {
+      "keyword": "зачем нужен сайт для бизнеса",
+      "frequency": 10,
+      "region": "Все регионы",
+      "source_seed": "сайт для бизнеса",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:11:26.595Z"
+    }
+  ],
+  "errors": []
+}

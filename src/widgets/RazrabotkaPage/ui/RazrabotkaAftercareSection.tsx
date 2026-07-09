@@ -1,25 +1,24 @@
 'use client'
 
-import Image from 'next/image'
 import { useRef } from 'react'
 import { useScrollReveal } from '@/shared/lib'
 import styles from './RazrabotkaAftercareSection.module.scss'
 
 const benefits = [
   {
-    value: 'Правки',
-    title: '14 дней',
-    description: 'помогаем внести изменения после запуска',
+    value: '01',
+    title: 'Сами меняете контент',
+    description: 'тексты, цены, услуги, фото и контакты можно обновлять без программиста',
   },
   {
-    value: 'Гарантия',
-    title: '1 год',
-    description: 'исправляем возможные ошибки разработки',
+    value: '02',
+    title: 'Гарантия от технических багов',
+    description: 'если после запуска ломается наша техническая часть, исправляем',
   },
   {
-    value: 'Защита',
-    title: 'В подарок',
-    description: 'подключаем защиту от перехвата клиентов и спама',
+    value: '03',
+    title: 'SEO-настройка в подарок',
+    description: 'готовим базовые мета-данные, индексацию и понятную структуру страниц',
   },
 ] as const
 
@@ -33,11 +32,14 @@ export function RazrabotkaAftercareSection() {
       <div className={styles.shell}>
         <div className={styles.content}>
           <h2 className={styles.title} id="razrabotka-aftercare-title">
-            И да...
+            Сайт под вашим контролем
           </h2>
-          <p className={styles.subtitle}>После запуска</p>
+          <p className={styles.subtitle}>
+            Передаём проект так, чтобы вы могли спокойно пользоваться им после запуска: обновлять
+            информацию, не зависеть от разработчика и не переживать из-за технических ошибок.
+          </p>
 
-          <ul className={styles.benefits} aria-label="Поддержка после запуска">
+          <ul className={styles.benefits} aria-label="Что вы получаете после запуска">
             {benefits.map((item) => (
               <li className={styles.benefit} key={item.value}>
                 <span className={styles.benefitValue}>{item.value}</span>
@@ -50,16 +52,23 @@ export function RazrabotkaAftercareSection() {
           </ul>
         </div>
 
-        <figure className={styles.visual}>
-          <Image
-            className={styles.image}
-            src="/images/razrabotka/after-cta.webp"
-            alt="Поддержка Project 42 после запуска лендинга"
-            width={420}
-            height={320}
-            sizes="(max-width: 767px) 86px, (max-width: 1023px) 260px, 280px"
-          />
-        </figure>
+        <div className={styles.controlPanel} aria-hidden="true">
+          <div className={styles.panelTop}>
+            <span />
+            <span />
+            <span />
+          </div>
+          <p className={styles.panelTitle}>Передача сайта</p>
+          <div className={styles.panelRows}>
+            {benefits.map((item) => (
+              <div className={styles.panelRow} key={item.value}>
+                <span className={styles.toggle} />
+                <span>{item.title}</span>
+              </div>
+            ))}
+          </div>
+          <p className={styles.panelNote}>Можно пользоваться дальше без программиста</p>
+        </div>
       </div>
     </section>
   )

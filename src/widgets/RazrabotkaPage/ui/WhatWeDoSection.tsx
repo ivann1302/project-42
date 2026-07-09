@@ -124,7 +124,7 @@ export function WhatWeDoSection() {
             aria-label="Стоимость разработки под ключ"
           >
             <p className={styles.blockHeading}>Цена под ключ</p>
-            <p className={`${styles.price} ${styles.priceText}`}>Без скрытых доплат</p>
+            <p className={`${styles.price} ${styles.priceText}`}>от 15 тыс рублей</p>
             <Image
               className={styles.priceImage}
               src="/images/razrabotka/price.webp"
@@ -134,7 +134,7 @@ export function WhatWeDoSection() {
               sizes="(max-width: 767px) 230px, 300px"
               aria-hidden="true"
             />
-            <p className={styles.payment}>Оплата 50/50</p>
+            <p className={styles.payment}>Оплата по этапам</p>
           </aside>
         </div>
       </div>

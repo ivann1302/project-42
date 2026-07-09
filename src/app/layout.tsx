@@ -4,7 +4,6 @@ import { Suspense } from 'react'
 import { siteConfig } from '@/shared/config/seo'
 import { YANDEX_METRIKA_ID } from '@/shared/lib/metrika'
 import { CookieNotice } from '@/shared/ui/CookieNotice'
-import { DesktopCursor } from '@/shared/ui/DesktopCursor'
 import { LeadAttribution } from '@/shared/ui/LeadAttribution'
 import { YandexMetrika } from '@/shared/ui/YandexMetrika'
 import '@/shared/styles/globals.scss'
@@ -118,7 +117,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <DesktopCursor />
         <Script id="yandex-metrika" strategy="afterInteractive">
           {`
             (function(m,e,t,r,i,k,a){

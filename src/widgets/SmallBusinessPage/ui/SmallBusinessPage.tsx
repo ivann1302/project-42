@@ -1,13 +1,15 @@
 'use client'
 
-import type { CSSProperties, PointerEvent } from 'react'
+import { useRef, useState, type CSSProperties, type PointerEvent } from 'react'
 import Image from 'next/image'
+import { useScrollReveal } from '@/shared/lib'
 import { StudioButton } from '@/shared/ui'
 import { RazrabotkaChatButton } from '@/widgets/RazrabotkaPage/ui/RazrabotkaChatButton'
 import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage/ui/RazrabotkaFooter'
 import { RazrabotkaHeader } from '@/widgets/RazrabotkaPage/ui/RazrabotkaHeader'
 import { RazrabotkaLevelUpBanner } from '@/widgets/RazrabotkaPage/ui/RazrabotkaLevelUpBanner'
 import { RazrabotkaQuizSection } from '@/widgets/RazrabotkaPage/ui/RazrabotkaQuizSection'
+import { WorkProcessSection } from '@/widgets/RazrabotkaPage/ui/WorkProcessSection'
 import styles from './SmallBusinessPage.module.scss'
 
 const sphereLetters = Array.from('project 42')
@@ -65,37 +67,11 @@ const tasks = [
   },
 ]
 
-const process = [
-  {
-    number: '01',
-    title: 'Разбираем бизнес',
-    text: 'Смотрим нишу, услуги, конкурентов, путь клиента и точки, где сейчас теряются заявки.',
-  },
-  {
-    number: '02',
-    title: 'Собираем структуру',
-    text: 'Проектируем первый экран, услуги, доверительные блоки, FAQ, форму и быстрые страницы.',
-  },
-  {
-    number: '03',
-    title: 'Запускаем сайт',
-    text: 'Верстаем, подключаем аналитику, цели, UTM, Telegram-уведомления и готовим SEO-базу.',
-  },
-]
-
 const noSiteRisks = [
   'заявки уходят конкурентам, у которых понятнее цены, отзывы и примеры',
   'реклама ведет в переписку или агрегатор, где сложно быстро объяснить предложение',
   'клиент не может проверить доверие и откладывает обращение',
   'одни и те же вопросы приходится вручную объяснять каждому новому человеку',
-]
-
-const structure = [
-  'Главная страница с понятным предложением',
-  'Страницы услуг с ценами, условиями и FAQ',
-  'Примеры работ, отзывы и доказательства опыта',
-  'Контакты, карта, мессенджеры и форма заявки',
-  'Простая админка для текстов, цен и быстрых правок',
 ]
 
 const faq = [
@@ -144,6 +120,13 @@ const footerLinks = [
 ] as const
 
 export function SmallBusinessPage() {
+  const [openFaqIndex, setOpenFaqIndex] = useState(0)
+  const whyUsRef = useRef<HTMLElement>(null)
+  const ctaRef = useRef<HTMLElement>(null)
+
+  useScrollReveal(whyUsRef, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' })
+  useScrollReveal(ctaRef, { threshold: 0.22, rootMargin: '0px 0px -12% 0px' })
+
   return (
     <div className={styles.pageCanvas} data-testid="small-business-page-canvas">
       <RazrabotkaHeader />
@@ -258,9 +241,18 @@ export function SmallBusinessPage() {
               </article>
 
               <aside className={styles.priceCard} aria-label="Сроки и стоимость">
-                <p className={styles.blockHeading}>Преимущество для старта</p>
-                <p className={styles.priceText}>Без предоплаты</p>
-                <p className={styles.payment}>Начинаем с понятной задачи и этапов</p>
+                <p className={styles.blockHeading}>Стоимость</p>
+                <p className={styles.priceText}>от 15 тыс. рублей</p>
+                <Image
+                  className={styles.priceImage}
+                  src="/images/razrabotka/price.webp"
+                  alt=""
+                  width={1536}
+                  height={1024}
+                  sizes="(max-width: 767px) 220px, 300px"
+                  aria-hidden="true"
+                />
+                <p className={styles.payment}>Оплата поэтапно</p>
               </aside>
             </div>
           </div>
@@ -285,7 +277,7 @@ export function SmallBusinessPage() {
 
         <section className={styles.risksSection} id="risks" aria-labelledby="small-risks-title">
           <div className={styles.riskPanel}>
-            <h2 id="small-risks-title">Что будет, если сайта нет</h2>
+            <h2 id="small-risks-title">Минусы отсутствия сайта у бизнеса</h2>
             <ul>
               {noSiteRisks.map((item) => (
                 <li key={item}>{item}</li>
@@ -294,59 +286,14 @@ export function SmallBusinessPage() {
           </div>
         </section>
 
+        <WorkProcessSection />
+
         <section
-          className={styles.processSection}
-          id="process"
-          aria-labelledby="small-process-title"
+          ref={whyUsRef}
+          className={styles.whyUsSection}
+          id="why-us"
+          aria-labelledby="small-why-title"
         >
-          <div className={styles.tasksHeader}>
-            <h2 className={styles.processTitle} id="small-process-title">
-              <span>Как мы</span>
-              <span className={styles.processOutline}>работаем</span>
-            </h2>
-          </div>
-          <ol className={styles.steps}>
-            {process.map((step) => (
-              <li className={styles.stepCard} key={step.number}>
-                <span className={styles.stepNumber}>{step.number}</span>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section className={styles.structureSection} aria-labelledby="small-structure-title">
-          <div className={styles.structurePanel}>
-            <h2 id="small-structure-title">Пример структуры сайта</h2>
-            <ol>
-              {structure.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        <section className={styles.faqSection} aria-labelledby="small-faq-title">
-          <div className={styles.tasksHeader}>
-            <h2 className={styles.processTitle} id="small-faq-title">
-              <span>Частые</span>
-              <span className={styles.processOutline}>вопросы</span>
-            </h2>
-          </div>
-          <div className={styles.faqList}>
-            {faq.map((item) => (
-              <article key={item.question}>
-                <h3>{item.question}</h3>
-                <p>{item.answer}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.whyUsSection} id="why-us" aria-labelledby="small-why-title">
           <div className={styles.whyUsPanel}>
             <div>
               <p className={styles.whyUsKicker}>Почему мы</p>
@@ -363,7 +310,12 @@ export function SmallBusinessPage() {
           </div>
         </section>
 
-        <section className={styles.ctaSection} id="cta" aria-labelledby="small-business-cta-title">
+        <section
+          ref={ctaRef}
+          className={styles.ctaSection}
+          id="cta"
+          aria-labelledby="small-business-cta-title"
+        >
           <span className={styles.contactsAnchor} id="contacts" aria-hidden="true" />
           <div className={styles.ctaShell}>
             <div className={styles.ctaVisual}>
@@ -406,6 +358,47 @@ export function SmallBusinessPage() {
                 </StudioButton>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className={styles.faqSection} aria-labelledby="small-faq-title">
+          <div className={styles.tasksHeader}>
+            <h2 className={styles.processTitle} id="small-faq-title">
+              <span>Частые</span>
+              <span className={styles.processOutline}>вопросы</span>
+            </h2>
+          </div>
+          <div className={styles.faqList}>
+            {faq.map((item, index) => {
+              const isOpen = openFaqIndex === index
+              const answerId = `small-faq-answer-${index}`
+
+              return (
+                <article className={styles.faqItem} key={item.question}>
+                  <h3>
+                    <button
+                      className={styles.faqButton}
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={answerId}
+                      onClick={() => setOpenFaqIndex(isOpen ? -1 : index)}
+                    >
+                      <span>{item.question}</span>
+                      <span className={styles.faqIcon} aria-hidden="true">
+                        +
+                      </span>
+                    </button>
+                  </h3>
+                  <div
+                    className={`${styles.faqAnswer} ${isOpen ? styles.faqAnswerOpen : ''}`}
+                    id={answerId}
+                    aria-hidden={!isOpen}
+                  >
+                    <p>{item.answer}</p>
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </section>
 

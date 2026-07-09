@@ -84,14 +84,25 @@ const blogSchema = {
     headline: article.title,
     description: article.description,
     datePublished: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
     url: `${siteConfig.url}${getArticlePath(article)}`,
     image: article.coverImage ? `${siteConfig.url}${article.coverImage}` : undefined,
     articleSection: article.category,
     keywords: article.keywords,
-    author: {
-      '@type': 'Organization',
-      name: article.author,
-    },
+    author: article.authorProfile
+      ? {
+          '@type': 'Person',
+          name: article.authorProfile.name,
+          jobTitle: article.authorProfile.role,
+          url: article.authorProfile.url
+            ? new URL(article.authorProfile.url, siteConfig.url).toString()
+            : siteConfig.url,
+          sameAs: article.authorProfile.sameAs,
+        }
+      : {
+          '@type': 'Organization',
+          name: article.author,
+        },
   })),
 }
 

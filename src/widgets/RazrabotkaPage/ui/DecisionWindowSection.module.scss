@@ -109,8 +109,8 @@
   border: 1px solid transparent;
   opacity: 0;
   transition:
-    opacity 680ms $ease-emphasized,
-    transform 780ms $ease-emphasized;
+    opacity 560ms $ease-emphasized,
+    transform 620ms $ease-emphasized;
   will-change: opacity, transform;
 }
 
@@ -128,17 +128,17 @@
 
 .signals li:nth-child(1) {
   background: $surface-card-mint;
-  transition-delay: 500ms;
+  transition-delay: 360ms;
 }
 
 .signals li:nth-child(2) {
   background: $surface-card-orange;
-  transition-delay: 682ms;
+  transition-delay: 500ms;
 }
 
 .signals li:nth-child(3) {
   background: $surface-card-blue;
-  transition-delay: 864ms;
+  transition-delay: 640ms;
 }
 
 .signals:global(.visible) li {

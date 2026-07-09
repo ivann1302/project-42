@@ -2,6 +2,29 @@ import type { Article } from './types'
 
 const rosaSite = 'https://sk-rosa.ru/'
 
+const ivanAuthor = {
+  name: 'Иван Нарчук',
+  role: 'Основатель Project 42',
+  bio: 'Занимается разработкой сайтов, SEO/GEO-структурой, аналитикой заявок и технической защитой форм для проектов малого и среднего бизнеса.',
+  url: '/',
+  sameAs: ['https://t.me/ivann97n'],
+}
+
+const googleHelpfulContentSource = {
+  label: 'Google Search Central: создание полезного контента',
+  href: 'https://developers.google.com/search/docs/fundamentals/creating-helpful-content',
+}
+
+const openAiSearchSource = {
+  label: 'OpenAI: ChatGPT Search и видимость сайтов',
+  href: 'https://help.openai.com/en/articles/9237897-chatgpt-search',
+}
+
+const indexNowSource = {
+  label: 'IndexNow: документация протокола',
+  href: 'https://www.indexnow.org/documentation',
+}
+
 export const articles: Article[] = [
   {
     slug: 'seo-aeo-geo-tri-kita-prodvizheniya-sayta',
@@ -11,8 +34,24 @@ export const articles: Article[] = [
     category: 'Маркетинг',
     categorySlug: 'marketing',
     publishedAt: '2026-07-06',
+    updatedAt: '2026-07-08',
     readingTime: '12 мин',
-    author: 'Project 42',
+    author: ivanAuthor.name,
+    authorProfile: ivanAuthor,
+    reviewedBy: 'Project 42',
+    evidence: [
+      'Практика разработки SEO-структур для коммерческих сайтов',
+      'Работа с AEO/GEO-блоками на страницах услуг',
+      'Анализ видимости сайтов в классическом и AI-поиске',
+    ],
+    sources: [
+      googleHelpfulContentSource,
+      openAiSearchSource,
+      {
+        label: 'Google Search Central: структурированные данные Article',
+        href: 'https://developers.google.com/search/docs/appearance/structured-data/article',
+      },
+    ],
     coverImage: '/images/blog/article-geo-seo-aeo-cover.png',
     keywords: [
       'SEO AEO GEO',
@@ -197,8 +236,24 @@ export const articles: Article[] = [
     category: 'Маркетинг',
     categorySlug: 'marketing',
     publishedAt: '2026-06-20',
+    updatedAt: '2026-07-08',
     readingTime: '10 мин',
-    author: 'Project 42',
+    author: ivanAuthor.name,
+    authorProfile: ivanAuthor,
+    reviewedBy: 'Project 42',
+    evidence: [
+      'Кейс строительной компании ROSA',
+      'Данные заявки с переданным источником перехода',
+      'Настройка индексации и структуры страниц услуг',
+    ],
+    sources: [
+      openAiSearchSource,
+      indexNowSource,
+      {
+        label: 'Microsoft Bing Webmaster API',
+        href: 'https://learn.microsoft.com/en-us/bingwebmaster/',
+      },
+    ],
     keywords: [
       'заявка из ChatGPT',
       'ChatGPT привел клиента',
@@ -382,8 +437,30 @@ export const articles: Article[] = [
     category: 'Разработка',
     categorySlug: 'razrabotka',
     publishedAt: '2026-06-21',
+    updatedAt: '2026-07-08',
     readingTime: '10 мин',
-    author: 'Project 42',
+    author: ivanAuthor.name,
+    authorProfile: ivanAuthor,
+    reviewedBy: 'Project 42',
+    evidence: [
+      'Практика разработки форм заявок и серверной обработки лидов',
+      'Настройка антиспам-проверок без лишних действий для клиента',
+      'Передача источников заявок в Telegram-бот и аналитику',
+    ],
+    sources: [
+      {
+        label: 'MDN: Content Security Policy',
+        href: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP',
+      },
+      {
+        label: 'OWASP: Cross-Site Request Forgery Prevention',
+        href: 'https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html',
+      },
+      {
+        label: 'OWASP: Automated Threats to Web Applications',
+        href: 'https://owasp.org/www-project-automated-threats-to-web-applications/',
+      },
+    ],
     keywords: [
       'защита лидов',
       'зашита лидо',
@@ -545,8 +622,27 @@ export const articles: Article[] = [
     category: 'Разработка',
     categorySlug: 'razrabotka',
     publishedAt: '2026-06-21',
+    updatedAt: '2026-07-08',
     readingTime: '14 мин',
-    author: 'Project 42',
+    author: ivanAuthor.name,
+    authorProfile: ivanAuthor,
+    reviewedBy: 'Project 42',
+    evidence: [
+      'Практика переноса бизнес-задач из шаблонных страниц в собственную разработку',
+      'Проектирование SEO-структур, интеграций и форм заявок',
+      'Сравнение ограничений конструкторов с задачами долгосрочного развития сайта',
+    ],
+    sources: [
+      googleHelpfulContentSource,
+      {
+        label: 'Google Search Central: руководство по SEO для начинающих',
+        href: 'https://developers.google.com/search/docs/fundamentals/seo-starter-guide',
+      },
+      {
+        label: 'MDN: Progressive web apps',
+        href: 'https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps',
+      },
+    ],
     keywords: [
       'сайт на собственном коде',
       'сайт на Tilda или разработка',

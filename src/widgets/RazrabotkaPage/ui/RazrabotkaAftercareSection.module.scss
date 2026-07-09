@@ -10,7 +10,7 @@
   display: grid;
   align-items: start;
   gap: $space-4;
-  grid-template-columns: minmax(0, 1fr) 86px;
+  grid-template-columns: minmax(0, 1fr);
   max-width: $container-inner;
   margin: 0 auto 0 0;
   padding: $space-5;
@@ -30,7 +30,7 @@
   display: contents;
 }
 
-.visual,
+.controlPanel,
 .title,
 .subtitle,
 .benefits {
@@ -42,7 +42,7 @@
   transform: translateX(-$space-4);
 }
 
-.root:global(.visible) .visual,
+.root:global(.visible) .controlPanel,
 .root:global(.visible) .title,
 .root:global(.visible) .subtitle,
 .root:global(.visible) .benefits {
@@ -51,12 +51,11 @@
 }
 
 .title {
-  grid-column: 1 / -1;
-  max-width: 9ch;
+  max-width: 12ch;
   font-family: $font-poster;
-  font-size: clamp(42px, 11vw, 52px);
+  font-size: clamp(40px, 10.5vw, 56px);
   font-weight: $font-weight-semibold;
-  line-height: 0.88;
+  line-height: 0.9;
   letter-spacing: 0;
   text-transform: uppercase;
   color: transparent;
@@ -65,18 +64,15 @@
 }
 
 .subtitle {
-  grid-column: 1 / -1;
-  max-width: 32ch;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-ui;
-  text-transform: uppercase;
-  color: rgba($neutral-0, 76%);
+  max-width: 54ch;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-body;
+  color: rgba($neutral-0, 82%);
 }
 
 .benefits {
   display: grid;
-  grid-column: 1 / -1;
   gap: $space-4;
   max-width: 72ch;
   padding: 0;
@@ -86,18 +82,28 @@
 .benefit {
   display: grid;
   align-items: start;
-  gap: $space-2;
-  grid-template-columns: minmax(82px, max-content) minmax(0, 1fr);
+  gap: $space-3;
+  grid-template-columns: 44px minmax(0, 1fr);
 }
 
 .benefitValue {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  aspect-ratio: 1;
   font-family: $font-body;
-  font-size: clamp(22px, 6vw, 34px);
+  font-size: $font-size-sm;
   font-weight: $font-weight-display;
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum';
-  line-height: 0.95;
+  line-height: 1;
   text-transform: uppercase;
+  color: $surface-card-mint;
+  background: rgba($neutral-0, 92%);
+  border-radius: 50%;
+  box-shadow:
+    0 5px 0 rgba(0 0 0 / 22%),
+    inset 0 1px 0 rgba(255 255 255 / 54%);
 }
 
 .benefitCopy {
@@ -107,7 +113,7 @@
 }
 
 .benefitTitle {
-  font-size: $font-size-sm;
+  font-size: $font-size-base;
   font-weight: $font-weight-bold;
   line-height: $line-height-ui;
   text-transform: uppercase;
@@ -121,18 +127,101 @@
   color: rgba($neutral-0, 78%);
 }
 
-.visual {
+.controlPanel {
   display: grid;
-  grid-row: 1;
-  grid-column: 2;
-  justify-self: end;
-  width: 86px;
+  gap: $space-5;
+  width: 100%;
+  padding: $space-4;
+  color: $text-primary;
+  background: rgba($neutral-0, 92%);
+  border: 2px solid rgba(0 0 0 / 42%);
+  border-radius: $radius-lg;
+  box-shadow:
+    0 9px 0 rgba(0 0 0 / 20%),
+    0 18px 28px rgba(0 0 0 / 22%),
+    inset 0 1px 0 rgba(255 255 255 / 56%);
 }
 
-.image {
-  width: 86px;
-  height: auto;
-  object-fit: contain;
+.panelTop {
+  display: flex;
+  gap: $space-2;
+}
+
+.panelTop span {
+  width: 10px;
+  aspect-ratio: 1;
+  background: $surface-card-mint;
+  border: 1px solid rgba(0 0 0 / 24%);
+  border-radius: 50%;
+}
+
+.panelTop span:nth-child(2) {
+  background: $surface-card-orange;
+}
+
+.panelTop span:nth-child(3) {
+  background: $surface-card-blue;
+}
+
+.panelTitle {
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(26px, 7vw, 42px);
+  font-weight: $font-weight-display;
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.panelRows {
+  display: grid;
+  gap: $space-3;
+}
+
+.panelRow {
+  display: grid;
+  align-items: center;
+  gap: $space-3;
+  grid-template-columns: 44px minmax(0, 1fr);
+  min-height: 48px;
+  padding: $space-2 $space-3;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  background: $surface-page;
+  border: 1px solid rgba(0 0 0 / 16%);
+  border-radius: $radius-md;
+}
+
+.toggle {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  background: $surface-card-mint;
+  border: 1px solid rgba(0 0 0 / 28%);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 2px rgba(0 0 0 / 18%);
+}
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 16px;
+  aspect-ratio: 1;
+  background: $neutral-0;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0 0 0 / 28%);
+}
+
+.panelNote {
+  max-width: 28ch;
+  margin: 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  line-height: 1.28;
+  color: $text-secondary;
 }
 
 @media (min-width: $bp-tablet) {
@@ -143,7 +232,7 @@
   .shell {
     align-items: center;
     gap: $space-8;
-    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.45fr);
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.48fr);
     margin: 0 auto;
     padding: $space-10;
     border-radius: $radius-xl;
@@ -157,14 +246,17 @@
   .title,
   .subtitle,
   .benefits {
-    grid-row: auto;
     grid-column: auto;
   }
 
   .title {
-    max-width: 10ch;
+    max-width: 12ch;
     font-size: clamp(64px, 8vw, 92px);
     -webkit-text-stroke-width: 1.2px;
+  }
+
+  .subtitle {
+    font-size: $font-size-lg;
   }
 
   .benefits {
@@ -172,7 +264,8 @@
   }
 
   .benefitValue {
-    font-size: clamp(34px, 4vw, 56px);
+    width: 54px;
+    font-size: $font-size-base;
   }
 
   .benefitTitle {
@@ -184,15 +277,9 @@
     font-size: $font-size-sm;
   }
 
-  .visual {
-    grid-row: auto;
-    grid-column: auto;
+  .controlPanel {
     justify-self: end;
-    width: min(100%, 320px);
-  }
-
-  .image {
-    width: 100%;
+    padding: $space-6;
   }
 }
 
@@ -203,7 +290,7 @@
 
   .shell {
     gap: $space-12;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.36fr);
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 0.36fr);
     width: 100%;
     max-width: none;
     min-height: 520px;
@@ -213,8 +300,8 @@
     border-radius: 0 $radius-xl $radius-xl 0;
   }
 
-  .visual {
-    width: min(22vw, 300px);
+  .controlPanel {
+    width: min(28vw, 380px);
   }
 
   .title {
@@ -227,7 +314,7 @@
   }
 
   .benefit {
-    grid-template-columns: minmax(150px, max-content) minmax(0, 1fr);
+    grid-template-columns: 58px minmax(0, 1fr);
   }
 
   .benefitTitle {
@@ -248,7 +335,7 @@
     will-change: auto;
   }
 
-  .visual,
+  .controlPanel,
   .title,
   .subtitle,
   .benefits {

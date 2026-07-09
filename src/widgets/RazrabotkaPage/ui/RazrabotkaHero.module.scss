@@ -97,7 +97,6 @@
     box-shadow 180ms $ease-standard,
     filter 180ms $ease-standard;
   transform: translateY(-0.08em);
-  cursor: none;
   animation: hero-join-letter-colors 9s ease-in-out infinite;
   transform-origin: 50% 80%;
   isolation: isolate;
@@ -248,7 +247,6 @@
   overflow: visible;
   opacity: 0;
   perspective: 1000px;
-  cursor: none;
   animation: hero-visual-shell 920ms $ease-emphasized 300ms forwards;
 }
 

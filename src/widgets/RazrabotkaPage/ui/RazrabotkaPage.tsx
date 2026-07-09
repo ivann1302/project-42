@@ -1,4 +1,5 @@
 import type { RazrabotkaPageConfig } from '@/entities/ServicePage'
+import { DesktopCursor } from '@/shared/ui'
 import { RazrabotkaChatButton } from './RazrabotkaChatButton'
 import { RazrabotkaAftercareSection } from './RazrabotkaAftercareSection'
 import { DecisionWindowSection } from './DecisionWindowSection'
@@ -42,6 +43,7 @@ export function RazrabotkaPage({ config }: Props) {
         <RazrabotkaBlogCarouselSection />
         <RazrabotkaLevelUpBanner />
       </main>
+      <DesktopCursor />
       <RazrabotkaChatButton />
       <RazrabotkaFooter usePageAnchors />
       <RazrabotkaLevelUpBanner placement="mobile" decorative />

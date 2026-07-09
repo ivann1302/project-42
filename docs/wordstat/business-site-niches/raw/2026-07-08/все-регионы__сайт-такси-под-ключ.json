@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "seed": "сайт такси под ключ",
+    "region": "Все регионы",
+    "collected_at": "2026-07-08T14:02:05.745Z",
+    "script_version": "0.1.0",
+    "url": "https://wordstat.yandex.ru/?region=all&view=table&words=%D1%81%D0%B0%D0%B9%D1%82%20%D1%82%D0%B0%D0%BA%D1%81%D0%B8%20%D0%BF%D0%BE%D0%B4%20%D0%BA%D0%BB%D1%8E%D1%87",
+    "run_id": "2026-07-08T13:56:52.639Z",
+    "dry_run": false
+  },
+  "rows": [],
+  "errors": []
+}

@@ -10,9 +10,10 @@
   display: grid;
   align-items: start;
   gap: $space-4;
+  position: relative;
   max-width: $container-inner;
   margin: 0 auto 0 0;
-  padding: $space-5;
+  padding: $space-5 $space-5 $space-8;
   overflow: hidden;
   background: $surface-card-yellow;
   border: 1px solid rgba($neutral-0, 10%);
@@ -29,10 +30,13 @@
 .content {
   display: grid;
   gap: $space-5;
+  position: relative;
+  z-index: 1;
 }
 
 .title,
-.reasonList {
+.reasonList,
+.image {
   margin: 0;
   opacity: 0;
   transition:
@@ -42,9 +46,22 @@
 }
 
 .root:global(.visible) .title,
-.root:global(.visible) .reasonList {
+.root:global(.visible) .reasonList,
+.root:global(.visible) .image {
   opacity: 1;
   transform: translateX(0);
+}
+
+.image {
+  position: absolute;
+  top: $space-4;
+  right: $space-4;
+  z-index: 0;
+  width: 96px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  transform: translateX($space-4);
 }
 
 .title {
@@ -108,7 +125,14 @@
 
   .title {
     max-width: 12ch;
+    padding-right: 220px;
     font-size: clamp(64px, 8vw, 92px);
+  }
+
+  .image {
+    top: $space-8;
+    right: $space-8;
+    width: 210px;
   }
 
   .reasonList {
@@ -135,7 +159,14 @@
   }
 
   .title {
+    padding-right: 280px;
     font-size: clamp(72px, 6vw, 104px);
+  }
+
+  .image {
+    top: $space-10;
+    right: $space-12;
+    width: 260px;
   }
 
   .reasonList {
@@ -169,7 +200,8 @@
   }
 
   .title,
-  .reasonList {
+  .reasonList,
+  .image {
     opacity: 1;
     transition: none;
     transform: none;

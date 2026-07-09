@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useRef } from 'react'
 import { useScrollReveal } from '@/shared/lib'
 import styles from './RazrabotkaFounderSection.module.scss'
@@ -9,7 +10,7 @@ const reasons = [
   'Понимание пути клиента и его психологии гарантирует, что ваш сайт будет бить точно в цель',
   'Соблюдение законодательства о защите информации и персональных данных в РФ',
   'Защита сайта от перехвата клиентов со стороны недобросовестных конкурентов и взлома',
-  'Выгодные условия обслуживания по сравнению с Tilda помогают сэкономить денежные средства и получить сайт лучшего качества',
+  'Не привязываем проект к шаблону: сайт можно дорабатывать под рекламу, SEO, аналитику и новые услуги',
 ] as const
 
 export function RazrabotkaFounderSection() {
@@ -25,6 +26,15 @@ export function RazrabotkaFounderSection() {
       aria-labelledby="razrabotka-founder-title"
     >
       <div className={styles.shell}>
+        <Image
+          className={styles.image}
+          src="/images/razrabotka/after-cta.webp"
+          alt=""
+          width={420}
+          height={320}
+          sizes="(max-width: 767px) 96px, (max-width: 1023px) 210px, 260px"
+          aria-hidden="true"
+        />
         <div className={styles.content}>
           <h2 className={styles.title} id="razrabotka-founder-title">
             Почему мы?

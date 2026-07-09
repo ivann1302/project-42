@@ -1,0 +1,896 @@
+{
+  "meta": {
+    "seed": "сайт для детского сада",
+    "region": "Все регионы",
+    "collected_at": "2026-07-08T09:14:19.348Z",
+    "script_version": "0.1.0",
+    "url": "https://wordstat.yandex.ru/?region=all&view=table&words=%D1%81%D0%B0%D0%B9%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B4%D0%B0",
+    "run_id": "2026-07-08T09:11:32.806Z",
+    "dry_run": false
+  },
+  "rows": [
+    {
+      "keyword": "сайт для детского сада",
+      "frequency": 3762,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.308Z"
+    },
+    {
+      "keyword": "сайт для воспитателей детских садов",
+      "frequency": 1125,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.308Z"
+    },
+    {
+      "keyword": "официальный сайт для детского сада",
+      "frequency": 918,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "сайт воспитатель ру для воспитателей детского сада",
+      "frequency": 374,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "сайт игрушки для детских садов",
+      "frequency": 317,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "сайт мебель для детских садов",
+      "frequency": 311,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "игрушки для детских садов официальный сайт",
+      "frequency": 307,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "новость для сайта детского сада",
+      "frequency": 284,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "сайт детский сад для детей",
+      "frequency": 284,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "мебель для детского сада официальный сайт",
+      "frequency": 282,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "сайт детского сада для родителей",
+      "frequency": 205,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "сайт для группы детского сада",
+      "frequency": 202,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "сайт детский сад для мамы",
+      "frequency": 179,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "мам ру сайт для воспитателей детских садов",
+      "frequency": 175,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.309Z"
+    },
+    {
+      "keyword": "мам сайт для воспитателей детских садов",
+      "frequency": 175,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "статьи для сайта детского сада",
+      "frequency": 175,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "маам сайт для воспитателей детских садов",
+      "frequency": 167,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "маам ру сайт для воспитателей детских садов",
+      "frequency": 158,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "темы для сайта детского сада",
+      "frequency": 155,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "сайт сундучок для воспитателей детских садов",
+      "frequency": 145,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "информация для сайта детского сада",
+      "frequency": 110,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "сайт инфоурок для воспитателей детского сада",
+      "frequency": 104,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "детский сад описание для сайта",
+      "frequency": 97,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "сайты для педагогов детских садов",
+      "frequency": 96,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "официальный сайт для воспитателей детского сада",
+      "frequency": 94,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "сайт для детского сада бесплатно",
+      "frequency": 92,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "пост для сайта детского сада",
+      "frequency": 92,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.310Z"
+    },
+    {
+      "keyword": "инфоурок официальный сайт для воспитателей детских садов",
+      "frequency": 78,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "лидер для детского сада официальный сайт",
+      "frequency": 75,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "мебель для детского сада лидер официальный сайт",
+      "frequency": 75,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "сайт лидер мебель для детского сада",
+      "frequency": 75,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "конкурсы для сайтов детских садов",
+      "frequency": 75,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "сайт для воспитателя детского сада бесплатно",
+      "frequency": 72,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "сайт радуга мебель для детских садов",
+      "frequency": 69,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "образовательные сайты для детского сада",
+      "frequency": 57,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "педагог сайт для воспитателей детских садов",
+      "frequency": 48,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "сайты для публикаций детский сад",
+      "frequency": 47,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "сайт детский сад информация для родителей",
+      "frequency": 44,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "сайт для очереди в детский сад",
+      "frequency": 43,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "мааам сайт для воспитателей детских садов",
+      "frequency": 43,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.311Z"
+    },
+    {
+      "keyword": "педсовет сайт для воспитателей в детском саду",
+      "frequency": 38,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "новость для сайта детского сада день россии",
+      "frequency": 38,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "создать сайт для детского сада",
+      "frequency": 38,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "сайт детского сада нужен для",
+      "frequency": 36,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "слова для сайта детского сада",
+      "frequency": 35,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "конструктор сайта для детского сада",
+      "frequency": 34,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "материалы для сайта детского сада",
+      "frequency": 32,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "картинки для сайтов детских садов",
+      "frequency": 30,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "сайты для детского сада музыкальные",
+      "frequency": 27,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "сайт конкурсов для воспитателей детских садов",
+      "frequency": 27,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "сайт детских песен для детского сада",
+      "frequency": 26,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "сайт для работников детского сада",
+      "frequency": 26,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "сайт группы детского сада для родителей",
+      "frequency": 25,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "сайт для детских садов и школ",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.312Z"
+    },
+    {
+      "keyword": "скачать сайт для детского сада",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "копилка педагога сайт для воспитателей детских садов",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "сайт для оформления детского сада",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "вилена мебель для детских садов официальный сайт",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "сайт для руководителя детского сада",
+      "frequency": 21,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "заметки для сайта детского сада",
+      "frequency": 20,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "сайт добрые игры для детского сада",
+      "frequency": 20,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "девиз детского сада для сайта",
+      "frequency": 19,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "фото для сайта детского сада",
+      "frequency": 19,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "сайт для регистрации детского сада",
+      "frequency": 19,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "девиз для сайта воспитателя детского сада",
+      "frequency": 18,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "сайт дошкольник для воспитателей детского сада",
+      "frequency": 18,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "публикации для сайта воспитателя детского сада",
+      "frequency": 17,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.313Z"
+    },
+    {
+      "keyword": "сайты для музыкального руководителя детского сада",
+      "frequency": 16,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "сайт детского сада консультации для родителей",
+      "frequency": 16,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "мини сайт для воспитателей детского сада",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "детство для воспитателей детских садов сайт",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "создать бесплатный сайт для детского сада",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "сайт для просмотра очереди в детский сад",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "детство гид сайт для воспитателей детских садов",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "время знаний сайт для воспитателей детских садов",
+      "frequency": 14,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "сайт для проверки очереди в детский сад",
+      "frequency": 13,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "создать сайт для воспитателей детских садов",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "шаблоны сайтов для детского сада",
+      "frequency": 11,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "тд ворсма официальный сайт для детских садов",
+      "frequency": 10,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "страница воспитателя детского сада для сайта",
+      "frequency": 10,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.314Z"
+    },
+    {
+      "keyword": "изречения воспитателя детского сада для сайта",
+      "frequency": 9,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "карусель сайт для детских садов",
+      "frequency": 8,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "сайт для психологов детских садов",
+      "frequency": 8,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "сайт для отслеживания очереди в детский сад",
+      "frequency": 7,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "описание детского сада для сайта образец",
+      "frequency": 7,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "копилка доу сайт для воспитателей детских садов",
+      "frequency": 6,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "вступительный текст детского сада для сайта",
+      "frequency": 6,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "сайт мэри плойки оборудование для детского сада",
+      "frequency": 6,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "новость для сайта детского сада о лете",
+      "frequency": 6,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "карусель мебель для детских садов официальный сайт",
+      "frequency": 6,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "mam ru сайт для воспитателей детских садов",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "педпортал сайт для воспитателей детских садов",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "полезные сайты для воспитателей детских садов",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.315Z"
+    },
+    {
+      "keyword": "верхние лихоборы мебель для детского сада сайт",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.316Z"
+    },
+    {
+      "keyword": "ленави мебель для детских садов официальный сайт",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.316Z"
+    },
+    {
+      "keyword": "сайт апрель для воспитателей детских садов",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.316Z"
+    },
+    {
+      "keyword": "сайт с уличным оборудованием для детского сада",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.316Z"
+    },
+    {
+      "keyword": "сайт мелодинка для муз руководителей детского сада",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для детского сада",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:19.316Z"
+    }
+  ],
+  "errors": []
+}

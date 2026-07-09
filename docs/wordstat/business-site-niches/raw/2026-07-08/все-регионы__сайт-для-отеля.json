@@ -1,0 +1,716 @@
+{
+  "meta": {
+    "seed": "сайт для отеля",
+    "region": "Все регионы",
+    "collected_at": "2026-07-08T09:14:56.412Z",
+    "script_version": "0.1.0",
+    "url": "https://wordstat.yandex.ru/?region=all&view=table&words=%D1%81%D0%B0%D0%B9%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%BE%D1%82%D0%B5%D0%BB%D1%8F",
+    "run_id": "2026-07-08T09:11:32.806Z",
+    "dry_run": false
+  },
+  "rows": [
+    {
+      "keyword": "сайты для отелей",
+      "frequency": 4021,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.379Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей",
+      "frequency": 2105,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.379Z"
+    },
+    {
+      "keyword": "сайт для отелей россии",
+      "frequency": 440,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.379Z"
+    },
+    {
+      "keyword": "лучшие сайты для отелей",
+      "frequency": 405,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей в россии",
+      "frequency": 347,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайт для поиска отелей",
+      "frequency": 317,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "лучшие сайты для бронирования отелей",
+      "frequency": 311,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайт для отелей за границей",
+      "frequency": 168,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайты для брони отелей",
+      "frequency": 141,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайт для бронирования отелей за границей",
+      "frequency": 134,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей в турции",
+      "frequency": 129,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей в россии лучшие",
+      "frequency": 110,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайт для дешевых отелей",
+      "frequency": 91,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайты бронирования отелей для россиян",
+      "frequency": 69,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "сайты для поиска дешевых отелей",
+      "frequency": 64,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.380Z"
+    },
+    {
+      "keyword": "официальный сайт для бронирования отелей",
+      "frequency": 63,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "сайт для выбора отелей",
+      "frequency": 59,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "топ сайтов для отелей",
+      "frequency": 56,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "бронирование отелей за границей для россиян сайты",
+      "frequency": 55,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "все для отеля официальный сайт",
+      "frequency": 53,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "сайты для поиска отелей в россии",
+      "frequency": 52,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "популярные сайты для бронирования отелей",
+      "frequency": 51,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "топ сайтов для бронирования отелей",
+      "frequency": 45,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "сайт для отзывов отелей",
+      "frequency": 43,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "выгодные сайты для бронирования отелей",
+      "frequency": 43,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "какой сайт для бронирования отелей лучше",
+      "frequency": 38,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "сайт для отелей и гостиниц",
+      "frequency": 36,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "сайты для бронированных отелей",
+      "frequency": 35,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.381Z"
+    },
+    {
+      "keyword": "создать сайт для отеля",
+      "frequency": 34,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "сайт для отеля бесплатно",
+      "frequency": 33,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "турецкий сайт для бронирования отелей",
+      "frequency": 31,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "нужен сайт для отеля",
+      "frequency": 30,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей в абхазии",
+      "frequency": 28,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "сайт для отеля заказать",
+      "frequency": 28,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "забронируй сайт для отелей",
+      "frequency": 27,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "лучшие сайты для поиска отелей",
+      "frequency": 26,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "сайт для бронирования отелей в китае",
+      "frequency": 25,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "сайт для подбора отелей",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей в белоруссии",
+      "frequency": 23,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "сайт для заказа отеля",
+      "frequency": 22,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "сайт для отеля с функцией бронирования",
+      "frequency": 21,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.382Z"
+    },
+    {
+      "keyword": "сделать сайт для отеля",
+      "frequency": 21,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "китайский сайт для бронирования отелей",
+      "frequency": 21,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "сайт для бронирования отелей по миру",
+      "frequency": 20,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "сайт для поиска гостиниц отелей в россии",
+      "frequency": 20,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей в крыму",
+      "frequency": 20,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "лучшие сайты для бронирования отелей за границей",
+      "frequency": 19,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "рейтинг сайтов для бронирования отелей",
+      "frequency": 18,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "сайт для покупки отелей",
+      "frequency": 18,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "сайты для поиска отелей за границей",
+      "frequency": 18,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "готовый сайт для отеля",
+      "frequency": 17,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "сайт для отеля заказать под ключ",
+      "frequency": 17,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "самые популярные сайты для бронирования отелей",
+      "frequency": 16,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.383Z"
+    },
+    {
+      "keyword": "сайт для поиска отелей по всему миру",
+      "frequency": 16,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "разработка сайтов для отелей",
+      "frequency": 15,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "отель для друзей санкт петербург официальный сайт",
+      "frequency": 13,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "сайты для размещения отелей",
+      "frequency": 13,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "какие есть сайты для бронирования отелей",
+      "frequency": 13,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "лучшие сайты для поиска отелей в россии",
+      "frequency": 13,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "лучшие сайты для бронирования отелей в турции",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "создание сайта для отеля",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "сайт для брони отелей в россии",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "турецкие сайты для бронирования отелей в турции",
+      "frequency": 12,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "сайт для сравнения отелей",
+      "frequency": 11,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "сайт для бронирования отелей в тайланде",
+      "frequency": 11,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "сайт для бронирования отелей отзывы",
+      "frequency": 10,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.384Z"
+    },
+    {
+      "keyword": "сайты для брони отелей за границей",
+      "frequency": 10,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "сайты для просмотра отелей",
+      "frequency": 10,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "сайт для бронирования отелей в беларуси",
+      "frequency": 10,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "топ сайтов для бронирования отелей в россии",
+      "frequency": 9,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей в грузии",
+      "frequency": 9,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "отель для вас пенза официальный сайт",
+      "frequency": 8,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "сайт для бронирования отелей москва",
+      "frequency": 8,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей на юге россии",
+      "frequency": 8,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "сайт для брони кубинских отелей",
+      "frequency": 20265,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "сайты для бронирования отелей в нячанге",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "лучший сайт для нужд отеля",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    },
+    {
+      "keyword": "лучший сайт для бронирования отелей в абхазии",
+      "frequency": 5,
+      "region": "Все регионы",
+      "source_seed": "сайт для отеля",
+      "source_block": "unknown",
+      "page": 1,
+      "collected_at": "2026-07-08T09:14:56.385Z"
+    }
+  ],
+  "errors": []
+}

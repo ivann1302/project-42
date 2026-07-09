@@ -318,6 +318,7 @@
   }
 
   .priceText {
+    max-width: 11.8ch;
     font-size: clamp(52px, 4.4vw, 72px);
     transform: translateY(-55px);
   }
@@ -330,7 +331,7 @@
     --price-image-enter-x: 34px;
     --price-image-enter-y: 24px;
 
-    top: 370px;
+    top: 352px;
     right: -34px;
     width: 250px;
   }
