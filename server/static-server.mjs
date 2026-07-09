@@ -3,6 +3,12 @@ import { readdir, stat } from 'node:fs/promises'
 import { createServer } from 'node:http'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {
+  getAdminSecurityHeaders,
+  handleAdminApiRequest,
+  isAdminAuthorized,
+  requestBasicAuth,
+} from './admin-handler.mjs'
 import { handleContactRequest, loadEnv } from './contact-handler.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -57,6 +63,38 @@ const server = createServer(async (req, res) => {
 
   if (requestUrl.pathname === '/__health') {
     sendPlain(res, 200, 'ok')
+    return
+  }
+
+  if (requestUrl.pathname.startsWith('/api/admin/')) {
+    await handleAdminApiRequest(req, res, requestUrl)
+    return
+  }
+
+  if (isAdminPath(requestUrl.pathname)) {
+    if (!isAdminAuthorized(req)) {
+      requestBasicAuth(res)
+      return
+    }
+
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      sendPlain(res, 405, 'Method Not Allowed')
+      return
+    }
+
+    const file = await resolveStaticFile(requestUrl.pathname)
+
+    if (!file) {
+      await serveFile(res, path.join(staticDir, '404.html'), 404, req.method === 'HEAD', {
+        'X-Robots-Tag': 'noindex, nofollow, noarchive',
+      })
+      return
+    }
+
+    await serveFile(res, file, 200, req.method === 'HEAD', {
+      'Cache-Control': 'no-store, max-age=0, must-revalidate',
+      ...getAdminSecurityHeaders(),
+    })
     return
   }
 
@@ -190,6 +228,15 @@ function getStaticCandidates(pathname) {
   return [`${cleanPath}.html`, path.join(cleanPath, 'index.html')]
 }
 
+function isAdminPath(pathname) {
+  return (
+    pathname === '/admin' ||
+    pathname === '/admin/' ||
+    pathname === '/admin.html' ||
+    pathname === '/admin.txt'
+  )
+}
+
 async function resolveLegacyNextStaticFile(pathname, candidates) {
   const cleanPath = pathname.replace(/^\/+/, '')
 
@@ -244,7 +291,7 @@ function safeResolve(baseDir, relativePath) {
   return resolved
 }
 
-async function serveFile(res, file, statusCode, headOnly) {
+async function serveFile(res, file, statusCode, headOnly, headers = {}) {
   let info
   try {
     info = await stat(file)
@@ -257,6 +304,7 @@ async function serveFile(res, file, statusCode, headOnly) {
     'Content-Length': info.size,
     'Content-Type': getContentType(file),
     'Cache-Control': getCacheControl(file),
+    ...headers,
   })
 
   if (headOnly) {

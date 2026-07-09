@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
+import { createLead } from './admin-store.mjs'
 
 const MAX_BODY_BYTES = 1024 * 1024
 
@@ -42,6 +43,12 @@ export async function handleContactRequest(req, res) {
   if (Object.keys(errors).length > 0) {
     sendJson(res, 422, { ok: false, errors })
     return
+  }
+
+  try {
+    await createLead(normalized)
+  } catch (error) {
+    console.error('[contact] Failed to save lead:', error?.message || error)
   }
 
   const botToken = process.env.TELEGRAM_BOT_TOKEN ?? ''
