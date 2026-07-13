@@ -53,11 +53,12 @@
 }
 
 .image {
+  display: block;
   position: absolute;
   top: $space-4;
-  right: $space-4;
-  z-index: 0;
-  width: 96px;
+  right: $space-3;
+  z-index: 2;
+  width: 132px;
   height: auto;
   object-fit: contain;
   pointer-events: none;
@@ -66,6 +67,7 @@
 
 .title {
   max-width: 12ch;
+  padding-right: 118px;
   font-family: $font-poster;
   font-size: clamp(42px, 11vw, 52px);
   font-weight: $font-weight-semibold;
@@ -76,34 +78,53 @@
 
 .reasonList {
   display: grid;
-  gap: $space-4;
+  gap: $space-3;
   max-width: 72ch;
   padding: 0;
   list-style: none;
-  font-size: $font-size-base;
+  font-size: $font-size-sm;
   font-weight: $font-weight-bold;
-  line-height: 1.28;
+  line-height: 1.22;
 }
 
 .reasonList li {
-  display: grid;
-  align-items: start;
-  gap: $space-3;
-  grid-template-columns: 28px minmax(0, 1fr);
+  padding: $space-3 $space-4;
+  color: $neutral-900;
+  background: $neutral-0;
+  border: 1px solid rgba($neutral-900, 12%);
+  border-radius: $radius-md;
 }
 
-.reasonList li::before {
-  content: '✓';
-  display: inline-grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  font-size: 20px;
-  font-weight: $font-weight-display;
-  line-height: 1;
+.reasonList li:nth-child(even) {
   color: $neutral-0;
-  border: 2px solid $neutral-0;
-  border-radius: 50%;
+  background: $neutral-900;
+  border-color: rgba($neutral-0, 12%);
+}
+
+.physicsActive {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: none;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.physicsActive li {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(88%, 520px);
+  min-height: 48px;
+  opacity: 0;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.physicsActive li:last-child {
+  max-width: min(78%, 420px);
+  border-color: rgba($surface-card-yellow, 72%);
 }
 
 @media (min-width: $bp-tablet) {
@@ -124,21 +145,31 @@
   }
 
   .title {
-    max-width: 12ch;
-    padding-right: 220px;
+    max-width: 10ch;
+    padding-right: 300px;
     font-size: clamp(64px, 8vw, 92px);
   }
 
   .image {
     top: $space-8;
     right: $space-8;
-    width: 210px;
+    z-index: 2;
+    width: 290px;
   }
 
   .reasonList {
-    gap: $space-5;
-    font-size: clamp(22px, 2.4vw, 32px);
-    line-height: 1.18;
+    font-size: 17px;
+  }
+
+  .physicsActive {
+    width: calc(100% - 310px);
+    min-height: 480px;
+  }
+
+  .physicsActive li {
+    max-width: min(76%, 560px);
+    min-height: 54px;
+    padding: $space-4 $space-5;
   }
 }
 
@@ -159,30 +190,31 @@
   }
 
   .title {
-    padding-right: 280px;
+    max-width: none;
+    padding-right: 430px;
     font-size: clamp(72px, 6vw, 104px);
+    white-space: nowrap;
   }
 
   .image {
     top: $space-10;
     right: $space-12;
-    width: 260px;
+    width: 400px;
   }
 
   .reasonList {
-    max-width: 74ch;
-    font-size: clamp(24px, 1.75vw, 34px);
+    font-size: clamp(16px, 1.25vw, 20px);
   }
 
-  .reasonList li {
-    gap: $space-4;
-    grid-template-columns: 34px minmax(0, 1fr);
+  .physicsActive {
+    width: calc(100% - 440px);
+    min-height: 500px;
   }
 
-  .reasonList li::before {
-    width: 34px;
-    height: 34px;
-    font-size: 24px;
+  .physicsActive li {
+    max-width: min(78%, 620px);
+    min-height: 58px;
+    padding: $space-4 $space-6;
   }
 }
 

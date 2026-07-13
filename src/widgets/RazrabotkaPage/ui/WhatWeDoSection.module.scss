@@ -117,6 +117,41 @@
   border-radius: 50%;
 }
 
+.scopePhysicsActive .scopeList {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  overflow: hidden;
+}
+
+.scopePhysicsActive .scopeList li {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(78%, 360px);
+  min-height: 46px;
+  padding: 12px 22px;
+  color: $neutral-900;
+  background: $neutral-100;
+  border-radius: 999px;
+  opacity: 0;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.scopePhysicsActive .scopeList li::before {
+  display: none;
+}
+
+.scopePhysicsActive .scopeList li:nth-child(1),
+.scopePhysicsActive .scopeList li:nth-child(6),
+.scopePhysicsActive .scopeList li:nth-child(7) {
+  color: $text-inverse;
+  background: $surface-card-blue;
+}
+
 .priceCard {
   display: grid;
   gap: $space-8;
@@ -231,6 +266,22 @@
     will-change: opacity, transform;
   }
 
+  .scopePhysicsActive.scopeCard {
+    grid-template-rows: auto minmax(300px, 1fr);
+  }
+
+  .scopePhysicsActive .scopeList {
+    align-self: stretch;
+    min-height: 300px;
+  }
+
+  .scopePhysicsActive .scopeList li {
+    min-height: 52px;
+    padding: 13px 24px;
+    font-size: clamp(15px, 1.3vw, 19px);
+    line-height: 1.05;
+  }
+
   .scopeCard {
     transform: translateX(-$space-16);
   }
@@ -304,6 +355,7 @@
   }
 
   .priceCard {
+    gap: $space-4;
     align-content: space-between;
     grid-template-rows: none;
   }
@@ -318,22 +370,29 @@
   }
 
   .priceText {
-    max-width: 11.8ch;
-    font-size: clamp(52px, 4.4vw, 72px);
-    transform: translateY(-55px);
+    max-width: 10.5ch;
+    font-size: clamp(40px, 3.5vw, 54px);
+    line-height: 0.92;
+    transform: translateY(-24px);
+  }
+
+  .priceCard .blockHeading {
+    max-width: 9ch;
+    font-size: 44px;
   }
 
   .payment {
     align-self: end;
+    font-size: 15px;
   }
 
   .priceImage {
     --price-image-enter-x: 34px;
     --price-image-enter-y: 24px;
 
-    top: 352px;
-    right: -34px;
-    width: 250px;
+    top: 270px;
+    right: -28px;
+    width: 230px;
   }
 }
 
@@ -350,5 +409,19 @@
 
   .priceImage {
     transition: none;
+  }
+}
+
+@media (width <= 767px) {
+  .scopePhysicsActive .scopeList {
+    min-height: 420px;
+  }
+
+  .scopePhysicsActive .scopeList li {
+    max-width: 82%;
+    min-height: 42px;
+    padding: 10px 16px;
+    font-size: 14px;
+    line-height: 1.05;
   }
 }

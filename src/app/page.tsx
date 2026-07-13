@@ -1,10 +1,15 @@
 import type { Metadata } from 'next'
-import { RazrabotkaFooter } from '@/widgets/RazrabotkaPage'
+import {
+  RazrabotkaCtaSection,
+  RazrabotkaFooter,
+  RazrabotkaLevelUpBanner,
+} from '@/widgets/RazrabotkaPage'
 import { Header } from '@/widgets/Header'
+import { DesktopCursor } from '@/shared/ui'
 import { siteConfig } from '@/shared/config/seo'
 import { HomeHero } from './HomeHero'
+import { HomeImpact } from './HomeImpact'
 import { HomeServices } from './HomeServices'
-import { HomeTrust } from './HomeTrust'
 import styles from './page.module.scss'
 
 const homeDescription =
@@ -48,13 +53,17 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <DesktopCursor />
       <Header />
       <main className={styles.main}>
         <HomeHero />
-        <HomeTrust />
+        <HomeImpact />
         <HomeServices />
+        <RazrabotkaCtaSection light />
+        <RazrabotkaLevelUpBanner />
       </main>
       <RazrabotkaFooter />
+      <RazrabotkaLevelUpBanner placement="mobile" decorative />
     </>
   )
 }

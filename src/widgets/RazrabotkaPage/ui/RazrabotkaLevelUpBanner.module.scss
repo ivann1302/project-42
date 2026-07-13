@@ -13,6 +13,7 @@
 .mobile {
   display: block;
   padding-bottom: calc(64px + env(safe-area-inset-bottom));
+  background: $surface-canvas;
 }
 
 .panel {

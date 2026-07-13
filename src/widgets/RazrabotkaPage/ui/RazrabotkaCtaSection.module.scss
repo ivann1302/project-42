@@ -6,6 +6,20 @@
   scroll-margin-top: 96px;
 }
 
+.light {
+  background: $surface-canvas;
+
+  .shell {
+    background: $surface-card-blue;
+    border-color: rgba($neutral-0, 28%);
+  }
+
+  .accentWord {
+    color: transparent;
+    -webkit-text-stroke-color: rgba($neutral-0, 72%);
+  }
+}
+
 .contactsAnchor {
   position: absolute;
   top: -96px;

@@ -51,7 +51,8 @@
   opacity: 0;
   animation: hero-title-reveal 880ms $ease-emphasized 180ms forwards;
 
-  span {
+  > .outlineWord,
+  > .titleLine {
     display: block;
     transform: scaleX(0.9);
     transform-origin: center center;

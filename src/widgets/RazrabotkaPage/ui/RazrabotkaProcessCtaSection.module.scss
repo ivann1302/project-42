@@ -1,0 +1,237 @@
+.root {
+  padding: $space-12 $container-pad-mobile 0;
+  background: $surface-page;
+  opacity: 0;
+  transition:
+    opacity 760ms $ease-emphasized,
+    transform 860ms $ease-emphasized;
+  transform: translateY($space-8);
+}
+
+.root:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.panel {
+  display: grid;
+  gap: $space-10;
+  max-width: $container-inner;
+  margin: 0 auto;
+  color: $text-primary;
+}
+
+.content {
+  display: grid;
+  align-content: center;
+  gap: $space-5;
+}
+
+.eyebrow,
+.field label,
+.methods legend {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  color: $surface-card-yellow;
+}
+
+.title {
+  max-width: 100%;
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(36px, 10vw, 42px);
+  font-weight: $font-weight-display;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+.description {
+  max-width: 52ch;
+  margin: 0;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  line-height: 1.45;
+  color: $text-secondary;
+}
+
+.promise {
+  display: flex;
+  align-items: baseline;
+  gap: $space-2;
+  margin-top: $space-2;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-secondary;
+}
+
+.promiseAccent {
+  color: $surface-card-yellow;
+}
+
+.form {
+  display: grid;
+  gap: $space-4;
+  padding: $space-5;
+  color: $neutral-900;
+  background: $neutral-0;
+  border: 1px solid $border-default;
+  border-radius: $radius-lg;
+}
+
+.field,
+.methods {
+  display: grid;
+  gap: $space-2;
+  min-width: 0;
+}
+
+.methods {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.field input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 $space-3;
+  font: inherit;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $neutral-900;
+  background: $neutral-100;
+  border: 1px solid transparent;
+  border-radius: $radius-xs;
+  transition:
+    border-color $transition-base,
+    box-shadow $transition-base,
+    background $transition-base;
+}
+
+.field input::placeholder {
+  color: rgba($neutral-900, 42%);
+}
+
+.field input:focus {
+  background: $neutral-0;
+  border-color: $neutral-900;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba($neutral-900, 9%);
+}
+
+.field .inputError {
+  border-color: $action-danger;
+}
+
+.methodGrid {
+  display: grid;
+  gap: $space-2;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.method {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 $space-2;
+  font-size: 11px;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  border: 1px solid rgba($neutral-900, 16%);
+  border-radius: $radius-xs;
+  transition:
+    color $transition-base,
+    background $transition-base,
+    border-color $transition-base;
+  cursor: pointer;
+}
+
+.method input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.method:has(input:focus-visible) {
+  box-shadow: $shadow-focus;
+}
+
+.methodActive {
+  color: $neutral-0;
+  background: $neutral-900;
+  border-color: $neutral-900;
+}
+
+.submit {
+  width: 100%;
+  margin-top: $space-1;
+}
+
+.error {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $action-danger;
+}
+
+.consent {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.4;
+  text-align: center;
+  color: rgba($neutral-900, 50%);
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-20 $container-pad-tablet 0;
+  }
+
+  .panel {
+    gap: $space-16;
+    grid-template-columns: minmax(0, 1.18fr) minmax(380px, 0.82fr);
+  }
+
+  .content {
+    padding: $space-6 0;
+  }
+
+  .title {
+    max-width: 16ch;
+    font-size: clamp(58px, 5.4vw, 76px);
+    line-height: 1.1;
+  }
+
+  .description {
+    max-width: 56ch;
+  }
+
+  .form {
+    padding: $space-6;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-24 $container-pad-desktop 0;
+  }
+
+  .methodGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    opacity: 1;
+    transition: none;
+    transform: none;
+  }
+}

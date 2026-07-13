@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useScrollReveal } from '@/shared/lib'
+import { MagneticHeading } from '@/shared/ui'
 import styles from './RazrabotkaTestimonialsSection.module.scss'
 
 const VISIBLE_DESKTOP_CARDS = 4
@@ -117,10 +118,16 @@ export function RazrabotkaTestimonialsSection() {
       <div className={styles.inner}>
         <div className={styles.header}>
           <p className={styles.kicker}>Убедитесь сами</p>
-          <h2 className={styles.title} id="razrabotka-testimonials-title">
+          <MagneticHeading
+            ariaLabel="Отзывы клиентов"
+            className={styles.title}
+            darkLens
+            id="razrabotka-testimonials-title"
+            lensSize={180}
+          >
             <span>Отзывы</span>
             <span className={styles.outlineWord}>клиентов</span>
-          </h2>
+          </MagneticHeading>
         </div>
 
         <div className={styles.carouselShell}>

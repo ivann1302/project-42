@@ -14,6 +14,7 @@ import { RazrabotkaServicesCarouselSection } from './RazrabotkaServicesCarouselS
 import { RazrabotkaTestimonialsSection } from './RazrabotkaTestimonialsSection'
 import { WhatWeDoSection } from './WhatWeDoSection'
 import { WorkProcessSection } from './WorkProcessSection'
+import { RazrabotkaProcessCtaSection } from './RazrabotkaProcessCtaSection'
 import { RazrabotkaFooter } from './RazrabotkaFooter'
 import { RazrabotkaHeader } from './RazrabotkaHeader'
 import styles from './RazrabotkaPage.module.scss'
@@ -33,6 +34,7 @@ export function RazrabotkaPage({ config }: Props) {
         <DecisionWindowSection />
         <WhatWeDoSection />
         <WorkProcessSection />
+        <RazrabotkaProcessCtaSection />
         <RazrabotkaCasesSection />
         <RazrabotkaTestimonialsSection />
         <RazrabotkaServicesCarouselSection />

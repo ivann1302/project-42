@@ -6,7 +6,11 @@ import { useScrollReveal } from '@/shared/lib'
 import { StudioButton } from '@/shared/ui'
 import styles from './RazrabotkaCtaSection.module.scss'
 
-export function RazrabotkaCtaSection() {
+type Props = {
+  light?: boolean
+}
+
+export function RazrabotkaCtaSection({ light = false }: Props) {
   const sectionRef = useRef<HTMLElement>(null)
 
   useScrollReveal(sectionRef, { threshold: 0.22, rootMargin: '0px 0px -12% 0px' })
@@ -14,7 +18,7 @@ export function RazrabotkaCtaSection() {
   return (
     <section
       ref={sectionRef}
-      className={styles.root}
+      className={[styles.root, light && styles.light].filter(Boolean).join(' ')}
       id="cta"
       aria-labelledby="razrabotka-cta-title"
     >
@@ -33,14 +37,12 @@ export function RazrabotkaCtaSection() {
         </div>
 
         <div className={styles.content}>
-          <p className={styles.kicker}>Готовы к результатам?</p>
           <h2 className={styles.title} id="razrabotka-cta-title">
-            <span>Давайте обсудим</span>
-            <span className={styles.accentWord}>ваш проект</span>
+            <span>Есть задача?</span>
+            <span className={styles.accentWord}>Давайте обсудим</span>
           </h2>
           <p className={styles.text}>
-            Оставьте заявку и получите бесплатную консультацию. Разберём задачу и предложим
-            оптимальное решение.
+            Расскажите немного о проекте — мы уточним детали и предложим подходящий формат работы.
           </p>
           <div className={styles.actions} aria-label="Действия CTA">
             <StudioButton
@@ -49,7 +51,7 @@ export function RazrabotkaCtaSection() {
               variant="yellow"
               icon={null}
             >
-              Оставить заявку
+              Обсудить проект
             </StudioButton>
             <StudioButton
               className={styles.secondaryButton}

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useScrollReveal } from '@/shared/lib'
+import { MagneticHeading } from '@/shared/ui'
 import styles from './RazrabotkaServicesCarouselSection.module.scss'
 
 const VISIBLE_DESKTOP_CARDS = 4
@@ -125,10 +126,16 @@ export function RazrabotkaServicesCarouselSection() {
       <div className={styles.inner}>
         <div className={styles.header}>
           <p className={styles.kicker}>Что можно заказать</p>
-          <h2 className={styles.title} id="razrabotka-services-title">
+          <MagneticHeading
+            ariaLabel="Наши услуги"
+            className={styles.title}
+            darkLens
+            id="razrabotka-services-title"
+            lensSize={180}
+          >
             <span>Наши</span>
             <span className={styles.outlineWord}>услуги</span>
-          </h2>
+          </MagneticHeading>
         </div>
 
         <div className={styles.carouselShell}>

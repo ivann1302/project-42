@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useRef } from 'react'
 import { useScrollReveal } from '@/shared/lib'
+import { MagneticHeading } from '@/shared/ui'
 import styles from './WorkProcessSection.module.scss'
 
 const steps = [
@@ -42,10 +43,16 @@ export function WorkProcessSection() {
       aria-labelledby="work-process-title"
     >
       <div className={styles.header}>
-        <h2 className={styles.title} id="work-process-title">
+        <MagneticHeading
+          ariaLabel="Как мы работаем"
+          className={styles.title}
+          darkLens
+          id="work-process-title"
+          lensSize={180}
+        >
           <span>Как мы</span>
           <span className={styles.outlineWord}>работаем</span>
-        </h2>
+        </MagneticHeading>
       </div>
 
       <div className={styles.carousel} aria-label="Этапы работы">

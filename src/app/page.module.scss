@@ -7,7 +7,7 @@
 .heroScroll {
   --hero-progress: 0;
 
-  height: 200svh;
+  height: 180svh;
   background: $surface-canvas;
 }
 
@@ -24,11 +24,12 @@
 
 .heroInner {
   display: grid;
-  justify-items: center;
   gap: clamp($space-5, 4vw, $space-10);
+  position: relative;
   width: min(100%, $container-inner);
   text-align: center;
   transform: translate3d(calc(var(--hero-progress) * 118vw), 0, 0);
+  justify-items: center;
   will-change: transform;
 }
 
@@ -77,6 +78,127 @@
   text-transform: uppercase;
   color: $text-primary;
   text-wrap: balance;
+}
+
+.heroOrnaments {
+  position: absolute;
+  inset: -18% -8%;
+  pointer-events: none;
+}
+
+.heroOrnament {
+  display: grid;
+  position: absolute;
+  z-index: 3;
+  width: 96px;
+  height: 96px;
+  color: var(--ornament-color);
+  filter: saturate(0.58) brightness(0.82) drop-shadow(0 0 8px var(--ornament-glow));
+  opacity: 0;
+  transition: filter 220ms ease;
+  cursor: none;
+  pointer-events: auto;
+  animation: hero-ornament-in 860ms $ease-emphasized forwards;
+  place-items: center;
+
+  &:hover .ornamentFloat {
+    animation-play-state: paused;
+    transform: translate3d(7px, -8px, 0) rotate(7deg) scale(1.08);
+  }
+
+  &:hover {
+    filter: saturate(0.72) brightness(0.9) drop-shadow(0 0 9px var(--ornament-glow));
+  }
+}
+
+.ornamentFloat {
+  display: grid;
+  transition: transform 280ms $ease-emphasized;
+  animation: hero-ornament-float 4.8s ease-in-out infinite;
+  place-items: center;
+}
+
+.ornamentDevelopment {
+  --ornament-color: #{$surface-card-mint};
+  --ornament-glow: rgba(184 240 212 / 24%);
+  --entry-x: 90px;
+  --entry-y: -36px;
+
+  top: 7%;
+  right: 4%;
+  animation-delay: 520ms;
+
+  .ornamentFloat {
+    animation-delay: -1.2s;
+  }
+}
+
+.ornamentPromotion {
+  --ornament-color: #{$surface-card-yellow};
+  --ornament-glow: rgba(212 166 53 / 24%);
+  --entry-x: -82px;
+  --entry-y: 48px;
+
+  bottom: 2%;
+  left: 4%;
+  animation-delay: 760ms;
+
+  .ornamentFloat {
+    animation-delay: -2.7s;
+  }
+}
+
+.ornamentGrowth {
+  --ornament-color: #8fd9ff;
+  --ornament-glow: rgba(143 217 255 / 24%);
+  --entry-x: 86px;
+  --entry-y: 44px;
+
+  right: 1%;
+  bottom: 5%;
+  animation-delay: 880ms;
+
+  .ornamentFloat {
+    animation-delay: -2.1s;
+  }
+}
+
+.ornamentDesign {
+  --ornament-color: #{$surface-card-orange};
+  --ornament-glow: rgba(241 154 99 / 24%);
+  --entry-x: -76px;
+  --entry-y: -42px;
+
+  top: 13%;
+  left: 1%;
+  animation-delay: 980ms;
+
+  .ornamentFloat {
+    animation-delay: -3.5s;
+  }
+}
+
+@keyframes hero-ornament-in {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--entry-x, 0), var(--entry-y, 0), 0) rotate(-14deg) scale(0.72);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0) scale(1);
+  }
+}
+
+@keyframes hero-ornament-float {
+  0%,
+  100% {
+    transform: translate3d(-2px, 2px, 0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translate3d(4px, -6px, 0) rotate(3deg);
+  }
 }
 
 .trustScroll {
@@ -286,6 +408,40 @@
 }
 
 @media (width <= 560px) {
+  .heroOrnaments {
+    inset: -13% -4%;
+  }
+
+  .heroOrnament {
+    width: 64px;
+    height: 64px;
+
+    svg {
+      width: 38px;
+      height: 38px;
+    }
+  }
+
+  .ornamentDevelopment {
+    top: -38%;
+    right: 3%;
+  }
+
+  .ornamentPromotion {
+    bottom: -36%;
+    left: 4%;
+  }
+
+  .ornamentGrowth {
+    right: 3%;
+    bottom: -34%;
+  }
+
+  .ornamentDesign {
+    top: -34%;
+    left: 2%;
+  }
+
   .title {
     flex-direction: column;
     align-items: center;
@@ -356,6 +512,16 @@
   .titleWord,
   .titleNumber,
   .trustAccent {
+    animation: none;
+  }
+
+  .heroOrnament {
+    opacity: 1;
+    animation: none;
+  }
+
+  .ornamentFloat {
+    transition: none;
     animation: none;
   }
 }

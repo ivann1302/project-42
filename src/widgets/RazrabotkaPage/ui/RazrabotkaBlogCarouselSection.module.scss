@@ -1,4 +1,5 @@
 $blog-tablet-gap-total: $space-5;
+$blog-desktop-gap-total: $space-10;
 
 .root {
   padding: $space-12 0 $space-8;
@@ -63,6 +64,10 @@ $blog-tablet-gap-total: $space-5;
   scrollbar-width: none;
 }
 
+.carouselShell {
+  position: relative;
+}
+
 .carousel::-webkit-scrollbar {
   display: none;
 }
@@ -80,6 +85,10 @@ $blog-tablet-gap-total: $space-5;
 
 .item {
   scroll-snap-align: start;
+}
+
+.controls {
+  display: none;
 }
 
 .card {
@@ -188,9 +197,13 @@ $blog-tablet-gap-total: $space-5;
   }
 
   .list {
-    grid-auto-columns: minmax(0, calc((100% - #{$blog-tablet-gap-total}) / 2));
+    display: flex;
     gap: $space-5;
-    width: 100%;
+    width: auto;
+  }
+
+  .item {
+    flex: 0 0 calc((100% - #{$blog-tablet-gap-total}) / 2);
   }
 
   .card {
@@ -235,6 +248,14 @@ $blog-tablet-gap-total: $space-5;
     font-size: clamp(60px, 4.8vw, 86px);
   }
 
+  .list {
+    width: 100%;
+  }
+
+  .item {
+    flex-basis: calc((100% - #{$blog-desktop-gap-total}) / 3);
+  }
+
   .card {
     grid-template-rows: 292px 1fr;
     min-height: 506px;
@@ -256,9 +277,76 @@ $blog-tablet-gap-total: $space-5;
   .cardTitle {
     font-size: clamp(20px, 1.45vw, 24px);
   }
+
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    left: -60px;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .control {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    color: $surface-card-yellow;
+    pointer-events: auto;
+    background: $surface-canvas;
+    border: 1.5px solid currentcolor;
+    border-radius: $radius-pill;
+    transition:
+      color $duration-base $ease-standard,
+      background $duration-base $ease-standard,
+      border-color $duration-base $ease-standard,
+      transform $duration-base $ease-standard;
+    cursor: pointer;
+  }
+
+  .controlIcon {
+    width: 14px;
+    height: 14px;
+    border-color: currentcolor;
+    border-style: solid;
+    transition: transform $duration-base $ease-emphasized;
+  }
+
+  .controlIconPrevious {
+    margin-left: $space-1;
+    border-width: 0 0 2px 2px;
+    transform: rotate(45deg);
+  }
+
+  .controlIconNext {
+    margin-right: $space-1;
+    border-width: 2px 2px 0 0;
+    transform: rotate(45deg);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .control:hover,
+  .control:focus-visible {
+    color: $text-inverse;
+    background: $surface-card-yellow;
+    border-color: $surface-card-yellow;
+    transform: scale(1.06);
+  }
+
+  .control:hover .controlIconPrevious,
+  .control:focus-visible .controlIconPrevious {
+    transform: translateX(-2px) rotate(45deg);
+  }
+
+  .control:hover .controlIconNext,
+  .control:focus-visible .controlIconNext {
+    transform: translateX(2px) rotate(45deg);
+  }
+
   .card:hover,
   .card:focus-visible {
     color: $neutral-0;
@@ -287,7 +375,9 @@ $blog-tablet-gap-total: $space-5;
   }
 
   .card,
-  .image {
+  .image,
+  .control,
+  .controlIcon {
     transition: none;
   }
 }

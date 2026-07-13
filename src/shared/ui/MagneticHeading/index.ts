@@ -1,0 +1,1 @@
+export { MagneticHeading } from './MagneticHeading'

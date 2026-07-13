@@ -117,7 +117,7 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText('Разработка проекта')).toBeInTheDocument()
     expect(screen.getByText('Оптимизация под ИИ')).toBeInTheDocument()
     expect(screen.getByText('Мобильная версия')).toBeInTheDocument()
-    expect(screen.getByText(/перехвата лидов/)).toBeInTheDocument()
+    expect(screen.getByText('Настройка безопасности')).toBeInTheDocument()
     expect(screen.getByText('Цена под ключ')).toBeInTheDocument()
     expect(screen.getByText('от 15 тыс рублей')).toBeInTheDocument()
     expect(screen.queryByText('За одностраничный сайт')).not.toBeInTheDocument()
@@ -269,22 +269,24 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText(/без давления и лишнего размаха/)).toBeInTheDocument()
     jest.useRealTimers()
 
-    expect(screen.getByLabelText('Как вас зовут?')).toBeInTheDocument()
+    const dialog = screen.getByRole('dialog')
+    const quiz = within(dialog)
+    expect(quiz.getByLabelText('Как вас зовут?')).toBeInTheDocument()
 
-    await userEvent.type(screen.getByLabelText('Как вас зовут?'), 'Иван')
-    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
+    await userEvent.type(quiz.getByLabelText('Как вас зовут?'), 'Иван')
+    await userEvent.click(quiz.getByRole('button', { name: 'Далее' }))
 
-    expect(screen.getByLabelText('Сфера деятельности')).toBeInTheDocument()
+    expect(quiz.getByLabelText('Сфера деятельности')).toBeInTheDocument()
 
-    await userEvent.type(screen.getByLabelText('Сфера деятельности'), 'Разработка')
-    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
+    await userEvent.type(quiz.getByLabelText('Сфера деятельности'), 'Разработка')
+    await userEvent.click(quiz.getByRole('button', { name: 'Далее' }))
 
-    expect(screen.getByLabelText('Ваш ник в Telegram')).toBeInTheDocument()
+    expect(quiz.getByLabelText('Ваш ник в Telegram')).toBeInTheDocument()
 
-    await userEvent.click(screen.getByLabelText('WhatsApp'))
+    await userEvent.click(quiz.getByLabelText('WhatsApp'))
 
-    expect(screen.getByLabelText('Ваш телефон')).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Получить консультацию' })).toBeInTheDocument()
+    expect(quiz.getByLabelText('Ваш телефон')).toBeInTheDocument()
+    expect(quiz.getByRole('button', { name: 'Получить консультацию' })).toBeInTheDocument()
   })
 
   it('opens the consultation quiz from CTA links', async () => {
@@ -294,8 +296,8 @@ describe('RazrabotkaPage', () => {
 
     await userEvent.click(screen.getByRole('link', { name: /Получить консультацию/ }))
 
-    expect(await screen.findByRole('dialog')).toBeInTheDocument()
-    expect(screen.getByLabelText('Как вас зовут?')).toBeInTheDocument()
+    const dialog = await screen.findByRole('dialog')
+    expect(within(dialog).getByLabelText('Как вас зовут?')).toBeInTheDocument()
   })
 
   it('submits the consultation quiz with a Telegram username', async () => {
@@ -306,12 +308,13 @@ describe('RazrabotkaPage', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
     await userEvent.click(screen.getByRole('link', { name: /Получить консультацию/ }))
-    await userEvent.type(await screen.findByLabelText('Как вас зовут?'), 'Иван')
-    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
-    await userEvent.type(screen.getByLabelText('Сфера деятельности'), 'Разработка')
-    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
-    await userEvent.type(screen.getByLabelText('Ваш ник в Telegram'), 'project42')
-    await userEvent.click(screen.getByRole('button', { name: 'Получить консультацию' }))
+    const quiz = within(await screen.findByRole('dialog'))
+    await userEvent.type(quiz.getByLabelText('Как вас зовут?'), 'Иван')
+    await userEvent.click(quiz.getByRole('button', { name: 'Далее' }))
+    await userEvent.type(quiz.getByLabelText('Сфера деятельности'), 'Разработка')
+    await userEvent.click(quiz.getByRole('button', { name: 'Далее' }))
+    await userEvent.type(quiz.getByLabelText('Ваш ник в Telegram'), 'project42')
+    await userEvent.click(quiz.getByRole('button', { name: 'Получить консультацию' }))
 
     expect(fetchMock).toHaveBeenCalledTimes(1)
     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({
@@ -332,31 +335,37 @@ describe('RazrabotkaPage', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
     await userEvent.click(screen.getByRole('link', { name: /Получить консультацию/ }))
-    await userEvent.type(await screen.findByLabelText('Как вас зовут?'), 'Иван')
-    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
-    await userEvent.type(screen.getByLabelText('Сфера деятельности'), 'Разработка')
-    await userEvent.click(screen.getByRole('button', { name: 'Далее' }))
-    await userEvent.click(screen.getByLabelText('WhatsApp'))
-    await userEvent.type(screen.getByLabelText('Ваш телефон'), '123')
-    await userEvent.click(screen.getByRole('button', { name: 'Получить консультацию' }))
+    const quiz = within(await screen.findByRole('dialog'))
+    await userEvent.type(quiz.getByLabelText('Как вас зовут?'), 'Иван')
+    await userEvent.click(quiz.getByRole('button', { name: 'Далее' }))
+    await userEvent.type(quiz.getByLabelText('Сфера деятельности'), 'Разработка')
+    await userEvent.click(quiz.getByRole('button', { name: 'Далее' }))
+    await userEvent.click(quiz.getByLabelText('WhatsApp'))
+    await userEvent.type(quiz.getByLabelText('Ваш телефон'), '123')
+    await userEvent.click(quiz.getByRole('button', { name: 'Получить консультацию' }))
 
-    expect(screen.getByText('Введите телефон в формате +7 999 000-00-00')).toBeInTheDocument()
+    expect(quiz.getByText('Введите телефон в формате +7 999 000-00-00')).toBeInTheDocument()
     expect(fetchMock).not.toHaveBeenCalled()
   })
 
   it('renders the new CTA section', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
-    expect(
-      screen.getByRole('heading', { level: 2, name: 'Давайте обсудим ваш проект' }),
-    ).toBeInTheDocument()
-    expect(screen.getByText('Готовы к результатам?')).toBeInTheDocument()
-    expect(screen.getByText(/бесплатную консультацию/)).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Оставить заявку/ })).toHaveAttribute(
+    const heading = screen.getByRole('heading', {
+      level: 2,
+      name: 'Есть задача? Давайте обсудим',
+    })
+    const cta = heading.closest('section')
+
+    expect(heading).toBeInTheDocument()
+    expect(cta).not.toBeNull()
+    expect(screen.queryByText('Начнём с разговора')).not.toBeInTheDocument()
+    expect(screen.getByText(/предложим подходящий формат работы/)).toBeInTheDocument()
+    expect(within(cta!).getByRole('link', { name: /Обсудить проект/ })).toHaveAttribute(
       'href',
       '#contacts',
     )
-    expect(screen.getByRole('link', { name: /Смотреть кейсы/ })).toHaveAttribute(
+    expect(within(cta!).getByRole('link', { name: /Смотреть кейсы/ })).toHaveAttribute(
       'href',
       '#projects',
     )
@@ -412,7 +421,7 @@ describe('RazrabotkaPage', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
     expect(
-      screen.getByRole('heading', { level: 2, name: 'ВЫВЕДЕМ ВАШ БИЗНЕС НА НОВЫЙ УРОВЕНЬ' }),
+      screen.getByRole('heading', { level: 2, name: 'ПОМОЖЕМ ВЫДЕЛИТЬ ВАС СРЕДИ КОНКУРЕНТОВ' }),
     ).toBeInTheDocument()
   })
 

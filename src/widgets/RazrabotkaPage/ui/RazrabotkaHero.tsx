@@ -2,7 +2,7 @@
 
 import type { CSSProperties, PointerEvent } from 'react'
 import { useEffect, useRef } from 'react'
-import { StudioButton } from '@/shared/ui'
+import { MagneticHeading, StudioButton } from '@/shared/ui'
 import styles from './RazrabotkaHero.module.scss'
 
 const MOBILE_INTRO_QUERY = '(max-width: 767px)'
@@ -110,10 +110,13 @@ export function RazrabotkaHero() {
       <div className={styles.inner}>
         <div className={styles.content}>
           <p className={styles.kicker}>Создание и продвижение</p>
-          <h1
+          <MagneticHeading
+            as="h1"
+            ariaLabel="Сайты и приложения для бизнеса"
             className={styles.title}
             id="razrabotka-hero-title"
-            aria-label="Сайты и приложения для бизнеса"
+            lensSize={180}
+            whiteLens
           >
             <span className={styles.outlineWord}>САЙТЫ</span>
             <span className={styles.titleLine}>
@@ -125,7 +128,7 @@ export function RazrabotkaHero() {
             <span className={styles.titleLine}>
               для <span className={styles.accentWord}>бизнеса</span>
             </span>
-          </h1>
+          </MagneticHeading>
           <p className={styles.text}>
             Если вам нужен результат, а не просто красивый дизайн, то вы по адресу.
           </p>

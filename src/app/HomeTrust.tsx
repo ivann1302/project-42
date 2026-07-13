@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { MagneticHeading } from '@/shared/ui'
 import styles from './page.module.scss'
 
 function clamp(value: number, min: number, max: number) {
@@ -50,9 +51,9 @@ export function HomeTrust() {
     <div className={styles.trustScroll} ref={rootRef}>
       <section className={styles.trustSection} aria-labelledby="home-trust-title">
         <div className={styles.trustInner}>
-          <h2 className={styles.trustTitle} id="home-trust-title">
+          <MagneticHeading className={styles.trustTitle} id="home-trust-title" lensSize={170}>
             Нам <span className={styles.trustAccent}>можно доверить</span> задачу любой сложности
-          </h2>
+          </MagneticHeading>
         </div>
       </section>
     </div>

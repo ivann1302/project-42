@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { useScrollReveal } from '@/shared/lib'
+import { MagneticHeading } from '@/shared/ui'
 import styles from './RazrabotkaLevelUpBanner.module.scss'
 
 type Props = {
@@ -23,9 +24,20 @@ export function RazrabotkaLevelUpBanner({ placement = 'desktop', decorative = fa
       aria-labelledby={decorative ? undefined : titleId}
     >
       <div className={styles.panel}>
-        <h2 className={styles.title} id={decorative ? undefined : titleId}>
-          ВЫВЕДЕМ ВАШ БИЗНЕС НА НОВЫЙ УРОВЕНЬ
-        </h2>
+        {placement === 'desktop' ? (
+          <MagneticHeading
+            className={styles.title}
+            id={decorative ? undefined : titleId}
+            lensSize={170}
+            whiteLens
+          >
+            ПОМОЖЕМ ВЫДЕЛИТЬ ВАС СРЕДИ КОНКУРЕНТОВ
+          </MagneticHeading>
+        ) : (
+          <h2 className={styles.title} id={decorative ? undefined : titleId}>
+            ПОМОЖЕМ ВЫДЕЛИТЬ ВАС СРЕДИ КОНКУРЕНТОВ
+          </h2>
+        )}
       </div>
     </section>
   )

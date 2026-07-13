@@ -22,6 +22,7 @@ export function DesktopCursor() {
   const [visible, setVisible] = useState(false)
   const [textHover, setTextHover] = useState(false)
   const [interactive, setInteractive] = useState(false)
+  const [magnetic, setMagnetic] = useState(false)
   const [pressed, setPressed] = useState(false)
 
   useEffect(() => {
@@ -98,6 +99,7 @@ export function DesktopCursor() {
     const handlePointerOver = (event: PointerEvent) => {
       const target = event.target instanceof Element ? event.target : null
       const isInteractive = Boolean(target?.closest(INTERACTIVE_SELECTOR))
+      setMagnetic(Boolean(target?.closest('[data-cursor-magnetic]')))
       setInteractive(isInteractive)
       setTextHover(!isInteractive && Boolean(target?.closest(TEXT_SELECTOR)))
     }
@@ -105,6 +107,7 @@ export function DesktopCursor() {
     const handlePointerOut = (event: PointerEvent) => {
       const nextTarget = event.relatedTarget instanceof Element ? event.relatedTarget : null
       const isInteractive = Boolean(nextTarget?.closest(INTERACTIVE_SELECTOR))
+      setMagnetic(Boolean(nextTarget?.closest('[data-cursor-magnetic]')))
       setInteractive(isInteractive)
       setTextHover(!isInteractive && Boolean(nextTarget?.closest(TEXT_SELECTOR)))
     }
@@ -120,6 +123,7 @@ export function DesktopCursor() {
       setVisible(false)
       setTextHover(false)
       setInteractive(false)
+      setMagnetic(false)
       setPressed(false)
     }
 
@@ -150,6 +154,7 @@ export function DesktopCursor() {
       className={clsx(
         styles.cursor,
         visible && styles.visible,
+        magnetic && styles.magnetic,
         textHover && styles.text,
         interactive && styles.interactive,
         pressed && styles.pressed,

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { projects } from '@/entities/Project'
 import { useScrollReveal } from '@/shared/lib'
-import { Icon, Modal } from '@/shared/ui'
+import { Icon, MagneticHeading, Modal } from '@/shared/ui'
 import styles from './RazrabotkaCasesSection.module.scss'
 
 const getProject = (id: string) => {
@@ -208,7 +208,7 @@ export function RazrabotkaCasesSection() {
     leavingImage: CaseImage
   } | null>(null)
 
-  useScrollReveal(sectionRef, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' })
+  useScrollReveal(sectionRef, { threshold: 0.06, rootMargin: '0px 0px 8% 0px' })
 
   const selectedImages = selectedCase ? getCaseImages(selectedCase) : []
   const activeImage = selectedImages[activeImageIndex] ?? selectedImages[0]
@@ -258,10 +258,16 @@ export function RazrabotkaCasesSection() {
           <div className={styles.header}>
             <div>
               <p className={styles.kicker}>Реальные проекты, реальные результаты</p>
-              <h2 className={styles.title} id="razrabotka-cases-title" aria-label="Наши кейсы">
+              <MagneticHeading
+                ariaLabel="Наши кейсы"
+                className={styles.title}
+                darkLens
+                id="razrabotka-cases-title"
+                lensSize={180}
+              >
                 <span>Наши</span>
                 <span className={styles.outlineWord}>Кейсы</span>
-              </h2>
+              </MagneticHeading>
             </div>
 
             <div className={styles.headerAside}>
