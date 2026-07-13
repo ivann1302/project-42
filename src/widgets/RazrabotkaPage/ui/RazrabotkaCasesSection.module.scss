@@ -31,15 +31,6 @@
   border-bottom: 1px solid $border-strong;
 }
 
-.kicker {
-  max-width: 34ch;
-  margin: 0 0 $space-4;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
-  line-height: $line-height-body;
-  color: $text-secondary;
-}
-
 .title {
   display: grid;
   row-gap: $space-2;

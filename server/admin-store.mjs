@@ -97,6 +97,18 @@ export async function deleteExpense(id) {
   return true
 }
 
+export async function deleteLead(id) {
+  const data = await readData()
+  const nextLeads = data.leads.filter((lead) => lead.id !== id)
+
+  if (nextLeads.length === data.leads.length) return false
+
+  data.leads = nextLeads
+  await writeData(data)
+
+  return true
+}
+
 export async function createArticle(payload) {
   const title = toStringValue(payload.title)
   const url = toStringValue(payload.url)

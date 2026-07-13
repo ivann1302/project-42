@@ -307,6 +307,26 @@ export function AdminDashboard() {
     }
   }
 
+  async function removeLead(lead: Lead) {
+    const leadName = lead.name || 'задачу без имени'
+    if (!window.confirm(`Удалить «${leadName}»? Это действие нельзя отменить.`)) return
+
+    setSaving(true)
+    setError('')
+
+    try {
+      const response = await fetch(`/api/admin/leads/${lead.id}`, { method: 'DELETE' })
+      if (!response.ok) throw new Error('Не удалось удалить задачу')
+
+      setSelectedId('')
+      await loadLeads()
+    } catch (deleteError) {
+      setError(deleteError instanceof Error ? deleteError.message : 'Ошибка удаления задачи')
+    } finally {
+      setSaving(false)
+    }
+  }
+
   async function addComment() {
     if (!selectedLead || !comment.trim()) return
 
@@ -849,9 +869,19 @@ export function AdminDashboard() {
                       <p className={styles.eyebrow}>{formatDateTime(selectedLead.createdAt)}</p>
                       <h2>{selectedLead.name || 'Заявка без имени'}</h2>
                     </div>
-                    <span className={`${styles.statusBadge} ${styles[selectedLead.status]}`}>
-                      {statusLabels[selectedLead.status]}
-                    </span>
+                    <div className={styles.detailActions}>
+                      <span className={`${styles.statusBadge} ${styles[selectedLead.status]}`}>
+                        {statusLabels[selectedLead.status]}
+                      </span>
+                      <button
+                        className={styles.deleteLeadButton}
+                        type="button"
+                        onClick={() => removeLead(selectedLead)}
+                        disabled={saving}
+                      >
+                        Удалить задачу
+                      </button>
+                    </div>
                   </div>
 
                   <div className={styles.controlsGrid}>

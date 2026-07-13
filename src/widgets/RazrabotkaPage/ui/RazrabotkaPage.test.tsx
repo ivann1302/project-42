@@ -289,6 +289,20 @@ describe('RazrabotkaPage', () => {
     expect(quiz.getByRole('button', { name: 'Получить консультацию' })).toBeInTheDocument()
   })
 
+  it('does not auto-open the quiz after the visitor starts filling another form', async () => {
+    jest.useFakeTimers()
+
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    fireEvent.input(screen.getByLabelText('Как вас зовут?'), { target: { value: 'И' } })
+
+    await act(async () => {
+      jest.advanceTimersByTime(28_000)
+    })
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
   it('opens the consultation quiz from CTA links', async () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 

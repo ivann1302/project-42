@@ -74,9 +74,21 @@ export function RazrabotkaQuizSection() {
     }
 
     const timerId = window.setTimeout(openOnce, AUTO_OPEN_DELAY_MS)
+    const suppressAutoOpenAfterFormInput = (event: Event) => {
+      const field = event.target
+
+      if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return
+      if (!field.closest('form') || field.value.length === 0) return
+
+      openedRef.current = true
+      window.clearTimeout(timerId)
+    }
+
+    document.addEventListener('input', suppressAutoOpenAfterFormInput, true)
 
     return () => {
       window.clearTimeout(timerId)
+      document.removeEventListener('input', suppressAutoOpenAfterFormInput, true)
     }
   }, [])
 

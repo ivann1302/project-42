@@ -6,6 +6,7 @@ import {
   createLead,
   deleteArticle,
   deleteExpense,
+  deleteLead,
   listArticles,
   listExpenses,
   listLeads,
@@ -115,6 +116,18 @@ export async function handleAdminApiRequest(req, res, requestUrl) {
 
   const leadMatch = requestUrl.pathname.match(/^\/api\/admin\/leads\/([^/]+)$/)
 
+  if (leadMatch && req.method === 'DELETE') {
+    const deleted = await deleteLead(decodeURIComponent(leadMatch[1]))
+
+    if (!deleted) {
+      sendJson(res, 404, { ok: false, error: 'Lead not found' })
+      return
+    }
+
+    sendJson(res, 200, { ok: true })
+    return
+  }
+
   if (leadMatch && req.method === 'PATCH') {
     const body = await readJsonBody(req, res)
     if (!body) return
@@ -220,7 +233,7 @@ async function readRequestBody(req) {
 function buildSummary(leads, expenses) {
   const leadSummary = leads.reduce(
     (summary, lead) => {
-      const income = Number(lead.income) || 0
+      const income = lead.isCompleted ? Number(lead.income) || 0 : 0
       const taxPercent = Number(lead.taxPercent) || 0
       const tax = Math.max(0, income * (taxPercent / 100))
       const profit = income - tax

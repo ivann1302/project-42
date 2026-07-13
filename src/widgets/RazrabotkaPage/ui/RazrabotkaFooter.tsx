@@ -64,7 +64,6 @@ function FooterColumn({
   const pathname = usePathname()
   return (
     <nav className={styles.column} aria-label={title}>
-      <h2 className={styles.columnTitle}>{title}</h2>
       <ul className={styles.linkList}>
         {links.map((link) => (
           <li key={`${title}-${link.href}-${link.label}`}>

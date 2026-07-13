@@ -257,7 +257,6 @@ export function RazrabotkaCasesSection() {
         <div className={styles.inner}>
           <div className={styles.header}>
             <div>
-              <p className={styles.kicker}>Реальные проекты, реальные результаты</p>
               <MagneticHeading
                 ariaLabel="Наши кейсы"
                 className={styles.title}

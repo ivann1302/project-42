@@ -311,7 +311,7 @@
 .metrics {
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .metric {
@@ -333,8 +333,11 @@
 
 .metric strong {
   display: block;
+  min-width: 0;
   font-size: clamp(20px, 2vw, 30px);
+  font-variant-numeric: tabular-nums;
   line-height: 1;
+  overflow-wrap: anywhere;
 }
 
 .yellow {
@@ -518,6 +521,37 @@
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 24px;
+}
+
+.detailActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.deleteLeadButton {
+  min-height: 32px;
+  padding: 0 10px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--admin-danger);
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-danger);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.deleteLeadButton:hover {
+  color: var(--admin-surface);
+  background: var(--admin-danger);
+}
+
+.deleteLeadButton:disabled {
+  opacity: 0.55;
+  cursor: wait;
 }
 
 .controlsGrid {
