@@ -57,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteConfig.url}/blog`,
-      lastModified: new Date('2026-06-04'),
+      lastModified: new Date('2026-07-14'),
       changeFrequency: 'weekly',
       priority: 0.75,
     },
