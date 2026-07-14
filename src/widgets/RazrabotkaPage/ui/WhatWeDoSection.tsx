@@ -9,6 +9,7 @@ import styles from './WhatWeDoSection.module.scss'
 
 const MOBILE_QUERY = '(max-width: 767px)'
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
+const PHYSICS_VISIBILITY_THRESHOLD = 0.5
 
 export function WhatWeDoSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -23,7 +24,7 @@ export function WhatWeDoSection() {
   const [scopePhysicsStarted, setScopePhysicsStarted] = useState(false)
 
   useScrollReveal(statementRef, { threshold: 0.22, rootMargin: '0px 0px -8% 0px' })
-  useScrollReveal(cardsRef, { threshold: 0.12, rootMargin: '0px 0px -2% 0px' })
+  useScrollReveal(cardsRef, { threshold: PHYSICS_VISIBILITY_THRESHOLD })
 
   useEffect(() => {
     const card = scopeCardRef.current
@@ -35,7 +36,7 @@ export function WhatWeDoSection() {
         setScopePhysicsStarted(true)
         observer.disconnect()
       },
-      { threshold: 0.12, rootMargin: '0px 0px -4% 0px' },
+      { threshold: PHYSICS_VISIBILITY_THRESHOLD },
     )
 
     observer.observe(card)

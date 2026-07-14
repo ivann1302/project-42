@@ -12,6 +12,8 @@
 
 .mobile {
   display: block;
+  margin-top: 0;
+  padding-top: $space-4;
   padding-bottom: calc(64px + env(safe-area-inset-bottom));
   background: $surface-canvas;
 }

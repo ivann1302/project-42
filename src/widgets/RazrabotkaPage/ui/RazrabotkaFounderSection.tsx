@@ -7,6 +7,7 @@ import { useScrollReveal } from '@/shared/lib'
 import styles from './RazrabotkaFounderSection.module.scss'
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
+const PHYSICS_VISIBILITY_THRESHOLD = 0.5
 
 const reasons = [
   'Разработка точно в срок + поддержка',
@@ -23,7 +24,7 @@ export function RazrabotkaFounderSection() {
   const reasonRefs = useRef<Array<HTMLLIElement | null>>([])
   const [physicsStarted, setPhysicsStarted] = useState(false)
 
-  useScrollReveal(sectionRef, { threshold: 0.22, rootMargin: '0px 0px -12% 0px' })
+  useScrollReveal(sectionRef, { threshold: PHYSICS_VISIBILITY_THRESHOLD })
 
   useEffect(() => {
     const section = sectionRef.current
@@ -35,7 +36,7 @@ export function RazrabotkaFounderSection() {
         setPhysicsStarted(true)
         observer.disconnect()
       },
-      { threshold: 0.12, rootMargin: '0px 0px -5% 0px' },
+      { threshold: PHYSICS_VISIBILITY_THRESHOLD },
     )
 
     observer.observe(section)

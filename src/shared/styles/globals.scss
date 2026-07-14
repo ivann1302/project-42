@@ -53,6 +53,8 @@
 }
 
 html {
+  max-width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   background-color: $color-bg;
@@ -60,12 +62,20 @@ html {
 }
 
 body {
+  max-width: 100%;
   min-height: 100vh;
   font-family: $font-body;
   font-size: $font-size-md;
   color: $color-text;
   background-color: $color-bg;
   overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
 }
 
 a {

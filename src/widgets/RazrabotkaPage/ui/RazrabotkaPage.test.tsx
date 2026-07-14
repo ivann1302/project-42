@@ -151,10 +151,10 @@ describe('RazrabotkaPage', () => {
     expect(cases.getAllByText('Корпоративный сайт строительной компании').length).toBeGreaterThan(0)
     expect(cases.getByText('TrueTell')).toBeInTheDocument()
     expect(cases.getAllByText('Лендинг TrueTell').length).toBeGreaterThan(0)
-    expect(cases.getByText('Красим.ру')).toBeInTheDocument()
+    expect(cases.queryByText('Красим.ру')).not.toBeInTheDocument()
     expect(
-      cases.getAllByText('Лендинг для Красим.ру и настройка рекламы в Яндекс.Директ').length,
-    ).toBeGreaterThan(0)
+      cases.queryByText('Лендинг для Красим.ру и настройка рекламы в Яндекс.Директ'),
+    ).not.toBeInTheDocument()
     expect(cases.getByText('Sosedi')).toBeInTheDocument()
     expect(cases.getAllByText('Промо сайт приложения Sosedi').length).toBeGreaterThan(0)
     expect(cases.getByText('Звезда')).toBeInTheDocument()

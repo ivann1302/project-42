@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import Matter from 'matter-js'
 import styles from './HomeImpact.module.scss'
 
+const PHYSICS_VISIBILITY_THRESHOLD = 0.5
+
 const IMPACT_BLOCKS = [
   {
     desktopText: 'Погружаемся в бизнес',
@@ -44,7 +46,7 @@ export function HomeImpact() {
         setPhysicsStarted(true)
         observer.disconnect()
       },
-      { threshold: 0.34 },
+      { threshold: PHYSICS_VISIBILITY_THRESHOLD },
     )
 
     observer.observe(section)
