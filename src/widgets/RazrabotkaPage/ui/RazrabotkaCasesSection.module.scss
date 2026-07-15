@@ -277,7 +277,8 @@
 
 .screenshot {
   position: relative;
-  height: clamp(190px, 33svh, 280px);
+  height: auto;
+  aspect-ratio: 16 / 9;
   min-height: 0;
   overflow: hidden;
 }
@@ -698,7 +699,8 @@
   }
 
   .screenshot {
-    height: clamp(172px, 32svh, 190px);
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 }
 

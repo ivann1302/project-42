@@ -56,6 +56,12 @@
   will-change: opacity, transform;
 }
 
+.mobile .title {
+  color: $text-primary;
+  -webkit-text-fill-color: $text-primary;
+  -webkit-text-stroke: 0;
+}
+
 .root:global(.visible) .title {
   opacity: 1;
   transform: translateX(0);

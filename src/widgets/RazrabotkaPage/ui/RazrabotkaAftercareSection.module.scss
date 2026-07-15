@@ -1,6 +1,6 @@
 .root {
   position: relative;
-  padding: $space-4 $container-pad-mobile $space-4 0;
+  padding: $space-8 $container-pad-mobile $space-8 0;
   color: $text-inverse;
   background: $surface-page;
   scroll-margin-top: 96px;
@@ -9,11 +9,11 @@
 .shell {
   display: grid;
   align-items: start;
-  gap: $space-4;
+  gap: $space-8;
   grid-template-columns: minmax(0, 1fr);
   max-width: $container-inner;
   margin: 0 auto 0 0;
-  padding: $space-5;
+  padding: $space-8 $space-6;
   overflow: hidden;
   background: $surface-card-mint;
   border-radius: 0 $radius-xl $radius-xl 0;
@@ -73,7 +73,7 @@
 
 .benefits {
   display: grid;
-  gap: $space-4;
+  gap: $space-5;
   max-width: 72ch;
   padding: 0;
   list-style: none;
@@ -82,7 +82,7 @@
 .benefit {
   display: grid;
   align-items: start;
-  gap: $space-3;
+  gap: $space-4;
   grid-template-columns: 44px minmax(0, 1fr);
 }
 
@@ -113,10 +113,28 @@
 }
 
 .benefitTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-2;
   font-size: $font-size-base;
   font-weight: $font-weight-bold;
   line-height: $line-height-ui;
   text-transform: uppercase;
+}
+
+.giftBadge {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 28px;
+  aspect-ratio: 1;
+  color: $neutral-0;
+  background: $surface-card-orange;
+  border: 1px solid rgba($neutral-0, 28%);
+  border-radius: $radius-xs;
+  box-shadow: 0 3px 0 rgba($neutral-0, 18%);
+  transform: rotate(-4deg);
 }
 
 .benefitDescription {
@@ -193,6 +211,29 @@
   border-radius: $radius-md;
 }
 
+.panelRowTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-2;
+}
+
+.searchEngines {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+}
+
+.googleMark,
+.yandexMark {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  aspect-ratio: 1;
+  background: $neutral-900;
+  border-radius: 50%;
+}
+
 .toggle {
   position: relative;
   width: 42px;
@@ -226,21 +267,21 @@
 
 @media (min-width: $bp-tablet) {
   .root {
-    padding: $space-10 $container-pad-tablet $space-10;
+    padding: $space-12 $container-pad-tablet;
   }
 
   .shell {
     align-items: center;
-    gap: $space-8;
+    gap: $space-12;
     grid-template-columns: minmax(0, 1fr) minmax(260px, 0.48fr);
     margin: 0 auto;
-    padding: $space-10;
+    padding: $space-12;
     border-radius: $radius-xl;
   }
 
   .content {
     display: grid;
-    gap: $space-5;
+    gap: $space-8;
   }
 
   .title,
@@ -260,7 +301,7 @@
   }
 
   .benefits {
-    gap: $space-5;
+    gap: $space-6;
   }
 
   .benefitValue {
@@ -285,18 +326,18 @@
 
 @media (min-width: $bp-desktop) {
   .root {
-    padding: $space-12 $container-pad-desktop $space-12 0;
+    padding: $space-16 $container-pad-desktop $space-16 0;
   }
 
   .shell {
-    gap: $space-12;
+    gap: $space-16;
     grid-template-columns: minmax(0, 1fr) minmax(340px, 0.36fr);
     width: 100%;
     max-width: none;
-    min-height: 520px;
+    min-height: 600px;
     margin-right: auto;
     margin-left: 0;
-    padding: $space-12;
+    padding: $space-16;
     border-radius: 0 $radius-xl $radius-xl 0;
   }
 

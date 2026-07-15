@@ -457,21 +457,23 @@ describe('RazrabotkaPage', () => {
   it('renders the aftercare section', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
+    const heading = screen.getByRole('heading', { level: 2, name: 'Сайт под вашим контролем' })
+    const section = heading.closest('section') as HTMLElement
+
+    expect(heading).toBeInTheDocument()
+    expect(screen.getByText(/без постоянной помощи разработчика/)).toBeInTheDocument()
+    expect(screen.getAllByText('Меняйте контент сами')).toHaveLength(2)
     expect(
-      screen.getByRole('heading', { level: 2, name: 'Сайт под вашим контролем' }),
+      screen.getByText('Тексты, цены, услуги, фото и контакты — без программиста.'),
     ).toBeInTheDocument()
-    expect(screen.getByText(/не зависеть от разработчика/)).toBeInTheDocument()
-    expect(screen.getAllByText('Сами меняете контент')).toHaveLength(2)
+    expect(screen.getAllByText('Гарантия на техническую часть')).toHaveLength(2)
+    expect(screen.getByText('Если что-то сломается по нашей вине — исправим.')).toBeInTheDocument()
+    expect(within(section).getAllByText('SEO-настройка')).toHaveLength(2)
+    expect(within(section).getAllByLabelText('В подарок')).toHaveLength(3)
+    expect(within(section).getByText('Оптимизация в выдаче')).toBeInTheDocument()
+    expect(within(section).getByLabelText('Google и Яндекс')).toBeInTheDocument()
     expect(
-      screen.getByText('тексты, цены, услуги, фото и контакты можно обновлять без программиста'),
-    ).toBeInTheDocument()
-    expect(screen.getAllByText('Гарантия от технических багов')).toHaveLength(2)
-    expect(
-      screen.getByText('если после запуска ломается наша техническая часть, исправляем'),
-    ).toBeInTheDocument()
-    expect(screen.getAllByText('SEO-настройка в подарок')).toHaveLength(2)
-    expect(
-      screen.getByText('готовим базовые мета-данные, индексацию и понятную структуру страниц'),
+      screen.getByText('Настроим мета-данные, индексацию и структуру страниц.'),
     ).toBeInTheDocument()
   })
 

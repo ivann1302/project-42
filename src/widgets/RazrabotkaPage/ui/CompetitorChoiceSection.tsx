@@ -6,7 +6,7 @@ import styles from './CompetitorChoiceSection.module.scss'
 
 const decisionSignals = [
   'Чёткий оффер',
-  'Сильные работы',
+  'Современный дизайн',
   'Кейсы с результатом',
   'Понятный следующий шаг',
 ] as const

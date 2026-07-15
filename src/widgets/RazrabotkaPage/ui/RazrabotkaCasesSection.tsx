@@ -351,6 +351,7 @@ export function RazrabotkaCasesSection() {
                       src={slideTransition.leavingImage.src}
                       alt=""
                       fill
+                      unoptimized
                       className={`${styles.image} ${
                         slideTransition.leavingImage.imageMode === 'fill' ? styles.imageFill : ''
                       }`}
@@ -373,6 +374,7 @@ export function RazrabotkaCasesSection() {
                       src={activeImage.src}
                       alt={activeImage.alt}
                       fill
+                      unoptimized
                       className={`${styles.image} ${
                         activeImage.imageMode === 'fill' ? styles.imageFill : ''
                       }`}
