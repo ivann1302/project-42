@@ -519,6 +519,27 @@
     font-size: clamp(72px, 6vw, 106px);
   }
 
+  .title .joinLetter {
+    transform: translateY(-0.08em) scaleX(1.1111);
+  }
+
+  .title .joinCube {
+    transform: none;
+    transform-style: flat;
+    animation: none;
+    will-change: auto;
+  }
+
+  .title .joinCubeFace {
+    display: none;
+  }
+
+  .title .joinCubeFaceFront {
+    display: grid;
+    padding-bottom: 0.06em;
+    transform: none;
+  }
+
   .titleLine {
     white-space: nowrap;
   }
