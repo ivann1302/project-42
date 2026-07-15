@@ -2,6 +2,7 @@ import type { RazrabotkaPageConfig } from '@/entities/ServicePage'
 import { DesktopCursor } from '@/shared/ui'
 import { RazrabotkaChatButton } from './RazrabotkaChatButton'
 import { RazrabotkaAftercareSection } from './RazrabotkaAftercareSection'
+import { CompetitorChoiceSection } from './CompetitorChoiceSection'
 import { DecisionWindowSection } from './DecisionWindowSection'
 import { RazrabotkaBlogCarouselSection } from './RazrabotkaBlogCarouselSection'
 import { RazrabotkaCasesSection } from './RazrabotkaCasesSection'
@@ -32,6 +33,7 @@ export function RazrabotkaPage({ config }: Props) {
       <main>
         <RazrabotkaHero />
         <DecisionWindowSection />
+        <CompetitorChoiceSection />
         <WhatWeDoSection />
         <WorkProcessSection />
         <RazrabotkaProcessCtaSection />

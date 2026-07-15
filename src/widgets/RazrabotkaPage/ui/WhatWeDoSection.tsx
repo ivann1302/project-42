@@ -208,7 +208,7 @@ export function WhatWeDoSection() {
       <div className={styles.inner}>
         <div ref={statementRef} className={styles.statementCard}>
           <h2 className={styles.title} id="what-we-do-title">
-            Что мы делаем?
+            Что создаём?
           </h2>
           <p className={styles.statement}>
             Создаём сайт, который понятно объясняет ваш бизнес клиенту и помогает выделиться среди

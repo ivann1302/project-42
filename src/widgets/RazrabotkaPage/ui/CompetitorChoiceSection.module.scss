@@ -1,0 +1,273 @@
+.root {
+  position: relative;
+  padding: $space-16 $container-pad-mobile $space-20;
+  overflow: hidden;
+  color: $text-primary;
+  background: $surface-page;
+  opacity: 0;
+  transition:
+    opacity 720ms $ease-emphasized,
+    transform 820ms $ease-emphasized;
+  transform: translateY($space-8);
+  will-change: opacity, transform;
+}
+
+.root:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+.inner {
+  display: grid;
+  gap: $space-12;
+  max-width: $container-inner;
+  margin: 0 auto;
+}
+
+.title {
+  display: grid;
+  gap: 0.025em;
+  max-width: 13ch;
+  margin: 0;
+  font-family: $font-poster;
+  font-size: clamp(42px, 11.8vw, 58px);
+  font-weight: $font-weight-semibold;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.titleLine {
+  display: block;
+  opacity: 0;
+  transition:
+    opacity 620ms $ease-emphasized,
+    transform 760ms $ease-emphasized;
+  transform: translateY(0.3em);
+  will-change: opacity, transform;
+}
+
+.root:global(.visible) .titleLine {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.root:global(.visible) .titleLine:nth-child(1) {
+  transition-delay: 80ms;
+}
+
+.root:global(.visible) .titleLine:nth-child(2) {
+  transition-delay: 150ms;
+}
+
+.root:global(.visible) .titleLine:nth-child(3) {
+  transition-delay: 220ms;
+}
+
+.root:global(.visible) .titleLine:nth-child(4) {
+  transition-delay: 290ms;
+}
+
+.accentLine {
+  color: $surface-card-mint;
+}
+
+.outlineLine {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px $text-primary;
+}
+
+.support {
+  display: grid;
+  gap: $space-6;
+  opacity: 0;
+  transition:
+    opacity 700ms $ease-emphasized,
+    transform 820ms $ease-emphasized;
+  transform: translateY($space-5);
+  will-change: opacity, transform;
+}
+
+.support:global(.visible) {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+.text {
+  max-width: 36ch;
+  margin: 0;
+  font-size: clamp(18px, 5.2vw, 22px);
+  font-weight: $font-weight-semibold;
+  line-height: 1.3;
+  color: $text-primary;
+}
+
+.signals {
+  display: grid;
+  gap: $space-2;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.signals li {
+  --check-background: #{$surface-card-orange};
+
+  display: grid;
+  align-items: center;
+  gap: $space-2;
+  grid-template-columns: 28px minmax(0, 1fr);
+  min-height: 64px;
+  padding: $space-3;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  text-transform: uppercase;
+  color: $text-inverse;
+  background: $surface-card-mint;
+  border-radius: $radius-sm;
+  opacity: 0;
+  transition:
+    opacity 420ms $ease-emphasized,
+    transform 520ms $ease-emphasized;
+  transform: translateY($space-2) scale(0.98);
+}
+
+.signals li::before {
+  content: '✓';
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  line-height: 1;
+  background: var(--check-background);
+  border-radius: 50%;
+}
+
+.signals li:nth-child(2),
+.signals li:nth-child(4) {
+  --check-background: #{$surface-card-mint};
+
+  background: $surface-card-orange;
+}
+
+.support:global(.visible) .signals li {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.support:global(.visible) .signals li:nth-child(1) {
+  transition-delay: 160ms;
+}
+
+.support:global(.visible) .signals li:nth-child(2) {
+  transition-delay: 220ms;
+}
+
+.support:global(.visible) .signals li:nth-child(3) {
+  transition-delay: 280ms;
+}
+
+.support:global(.visible) .signals li:nth-child(4) {
+  transition-delay: 340ms;
+}
+
+.conclusion {
+  max-width: 34ch;
+  margin: $space-2 0 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.conclusion span {
+  color: $surface-card-orange;
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-20 $container-pad-tablet $space-24;
+  }
+
+  .inner {
+    gap: $space-16;
+  }
+
+  .title {
+    max-width: 100%;
+    font-size: clamp(76px, 9.5vw, 108px);
+  }
+
+  .titleLine {
+    white-space: nowrap;
+  }
+
+  .support {
+    align-items: start;
+    gap: $space-8 $space-12;
+    grid-template-columns: minmax(260px, 0.86fr) minmax(420px, 1.14fr);
+  }
+
+  .text {
+    grid-row: 1 / span 2;
+    font-size: clamp(20px, 2.2vw, 26px);
+  }
+
+  .signals {
+    gap: $space-3;
+  }
+
+  .signals li {
+    min-height: 68px;
+    padding: $space-4;
+    font-size: $font-size-sm;
+  }
+
+  .signals li:nth-child(3) {
+    --check-background: #{$surface-card-mint};
+
+    background: $surface-card-orange;
+  }
+
+  .signals li:nth-child(4) {
+    --check-background: #{$surface-card-orange};
+
+    background: $surface-card-mint;
+  }
+
+  .conclusion {
+    justify-self: start;
+    margin-top: 0;
+    font-size: $font-size-base;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding-right: $container-pad-desktop;
+    padding-left: $container-pad-desktop;
+  }
+
+  .title {
+    font-size: clamp(88px, 8.2vw, 118px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .support,
+  .titleLine,
+  .signals li {
+    opacity: 1;
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+}

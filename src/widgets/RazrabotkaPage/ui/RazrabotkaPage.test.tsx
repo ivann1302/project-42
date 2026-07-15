@@ -108,10 +108,30 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText('куда нажать дальше')).toBeInTheDocument()
   })
 
+  it('renders the competitor choice section after the 30-second section', () => {
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    const decisionHeading = screen.getByRole('heading', {
+      level: 2,
+      name: /30 секунд Именно столько клиенту нужно/,
+    })
+    const competitorHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'Что, если вы лучше конкурента, а клиент всё равно выбирает его?',
+    })
+
+    expect(decisionHeading.compareDocumentPosition(competitorHeading)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    )
+    expect(screen.getByText(/клиент оценивает не весь ваш опыт/)).toBeInTheDocument()
+    expect(screen.getByText('Понятный следующий шаг')).toBeInTheDocument()
+    expect(screen.getByText(/показывает ваш уровень ещё до первого разговора/)).toBeInTheDocument()
+  })
+
   it('renders the what we do section', () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
-    expect(screen.getByRole('heading', { level: 2, name: 'Что мы делаем?' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: 'Что создаём?' })).toBeInTheDocument()
     expect(screen.getByText(/понятно объясняет ваш бизнес клиенту/)).toBeInTheDocument()
     expect(screen.getByText('В каждый проект входит')).toBeInTheDocument()
     expect(screen.getByText('Разработка проекта')).toBeInTheDocument()

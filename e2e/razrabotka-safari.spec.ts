@@ -83,8 +83,11 @@ test.describe('razrabotka page', () => {
       await page.getByRole('button', { name: 'Открыть меню' }).click()
     }
 
-    await page.getByRole('link', { name: 'Обсудить проект' }).click()
-    const quizDialog = page.getByRole('dialog', { name: 'Оставьте заявку' })
+    await page
+      .getByTestId('razrabotka-header')
+      .getByRole('link', { name: 'Обсудить проект' })
+      .click()
+    const quizDialog = page.getByRole('dialog', { name: 'Подумаем над сайтом вместе' })
 
     await expect(quizDialog).toBeVisible()
     await expect(page.locator('#razrabotka-quiz-name')).toBeVisible()
