@@ -16,6 +16,7 @@ import styles from './RazrabotkaProcessCtaSection.module.scss'
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
 const PHONE_PATTERN = /^\+?[\d\s\-()]{7,20}$/u
 const TELEGRAM_USERNAME_PATTERN = /^@?[a-zA-Z0-9_]{5,32}$/u
+const NETWORK_RETRY_DELAY_MS = 450
 
 const contactMethods = [
   { label: 'Telegram', value: 'telegram' },
@@ -27,9 +28,37 @@ const contactMethods = [
 type ContactMethod = (typeof contactMethods)[number]['value']
 type FieldName = 'name' | 'activity' | 'contact' | 'submit'
 
+function createSubmissionId() {
+  if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID()
+
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}`
+}
+
+function waitForNetworkRetry() {
+  return new Promise((resolve) => window.setTimeout(resolve, NETWORK_RETRY_DELAY_MS))
+}
+
+async function sendContactRequest(payload: Record<string, unknown>) {
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      return await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+    } catch (error) {
+      if (attempt === 1) throw error
+      await waitForNetworkRetry()
+    }
+  }
+
+  throw new Error('Contact request failed')
+}
+
 export function RazrabotkaProcessCtaSection() {
   const router = useRouter()
   const sectionRef = useRef<HTMLElement>(null)
+  const submissionIdRef = useRef<string | null>(null)
   const [name, setName] = useState('')
   const [activity, setActivity] = useState('')
   const [method, setMethod] = useState<ContactMethod>('telegram')
@@ -42,6 +71,11 @@ export function RazrabotkaProcessCtaSection() {
   const isTelegram = method === 'telegram'
   const contactLabel = isTelegram ? 'Ваш ник в Telegram' : 'Ваш телефон'
   const contactPlaceholder = isTelegram ? '@username' : '+7 (___) ___-__-__'
+
+  const resetSubmission = () => {
+    submissionIdRef.current = null
+    setError(null)
+  }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -81,26 +115,25 @@ export function RazrabotkaProcessCtaSection() {
       }
     }
 
+    const submissionId = submissionIdRef.current ?? createSubmissionId()
+    submissionIdRef.current = submissionId
     setLoading(true)
     try {
-      const response = await fetch(CONTACT_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: normalizedName,
-          phone: isTelegram ? undefined : normalizedContact,
-          contact: isTelegram ? normalizedContact : undefined,
-          message: `CTA после этапов работы. Сфера деятельности: ${normalizedActivity}. Предпочтительный способ связи: ${method}. Контакт: ${normalizedContact}.`,
-          service: 'Разработка сайта',
-          _page: window.location.pathname,
-          ...getLeadSourcePayload(
-            'razrabotka_process_cta',
-            'CTA-форма после секции «Как мы работаем»',
-          ),
-          _activity: normalizedActivity,
-          _contactMethod: method,
-          _contact: normalizedContact,
-        }),
+      const response = await sendContactRequest({
+        name: normalizedName,
+        phone: isTelegram ? undefined : normalizedContact,
+        contact: isTelegram ? normalizedContact : undefined,
+        message: `CTA после этапов работы. Сфера деятельности: ${normalizedActivity}. Предпочтительный способ связи: ${method}. Контакт: ${normalizedContact}.`,
+        service: 'Разработка сайта',
+        _page: window.location.pathname,
+        ...getLeadSourcePayload(
+          'razrabotka_process_cta',
+          'CTA-форма после секции «Как мы работаем»',
+        ),
+        _activity: normalizedActivity,
+        _contactMethod: method,
+        _contact: normalizedContact,
+        _requestId: submissionId,
       })
 
       if (!response.ok) throw new Error('Request failed')
@@ -141,7 +174,7 @@ export function RazrabotkaProcessCtaSection() {
               autoComplete="name"
               onChange={(event) => {
                 setName(event.target.value)
-                setError(null)
+                resetSubmission()
               }}
               aria-invalid={error?.field === 'name'}
             />
@@ -157,7 +190,7 @@ export function RazrabotkaProcessCtaSection() {
               placeholder="Например, медицина или обучение"
               onChange={(event) => {
                 setActivity(event.target.value)
-                setError(null)
+                resetSubmission()
               }}
               aria-invalid={error?.field === 'activity'}
             />
@@ -180,7 +213,7 @@ export function RazrabotkaProcessCtaSection() {
                     onChange={() => {
                       setMethod(item.value)
                       setContact('')
-                      setError(null)
+                      resetSubmission()
                     }}
                   />
                   <span>{item.label}</span>
@@ -201,7 +234,7 @@ export function RazrabotkaProcessCtaSection() {
               autoComplete={isTelegram ? 'off' : 'tel'}
               onChange={(event) => {
                 setContact(event.target.value)
-                setError(null)
+                resetSubmission()
               }}
               aria-invalid={error?.field === 'contact'}
             />

@@ -246,6 +246,7 @@ function pickLeadFields(payload) {
     utmContent: toStringValue(payload.utmContent),
     yclid: toStringValue(payload.yclid),
     gclid: toStringValue(payload.gclid),
+    requestId: toStringValue(payload.requestId),
   }
 }
 
@@ -259,7 +260,8 @@ function pickUpdateFields(patch) {
   if (patch.taxPercent !== undefined) next.taxPercent = toPercentNumber(patch.taxPercent)
   if (PROJECT_STAGES.has(patch.projectStage)) next.projectStage = patch.projectStage
   if (patch.sourceType !== undefined) next.sourceType = toStringValue(patch.sourceType).slice(0, 60)
-  if (patch.manualSource !== undefined) next.manualSource = toStringValue(patch.manualSource).slice(0, 160)
+  if (patch.manualSource !== undefined)
+    next.manualSource = toStringValue(patch.manualSource).slice(0, 160)
 
   return next
 }

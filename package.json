@@ -19,6 +19,7 @@
     "format": "prettier --write src",
     "fix": "npm run lint -- --fix && npm run lint:css -- --fix && npm run format",
     "test": "jest",
+    "test:server": "node --test server/*.test.mjs",
     "test:e2e": "playwright test",
     "prepare": "husky"
   },

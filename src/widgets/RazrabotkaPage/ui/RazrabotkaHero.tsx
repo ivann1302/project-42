@@ -1,12 +1,9 @@
 'use client'
 
 import type { CSSProperties, PointerEvent } from 'react'
-import { useEffect, useRef } from 'react'
 import { MagneticHeading, StudioButton } from '@/shared/ui'
 import styles from './RazrabotkaHero.module.scss'
 
-const MOBILE_INTRO_QUERY = '(max-width: 767px)'
-const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
 const sphereLetters = Array.from('project 42')
 const sphereLetterCount = sphereLetters.length + 1
 const sphereMaxShiftX = 16
@@ -37,76 +34,8 @@ function handleSpherePointerLeave(event: PointerEvent<HTMLDivElement>) {
 }
 
 export function RazrabotkaHero() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const section = sectionRef.current
-
-    if (!section || !window.matchMedia) return
-
-    const mobileQuery = window.matchMedia(MOBILE_INTRO_QUERY)
-    const reducedMotionQuery = window.matchMedia(REDUCED_MOTION_QUERY)
-    let frameId = 0
-
-    const setProgress = (progress: number) => {
-      const normalizedProgress = Math.min(Math.max(progress, 0), 1)
-      const planetOpacity = Math.max(1 - normalizedProgress * 1.18, 0)
-      const contentOpacity = Math.min(Math.max((normalizedProgress - 0.38) * 2.2, 0), 1)
-      const contentOffset = (1 - contentOpacity) * 28
-      const planetScale = 1 + normalizedProgress * 0.72
-
-      section.style.setProperty('--mobile-intro-progress', normalizedProgress.toFixed(3))
-      section.style.setProperty('--mobile-planet-opacity', planetOpacity.toFixed(3))
-      section.style.setProperty('--mobile-content-opacity', contentOpacity.toFixed(3))
-      section.style.setProperty('--mobile-content-offset', `${contentOffset.toFixed(2)}px`)
-      section.style.setProperty('--mobile-planet-scale', planetScale.toFixed(3))
-      section.style.setProperty(
-        '--mobile-content-pointer-events',
-        normalizedProgress > 0.82 ? 'auto' : 'none',
-      )
-    }
-
-    const updateIntroProgress = () => {
-      frameId = 0
-
-      if (!mobileQuery.matches || reducedMotionQuery.matches) {
-        setProgress(1)
-        return
-      }
-
-      const scrollRange = Math.max(section.offsetHeight - window.innerHeight, 1)
-      const progress = Math.min(Math.max(-section.getBoundingClientRect().top / scrollRange, 0), 1)
-
-      setProgress(progress)
-    }
-
-    const scheduleUpdate = () => {
-      if (frameId) return
-      frameId = window.requestAnimationFrame(updateIntroProgress)
-    }
-
-    updateIntroProgress()
-    window.addEventListener('scroll', scheduleUpdate, { passive: true })
-    window.addEventListener('resize', scheduleUpdate)
-    mobileQuery.addEventListener('change', scheduleUpdate)
-    reducedMotionQuery.addEventListener('change', scheduleUpdate)
-
-    return () => {
-      if (frameId) window.cancelAnimationFrame(frameId)
-      window.removeEventListener('scroll', scheduleUpdate)
-      window.removeEventListener('resize', scheduleUpdate)
-      mobileQuery.removeEventListener('change', scheduleUpdate)
-      reducedMotionQuery.removeEventListener('change', scheduleUpdate)
-    }
-  }, [])
-
   return (
-    <section
-      ref={sectionRef}
-      className={styles.root}
-      id="top"
-      aria-labelledby="razrabotka-hero-title"
-    >
+    <section className={styles.root} id="top" aria-labelledby="razrabotka-hero-title">
       <div className={styles.inner}>
         <div className={styles.content}>
           <p className={styles.kicker}>Создание и продвижение</p>
@@ -121,7 +50,14 @@ export function RazrabotkaHero() {
             <span className={styles.outlineWord}>САЙТЫ</span>
             <span className={styles.titleLine}>
               <span className={styles.joinLetter} aria-hidden="true" data-cursor-interactive>
-                &
+                <span className={styles.joinCube}>
+                  <span className={`${styles.joinCubeFace} ${styles.joinCubeFaceFront}`}>&</span>
+                  <span className={`${styles.joinCubeFace} ${styles.joinCubeFaceBack}`}>&</span>
+                  <span className={`${styles.joinCubeFace} ${styles.joinCubeFaceRight}`}>&</span>
+                  <span className={`${styles.joinCubeFace} ${styles.joinCubeFaceLeft}`}>&</span>
+                  <span className={`${styles.joinCubeFace} ${styles.joinCubeFaceTop}`}>&</span>
+                  <span className={`${styles.joinCubeFace} ${styles.joinCubeFaceBottom}`}>&</span>
+                </span>
               </span>{' '}
               приложения
             </span>
@@ -133,18 +69,10 @@ export function RazrabotkaHero() {
             Если вам нужен результат, а не просто красивый дизайн, то вы по адресу.
           </p>
           <div className={styles.actions} aria-label="Основные действия">
-            <StudioButton
-              className={`${styles.heroButton} ${styles.heroButtonMint}`}
-              href="#cta"
-              variant="mint"
-            >
+            <StudioButton className={styles.heroButton} href="#cta" variant="mint">
               Получить консультацию
             </StudioButton>
-            <StudioButton
-              className={`${styles.heroButton} ${styles.heroButtonPeach}`}
-              href="#projects"
-              variant="peach"
-            >
+            <StudioButton className={styles.heroButton} href="#projects" variant="peach">
               Наши работы
             </StudioButton>
           </div>

@@ -42,6 +42,9 @@ jobs:
       - name: Run unit tests
         run: npm test -- --runInBand
 
+      - name: Run server tests
+        run: npm run test:server
+
       - name: Build static export
         run: npm run build:static
 

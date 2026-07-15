@@ -79,14 +79,25 @@ export function RazrabotkaChatButton() {
         ))}
       </div>
 
+      <a
+        className={`${styles.button} ${styles.mobileButton}`}
+        href="#cta"
+        onClick={() => setOpen(false)}
+      >
+        <span className={styles.buttonLabel}>Получить консультацию</span>
+      </a>
+
       <button
-        className={styles.button}
+        className={`${styles.button} ${styles.desktopButton}`}
         type="button"
         aria-label={open ? 'Закрыть чат' : 'Открыть чат'}
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
       >
-        <Icon name={open ? 'close' : 'messageCircle'} size={26} />
+        <span className={styles.buttonLabel}>Получить консультацию</span>
+        <span className={styles.buttonIcon} aria-hidden="true">
+          <Icon name={open ? 'close' : 'messageCircle'} size={26} />
+        </span>
       </button>
     </div>
   )

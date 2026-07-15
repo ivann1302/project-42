@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { razrabotkaConfig } from '@/entities/ServicePage'
 import { RazrabotkaPage } from './RazrabotkaPage'
@@ -303,6 +303,30 @@ describe('RazrabotkaPage', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
   })
 
+  it('retries an interrupted process CTA request with the same submission id', async () => {
+    const fetchMock = jest
+      .fn()
+      .mockRejectedValueOnce(new TypeError('Failed to fetch'))
+      .mockResolvedValueOnce({ ok: true })
+    global.fetch = fetchMock as unknown as typeof fetch
+
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    await userEvent.type(screen.getByLabelText('Как вас зовут?'), 'Иван')
+    await userEvent.type(screen.getByLabelText('Сфера деятельности'), 'Разработка')
+    await userEvent.type(screen.getByLabelText('Ваш ник в Telegram'), 'project42')
+    await userEvent.click(screen.getByRole('button', { name: 'Получить рекомендации' }))
+
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2))
+
+    const firstPayload = JSON.parse(fetchMock.mock.calls[0][1].body)
+    const retryPayload = JSON.parse(fetchMock.mock.calls[1][1].body)
+
+    expect(firstPayload._requestId).toEqual(expect.any(String))
+    expect(retryPayload._requestId).toBe(firstPayload._requestId)
+    expect(mockPush).toHaveBeenCalledWith('/thank-you')
+  })
+
   it('opens the consultation quiz from CTA links', async () => {
     render(<RazrabotkaPage config={razrabotkaConfig} />)
 
@@ -486,7 +510,7 @@ describe('RazrabotkaPage', () => {
     )
   })
 
-  it('shows the floating messenger chat after the decision section', async () => {
+  it('opens the consultation form on mobile and keeps desktop messenger links', async () => {
     const originalGetBoundingClientRect = Element.prototype.getBoundingClientRect
     const originalScrollY = window.scrollY
     let decisionBottom = window.innerHeight + 200
@@ -533,9 +557,24 @@ describe('RazrabotkaPage', () => {
       window.dispatchEvent(new Event('scroll'))
     })
 
-    expect(await screen.findByRole('button', { name: 'Открыть чат' })).toBeInTheDocument()
+    const desktopChatButton = await screen.findByRole('button', { name: 'Открыть чат' })
+    const chatRoot = desktopChatButton.closest('div')
 
-    await userEvent.click(screen.getByRole('button', { name: 'Открыть чат' }))
+    expect(chatRoot).not.toBeNull()
+
+    const consultationButton = within(chatRoot!).getByRole('link', {
+      name: 'Получить консультацию',
+    })
+    expect(consultationButton).toHaveAttribute('href', '#cta')
+
+    await userEvent.click(consultationButton)
+
+    const dialog = await screen.findByRole('dialog')
+    expect(within(dialog).getByLabelText('Как вас зовут?')).toBeInTheDocument()
+
+    await userEvent.click(within(dialog).getByRole('button', { name: 'Закрыть' }))
+
+    await userEvent.click(desktopChatButton)
 
     expect(screen.getByRole('button', { name: 'Закрыть чат' })).toHaveAttribute(
       'aria-expanded',

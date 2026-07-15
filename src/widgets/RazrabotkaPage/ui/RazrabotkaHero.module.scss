@@ -1,4 +1,5 @@
 .root {
+  min-height: 100svh;
   padding: 124px $container-pad-mobile $space-6;
   overflow: clip visible;
   color: $text-primary;
@@ -14,6 +15,7 @@
 .content {
   display: grid;
   gap: $space-4;
+  grid-template-rows: auto auto auto 1fr;
   place-items: start center;
   min-height: calc(100svh - 124px - #{$space-6});
   text-align: center;
@@ -77,55 +79,83 @@
 }
 
 .joinLetter {
+  --join-cube-size: 0.82em;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  min-width: 0.74em;
-  padding: 0.02em 0.1em 0.055em;
+  width: var(--join-cube-size);
+  height: var(--join-cube-size);
   font-family: $font-body;
   font-size: 0.78em;
   font-weight: $font-weight-display;
-  line-height: 0.88;
+  line-height: 1;
   color: $surface-card-mint;
+  perspective: 3em;
+  transform: translateY(-0.08em);
+  animation: hero-join-letter-colors 9s ease-in-out infinite;
+}
+
+.joinCube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: hero-join-cube-spin 9s linear infinite;
+  will-change: transform;
+}
+
+.joinCubeFace {
+  --join-cube-depth: 0.41em;
+
+  display: grid;
+  position: absolute;
+  place-items: center;
+  font-family: $font-body;
+  font-size: 1em;
+  font-weight: $font-weight-display;
+  line-height: 0.88;
+  color: inherit;
   background: currentcolor;
   border: 0.028em solid rgba(0 0 0 / 54%);
   border-radius: 0.1em;
   box-shadow:
     0 0.1em 0.16em rgba(0 0 0 / 32%),
     inset 0 0.018em 0 rgba(255 255 255 / 42%);
-  transition:
-    box-shadow 180ms $ease-standard,
-    filter 180ms $ease-standard;
-  transform: translateY(-0.08em);
-  animation: hero-join-letter-colors 9s ease-in-out infinite;
-  transform-origin: 50% 80%;
-  isolation: isolate;
+  backface-visibility: hidden;
+  inset: 0;
   -webkit-text-fill-color: $text-inverse;
   text-shadow: 0 0.035em 0 rgba(0 0 0 / 28%);
-  will-change: transform;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    right: 0.025em;
-    bottom: -0.08em;
-    left: 0.025em;
-    z-index: -1;
-    height: 0.11em;
-    background: color-mix(in srgb, currentcolor 58%, #000);
-    border: 0.02em solid rgba(0 0 0 / 36%);
-    border-radius: 0 0 0.1em 0.1em;
-    box-shadow: 0 0.07em 0.13em rgba(0 0 0 / 36%);
-  }
+.joinCubeFaceFront {
+  transform: translateZ(var(--join-cube-depth));
+}
 
-  &:hover {
-    box-shadow:
-      0 0.14em 0.2em rgba(0 0 0 / 36%),
-      inset 0 0.018em 0 rgba(255 255 255 / 50%);
-    filter: saturate(1.08) contrast(1.02);
-    animation: hero-join-letter-colors 9s ease-in-out infinite;
-  }
+.joinCubeFaceBack {
+  filter: brightness(0.76);
+  transform: rotateY(180deg) translateZ(var(--join-cube-depth));
+}
+
+.joinCubeFaceRight {
+  filter: brightness(0.84);
+  transform: rotateY(90deg) translateZ(var(--join-cube-depth));
+}
+
+.joinCubeFaceLeft {
+  filter: brightness(0.92);
+  transform: rotateY(-90deg) translateZ(var(--join-cube-depth));
+}
+
+.joinCubeFaceTop {
+  filter: brightness(1.12);
+  transform: rotateX(90deg) translateZ(var(--join-cube-depth));
+}
+
+.joinCubeFaceBottom {
+  filter: brightness(0.68);
+  transform: rotateX(-90deg) translateZ(var(--join-cube-depth));
 }
 
 .title .joinLetter {
@@ -165,69 +195,32 @@
 }
 
 .actions .heroButton {
-  position: relative;
-  overflow: visible;
-  border: 2px solid rgba(0 0 0 / 54%);
-  box-shadow:
-    0 7px 0 var(--hero-button-depth),
-    0 12px 18px rgba(0 0 0 / 34%),
-    inset 0 1px 0 rgba(255 255 255 / 42%);
+  overflow: hidden;
+  border: 1px solid transparent;
+  box-shadow: none;
   transition:
     color $transition-base,
     background $transition-base,
     border-color $transition-base,
-    box-shadow 180ms $ease-standard,
     filter 180ms $ease-standard;
-  transform: translateY(0);
-  isolation: isolate;
-  transform-origin: 50% 80%;
-  will-change: transform;
-
-  &::after {
-    content: '';
-    position: absolute;
-    height: 42%;
-    background: linear-gradient(180deg, rgba(255 255 255 / 34%), transparent);
-    border-radius: calc(#{$radius-md} - 4px);
-    opacity: 0.78;
-    inset: 4px 8px auto;
-    pointer-events: none;
-  }
+  transform: none;
 
   &:hover {
-    box-shadow:
-      0 10px 0 var(--hero-button-depth),
-      0 18px 24px rgba(0 0 0 / 38%),
-      inset 0 1px 0 rgba(255 255 255 / 50%);
-    filter: saturate(1.08) contrast(1.02);
-    animation: hero-button-elastic 680ms cubic-bezier(0.22, 1.28, 0.36, 1) both;
+    box-shadow: none;
+    filter: brightness(1.06);
+    transform: none;
   }
 
   &:active {
-    box-shadow:
-      0 2px 0 var(--hero-button-depth),
-      0 5px 8px rgba(0 0 0 / 34%),
-      inset 0 2px 5px rgba(0 0 0 / 20%);
-    transform: translateY(5px) scale(0.985);
-    animation: none;
+    box-shadow: none;
+    filter: brightness(0.94);
+    transform: none;
   }
 
   &:focus-visible {
     outline: none;
-    box-shadow:
-      0 7px 0 var(--hero-button-depth),
-      0 12px 18px rgba(0 0 0 / 34%),
-      inset 0 1px 0 rgba(255 255 255 / 42%),
-      $shadow-focus;
+    box-shadow: $shadow-focus;
   }
-}
-
-.heroButtonMint {
-  --hero-button-depth: #5da97f;
-}
-
-.heroButtonPeach {
-  --hero-button-depth: #bd6734;
 }
 
 .visual {
@@ -422,62 +415,19 @@
 
 @media (max-width: #{$bp-tablet - 1px}) {
   .root {
-    --mobile-intro-progress: 0;
-    --mobile-planet-opacity: 1;
-    --mobile-content-opacity: 0;
-    --mobile-content-offset: 28px;
-    --mobile-planet-scale: 1;
-    --mobile-content-pointer-events: none;
-
-    min-height: 182svh;
-    padding-top: 0;
-    padding-bottom: 0;
-    overflow: clip;
+    padding-top: 104px;
   }
 
   .inner {
-    display: grid;
-    align-items: stretch;
-    position: sticky;
-    top: 0;
-    min-height: 100svh;
-    padding-top: 104px;
-    padding-bottom: $space-6;
-    box-sizing: border-box;
-    grid-template-areas: 'mobile-hero';
-  }
-
-  .content,
-  .visual {
-    grid-area: mobile-hero;
+    gap: 0;
   }
 
   .content {
-    place-self: stretch;
-    min-height: auto;
-    opacity: var(--mobile-content-opacity);
-    transform: translateY(var(--mobile-content-offset));
-    pointer-events: var(--mobile-content-pointer-events);
+    min-height: calc(100svh - 104px - #{$space-6});
   }
 
   .visual {
-    z-index: 2;
-    place-self: stretch;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    opacity: var(--mobile-planet-opacity);
-    pointer-events: none;
-    transition:
-      opacity 120ms linear,
-      transform 120ms linear;
-    transform: scale(var(--mobile-planet-scale));
-    transform-origin: center center;
-    animation: none;
-  }
-
-  .sphereStage {
-    align-self: center;
+    display: none;
   }
 }
 
@@ -487,15 +437,16 @@
   }
 
   .inner {
-    align-items: center;
+    align-items: stretch;
     gap: $space-10;
     grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1fr);
-    min-height: auto;
+    min-height: calc(100svh - 136px - #{$space-12});
   }
 
   .content {
+    align-content: start;
     place-items: start;
-    min-height: auto;
+    min-height: 100%;
     text-align: left;
   }
 
@@ -528,9 +479,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: $space-3;
-    place-self: auto start;
+    place-self: end start;
     width: auto;
-    margin-top: $space-1;
+    margin-top: auto;
   }
 
   .visual {
@@ -538,7 +489,7 @@
     --sphere-letter-size: 92px;
     --sphere-letter-radius: calc(var(--sphere-size) * 0.46);
 
-    justify-self: end;
+    place-self: center end;
     width: min(112%, 660px);
     height: clamp(420px, 52vw, 560px);
     overflow: visible;
@@ -595,11 +546,11 @@
 
   .joinLetter {
     animation: none;
+  }
 
-    &:hover {
-      transform: translateY(-0.08em);
-      animation: none;
-    }
+  .joinCube {
+    animation: none;
+    transform: rotateY(-28deg);
   }
 
   .title,
@@ -625,11 +576,6 @@
 
   .actions .heroButton {
     transition: none;
-
-    &:hover {
-      transform: translateY(-2px);
-      animation: none;
-    }
   }
 }
 
@@ -669,25 +615,13 @@
   }
 }
 
-@keyframes hero-button-elastic {
-  0% {
-    transform: translateY(0) scale(1);
+@keyframes hero-join-cube-spin {
+  from {
+    transform: rotateY(0deg);
   }
 
-  36% {
-    transform: translateY(-7px) scale(1.08, 0.92);
-  }
-
-  54% {
-    transform: translateY(-4px) scale(0.97, 1.05);
-  }
-
-  72% {
-    transform: translateY(-5px) scale(1.025, 0.98);
-  }
-
-  100% {
-    transform: translateY(-4px) scale(1);
+  to {
+    transform: rotateY(360deg);
   }
 }
 

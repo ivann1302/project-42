@@ -3,6 +3,9 @@ import path from 'node:path'
 import { createLead } from './admin-store.mjs'
 
 const MAX_BODY_BYTES = 1024 * 1024
+const SUBMISSION_CACHE_TTL_MS = 10 * 60 * 1000
+const MAX_CACHED_SUBMISSIONS = 500
+const submissionStates = new Map()
 
 export async function handleContactRequest(req, res) {
   setCorsHeaders(res)
@@ -23,7 +26,10 @@ export async function handleContactRequest(req, res) {
     body = JSON.parse(await readRequestBody(req))
   } catch (error) {
     const status = error?.statusCode ?? 400
-    sendJson(res, status, { ok: false, error: status === 413 ? 'Payload too large' : 'Invalid JSON' })
+    sendJson(res, status, {
+      ok: false,
+      error: status === 413 ? 'Payload too large' : 'Invalid JSON',
+    })
     return
   }
 
@@ -45,10 +51,50 @@ export async function handleContactRequest(req, res) {
     return
   }
 
-  try {
-    await createLead(normalized)
-  } catch (error) {
-    console.error('[contact] Failed to save lead:', error?.message || error)
+  const result = await processIdempotentSubmission(normalized)
+  sendJson(res, result.statusCode, result.body)
+}
+
+async function processIdempotentSubmission(normalized) {
+  if (!normalized.requestId) {
+    return processContactSubmission(normalized, true)
+  }
+
+  const current = submissionStates.get(normalized.requestId)
+
+  if (current?.status === 'pending') return current.promise
+  if (current?.status === 'success') return current.result
+
+  const shouldSaveLead = !current?.leadSaved
+  const promise = processContactSubmission(normalized, shouldSaveLead).then((result) => {
+    rememberSubmission(normalized.requestId, {
+      leadSaved: Boolean(current?.leadSaved || result.leadSaved),
+      result,
+      status: result.body.ok ? 'success' : 'failed',
+    })
+
+    return result
+  })
+
+  rememberSubmission(normalized.requestId, {
+    leadSaved: Boolean(current?.leadSaved),
+    promise,
+    status: 'pending',
+  })
+
+  return promise
+}
+
+async function processContactSubmission(normalized, shouldSaveLead) {
+  let leadSaved = !shouldSaveLead
+
+  if (shouldSaveLead) {
+    try {
+      await createLead(normalized)
+      leadSaved = true
+    } catch (error) {
+      console.error('[contact] Failed to save lead:', error?.message || error)
+    }
   }
 
   const botToken = process.env.TELEGRAM_BOT_TOKEN ?? ''
@@ -56,8 +102,7 @@ export async function handleContactRequest(req, res) {
 
   if (!botToken || chatIds.length === 0) {
     console.error('[contact] Telegram env vars are not configured')
-    sendJson(res, 200, { ok: true })
-    return
+    return { body: { ok: true }, leadSaved, statusCode: 200 }
   }
 
   const text = buildTelegramMessage(normalized)
@@ -77,15 +122,40 @@ export async function handleContactRequest(req, res) {
   }
 
   if (!sent) {
-    sendJson(res, 500, {
-      ok: false,
-      error: 'Telegram error',
-      details: lastTelegramError,
-    })
-    return
+    return {
+      body: {
+        ok: false,
+        error: 'Telegram error',
+        details: lastTelegramError,
+      },
+      leadSaved,
+      statusCode: 502,
+    }
   }
 
-  sendJson(res, 200, { ok: true })
+  return { body: { ok: true }, leadSaved, statusCode: 200 }
+}
+
+function rememberSubmission(requestId, state) {
+  const expiresAt = Date.now() + SUBMISSION_CACHE_TTL_MS
+  const entry = { ...state, expiresAt }
+
+  submissionStates.delete(requestId)
+  submissionStates.set(requestId, entry)
+
+  while (submissionStates.size > MAX_CACHED_SUBMISSIONS) {
+    const oldestRequestId = submissionStates.keys().next().value
+    if (!oldestRequestId) break
+    submissionStates.delete(oldestRequestId)
+  }
+
+  const timeoutId = setTimeout(() => {
+    if (submissionStates.get(requestId)?.expiresAt === expiresAt) {
+      submissionStates.delete(requestId)
+    }
+  }, SUBMISSION_CACHE_TTL_MS)
+
+  timeoutId.unref?.()
 }
 
 export async function loadEnv({ cwd = process.cwd(), documentRoot = '' } = {}) {
@@ -177,6 +247,7 @@ function normalizeContactBody(body) {
     utmContent: toStringValue(body._utm_content),
     yclid: toStringValue(body._yclid),
     gclid: toStringValue(body._gclid),
+    requestId: toStringValue(body._requestId),
   }
 }
 
@@ -206,6 +277,10 @@ function validateContactBody(body) {
 
   if (body.message.length > 1000) {
     errors.message = ['Сообщение слишком длинное']
+  }
+
+  if (body.requestId.length > 128) {
+    errors._requestId = ['Некорректный идентификатор заявки']
   }
 
   return errors
@@ -270,6 +345,21 @@ function buildSourceLines(body) {
 }
 
 async function sendTelegramMessage({ botToken, chatId, text }) {
+  const parsedAttempts = Number.parseInt(process.env.TELEGRAM_RETRY_ATTEMPTS || '3', 10)
+  const attempts = Number.isFinite(parsedAttempts) ? Math.min(4, Math.max(1, parsedAttempts)) : 3
+  let lastResult = { ok: false, error: 'Telegram request failed', retryable: true }
+
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    if (attempt > 0) await wait(300 * 2 ** (attempt - 1))
+
+    lastResult = await sendTelegramMessageOnce({ botToken, chatId, text })
+    if (lastResult.ok || !lastResult.retryable) return lastResult
+  }
+
+  return lastResult
+}
+
+async function sendTelegramMessageOnce({ botToken, chatId, text }) {
   const apiBase = (process.env.TELEGRAM_API_BASE || 'https://api.telegram.org').replace(/\/+$/, '')
   const timeout = Math.max(1, Number.parseInt(process.env.TELEGRAM_TIMEOUT || '20', 10))
   const controller = new AbortController()
@@ -290,16 +380,24 @@ async function sendTelegramMessage({ botToken, chatId, text }) {
     const data = parseJson(responseText)
 
     if (response.ok && data?.ok === true) {
-      return { ok: true, error: '' }
+      return { ok: true, error: '', retryable: false }
     }
 
     const description = data?.description || responseText || response.statusText
-    return { ok: false, error: `code=${data?.error_code ?? response.status} ${description}` }
+    return {
+      ok: false,
+      error: `code=${data?.error_code ?? response.status} ${description}`,
+      retryable: response.status === 429 || response.status >= 500,
+    }
   } catch (error) {
-    return { ok: false, error: error?.message || 'fetch failed' }
+    return { ok: false, error: error?.message || 'fetch failed', retryable: true }
   } finally {
     clearTimeout(timeoutId)
   }
+}
+
+function wait(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds))
 }
 
 function getTelegramChatIds() {
@@ -330,7 +428,9 @@ function setCorsHeaders(res) {
 }
 
 function sanitizeTelegramError(error, botToken) {
-  return String(error || '').replaceAll(botToken, '[telegram-token]').slice(0, 500)
+  return String(error || '')
+    .replaceAll(botToken, '[telegram-token]')
+    .slice(0, 500)
 }
 
 function escapeHtml(value) {
