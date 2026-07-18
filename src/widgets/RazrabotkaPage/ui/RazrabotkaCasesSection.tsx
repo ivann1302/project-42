@@ -18,8 +18,11 @@ const caseRows = [
   {
     project: getProject('project-1'),
     company: 'ROSA',
+    industry: 'Строительство',
+    mobileIndustry: 'Строительство',
+    coverImage: '/images/razrabotka/cases/rosa-cover.webp',
+    imageAspectRatio: '3 / 2',
     accent: 'mint',
-    imageMode: 'fill',
     metric: '3x',
     metricSize: 'large',
     result: ['Стоимость заявки', 'ниже после рекламы'],
@@ -40,8 +43,11 @@ const caseRows = [
   {
     project: getProject('project-3'),
     company: 'TrueTell',
+    industry: 'Аналитика для ритейла',
+    mobileIndustry: 'Ритейл-аналитика',
+    coverImage: '/images/razrabotka/cases/truetell-cover.webp',
+    imageAspectRatio: '3 / 2',
     accent: 'pink',
-    imageMode: 'fill',
     metric: 'x10+',
     metricSize: 'large',
     result: ['Рост дохода', 'после запуска лендинга'],
@@ -66,8 +72,11 @@ const caseRows = [
   {
     project: getProject('project-7'),
     company: 'Sosedi',
+    industry: 'Шеринг вещей',
+    mobileIndustry: 'Шеринг',
+    coverImage: '/images/razrabotka/cases/sosedi-cover.webp',
+    imageAspectRatio: '3 / 2',
     accent: 'orange',
-    imageMode: 'fill',
     metric: 'APP',
     metricSize: 'large',
     result: ['Быстрее объясняет', 'ценность приложения'],
@@ -88,8 +97,11 @@ const caseRows = [
   {
     project: getProject('project-8'),
     company: 'Ziptron',
+    industry: 'Аренда электровелосипедов',
+    mobileIndustry: 'Электротранспорт',
+    coverImage: '/images/razrabotka/cases/ziptron-cover.webp',
+    imageAspectRatio: '3 / 2',
     accent: 'mint',
-    imageMode: 'fill',
     metric: 'скачивание приложения',
     metricSize: 'compact',
     result: ['Ведет пользователя', 'к первой поездке'],
@@ -114,8 +126,11 @@ const caseRows = [
   {
     project: getProject('project-zvezda'),
     company: 'Звезда',
+    industry: 'Производство трансформаторов',
+    mobileIndustry: 'Промышленность',
+    coverImage: '/images/razrabotka/cases/zvezda-cover.webp',
+    imageAspectRatio: '3 / 2',
     accent: 'yellow',
-    imageMode: 'fill',
     metric: 'Доверие крупного бизнеса',
     metricSize: 'compact',
     result: ['Больше доверия', 'к производству'],
@@ -142,10 +157,41 @@ const caseRows = [
     ],
   },
   {
+    project: {
+      id: 'project-russkiy-zodchiy',
+      title: 'Конверсионный лендинг «Русский зодчий»',
+      desktopImageUrl: '/images/razrabotka/cases/rrr-cover.webp',
+      services: [
+        'Маркетинговая структура',
+        'UI/UX-дизайн',
+        'Разработка лендинга',
+        'Квиз',
+        'Калькулятор стоимости',
+        'Адаптивная верстка',
+      ],
+    },
+    company: 'Русский зодчий',
+    industry: 'Ремонт квартир',
+    mobileIndustry: 'Ремонт',
+    coverImage: '/images/razrabotka/cases/rrr-cover.webp',
+    imageAspectRatio: '3 / 2',
+    accent: 'orange',
+    metric: 'Квиз + калькулятор',
+    metricSize: 'compact',
+    result: ['Ведет клиента', 'к расчету стоимости'],
+    summary: 'Конверсионный лендинг с квизом и калькулятором для расчета ремонта.',
+    description:
+      'Для «Русского зодчего» мы собрали конверсионный лендинг для услуг по ремонту квартир. Продумали путь от первого экрана до заявки, добавили квиз и калькулятор, чтобы посетитель мог быстро уточнить параметры ремонта, получить предварительный расчет и перейти к консультации.',
+    examples: [],
+  },
+  {
     project: getProject('project-9'),
     company: 'AKS-FIT',
+    industry: 'Фитнес',
+    mobileIndustry: 'Фитнес',
+    coverImage: '/images/razrabotka/cases/aks-fit-cover.webp',
+    imageAspectRatio: '3 / 2',
     accent: 'pink',
-    imageMode: 'fill',
     metric: 'Понятно объясняет пользу для простого человека',
     metricSize: 'compact',
     result: ['Понятная подача', 'и переход к записи'],
@@ -168,21 +214,23 @@ const caseRows = [
 type CaseRow = (typeof caseRows)[number]
 type SlideDirection = 'next' | 'previous'
 
-const getCaseImages = (item: CaseRow) => [
-  ...(item.project.desktopImageUrl
-    ? [
-        {
-          src: item.project.desktopImageUrl,
-          alt: item.project.title,
-          imageMode: item.imageMode,
-        },
-      ]
-    : []),
-  ...item.examples.map((example) => ({
-    ...example,
-    imageMode: 'cover' as const,
-  })),
-]
+const getCaseCoverImage = (item: CaseRow) => item.coverImage
+
+const getCaseImages = (item: CaseRow) => {
+  const coverImage = getCaseCoverImage(item)
+
+  return [
+    ...(coverImage
+      ? [
+          {
+            src: coverImage,
+            alt: item.project.title,
+          },
+        ]
+      : []),
+    ...item.examples,
+  ]
+}
 
 type CaseImage = ReturnType<typeof getCaseImages>[number]
 
@@ -265,63 +313,69 @@ export function RazrabotkaCasesSection() {
           </div>
 
           <ol className={styles.list} aria-label="Кейсы Project 42">
-            {caseRows.map((item, index) => (
-              <li
-                key={item.project.id}
-                className={`${styles.row} ${styles[item.accent]}`}
-                style={{ '--case-index': index } as CSSProperties}
-              >
-                <button
-                  type="button"
-                  className={styles.cardButton}
-                  onClick={() => openCaseModal(item)}
-                  aria-label={`Открыть кейс ${item.company}`}
+            {caseRows.map((item, index) => {
+              const coverImage = getCaseCoverImage(item)
+
+              return (
+                <li
+                  key={item.project.id}
+                  className={`${styles.row} ${styles[item.accent]}`}
+                  style={
+                    {
+                      '--case-index': index,
+                      '--case-image-ratio': item.imageAspectRatio,
+                    } as CSSProperties
+                  }
                 >
-                  <div className={styles.strip}>
-                    <span className={styles.company}>{item.company}</span>
-                    <span className={styles.stripTitle}>{item.project.title}</span>
-                  </div>
-
-                  <div className={styles.rowBody}>
-                    <div className={styles.metricColumn}>
-                      <p
-                        className={`${styles.metric} ${
-                          item.metricSize === 'compact' ? styles.metricCompact : ''
-                        }`}
-                      >
-                        {item.metric}
-                      </p>
-                      <div className={styles.result}>
-                        {item.result.map((line) => (
-                          <span key={line}>{line}</span>
-                        ))}
-                      </div>
-                      <h3 className={styles.projectTitle}>{item.project.title}</h3>
-                      <p className={styles.summary}>{item.summary}</p>
+                  <button
+                    type="button"
+                    className={styles.cardButton}
+                    onClick={() => openCaseModal(item)}
+                    aria-label={`Открыть кейс ${item.company}`}
+                  >
+                    <div className={styles.strip}>
+                      <h3 className={styles.mobileProjectTitle}>{item.company}</h3>
+                      <span className={styles.mobileIndustry}>{item.mobileIndustry}</span>
+                      <span className={styles.industry}>{item.industry}</span>
+                      <span className={styles.stripTitle}>{item.project.title}</span>
                     </div>
 
-                    <div className={styles.mockup}>
-                      <div className={styles.browserBar} aria-hidden="true">
-                        <span />
-                        <span />
-                        <span />
+                    <div className={styles.rowBody}>
+                      <div className={styles.metricColumn}>
+                        <p
+                          className={`${styles.metric} ${
+                            item.metricSize === 'compact' ? styles.metricCompact : ''
+                          }`}
+                        >
+                          {item.metric}
+                        </p>
+                        <div className={styles.result}>
+                          {item.result.map((line) => (
+                            <span key={line}>{line}</span>
+                          ))}
+                        </div>
+                        <h3 className={styles.projectTitle}>{item.project.title}</h3>
+                        <p className={styles.summary}>{item.summary}</p>
                       </div>
-                      <div className={styles.screenshot}>
-                        {item.project.desktopImageUrl && (
-                          <Image
-                            src={item.project.desktopImageUrl}
-                            alt={item.project.title}
-                            fill
-                            className={`${styles.image} ${item.imageMode === 'fill' ? styles.imageFill : ''}`}
-                            sizes="(max-width: 767px) 92vw, (max-width: 1439px) 58vw, 760px"
-                          />
-                        )}
+
+                      <div className={styles.mockup}>
+                        <div className={styles.screenshot}>
+                          {coverImage && (
+                            <Image
+                              src={coverImage}
+                              alt={item.project.title}
+                              fill
+                              className={styles.image}
+                              sizes="(max-width: 767px) 92vw, (max-width: 1439px) 58vw, 760px"
+                            />
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </button>
-              </li>
-            ))}
+                  </button>
+                </li>
+              )
+            })}
           </ol>
         </div>
       </section>
@@ -352,9 +406,7 @@ export function RazrabotkaCasesSection() {
                       alt=""
                       fill
                       unoptimized
-                      className={`${styles.image} ${
-                        slideTransition.leavingImage.imageMode === 'fill' ? styles.imageFill : ''
-                      }`}
+                      className={styles.image}
                       sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) calc(100vw - 96px), 1280px"
                     />
                   </span>
@@ -375,9 +427,7 @@ export function RazrabotkaCasesSection() {
                       alt={activeImage.alt}
                       fill
                       unoptimized
-                      className={`${styles.image} ${
-                        activeImage.imageMode === 'fill' ? styles.imageFill : ''
-                      }`}
+                      className={styles.image}
                       sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1439px) calc(100vw - 96px), 1280px"
                     />
                   </span>

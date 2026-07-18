@@ -256,6 +256,28 @@
     padding: $space-12 $container-pad-desktop $space-32;
   }
 
+  .signals li:nth-child(n) {
+    border-width: 1px;
+    box-shadow: none;
+    transition: filter 180ms $ease-standard;
+    transform: none;
+    will-change: auto;
+  }
+
+  .signals li:hover {
+    box-shadow: none;
+    filter: brightness(1.06);
+    animation: none;
+    transform: none;
+  }
+
+  .signals li:active {
+    box-shadow: none;
+    filter: brightness(0.96);
+    animation: none;
+    transform: none;
+  }
+
   .numberGroup {
     gap: $space-4;
   }

@@ -1,0 +1,315 @@
+.root {
+  padding: $space-20 $container-pad-mobile $space-10;
+  color: $text-primary;
+  background: $surface-page;
+}
+
+.inner {
+  display: grid;
+  gap: $space-10;
+  max-width: $container-inner;
+  margin: 0 auto;
+}
+
+.header {
+  display: grid;
+  align-content: start;
+  gap: $space-5;
+  opacity: 0;
+  transition:
+    opacity 720ms $ease-emphasized,
+    transform 820ms $ease-emphasized;
+  transform: translateY($space-8);
+}
+
+.root:global(.visible) .header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-ui;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $accent-mint;
+}
+
+.title {
+  display: grid;
+  max-width: 9ch;
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(52px, 14vw, 76px);
+  font-weight: $font-weight-display;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.intro {
+  max-width: 31ch;
+  margin: 0;
+  font-size: 16px;
+  font-weight: $font-weight-medium;
+  line-height: 1.42;
+  color: $text-secondary;
+}
+
+.rightColumn {
+  display: grid;
+  gap: $space-6;
+  min-width: 0;
+}
+
+.results {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: $text-inverse;
+  background: $surface-card-light;
+  border-radius: $radius-xl;
+  list-style: none;
+}
+
+.resultItem {
+  opacity: 0;
+  transition:
+    opacity 620ms $ease-emphasized calc(120ms + (var(--result-index) * 55ms)),
+    transform 720ms $ease-emphasized calc(120ms + (var(--result-index) * 55ms));
+  transform: translateX($space-8);
+}
+
+.root:global(.visible) .resultItem {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.resultItem + .resultItem {
+  border-top: 1px solid rgba($neutral-50, 22%);
+}
+
+.resultButton {
+  display: grid;
+  align-items: start;
+  gap: $space-4;
+  grid-template-columns: 38px minmax(0, 1fr);
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: $space-5;
+  overflow: hidden;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  transition: background-color $transition-base;
+  cursor: pointer;
+}
+
+.resultButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 7px;
+  background: $accent-orange;
+  opacity: 0;
+  transition: opacity $transition-base;
+}
+
+.resultButton:focus-visible {
+  box-shadow: inset $shadow-focus;
+  outline: none;
+}
+
+.resultButton.active {
+  background: rgba($accent-orange, 8%);
+}
+
+.resultButton.active::before {
+  opacity: 1;
+}
+
+.resultButton.discount,
+.resultButton.discount.active {
+  background: $surface-card-yellow;
+}
+
+.resultButton.discount::before {
+  background: $neutral-50;
+}
+
+.resultButton.discount.active::before {
+  opacity: 0.2;
+}
+
+.discount .number {
+  color: $neutral-50;
+}
+
+.number {
+  font-size: 22px;
+  font-weight: $font-weight-display;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  line-height: 1;
+  transition: color $transition-base;
+}
+
+.active .number {
+  color: $accent-orange;
+}
+
+.divider {
+  display: none;
+}
+
+.copy {
+  display: grid;
+  gap: $space-2;
+}
+
+.resultTitle {
+  font-family: $font-display;
+  font-size: 24px;
+  font-weight: $font-weight-display;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.resultText {
+  max-width: 62ch;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  line-height: 1.38;
+  color: rgba($neutral-50, 70%);
+}
+
+@media (min-width: $bp-tablet) {
+  .root {
+    padding: $space-24 $container-pad-tablet $space-12;
+  }
+
+  .inner {
+    align-items: start;
+    gap: $space-8;
+    grid-template-columns: minmax(260px, 0.66fr) minmax(480px, 1.34fr);
+  }
+
+  .header {
+    position: sticky;
+    top: 112px;
+    padding-top: $space-4;
+  }
+
+  .title {
+    font-size: clamp(68px, 7.2vw, 106px);
+  }
+
+  .intro {
+    font-size: 17px;
+  }
+
+  .resultButton {
+    align-items: center;
+    gap: 0;
+    grid-template-columns: 64px 1px minmax(0, 1fr);
+    min-height: 92px;
+    padding: $space-4 $space-6;
+  }
+
+  .number {
+    font-size: 28px;
+  }
+
+  .divider {
+    display: block;
+    align-self: stretch;
+    width: 1px;
+    background: rgba($neutral-50, 22%);
+  }
+
+  .copy {
+    gap: $space-1;
+    padding-left: $space-6;
+  }
+
+  .resultTitle {
+    font-size: clamp(21px, 2vw, 27px);
+  }
+
+  .resultText {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding: $space-32 $container-pad-desktop $space-16;
+  }
+
+  .inner {
+    gap: $space-12;
+    grid-template-columns: minmax(330px, 0.72fr) minmax(620px, 1.28fr);
+  }
+
+  .header {
+    top: 128px;
+  }
+
+  .title {
+    font-size: clamp(76px, 6.65vw, 100px);
+  }
+
+  .resultButton {
+    grid-template-columns: 78px 1px minmax(0, 1fr);
+    min-height: 112px;
+    padding: $space-4 $space-8;
+  }
+
+  .number {
+    font-size: 32px;
+  }
+
+  .copy {
+    padding-left: $space-8;
+  }
+
+  .resultTitle {
+    font-size: 28px;
+  }
+
+  .resultText {
+    font-size: 15px;
+  }
+}
+
+@media (hover: hover) {
+  .resultButton:hover:not(.discount) {
+    background: rgba($accent-orange, 8%);
+  }
+
+  .resultButton.discount:hover {
+    background: $accent-yellow-hover;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .resultItem {
+    opacity: 1;
+    transition: none;
+    transform: none;
+  }
+
+  .resultButton,
+  .resultButton::before,
+  .number {
+    transition: none;
+  }
+}

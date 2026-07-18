@@ -123,7 +123,8 @@ describe('RazrabotkaPage', () => {
     expect(decisionHeading.compareDocumentPosition(competitorHeading)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     )
-    expect(screen.getByText(/клиент оценивает не весь ваш опыт/)).toBeInTheDocument()
+    expect(screen.getByText('клиент оценивает')).toBeInTheDocument()
+    expect(screen.getByText('то, что успел увидеть')).toBeInTheDocument()
     expect(screen.getByText('Понятный следующий шаг')).toBeInTheDocument()
     expect(screen.getByText(/показывает ваш уровень ещё до первого разговора/)).toBeInTheDocument()
   })
@@ -136,12 +137,59 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText('В каждый проект входит')).toBeInTheDocument()
     expect(screen.getByText('Разработка проекта')).toBeInTheDocument()
     expect(screen.getByText('Оптимизация под ИИ')).toBeInTheDocument()
-    expect(screen.getByText('Мобильная версия')).toBeInTheDocument()
+    expect(screen.getAllByText('Мобильная версия').length).toBeGreaterThan(0)
     expect(screen.getByText('Настройка безопасности')).toBeInTheDocument()
     expect(screen.getByText('Цена под ключ')).toBeInTheDocument()
     expect(screen.getByText('от 15 тыс рублей')).toBeInTheDocument()
     expect(screen.queryByText('За одностраничный сайт')).not.toBeInTheDocument()
     expect(screen.getByText('Оплата по этапам')).toBeInTheDocument()
+  })
+
+  it('renders the results section between what we do and the work process', async () => {
+    const user = userEvent.setup()
+    render(<RazrabotkaPage config={razrabotkaConfig} />)
+
+    const whatWeDoHeading = screen.getByRole('heading', { level: 2, name: 'Что создаём?' })
+    const resultsHeading = screen.getByRole('heading', { level: 2, name: 'Что вы получаете?' })
+    const noBuilderHeading = screen.getByRole('heading', {
+      level: 3,
+      name: 'Без конструкторов',
+    })
+    const processHeading = screen.getByRole('heading', { level: 2, name: 'Как мы работаем' })
+    const seoResult = screen.getByRole('button', { name: /SEO и продвижение в ИИ/ })
+    const crmResult = screen.getByRole('button', { name: /CRM и Telegram/ })
+
+    expect(whatWeDoHeading.compareDocumentPosition(resultsHeading)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    )
+    expect(resultsHeading.compareDocumentPosition(noBuilderHeading)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    )
+    expect(noBuilderHeading.compareDocumentPosition(processHeading)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    )
+    expect(screen.getByText('Современный сайт')).toBeInTheDocument()
+    expect(screen.getByText('Под ваши цели')).toBeInTheDocument()
+    expect(
+      within(resultsHeading.closest('section') as HTMLElement).getByText('Мобильная версия'),
+    ).toBeInTheDocument()
+    expect(screen.getByText('Контент без программиста')).toBeInTheDocument()
+    expect(screen.getByText('Гарантия 1 год')).toBeInTheDocument()
+    expect(screen.getByText('Партнёр на будущее')).toBeInTheDocument()
+    expect(screen.getByText('Скидка 25%')).toBeInTheDocument()
+    expect(screen.getByText(/анализа ниши, конкурентов и целевой аудитории/)).toBeInTheDocument()
+    expect(screen.getByText(/продвижение в ИИ и настройку рекламы/)).toBeInTheDocument()
+    expect(screen.getByText('Уникальный дизайн без шаблонов')).toBeInTheDocument()
+    expect(screen.getByText('Быстрая загрузка без лишнего кода')).toBeInTheDocument()
+    expect(screen.getByText('Чистая структура для SEO')).toBeInTheDocument()
+    expect(screen.getByText('Нет обязательных тарифов конструктора')).toBeInTheDocument()
+    expect(screen.queryByText('Собственная разработка')).not.toBeInTheDocument()
+    expect(seoResult).toHaveAttribute('aria-pressed', 'true')
+
+    await user.click(crmResult)
+
+    expect(crmResult).toHaveAttribute('aria-pressed', 'true')
+    expect(seoResult).toHaveAttribute('aria-pressed', 'false')
   })
 
   it('renders the work process section', () => {
@@ -167,18 +215,46 @@ describe('RazrabotkaPage', () => {
     const cases = within(casesSection as HTMLElement)
 
     expect(screen.queryByRole('link', { name: 'Смотреть все кейсы' })).not.toBeInTheDocument()
-    expect(cases.getByText('ROSA')).toBeInTheDocument()
+    expect(cases.getByRole('heading', { level: 3, name: 'ROSA' })).toBeInTheDocument()
+    expect(cases.getAllByText('Строительство')).toHaveLength(2)
     expect(cases.getAllByText('Корпоративный сайт строительной компании').length).toBeGreaterThan(0)
-    expect(cases.getByText('TrueTell')).toBeInTheDocument()
+    expect(cases.getByAltText('Корпоративный сайт строительной компании')).toHaveAttribute(
+      'src',
+      expect.stringContaining('rosa-cover.webp'),
+    )
+    expect(cases.getByText('Аналитика для ритейла')).toBeInTheDocument()
+    expect(cases.getByText('Ритейл-аналитика')).toBeInTheDocument()
     expect(cases.getAllByText('Лендинг TrueTell').length).toBeGreaterThan(0)
     expect(cases.queryByText('Красим.ру')).not.toBeInTheDocument()
     expect(
       cases.queryByText('Лендинг для Красим.ру и настройка рекламы в Яндекс.Директ'),
     ).not.toBeInTheDocument()
-    expect(cases.getByText('Sosedi')).toBeInTheDocument()
+    expect(cases.getByText('Шеринг вещей')).toBeInTheDocument()
     expect(cases.getAllByText('Промо сайт приложения Sosedi').length).toBeGreaterThan(0)
-    expect(cases.getByText('Звезда')).toBeInTheDocument()
+    expect(cases.getByAltText('Промо сайт приложения Sosedi')).toHaveAttribute(
+      'src',
+      expect.stringContaining('sosedi-cover.webp'),
+    )
+    expect(cases.getByText('Аренда электровелосипедов')).toBeInTheDocument()
+    expect(cases.getByText('Производство трансформаторов')).toBeInTheDocument()
     expect(cases.getAllByText('Завод трансформаторов «Звезда»').length).toBeGreaterThan(0)
+    const russianArchitectCase = cases.getByRole('button', {
+      name: 'Открыть кейс Русский зодчий',
+    })
+    const aksFitCase = cases.getByRole('button', { name: 'Открыть кейс AKS-FIT' })
+    expect(russianArchitectCase).toHaveTextContent('Ремонт квартир')
+    expect(
+      russianArchitectCase.compareDocumentPosition(aksFitCase) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+    expect(cases.getByAltText('Конверсионный лендинг «Русский зодчий»')).toHaveAttribute(
+      'src',
+      expect.stringContaining('rrr-cover.webp'),
+    )
+    expect(cases.getAllByText('Фитнес')).toHaveLength(2)
+    expect(cases.getByAltText('Сайт-визитка фитнес-проекта AKS-FIT')).toHaveAttribute(
+      'src',
+      expect.stringContaining('aks-fit-cover.webp'),
+    )
   })
 
   it('opens a case modal and closes it from the controls', async () => {
@@ -263,7 +339,7 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText(/Не привязываем проект к шаблону/)).toBeInTheDocument()
   })
 
-  it('opens the quick consultation quiz after 28 seconds on the page', async () => {
+  it('opens the quick consultation quiz after 31.5 seconds on the page', async () => {
     jest.useFakeTimers()
 
     render(<RazrabotkaPage config={razrabotkaConfig} />)
@@ -271,7 +347,7 @@ describe('RazrabotkaPage', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 
     await act(async () => {
-      jest.advanceTimersByTime(27_999)
+      jest.advanceTimersByTime(31_499)
     })
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
@@ -291,6 +367,10 @@ describe('RazrabotkaPage', () => {
 
     const dialog = screen.getByRole('dialog')
     const quiz = within(dialog)
+    expect(quiz.getByText('При заказе сайта — скидка')).toBeInTheDocument()
+    expect(quiz.getByText('25%')).toBeInTheDocument()
+    expect(quiz.getByText('На настройку рекламы')).toBeInTheDocument()
+    expect(quiz.getByText('На SEO-продвижение сайта')).toBeInTheDocument()
     expect(quiz.getByLabelText('Как вас зовут?')).toBeInTheDocument()
 
     await userEvent.type(quiz.getByLabelText('Как вас зовут?'), 'Иван')
@@ -317,7 +397,7 @@ describe('RazrabotkaPage', () => {
     fireEvent.input(screen.getByLabelText('Как вас зовут?'), { target: { value: 'И' } })
 
     await act(async () => {
-      jest.advanceTimersByTime(28_000)
+      jest.advanceTimersByTime(31_500)
     })
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
@@ -446,7 +526,9 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByText('Разработка интернет-магазина')).toBeInTheDocument()
     expect(screen.getByText('Разработка Telegram-бота')).toBeInTheDocument()
     expect(screen.getByText('Разработка мобильного приложения')).toBeInTheDocument()
-    expect(screen.getByText('SEO и продвижение в ИИ')).toBeInTheDocument()
+    expect(
+      within(servicesTitle.closest('section') as HTMLElement).getByText('SEO и продвижение в ИИ'),
+    ).toBeInTheDocument()
     expect(screen.getByText('Настройка и ведение рекламы в Яндекс.Директ')).toBeInTheDocument()
     expect(screen.getByText('от 15 тыс')).toBeInTheDocument()
     expect(screen.getByText('от 100 тыс')).toBeInTheDocument()
@@ -462,19 +544,16 @@ describe('RazrabotkaPage', () => {
 
     expect(heading).toBeInTheDocument()
     expect(screen.getByText(/без постоянной помощи разработчика/)).toBeInTheDocument()
-    expect(screen.getAllByText('Меняйте контент сами')).toHaveLength(2)
-    expect(
-      screen.getByText('Тексты, цены, услуги, фото и контакты — без программиста.'),
-    ).toBeInTheDocument()
-    expect(screen.getAllByText('Гарантия на техническую часть')).toHaveLength(2)
-    expect(screen.getByText('Если что-то сломается по нашей вине — исправим.')).toBeInTheDocument()
-    expect(within(section).getAllByText('SEO-настройка')).toHaveLength(2)
-    expect(within(section).getAllByLabelText('В подарок')).toHaveLength(3)
-    expect(within(section).getByText('Оптимизация в выдаче')).toBeInTheDocument()
+    expect(screen.getByText('Меняйте контент сами')).toBeInTheDocument()
+    expect(screen.getByText('Гарантия на техническую часть')).toBeInTheDocument()
+    expect(within(section).getByText('SEO-настройка')).toBeInTheDocument()
+    expect(within(section).queryByLabelText('В подарок')).not.toBeInTheDocument()
+    expect(within(section).getByText('Оптимизация в выдаче ИИ')).toBeInTheDocument()
     expect(within(section).getByLabelText('Google и Яндекс')).toBeInTheDocument()
-    expect(
-      screen.getByText('Настроим мета-данные, индексацию и структуру страниц.'),
-    ).toBeInTheDocument()
+    expect(within(section).getByLabelText('ChatGPT и DeepSeek')).toBeInTheDocument()
+    expect(screen.queryByText(/Тексты, цены, услуги, фото и контакты/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Если что-то сломается по нашей вине/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Настроим мета-данные, индексацию/)).not.toBeInTheDocument()
   })
 
   it('renders the level-up banner above the footer', () => {
@@ -526,10 +605,7 @@ describe('RazrabotkaPage', () => {
       'href',
       'https://t.me/ivann97n',
     )
-    expect(within(footer).getByRole('link', { name: 'Разобрать задачу' })).toHaveAttribute(
-      'href',
-      '#cta',
-    )
+    expect(within(footer).queryByRole('link', { name: 'Разобрать задачу' })).not.toBeInTheDocument()
   })
 
   it('opens the consultation form on mobile and keeps desktop messenger links', async () => {

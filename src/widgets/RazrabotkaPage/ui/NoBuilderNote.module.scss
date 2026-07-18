@@ -1,0 +1,63 @@
+.root {
+  display: grid;
+  gap: $space-4;
+  padding-top: $space-5;
+  color: $text-primary;
+  border-top: 1px solid $border-default;
+}
+
+.title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 28px;
+  font-weight: $font-weight-display;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.advantages {
+  display: grid;
+  gap: $space-3;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.advantage {
+  display: grid;
+  align-items: start;
+  gap: $space-3;
+  grid-template-columns: 18px minmax(0, 1fr);
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  line-height: 1.35;
+  color: $text-secondary;
+}
+
+.check {
+  font-size: 15px;
+  font-weight: $font-weight-display;
+  line-height: 1.2;
+  color: $accent-mint;
+}
+
+@media (min-width: $bp-tablet) {
+  .advantages {
+    gap: $space-3 $space-6;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: $bp-desktop) {
+  .root {
+    padding-top: $space-6;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .advantage {
+    font-size: 15px;
+  }
+}

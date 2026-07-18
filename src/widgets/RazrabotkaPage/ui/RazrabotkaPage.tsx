@@ -14,6 +14,7 @@ import { RazrabotkaQuizSection } from './RazrabotkaQuizSection'
 import { RazrabotkaServicesCarouselSection } from './RazrabotkaServicesCarouselSection'
 import { RazrabotkaTestimonialsSection } from './RazrabotkaTestimonialsSection'
 import { WhatWeDoSection } from './WhatWeDoSection'
+import { WhatYouGetSection } from './WhatYouGetSection'
 import { WorkProcessSection } from './WorkProcessSection'
 import { RazrabotkaProcessCtaSection } from './RazrabotkaProcessCtaSection'
 import { RazrabotkaFooter } from './RazrabotkaFooter'
@@ -35,6 +36,7 @@ export function RazrabotkaPage({ config }: Props) {
         <DecisionWindowSection />
         <CompetitorChoiceSection />
         <WhatWeDoSection />
+        <WhatYouGetSection />
         <WorkProcessSection />
         <RazrabotkaProcessCtaSection />
         <RazrabotkaCasesSection />

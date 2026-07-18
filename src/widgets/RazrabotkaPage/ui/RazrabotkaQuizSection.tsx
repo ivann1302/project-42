@@ -14,7 +14,7 @@ import styles from './RazrabotkaQuizSection.module.scss'
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
 const PHONE_PATTERN = /^\+?[\d\s\-()]{7,20}$/u
 const TELEGRAM_USERNAME_PATTERN = /^@?[a-zA-Z0-9_]{5,32}$/u
-const AUTO_OPEN_DELAY_MS = 28_000
+const AUTO_OPEN_DELAY_MS = 31_500
 
 const contactMethods = [
   { label: 'Telegram', value: 'telegram' },
@@ -233,6 +233,20 @@ export function RazrabotkaQuizSection() {
             Опишите нишу, услуги и текущую ситуацию. Мы предложим понятный первый шаг без давления и
             лишнего размаха.
           </p>
+        </div>
+
+        <div className={styles.promotion}>
+          <p className={styles.promotionTitle}>
+            <span>При заказе сайта — скидка</span>
+            <strong className={styles.promotionDiscount}>25%</strong>
+          </p>
+          <div className={styles.promotionOffers}>
+            <span>На настройку рекламы</span>
+            <span className={styles.promotionPlus} aria-hidden="true">
+              +
+            </span>
+            <span>На SEO-продвижение сайта</span>
+          </div>
         </div>
 
         <div className={styles.form}>

@@ -5,35 +5,26 @@ import { useScrollReveal } from '@/shared/lib'
 import { Icon } from '@/shared/ui'
 import styles from './RazrabotkaAftercareSection.module.scss'
 
-const benefits = [
+const panelItems = [
   {
     value: '01',
     title: 'Меняйте контент сами',
-    description: 'Тексты, цены, услуги, фото и контакты — без программиста.',
-    gift: false,
+    platformGroup: null,
   },
   {
     value: '02',
     title: 'Гарантия на техническую часть',
-    description: 'Если что-то сломается по нашей вине — исправим.',
-    gift: false,
+    platformGroup: null,
   },
   {
     value: '03',
     title: 'SEO-настройка',
-    description: 'Настроим мета-данные, индексацию и структуру страниц.',
-    gift: true,
+    platformGroup: 'search',
   },
-] as const
-
-const panelItems = [
-  ...benefits.map((item) => ({ ...item, searchEngines: false })),
   {
     value: '04',
-    title: 'Оптимизация в выдаче',
-    description: '',
-    gift: true,
-    searchEngines: true,
+    title: 'Оптимизация в выдаче ИИ',
+    platformGroup: 'ai',
   },
 ] as const
 
@@ -52,28 +43,13 @@ export function RazrabotkaAftercareSection() {
           <p className={styles.subtitle}>
             После запуска сайт остаётся понятным и управляемым — без постоянной помощи разработчика.
           </p>
-
-          <ul className={styles.benefits} aria-label="Что вы получаете после запуска">
-            {benefits.map((item) => (
-              <li className={styles.benefit} key={item.value}>
-                <span className={styles.benefitValue}>{item.value}</span>
-                <span className={styles.benefitCopy}>
-                  <span className={styles.benefitTitle}>
-                    {item.title}
-                    {item.gift && (
-                      <span className={styles.giftBadge} aria-label="В подарок" title="В подарок">
-                        <Icon name="gift" size={18} />
-                      </span>
-                    )}
-                  </span>
-                  <span className={styles.benefitDescription}>{item.description}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
         </div>
 
-        <div className={styles.controlPanel} aria-hidden="true">
+        <div
+          className={styles.controlPanel}
+          role="group"
+          aria-label="Что вы получите после запуска"
+        >
           <div className={styles.panelTop}>
             <span />
             <span />
@@ -86,19 +62,27 @@ export function RazrabotkaAftercareSection() {
                 <span className={styles.toggle} />
                 <span className={styles.panelRowTitle}>
                   {item.title}
-                  {item.searchEngines && (
-                    <span className={styles.searchEngines} aria-label="Google и Яндекс">
-                      <span className={styles.googleMark} aria-hidden="true">
+                  {item.platformGroup === 'search' && (
+                    <span className={styles.platformMarks} aria-label="Google и Яндекс">
+                      <span className={styles.platformMark} aria-hidden="true">
                         <Icon name="google" size={18} />
                       </span>
-                      <span className={styles.yandexMark} aria-hidden="true">
+                      <span className={styles.platformMark} aria-hidden="true">
                         <Icon name="yandex" size={18} />
                       </span>
                     </span>
                   )}
-                  {item.gift && (
-                    <span className={styles.giftBadge} aria-label="В подарок" title="В подарок">
-                      <Icon name="gift" size={18} />
+                  {item.platformGroup === 'ai' && (
+                    <span className={styles.platformMarks} aria-label="ChatGPT и DeepSeek">
+                      <span className={styles.platformMark} aria-hidden="true">
+                        <Icon name="chatgpt" size={18} />
+                      </span>
+                      <span
+                        className={`${styles.platformMark} ${styles.deepseekMark}`}
+                        aria-hidden="true"
+                      >
+                        <Icon name="deepseek" size={18} />
+                      </span>
                     </span>
                   )}
                 </span>

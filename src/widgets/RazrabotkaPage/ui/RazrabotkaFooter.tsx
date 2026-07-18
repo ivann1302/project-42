@@ -125,10 +125,6 @@ export function RazrabotkaFooter({
               </li>
             ))}
           </ul>
-          <Link className={styles.ctaLink} href={getSectionHref(pathname, '#cta', usePageAnchors)}>
-            <span>Разобрать задачу</span>
-            <Icon name="arrowRight" size={18} />
-          </Link>
         </div>
 
         <div className={styles.bottom}>

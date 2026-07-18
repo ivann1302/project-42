@@ -1,6 +1,6 @@
 .root {
   position: relative;
-  padding: $space-8 $container-pad-mobile $space-8 0;
+  padding: $space-6 $container-pad-mobile $space-6 0;
   color: $text-inverse;
   background: $surface-page;
   scroll-margin-top: 96px;
@@ -9,11 +9,11 @@
 .shell {
   display: grid;
   align-items: start;
-  gap: $space-8;
+  gap: $space-6;
   grid-template-columns: minmax(0, 1fr);
   max-width: $container-inner;
   margin: 0 auto 0 0;
-  padding: $space-8 $space-6;
+  padding: $space-6;
   overflow: hidden;
   background: $surface-card-mint;
   border-radius: 0 $radius-xl $radius-xl 0;
@@ -32,8 +32,7 @@
 
 .controlPanel,
 .title,
-.subtitle,
-.benefits {
+.subtitle {
   margin: 0;
   opacity: 0;
   transition:
@@ -44,8 +43,7 @@
 
 .root:global(.visible) .controlPanel,
 .root:global(.visible) .title,
-.root:global(.visible) .subtitle,
-.root:global(.visible) .benefits {
+.root:global(.visible) .subtitle {
   opacity: 1;
   transform: translateX(0);
 }
@@ -69,80 +67,6 @@
   font-weight: $font-weight-semibold;
   line-height: $line-height-body;
   color: rgba($neutral-0, 82%);
-}
-
-.benefits {
-  display: grid;
-  gap: $space-5;
-  max-width: 72ch;
-  padding: 0;
-  list-style: none;
-}
-
-.benefit {
-  display: grid;
-  align-items: start;
-  gap: $space-4;
-  grid-template-columns: 44px minmax(0, 1fr);
-}
-
-.benefitValue {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  aspect-ratio: 1;
-  font-family: $font-body;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-display;
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: 'tnum';
-  line-height: 1;
-  text-transform: uppercase;
-  color: $surface-card-mint;
-  background: rgba($neutral-0, 92%);
-  border-radius: 50%;
-  box-shadow:
-    0 5px 0 rgba(0 0 0 / 22%),
-    inset 0 1px 0 rgba(255 255 255 / 54%);
-}
-
-.benefitCopy {
-  display: grid;
-  gap: 2px;
-  min-width: 0;
-}
-
-.benefitTitle {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: $space-2;
-  font-size: $font-size-base;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-ui;
-  text-transform: uppercase;
-}
-
-.giftBadge {
-  display: inline-grid;
-  flex: 0 0 auto;
-  place-items: center;
-  width: 28px;
-  aspect-ratio: 1;
-  color: $neutral-0;
-  background: $surface-card-orange;
-  border: 1px solid rgba($neutral-0, 28%);
-  border-radius: $radius-xs;
-  box-shadow: 0 3px 0 rgba($neutral-0, 18%);
-  transform: rotate(-4deg);
-}
-
-.benefitDescription {
-  max-width: 38ch;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-medium;
-  line-height: 1.35;
-  color: rgba($neutral-0, 78%);
 }
 
 .controlPanel {
@@ -218,20 +142,24 @@
   gap: $space-2;
 }
 
-.searchEngines {
+.platformMarks {
   display: inline-flex;
   align-items: center;
   gap: $space-1;
 }
 
-.googleMark,
-.yandexMark {
+.platformMark {
   display: inline-grid;
   place-items: center;
   width: 24px;
   aspect-ratio: 1;
+  color: $neutral-0;
   background: $neutral-900;
   border-radius: 50%;
+}
+
+.deepseekMark {
+  background: #4d6bfe;
 }
 
 .toggle {
@@ -267,26 +195,25 @@
 
 @media (min-width: $bp-tablet) {
   .root {
-    padding: $space-12 $container-pad-tablet;
+    padding: $space-8 $container-pad-tablet;
   }
 
   .shell {
     align-items: center;
-    gap: $space-12;
+    gap: $space-10;
     grid-template-columns: minmax(0, 1fr) minmax(260px, 0.48fr);
     margin: 0 auto;
-    padding: $space-12;
+    padding: $space-8;
     border-radius: $radius-xl;
   }
 
   .content {
     display: grid;
-    gap: $space-8;
+    gap: $space-6;
   }
 
   .title,
-  .subtitle,
-  .benefits {
+  .subtitle {
     grid-column: auto;
   }
 
@@ -300,44 +227,26 @@
     font-size: $font-size-lg;
   }
 
-  .benefits {
-    gap: $space-6;
-  }
-
-  .benefitValue {
-    width: 54px;
-    font-size: $font-size-base;
-  }
-
-  .benefitTitle {
-    font-size: $font-size-lg;
-  }
-
-  .benefitDescription {
-    max-width: 48ch;
-    font-size: $font-size-sm;
-  }
-
   .controlPanel {
     justify-self: end;
-    padding: $space-6;
+    padding: $space-5;
   }
 }
 
 @media (min-width: $bp-desktop) {
   .root {
-    padding: $space-16 $container-pad-desktop $space-16 0;
+    padding: $space-12 $container-pad-desktop $space-12 0;
   }
 
   .shell {
-    gap: $space-16;
+    gap: $space-12;
     grid-template-columns: minmax(0, 1fr) minmax(340px, 0.36fr);
     width: 100%;
     max-width: none;
-    min-height: 600px;
+    min-height: 520px;
     margin-right: auto;
     margin-left: 0;
-    padding: $space-16;
+    padding: $space-10 $space-12;
     border-radius: 0 $radius-xl $radius-xl 0;
   }
 
@@ -348,24 +257,11 @@
   .title {
     font-size: clamp(72px, 6vw, 104px);
   }
-
-  .benefits {
-    gap: $space-5;
-    max-width: 76ch;
-  }
-
-  .benefit {
-    grid-template-columns: 58px minmax(0, 1fr);
-  }
-
-  .benefitTitle {
-    font-size: clamp(18px, 1.32vw, 22px);
-  }
 }
 
 @media (min-width: $bp-wide) {
   .shell {
-    padding: $space-16 $space-20;
+    padding: $space-10 $space-20;
   }
 }
 
@@ -378,8 +274,7 @@
 
   .controlPanel,
   .title,
-  .subtitle,
-  .benefits {
+  .subtitle {
     opacity: 1;
     transition: none;
     transform: none;

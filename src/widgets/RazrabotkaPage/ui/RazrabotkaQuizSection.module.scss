@@ -114,6 +114,55 @@
   color: rgba($neutral-0, 76%);
 }
 
+.promotion {
+  display: grid;
+  gap: $space-2;
+  padding: $space-3 0;
+  text-align: center;
+  color: $surface-card-yellow;
+  border-top: 1px solid rgba($surface-card-yellow, 32%);
+  border-bottom: 1px solid rgba($surface-card-yellow, 32%);
+  opacity: 0;
+  animation: quiz-fade-rise 560ms $ease-emphasized 180ms forwards;
+}
+
+.promotionTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: $space-2;
+  margin: 0;
+  font-family: $font-display;
+  font-size: clamp(20px, 5.5vw, 26px);
+  font-weight: $font-weight-display;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.promotionDiscount {
+  font-size: 1.3em;
+  line-height: 0.8;
+}
+
+.promotionOffers {
+  display: grid;
+  align-items: center;
+  gap: $space-2;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  font-family: $font-poster;
+  font-size: clamp(14px, 3.8vw, 18px);
+  font-weight: $font-weight-semibold;
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.promotionPlus {
+  font-family: $font-display;
+  font-size: 20px;
+  line-height: 1;
+}
+
 .form {
   display: grid;
   gap: $space-4;
@@ -318,6 +367,7 @@
   .modal,
   .close,
   .content,
+  .promotion,
   .form,
   .field,
   .controls,
