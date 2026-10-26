@@ -1,0 +1,149 @@
+.scene {
+  --coin-size: 220px;
+
+  position: relative;
+  width: var(--coin-size);
+  height: var(--coin-size);
+  perspective: 650px;
+}
+
+.coin {
+  position: absolute;
+  inset: 8%;
+  transform-style: preserve-3d;
+  animation: coin-turn 9s ease-in-out infinite;
+}
+
+.edge,
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.edge {
+  background: linear-gradient(
+    125deg,
+    var(--development-coin-edge-dark) 8%,
+    var(--development-coin-edge-mid) 28%,
+    var(--development-coin-edge-light) 48%,
+    var(--development-coin-edge-teal) 72%,
+    var(--development-coin-edge-shadow) 95%
+  );
+  box-shadow: inset 0 0 2px color-mix(in srgb, var(--development-coin-edge-glow) 40%, transparent);
+  transform: translateZ(var(--depth));
+}
+
+.face {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 28% 22%,
+      color-mix(in srgb, var(--development-coin-shine) 88%, transparent),
+      transparent 32%
+    ),
+    conic-gradient(
+      from 35deg,
+      var(--development-coin-face-dark),
+      var(--development-coin-face-teal),
+      var(--development-coin-face-light),
+      var(--development-coin-face-mid),
+      var(--development-coin-face-blue),
+      var(--development-coin-face-mint),
+      var(--development-coin-face-dark)
+    );
+  border: 3px solid var(--development-coin-rim);
+  box-shadow:
+    inset 0 0 0 5px var(--development-coin-rim-inner),
+    inset 0 0 0 8px color-mix(in srgb, var(--development-coin-rim-light) 78%, transparent),
+    0 0 24px color-mix(in srgb, var(--development-coin-aura) 24%, transparent);
+  transform: translateZ(8px);
+}
+
+.face::before {
+  content: '';
+  position: absolute;
+  inset: 14%;
+  background: linear-gradient(
+    135deg,
+    var(--development-coin-face-light) 0%,
+    var(--development-coin-enamel-mid) 38%,
+    var(--development-coin-enamel-dark) 69%,
+    var(--development-coin-enamel-light) 100%
+  );
+  border: 2px solid color-mix(in srgb, var(--development-coin-enamel-border) 60%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    inset 3px 5px 10px color-mix(in srgb, var(--development-coin-shadow-dark) 30%, transparent),
+    inset -3px -4px 8px color-mix(in srgb, var(--development-coin-shadow-light) 70%, transparent),
+    0 2px 2px color-mix(in srgb, var(--development-coin-shadow-bottom) 40%, transparent);
+}
+
+.face::after {
+  content: '';
+  position: absolute;
+  inset: -35%;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    color-mix(in srgb, var(--development-foreground) 35%, transparent) 50%,
+    transparent 65%
+  );
+  animation: coin-glint 5s ease-in-out infinite;
+  transform: translateX(-60%) rotate(-10deg);
+}
+
+.braces,
+.questionMark {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-development), Inter, sans-serif;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--development-coin-brackets);
+  text-shadow:
+    1px 2px 1px color-mix(in srgb, var(--development-coin-bracket-shadow) 45%, transparent),
+    -1px -1px 1px color-mix(in srgb, var(--development-coin-bracket-highlight) 95%, transparent);
+}
+
+.braces {
+  display: flex;
+  gap: calc(var(--coin-size) * 0.07);
+  font-size: calc(var(--coin-size) * 0.29);
+}
+
+.questionMark {
+  font-size: calc(var(--coin-size) * 0.43);
+}
+
+@keyframes coin-turn {
+  0%,
+  100% {
+    transform: translateY(4px) rotateZ(-27deg) rotateX(48deg) rotateY(-25deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotateZ(-10deg) rotateX(58deg) rotateY(18deg);
+  }
+}
+
+@keyframes coin-glint {
+  0%,
+  15% {
+    transform: translateX(-60%) rotate(-10deg);
+  }
+
+  65%,
+  100% {
+    transform: translateX(60%) rotate(-10deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coin,
+  .face::after {
+    animation: none;
+  }
+}

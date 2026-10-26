@@ -13,11 +13,22 @@ type Props = PropsWithClassName & {
   value: string
   onChange: (value: string) => void
   placeholder?: string
+  id?: string
+  'aria-labelledby'?: string
 }
 
-export function Select({ options, value, onChange, placeholder, className }: Props) {
+export function Select({
+  options,
+  value,
+  onChange,
+  placeholder,
+  className,
+  id,
+  'aria-labelledby': labelledBy,
+}: Props) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const valueId = id ? `${id}-value` : undefined
 
   const selected = options.find((o) => o.value === value)
 
@@ -33,13 +44,15 @@ export function Select({ options, value, onChange, placeholder, className }: Pro
   return (
     <div ref={ref} className={clsx(styles.root, className)}>
       <button
+        id={id}
         type="button"
         className={clsx(styles.trigger, open && styles.open)}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="listbox"
+        aria-labelledby={labelledBy && valueId ? `${labelledBy} ${valueId}` : labelledBy}
       >
-        <span className={selected ? styles.value : styles.placeholder}>
+        <span id={valueId} className={selected ? styles.value : styles.placeholder}>
           {selected ? selected.label : placeholder}
         </span>
         <Icon

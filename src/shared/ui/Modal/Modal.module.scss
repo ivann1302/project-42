@@ -5,7 +5,7 @@
   position: fixed;
   z-index: 1000;
   padding: $spacing-md;
-  background: rgba($color-black, 70%);
+  background: color-mix(in srgb, var(--development-black, $color-black) 70%, transparent);
   inset: 0;
   backdrop-filter: blur(6px);
   animation: fade-in 0.2s ease;
@@ -19,6 +19,8 @@
   max-width: 520px;
   max-height: 90vh;
   overflow-y: auto;
+  background: var(--development-form-surface, $color-card);
+  border-color: color-mix(in srgb, var(--development-form-accent, $color-purple) 72%, transparent);
   animation: slide-up 0.25s ease;
 
   @include mobile {
@@ -30,13 +32,13 @@
   @include flex-between;
 
   padding: $spacing-lg $spacing-lg $spacing-md;
-  border-bottom: 1px solid $color-border;
+  border-bottom: 1px solid var(--development-form-border, $color-border);
 }
 
 .title {
   font-size: $font-size-lg;
   font-weight: 700;
-  color: $color-white;
+  color: var(--development-form-foreground, $color-white);
 }
 
 .close {
@@ -44,14 +46,15 @@
 
   width: 36px;
   height: 36px;
-  color: $color-black;
-  background: $color-white;
-  border: 2px solid rgba($color-black, 54%);
+  color: var(--development-black, $color-black);
+  background: var(--development-form-foreground, $color-white);
+  border: 2px solid color-mix(in srgb, var(--development-black, $color-black) 54%, transparent);
   border-radius: $radius-sm;
   box-shadow:
-    0 5px 0 rgba($color-black, 64%),
-    0 9px 14px rgba($color-black, 34%),
-    inset 0 1px 0 rgba($color-white, 48%);
+    0 5px 0 color-mix(in srgb, var(--development-black, $color-black) 64%, transparent),
+    0 9px 14px color-mix(in srgb, var(--development-black, $color-black) 34%, transparent),
+    inset 0 1px 0
+      color-mix(in srgb, var(--development-form-foreground, $color-white) 48%, transparent);
   transition:
     color $transition-base,
     background $transition-base,
@@ -62,32 +65,34 @@
   transform: translateY(0);
 
   &:hover {
-    color: $color-black;
-    background: $color-white;
-    border-color: rgba($color-black, 68%);
+    color: var(--development-black, $color-black);
+    background: var(--development-form-foreground, $color-white);
+    border-color: color-mix(in srgb, var(--development-black, $color-black) 68%, transparent);
     box-shadow:
-      0 7px 0 rgba($color-black, 64%),
-      0 13px 18px rgba($color-black, 38%),
-      inset 0 1px 0 rgba($color-white, 56%);
+      0 7px 0 color-mix(in srgb, var(--development-black, $color-black) 64%, transparent),
+      0 13px 18px color-mix(in srgb, var(--development-black, $color-black) 38%, transparent),
+      inset 0 1px 0
+        color-mix(in srgb, var(--development-form-foreground, $color-white) 56%, transparent);
     filter: saturate(1.05) contrast(1.03);
     transform: translateY(-2px);
   }
 
   &:active {
     box-shadow:
-      0 2px 0 rgba($color-black, 64%),
-      0 5px 8px rgba($color-black, 32%),
-      inset 0 2px 5px rgba($color-black, 20%);
+      0 2px 0 color-mix(in srgb, var(--development-black, $color-black) 64%, transparent),
+      0 5px 8px color-mix(in srgb, var(--development-black, $color-black) 32%, transparent),
+      inset 0 2px 5px color-mix(in srgb, var(--development-black, $color-black) 20%, transparent);
     transform: translateY(3px);
   }
 
   &:focus-visible {
     outline: none;
     box-shadow:
-      0 5px 0 rgba($color-black, 64%),
-      0 9px 14px rgba($color-black, 34%),
-      inset 0 1px 0 rgba($color-white, 48%),
-      $shadow-focus;
+      0 5px 0 color-mix(in srgb, var(--development-black, $color-black) 64%, transparent),
+      0 9px 14px color-mix(in srgb, var(--development-black, $color-black) 34%, transparent),
+      inset 0 1px 0
+        color-mix(in srgb, var(--development-form-foreground, $color-white) 48%, transparent),
+      0 0 0 4px color-mix(in srgb, var(--development-form-accent, $color-purple) 48%, transparent);
   }
 }
 

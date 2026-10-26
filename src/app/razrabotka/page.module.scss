@@ -1,0 +1,217 @@
+.theme {
+  // Change the palette for the whole Development page here.
+  --development-background: #08080a;
+  --development-black: #000;
+  --development-foreground: #fff;
+  --development-mint: #c9ffe4;
+  --development-accent: #51f0d8;
+  --development-card-ink: #0d211b;
+  --development-icon-ink: #101614;
+  --development-card-copy: #253d31;
+  --development-gallery-surface: #101314;
+
+  // Button surfaces and details.
+  --development-button-text: #f7fff9;
+  --development-button-surface: #080e0c;
+  --development-button-border: #1e3a35;
+  --development-button-border-hover: #285b4b;
+  --development-button-speckles: #d6fff0;
+
+  // Contact dialog and form opened from this page.
+  --development-form-foreground: var(--development-foreground);
+  --development-form-muted: color-mix(in srgb, var(--development-foreground) 68%, transparent);
+  --development-form-surface: var(--development-gallery-surface);
+  --development-form-border: color-mix(in srgb, var(--development-accent) 20%, transparent);
+  --development-form-accent: var(--development-accent);
+  --development-form-button-end: var(--development-mint);
+  --development-form-mint: var(--development-mint);
+  --development-form-error: #f87171;
+
+  // Shared space for the mobile consultation button and the footer.
+  --development-mobile-cta-height: 56px;
+  --development-mobile-cta-edge: 8px;
+  --development-mobile-cta-inset: max(
+    var(--development-mobile-cta-edge),
+    env(safe-area-inset-bottom)
+  );
+
+  // Coin: edge, enamel, highlights and embossed brackets.
+  --development-coin-edge-dark: #073243;
+  --development-coin-edge-mid: #217f96;
+  --development-coin-edge-light: #8dffe1;
+  --development-coin-edge-teal: #0e777a;
+  --development-coin-edge-shadow: #081e32;
+  --development-coin-edge-glow: #cdffed;
+  --development-coin-shine: #f6fffd;
+  --development-coin-face-dark: #0c5661;
+  --development-coin-face-teal: #39baa8;
+  --development-coin-face-light: #d8fff0;
+  --development-coin-face-mid: #61d9ca;
+  --development-coin-face-blue: #16496e;
+  --development-coin-face-mint: #8bf9d9;
+  --development-coin-rim: #a8ffe4;
+  --development-coin-rim-inner: #155466;
+  --development-coin-rim-light: #e5fff5;
+  --development-coin-aura: #68ffce;
+  --development-coin-enamel-mid: #74cfbe;
+  --development-coin-enamel-dark: #4e9da4;
+  --development-coin-enamel-light: #d0ffec;
+  --development-coin-enamel-border: #0c4549;
+  --development-coin-shadow-dark: #072f36;
+  --development-coin-shadow-light: #f0fff9;
+  --development-coin-shadow-bottom: #052d34;
+  --development-coin-brackets: #083d3c;
+  --development-coin-bracket-shadow: #052b33;
+  --development-coin-bracket-highlight: #ecfff7;
+
+  // WebGL blob palette; the shader reads these four values from this element.
+  --dev-shader-background: var(--development-background);
+  --dev-shader-deep: #0b6065;
+  --dev-shader-accent: var(--development-accent);
+  --dev-shader-soft: #cbfdd8;
+}
+
+.heroFlow {
+  position: relative;
+  overflow: hidden;
+  background: var(--development-background);
+  isolation: isolate;
+}
+
+.heroFlow::after {
+  --hero-fade-end: 100%;
+
+  content: '';
+  position: absolute;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in srgb, var(--development-background) 24%, transparent) 38%,
+    color-mix(in srgb, var(--development-background) 72%, transparent) 57%,
+    var(--development-background) var(--hero-fade-end)
+  );
+  inset: calc(100vh - clamp(160px, 24vh, 220px)) 0 0;
+  pointer-events: none;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  overflow: visible;
+  background: var(--development-background);
+  isolation: isolate;
+}
+
+.blobBridge {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  inset: 0;
+  transition: transform 120ms ease-out;
+  transform: translate3d(0, var(--blob-flow-y, 0), 0);
+  will-change: transform;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  padding: 96px 24px;
+  font-family: var(--font-development), Inter, sans-serif;
+  text-align: center;
+  color: var(--development-foreground);
+  inset: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blobBridge {
+    transition: none;
+    transform: none;
+  }
+}
+
+.hero:has(dialog[open]) .content {
+  opacity: 0;
+}
+
+.copy {
+  width: 100%;
+  max-width: 1120px;
+}
+
+.title {
+  font-family: inherit;
+  font-size: clamp(64px, 7vw, 124px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  mix-blend-mode: difference;
+}
+
+.description {
+  max-width: 720px;
+  margin: 28px auto 0;
+  font-size: clamp(19px, 1.5vw, 22px);
+  font-weight: 400;
+  line-height: 1.5;
+  text-wrap: balance;
+  mix-blend-mode: difference;
+}
+
+.consultation {
+  margin-top: 36px;
+}
+
+@media (width <= 767px) {
+  .heroFlow::after {
+    --hero-fade-end: 70%;
+  }
+
+  .content {
+    padding: 136px 24px 70px;
+  }
+
+  .title {
+    font-size: clamp(38px, 10vw, 58px);
+    line-height: 1.02;
+  }
+
+  .description {
+    max-width: 440px;
+    margin-top: 24px;
+    font-size: clamp(18px, 4.8vw, 20px);
+    line-height: 1.5;
+  }
+
+  .consultation {
+    margin-top: 28px;
+  }
+}
+
+@media (height <= 560px) {
+  .content {
+    padding-top: 80px;
+    padding-bottom: 24px;
+  }
+
+  .title {
+    font-size: clamp(28px, 4.5vw, 44px);
+  }
+
+  .description {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .consultation {
+    margin-top: 20px;
+  }
+}

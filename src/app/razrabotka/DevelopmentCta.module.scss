@@ -1,0 +1,247 @@
+@property --cta-form-border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.root {
+  padding: 104px 40px;
+  font-family: var(--font-development), Inter, sans-serif;
+  color: var(--development-foreground);
+  background: var(--development-black);
+}
+
+.content {
+  display: grid;
+  align-items: start;
+  gap: clamp(56px, 7vw, 120px);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.copy {
+  position: sticky;
+  top: 48px;
+  max-width: 580px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(48px, 5.4vw, 84px);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.accent {
+  color: var(--development-accent);
+}
+
+.description {
+  max-width: 430px;
+  margin-top: 28px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--development-form-muted);
+  text-wrap: pretty;
+}
+
+.formPanel {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.hint {
+  margin: 0 0 24px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--development-form-muted);
+}
+
+.formPanel form {
+  display: grid;
+  gap: 20px 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.formPanel form > * {
+  min-width: 0;
+  grid-column: 1 / -1;
+}
+
+.formPanel form > div:has(input[name='phone']),
+.formPanel form > div:has(input[name='email']) {
+  grid-column: auto;
+}
+
+.formPanel label {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--development-foreground);
+}
+
+.formPanel :is(input:not([aria-hidden]), textarea, button[aria-haspopup='listbox']) {
+  min-height: 56px;
+  padding: 15px 16px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.4;
+  border-radius: 14px;
+}
+
+.formPanel textarea {
+  height: 124px;
+  min-height: 104px;
+}
+
+.formPanel button[aria-haspopup='listbox'] {
+  padding-right: 44px;
+}
+
+.formPanel button[aria-haspopup='listbox']:focus-visible {
+  outline: 2px solid var(--development-accent);
+  outline-offset: 3px;
+}
+
+.formPanel [role='listbox'] {
+  top: calc(100% + 8px);
+  max-height: 240px;
+  padding: 6px;
+  overflow: hidden auto;
+  background: var(--development-form-surface);
+  border: 1px solid var(--development-form-border);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--development-black) 60%, transparent);
+  scrollbar-color: var(--development-accent) var(--development-form-surface);
+  scrollbar-width: thin;
+}
+
+.formPanel [role='option'] button {
+  min-height: 40px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.3;
+  border-radius: 9px;
+}
+
+.formPanel [role='option'] button:hover,
+.formPanel [role='option'] button:focus-visible,
+.formPanel [role='option'][aria-selected='true'] button {
+  color: var(--development-mint);
+  background: color-mix(in srgb, var(--development-accent) 12%, transparent);
+}
+
+.formPanel [role='option'] button:focus-visible {
+  outline: 1px solid var(--development-accent);
+  outline-offset: -1px;
+}
+
+.formPanel button[type='submit'] {
+  min-height: 56px;
+  margin-top: 4px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--development-button-text);
+  background:
+    linear-gradient(var(--development-button-surface), var(--development-button-surface))
+      padding-box,
+    conic-gradient(
+        from var(--cta-form-border-angle),
+        transparent 0 56%,
+        var(--development-accent) 78%,
+        var(--development-mint) 84%,
+        var(--development-accent) 90%,
+        transparent 100%
+      )
+      border-box;
+  border: 1px solid transparent;
+  border-radius: 32px;
+  box-shadow: inset 0 0 0 1px var(--development-button-border);
+  animation: cta-form-border-travel 3s linear infinite;
+}
+
+.formPanel button[type='submit']:hover:not(:disabled) {
+  box-shadow:
+    inset 0 0 0 1px var(--development-button-border-hover),
+    0 0 20px color-mix(in srgb, var(--development-accent) 20%, transparent);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.formPanel button[type='submit']:focus-visible {
+  outline: 2px solid var(--development-mint);
+  outline-offset: 4px;
+}
+
+.formPanel button[type='submit']:disabled {
+  animation: none;
+}
+
+@keyframes cta-form-border-travel {
+  to {
+    --cta-form-border-angle: 360deg;
+  }
+}
+
+@media (width <= 1023px) {
+  .content {
+    gap: 48px;
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 680px;
+  }
+
+  .copy {
+    position: static;
+    top: auto;
+    max-width: none;
+  }
+
+  .title {
+    font-size: clamp(44px, 7.6vw, 68px);
+  }
+}
+
+@media (width <= 767px) {
+  .root {
+    padding: 64px 24px;
+  }
+
+  .content {
+    gap: 36px;
+  }
+
+  .title {
+    font-size: clamp(38px, 10vw, 58px);
+    line-height: 1.02;
+  }
+
+  .description {
+    margin-top: 22px;
+    font-size: 17px;
+  }
+
+  .hint {
+    margin-bottom: 20px;
+  }
+}
+
+@media (width <= 539px) {
+  .formPanel form {
+    gap: 18px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .formPanel button[type='submit'] {
+    animation: none;
+    transition: none;
+  }
+}

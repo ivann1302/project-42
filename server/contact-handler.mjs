@@ -102,6 +102,9 @@ async function processContactSubmission(normalized, shouldSaveLead) {
 
   if (!botToken || chatIds.length === 0) {
     console.error('[contact] Telegram env vars are not configured')
+    if (!leadSaved) {
+      return { body: { ok: false, error: 'Service unavailable' }, leadSaved, statusCode: 503 }
+    }
     return { body: { ok: true }, leadSaved, statusCode: 200 }
   }
 

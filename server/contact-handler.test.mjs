@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { mkdtemp, readFile, rm } from 'node:fs/promises'
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { Readable } from 'node:stream'
@@ -59,6 +59,34 @@ test('retries Telegram and deduplicates repeated request ids', async () => {
     restoreEnvironment('TELEGRAM_CHAT_IDS', originalEnvironment.chatIds)
     restoreEnvironment('TELEGRAM_RETRY_ATTEMPTS', originalEnvironment.retryAttempts)
     restoreEnvironment('TELEGRAM_TIMEOUT', originalEnvironment.timeout)
+    await rm(temporaryDirectory, { force: true, recursive: true })
+  }
+})
+
+test('does not report success when neither storage nor Telegram can accept the lead', async () => {
+  const temporaryDirectory = await mkdtemp(path.join(tmpdir(), 'project42-contact-failure-'))
+  const keys = ['ADMIN_DATA_FILE', 'TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_IDS', 'TELEGRAM_CHAT_ID']
+  const originalEnvironment = Object.fromEntries(keys.map((key) => [key, process.env[key]]))
+  const blockedDirectory = path.join(temporaryDirectory, 'not-a-directory')
+  await writeFile(blockedDirectory, 'blocked')
+  process.env.ADMIN_DATA_FILE = path.join(blockedDirectory, 'leads.json')
+  process.env.TELEGRAM_BOT_TOKEN = ''
+  process.env.TELEGRAM_CHAT_IDS = ''
+  process.env.TELEGRAM_CHAT_ID = ''
+
+  try {
+    const failed = await invokeContactHandler({ name: 'Проверка', email: 'audit@example.com' })
+    assert.equal(failed.statusCode, 503)
+    assert.equal(failed.body.ok, false)
+
+    process.env.ADMIN_DATA_FILE = path.join(temporaryDirectory, 'leads.json')
+    const saved = await invokeContactHandler({ name: 'Проверка', email: 'audit@example.com' })
+    assert.equal(saved.statusCode, 200)
+    assert.equal(saved.body.ok, true)
+    const data = JSON.parse(await readFile(process.env.ADMIN_DATA_FILE, 'utf8'))
+    assert.equal(data.leads.length, 1)
+  } finally {
+    keys.forEach((key) => restoreEnvironment(key, originalEnvironment[key]))
     await rm(temporaryDirectory, { force: true, recursive: true })
   }
 })

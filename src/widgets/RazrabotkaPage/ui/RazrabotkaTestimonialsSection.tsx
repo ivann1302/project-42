@@ -2,49 +2,14 @@
 
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { developmentReviews } from '@/entities/Testimonial/model/developmentReviews'
 import { useScrollReveal } from '@/shared/lib'
 import { MagneticHeading } from '@/shared/ui'
 import styles from './RazrabotkaTestimonialsSection.module.scss'
 
 const VISIBLE_DESKTOP_CARDS = 4
 
-const testimonials = [
-  {
-    company: 'TrueTell',
-    name: 'Роман',
-    project: 'Лендинг для подписки',
-    photo: '/images/razrabotka/testimonials/truetell.webp',
-    text: 'Нужно было быстро и понятно объяснить, зачем бизнесу наша подписка. Лендинг стал хорошей точкой входа для переговоров и помог привлечь несколько крупных клиентов.',
-  },
-  {
-    company: 'AKS-FIT',
-    name: 'Татьяна',
-    project: 'Промо-сайт проекта',
-    photo: '/images/razrabotka/testimonials/aks-fit.webp',
-    text: 'Собрали промо-сайт для моей концепции. Теперь я с удовольствием показываю его клиентам: проект выглядит цельно, аккуратно и без лишней сложности.',
-  },
-  {
-    company: 'Tutor Online',
-    name: 'Ирина',
-    project: 'Онлайн-школа для младших классов',
-    photo: '/images/razrabotka/testimonials/tutor-online.webp',
-    text: 'Хотелось простую страницу, которую можно отправлять родителям в переписке. Получилось понятно объяснить формат занятий и показать пользу для младших школьников.',
-  },
-  {
-    company: 'Красим.ру',
-    name: 'Никита',
-    project: 'Лендинг и реклама',
-    photo: '/images/razrabotka/testimonials/krasimru.webp',
-    text: 'Сделали лендинг и настроили рекламу под него. Пошел стабильный поток обращений, а стоимость лида стала ниже и понятнее для контроля.',
-  },
-  {
-    company: 'ROSA',
-    name: 'Олег',
-    project: 'Корпоративный сайт, SEO и GEO',
-    photo: '/images/razrabotka/testimonials/rosa.webp',
-    text: 'Корпоративный сайт добавил компании презентабельности и стал нормальной точкой приема заявок. Нам настроили заявки через Telegram-бота, а после SEO и GEO на сайт пошел поток клиентов, включая первые обращения из ChatGPT.',
-  },
-]
+const testimonials = developmentReviews
 
 export function RazrabotkaTestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -147,18 +112,14 @@ export function RazrabotkaTestimonialsSection() {
                   <div className={styles.cardHeader}>
                     <span className={styles.number}>{String(index + 1).padStart(2, '0')}</span>
                     <span className={styles.avatarSlot} aria-hidden="true">
-                      {testimonial.photo ? (
-                        <Image
-                          className={styles.avatarImage}
-                          src={testimonial.photo}
-                          alt=""
-                          width={112}
-                          height={112}
-                          sizes="58px"
-                        />
-                      ) : (
-                        <span className={styles.avatarInitial}>{testimonial.name[0]}</span>
-                      )}
+                      <Image
+                        className={styles.avatarImage}
+                        src={testimonial.photo}
+                        alt=""
+                        width={112}
+                        height={112}
+                        sizes="58px"
+                      />
                     </span>
                   </div>
                   <blockquote className={styles.quote}>{testimonial.text}</blockquote>

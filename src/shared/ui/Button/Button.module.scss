@@ -31,34 +31,45 @@
 
 // ─── Variants ────────────────────────────────────────────────────
 .primary {
-  color: $color-white;
-  background: linear-gradient(135deg, $color-purple, $color-blue);
-  box-shadow: 0 4px 24px rgba($color-purple, 30%);
+  color: var(--development-form-foreground, $color-white);
+  background: linear-gradient(
+    135deg,
+    var(--development-form-accent, $color-purple),
+    var(--development-form-button-end, $color-blue)
+  );
+  box-shadow: 0 4px 24px
+    color-mix(in srgb, var(--development-form-accent, $color-purple) 30%, transparent);
 
   &:hover {
-    box-shadow: 0 8px 32px rgba($color-purple, 40%);
+    box-shadow: 0 8px 32px
+      color-mix(in srgb, var(--development-form-accent, $color-purple) 40%, transparent);
   }
 }
 
 .secondary {
-  color: $color-mint;
-  background: $color-card;
-  border: 1px solid rgba($color-mint, 30%);
+  color: var(--development-form-mint, $color-mint);
+  background: var(--development-form-surface, $color-card);
+  border: 1px solid color-mix(in srgb, var(--development-form-mint, $color-mint) 30%, transparent);
 
   &:hover {
-    border-color: rgba($color-mint, 60%);
-    box-shadow: 0 4px 20px rgba($color-mint, 15%);
+    border-color: color-mix(in srgb, var(--development-form-mint, $color-mint) 60%, transparent);
+    box-shadow: 0 4px 20px
+      color-mix(in srgb, var(--development-form-mint, $color-mint) 15%, transparent);
   }
 }
 
 .ghost {
-  color: $color-gray-light;
+  color: var(--development-form-muted, $color-gray-light);
   background: transparent;
-  border: 1px solid $color-border;
+  border: 1px solid var(--development-form-border, $color-border);
 
   &:hover {
-    color: $color-white;
-    border-color: rgba($color-white, 30%);
+    color: var(--development-form-foreground, $color-white);
+    border-color: color-mix(
+      in srgb,
+      var(--development-form-foreground, $color-white) 30%,
+      transparent
+    );
   }
 }
 
@@ -83,8 +94,9 @@
   display: inline-block;
   width: 16px;
   height: 16px;
-  border: 2px solid rgba($color-white, 30%);
-  border-top-color: $color-white;
+  border: 2px solid
+    color-mix(in srgb, var(--development-form-foreground, $color-white) 30%, transparent);
+  border-top-color: var(--development-form-foreground, $color-white);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }

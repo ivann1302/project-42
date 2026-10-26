@@ -1,0 +1,118 @@
+.reveal {
+  overflow: hidden;
+  background: var(--development-black);
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 64px 24px 36px;
+  font-family: var(--font-development), Inter, sans-serif;
+  text-align: center;
+  color: var(--development-card-ink);
+  background: var(--development-mint);
+  border-radius: clamp(40px, 5vw, 80px) clamp(40px, 5vw, 80px) 0 0;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  display: inline-block;
+  font-size: clamp(52px, 7vw, 112px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.tagline {
+  max-width: 42ch;
+  margin: 0;
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  color: var(--development-card-copy);
+  text-wrap: balance;
+}
+
+.root a:focus-visible {
+  outline: 2px solid var(--development-card-ink);
+  outline-offset: 6px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--development-card-copy);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--development-card-ink) 75%, transparent);
+}
+
+.bottom a {
+  font-weight: 600;
+}
+
+.root a:hover {
+  text-decoration: underline;
+  color: var(--development-card-ink);
+  text-underline-offset: 4px;
+}
+
+@media (width <= 767px) {
+  .root {
+    padding: 48px 24px
+      calc(28px + var(--development-mobile-cta-height) + var(--development-mobile-cta-inset));
+    border-radius: 32px 32px 0 0;
+  }
+
+  .logo {
+    font-size: clamp(36px, 10vw, 56px);
+  }
+
+  .links {
+    column-gap: 20px;
+    font-size: 15px;
+  }
+
+  .bottom {
+    gap: 12px 20px;
+    max-width: 300px;
+  }
+
+  .bottom p {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .root {
+    transition: transform 120ms ease-out;
+    transform: translate3d(0, var(--footer-offset, 0), 0);
+  }
+
+  .root:has(:focus-visible) {
+    transition: none;
+    transform: none;
+  }
+}

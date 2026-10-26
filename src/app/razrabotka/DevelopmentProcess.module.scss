@@ -1,0 +1,137 @@
+.root {
+  padding: 40px 0 80px;
+  font-family: var(--font-development), Inter, sans-serif;
+  color: var(--development-foreground);
+  background: var(--development-background);
+}
+
+.canvas {
+  position: relative;
+  width: 100%;
+  max-width: 1680px;
+  height: clamp(500px, 43vw, 680px);
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 64px);
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  left: 24px;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(64px, 7vw, 124px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+  text-wrap: balance;
+  pointer-events: none;
+}
+
+.stages {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stage {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  min-width: 0;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.stage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: calc(100% + 36px);
+  height: 100%;
+  border: 2px solid var(--development-accent);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.stage:nth-child(odd) {
+  align-items: flex-start;
+  padding-top: clamp(90px, 9vw, 130px);
+}
+
+.stage:nth-child(even) {
+  align-items: flex-end;
+  padding-bottom: clamp(90px, 9vw, 130px);
+}
+
+.stage span {
+  position: relative;
+  z-index: 1;
+  max-width: 14ch;
+  font-size: clamp(16px, 1.5vw, 24px);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--development-mint);
+  text-wrap: balance;
+}
+
+@media (width <= 767px) {
+  .root {
+    padding: 24px 24px 56px;
+  }
+
+  .canvas {
+    height: auto;
+    padding: 0;
+  }
+
+  .title {
+    position: static;
+    font-size: clamp(38px, 10vw, 58px);
+    line-height: 1.02;
+    text-align: left;
+    transform: none;
+  }
+
+  .stages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    margin-top: 32px;
+  }
+
+  .stage,
+  .stage:nth-child(odd),
+  .stage:nth-child(even) {
+    align-items: center;
+    width: calc(100% - 16px);
+    max-width: 440px;
+    height: 152px;
+    margin-top: -16px;
+    padding: 0 32px;
+  }
+
+  .stage:first-child {
+    margin-top: 0;
+  }
+
+  .stage::before {
+    width: 100%;
+  }
+
+  .stage span {
+    max-width: 20ch;
+    font-size: clamp(20px, 5.5vw, 26px);
+  }
+}

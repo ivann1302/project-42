@@ -1,0 +1,257 @@
+.root {
+  width: 100%;
+  color: var(--development-foreground, #fff);
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  outline: none;
+}
+
+.stage:focus-visible {
+  outline: 2px solid var(--development-accent, #51f0d8);
+  outline-offset: -3px;
+}
+
+.glow {
+  position: absolute;
+  right: 16%;
+  bottom: 0;
+  left: 16%;
+  height: 170px;
+  background: radial-gradient(
+    ellipse,
+    color-mix(in srgb, var(--development-accent, #51f0d8) 12%, transparent),
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(36px);
+  pointer-events: none;
+}
+
+.plane {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.card {
+  position: absolute;
+  bottom: 88px;
+  left: 50%;
+  overflow: hidden;
+  background: var(--development-gallery-surface, #101314);
+  border: 2px solid color-mix(in srgb, var(--development-foreground, #fff) 18%, transparent);
+  border-radius: 20px;
+  box-shadow: 0 22px 46px color-mix(in srgb, var(--development-black, #000) 50%, transparent);
+  transform-style: preserve-3d;
+  user-select: none;
+  touch-action: pan-y;
+  pointer-events: auto;
+}
+
+.active {
+  border-color: color-mix(in srgb, var(--development-mint, #c9ffe4) 55%, transparent);
+  box-shadow:
+    0 30px 60px color-mix(in srgb, var(--development-black, #000) 60%, transparent),
+    0 0 32px color-mix(in srgb, var(--development-accent, #51f0d8) 12%, transparent);
+  cursor: grab;
+}
+
+.active:active {
+  cursor: grabbing;
+}
+
+.image {
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 35%,
+    color-mix(in srgb, var(--development-black, #000) 12%, transparent) 55%,
+    color-mix(in srgb, var(--development-black, #000) 76%, transparent)
+  );
+  pointer-events: none;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  left: 24px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cardText strong {
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.cardText span {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--development-foreground, #fff) 80%, transparent);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.selectCard {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: inherit;
+  cursor: pointer;
+  inset: 0;
+}
+
+.selectCard:focus-visible {
+  outline: 3px solid var(--development-accent, #51f0d8);
+  outline-offset: -4px;
+}
+
+.caption {
+  display: grid;
+  max-width: 660px;
+  margin: 0 auto 16px;
+  padding: 0 24px;
+  font-size: 17px;
+  line-height: 1.55;
+  text-align: center;
+  color: color-mix(in srgb, var(--development-foreground, #fff) 72%, transparent);
+  text-wrap: pretty;
+}
+
+.caption p {
+  grid-area: 1 / 1;
+  margin: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 240ms ease,
+    visibility 240ms;
+}
+
+.caption p[data-active='true'] {
+  visibility: visible;
+  opacity: 1;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  margin-top: 8px;
+}
+
+.dot {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.dot::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 8px;
+  height: 8px;
+  background: color-mix(in srgb, var(--development-foreground, #fff) 34%, transparent);
+  border-radius: 50%;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.dot:hover::after {
+  background: color-mix(in srgb, var(--development-foreground, #fff) 75%, transparent);
+}
+
+.dotActive::after {
+  background: var(--development-accent, #51f0d8);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--development-accent, #51f0d8) 55%, transparent);
+  transform: scale(1.3);
+}
+
+.dot:focus-visible {
+  border-radius: 50%;
+  outline: 2px solid var(--development-mint, #c9ffe4);
+  outline-offset: 0;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (width <= 767px) {
+  .stage {
+    touch-action: pan-y;
+  }
+}
+
+@media (width <= 640px) {
+  .image {
+    object-fit: contain;
+  }
+
+  .card {
+    bottom: 100px;
+    border-radius: 16px;
+  }
+
+  .cardText {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+  }
+
+  .cardText strong {
+    font-size: 20px;
+  }
+
+  .cardText span {
+    font-size: 12px;
+  }
+
+  .caption {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot::after,
+  .caption p {
+    transition: none;
+  }
+}

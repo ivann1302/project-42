@@ -1,0 +1,108 @@
+.root {
+  --reveal-heading-duration: 1100ms;
+  --reveal-rise-duration: 800ms;
+  --reveal-distance: 56px;
+  --reveal-stagger: 90ms;
+  --reveal-heading-ease: cubic-bezier(0.57, 0.09, 0.08, 0.85);
+  --reveal-rise-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  [data-development-reveal],
+  [data-development-enter] {
+    --reveal-delay: 0ms;
+  }
+
+  [data-development-order='1'] {
+    --reveal-delay: var(--reveal-stagger);
+  }
+
+  [data-development-order='2'] {
+    --reveal-delay: calc(var(--reveal-stagger) * 2);
+  }
+
+  [data-development-order='3'] {
+    --reveal-delay: calc(var(--reveal-stagger) * 3);
+  }
+
+  [data-development-order='4'],
+  [data-development-order='5'] {
+    --reveal-delay: calc(var(--reveal-stagger) * 4);
+  }
+}
+
+.mask {
+  display: block;
+  margin-block: -0.12em;
+  padding-block: 0.12em;
+  overflow: hidden;
+}
+
+.text {
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .root {
+    [data-development-state='pending'][data-development-reveal='rise'] {
+      opacity: 0;
+      transform: translate3d(0, var(--reveal-distance), 0);
+    }
+
+    [data-development-state='pending'][data-development-reveal='heading'] > .text {
+      transform: translate3d(0, 110%, 0);
+    }
+
+    [data-development-state='revealed'][data-development-reveal='rise'] {
+      transition:
+        opacity var(--reveal-rise-duration) var(--reveal-rise-ease) var(--reveal-delay),
+        transform var(--reveal-rise-duration) var(--reveal-rise-ease) var(--reveal-delay);
+    }
+
+    [data-development-state='revealed'][data-development-reveal='heading'] > .text {
+      transition: transform var(--reveal-heading-duration) var(--reveal-heading-ease);
+    }
+
+    [data-development-enter='heading'] > .text {
+      animation: heading-in var(--reveal-heading-duration) var(--reveal-heading-ease) 120ms both;
+    }
+
+    [data-development-enter='rise'] {
+      animation: rise-in var(--reveal-rise-duration) var(--reveal-rise-ease)
+        calc(240ms + var(--reveal-delay)) both;
+    }
+
+    [data-development-enter][data-development-state='visible'] {
+      animation: none;
+    }
+  }
+}
+
+@media (width <= 767px) {
+  .root {
+    --reveal-heading-duration: 850ms;
+    --reveal-rise-duration: 650ms;
+    --reveal-distance: 24px;
+    --reveal-stagger: 35ms;
+  }
+}
+
+@keyframes heading-in {
+  from {
+    transform: translate3d(0, 110%, 0);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-distance), 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

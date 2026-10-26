@@ -1,0 +1,182 @@
+@property --shiny-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --shiny-offset {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --shiny-arc {
+  syntax: '<percentage>';
+  initial-value: 5%;
+  inherits: false;
+}
+
+@property --shiny-highlight {
+  syntax: '<color>';
+  initial-value: transparent;
+  inherits: false;
+}
+
+@keyframes shiny-sweep {
+  to {
+    --shiny-angle: 360deg;
+  }
+}
+
+@keyframes shiny-sheen {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes shiny-breathe {
+  50% {
+    scale: 1.2;
+  }
+}
+
+.root {
+  --shiny-highlight: var(--development-foreground, #fff);
+
+  position: relative;
+  min-height: 60px;
+  padding: 16px 32px;
+  overflow: hidden;
+  isolation: isolate;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--development-button-text, #f7fff9);
+  background:
+    linear-gradient(
+        var(--development-button-surface, #080e0c),
+        var(--development-button-surface, #080e0c)
+      )
+      padding-box,
+    conic-gradient(
+        from calc(var(--shiny-angle) - var(--shiny-offset)),
+        transparent,
+        var(--development-accent, #51f0d8) var(--shiny-arc),
+        var(--shiny-highlight) calc(var(--shiny-arc) * 2),
+        var(--development-accent, #51f0d8) calc(var(--shiny-arc) * 3),
+        transparent calc(var(--shiny-arc) * 4)
+      )
+      border-box;
+  border: 1px solid transparent;
+  border-radius: 32px;
+  box-shadow: inset 0 0 0 1px var(--development-button-border, #1e3a35);
+  animation: shiny-sweep 3s linear infinite;
+  transition:
+    --shiny-offset 800ms cubic-bezier(0.25, 1, 0.5, 1),
+    --shiny-arc 800ms cubic-bezier(0.25, 1, 0.5, 1),
+    --shiny-highlight 800ms cubic-bezier(0.25, 1, 0.5, 1),
+    border-width 220ms ease,
+    box-shadow 220ms ease;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.root::before,
+.root::after,
+.root span::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  translate: -50% -50%;
+}
+
+.root::before {
+  z-index: 0;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  background: radial-gradient(
+    circle at 2px 2px,
+    var(--development-button-speckles, #d6fff0) 0.5px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+  border-radius: inherit;
+  opacity: 0.28;
+  mask-image: conic-gradient(
+    from calc(var(--shiny-angle) + 45deg),
+    var(--development-black, #000),
+    transparent 10% 90%,
+    var(--development-black, #000)
+  );
+  animation: shiny-sweep 3s linear infinite;
+}
+
+.root::after {
+  z-index: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(-50deg, transparent, var(--development-accent, #51f0d8), transparent);
+  opacity: 0.5;
+  mask-image: radial-gradient(circle at bottom, transparent 40%, var(--development-black, #000));
+  animation: shiny-sheen 7.5s linear infinite paused;
+}
+
+.root span {
+  position: relative;
+  z-index: 1;
+}
+
+.root span::before {
+  z-index: -1;
+  width: calc(100% + 1rem);
+  height: calc(100% + 1rem);
+  border-radius: 999px;
+  box-shadow: inset 0 -1ex 2rem 4px var(--development-accent, #51f0d8);
+  opacity: 0;
+  filter: blur(6px);
+  animation: shiny-breathe 4.5s linear infinite paused;
+  transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.root:is(:hover, :focus-visible) {
+  --shiny-arc: 12%;
+  --shiny-offset: 95deg;
+  --shiny-highlight: var(--development-button-text, #f7fff9);
+
+  border-width: 2px;
+  box-shadow:
+    inset 0 0 0 1px var(--development-button-border-hover, #285b4b),
+    0 0 20px color-mix(in srgb, var(--development-accent, #51f0d8) 30%, transparent);
+  animation-duration: 1.25s;
+}
+
+.root:is(:hover, :focus-visible)::after,
+.root:is(:hover, :focus-visible) span::before {
+  animation-play-state: running;
+}
+
+.root:is(:hover, :focus-visible) span::before {
+  opacity: 1;
+}
+
+.root:focus-visible {
+  outline: 2px solid var(--development-mint, #c9ffe4);
+  outline-offset: 5px;
+}
+
+.root:active {
+  translate: 0 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .root::before,
+  .root::after,
+  .root span::before {
+    animation: none;
+    transition: none;
+  }
+}

@@ -252,7 +252,9 @@ export function SmallBusinessPage() {
                   sizes="(max-width: 767px) 220px, 300px"
                   aria-hidden="true"
                 />
-                <p className={styles.payment}>Оплата поэтапно</p>
+                <p className={styles.payment}>
+                  Без предоплаты. Оплата перед размещением на хостинге
+                </p>
               </aside>
             </div>
           </div>

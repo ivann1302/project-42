@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project 42 — минималистичные блоб-иконки</title>
+    <style>
+      @font-face {
+        font-family: Golos;
+        src: url('../public/fonts/golos-text-variable.ttf') format('truetype');
+        font-weight: 400 900;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; color: #f7fff9; background: #08080a; font-family: Golos, Arial, sans-serif; }
+      main { max-width: 1390px; margin: auto; padding: 86px 54px 110px; }
+      header { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+      h1 { margin: 0; font-size: clamp(52px, 6vw, 80px); font-weight: 500; line-height: 1.03; letter-spacing: -.055em; }
+      header p { max-width: 320px; margin: 0 0 6px; color: #acbcb6; font-size: 17px; line-height: 1.5; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; row-gap: 30px; margin-top: 82px; }
+      .item { min-width: 0; padding: 12px 0 30px; border-top: 1px solid #3a4c46; }
+      .art { display: block; width: min(100%, 500px); height: 288px; margin: 6px 0 8px; }
+      .label { display: flex; align-items: center; gap: 14px; }
+      .number { width: 32px; height: 32px; display: grid; place-items: center; flex: none; border: 1px solid #75ad9c; border-radius: 50%; color: #89bcae; font-size: 12px; font-weight: 600; }
+      h2 { margin: 0; font-size: clamp(29px, 2.9vw, 40px); font-weight: 500; line-height: 1.12; letter-spacing: -.04em; }
+      .item p { max-width: 490px; margin: 12px 0 0 46px; color: #aebcb7; font-size: 16px; line-height: 1.45; }
+      @media (max-width: 760px) {
+        main { padding: 54px 24px 72px; }
+        header { display: block; }
+        h1 { font-size: clamp(44px, 10vw, 64px); }
+        header p { margin-top: 20px; font-size: 15px; }
+        .grid { grid-template-columns: 1fr; gap: 28px; margin-top: 48px; }
+        .art { height: 250px; margin: 4px 0 6px; }
+        .item { padding-bottom: 14px; }
+        h2 { font-size: 29px; }
+        .item p { margin-left: 46px; font-size: 15px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Что вы<br />получаете</h1>
+        <p>Крупные, простые формы — продолжение блобов на первом экране.</p>
+      </header>
+      <div class="grid">
+        <section class="item">
+          <svg class="art" viewBox="0 0 500 288" role="img" aria-label="Блоб охватывает сайт и тянется дальше">
+            <path fill="#69efd4" d="M102 40c31-22 75-20 101-2 39-22 88-16 109 14 39-3 69 25 67 59 22 31 12 70-18 90-5 35-34 57-68 52-29 20-68 17-89-7-34 15-71 7-85-20-32 3-59-18-61-48-25-17-29-53-8-77-3-27 13-49 52-61Z"/>
+            <path fill="#08080a" d="M127 93c0-15 12-27 27-27h154c15 0 27 12 27 27v98c0 15-12 27-27 27H154c-15 0-27-12-27-27V93Z"/>
+            <path d="M164 111h104M164 145h128M164 179h77" fill="none" stroke="#c9ffe4" stroke-width="12" stroke-linecap="round"/>
+            <path d="M356 213c16 12 31 16 49 16" fill="none" stroke="#69efd4" stroke-width="18" stroke-linecap="round"/>
+            <circle cx="429" cy="229" r="23" fill="#69efd4"/>
+          </svg>
+          <div class="label"><span class="number">01</span><h2>Сопровождаем после запуска</h2></div>
+          <p>Помогаем с запуском сайта и остаёмся на связи после публикации.</p>
+        </section>
+
+        <section class="item">
+          <svg class="art" viewBox="0 0 500 288" role="img" aria-label="Большой мягкий речевой блоб с ясными строками">
+            <path fill="#69efd4" d="M78 81c18-31 57-44 92-35 34-20 79-15 103 5 40-11 82 8 93 40 36 10 52 43 42 72-6 18-18 29-34 35-10 31-47 47-80 35-26 20-67 18-91-1-31 12-66 0-78-25-41 2-71-27-66-62-14-23-7-50 19-64Z"/>
+            <path fill="#69efd4" d="M310 201c7 21 9 47-8 67 30-4 64-20 77-48l-69-19Z"/>
+            <path d="M142 108h145M142 146h185M142 184h111" fill="none" stroke="#08080a" stroke-width="16" stroke-linecap="round"/>
+          </svg>
+          <div class="label"><span class="number">02</span><h2>Понятно рассказываем об услугах</h2></div>
+          <p>Клиент быстро поймёт, чем вы занимаетесь и как можете ему помочь.</p>
+        </section>
+
+        <section class="item">
+          <svg class="art" viewBox="0 0 500 288" role="img" aria-label="Пластичный лист документа со сгибом и строками">
+            <path fill="#69efd4" d="M132 36c24-17 54-16 76-5 32-14 67-7 83 7 23-7 47-1 62 13l58 61c11 12 13 27 8 41 13 23 7 49-12 61-9 28-39 43-66 32-21 17-53 19-75 4-31 15-67 8-82-17-29 7-56-13-58-40-27-14-37-46-17-69-10-28-2-62 23-88Z"/>
+            <path d="M330 48v57c0 16 13 29 29 29h55" fill="none" stroke="#08080a" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M180 113h94M180 149h162M180 185h119" fill="none" stroke="#08080a" stroke-width="14" stroke-linecap="round"/>
+            <circle cx="340" cy="204" r="18" fill="#08080a"/>
+          </svg>
+          <div class="label"><span class="number">03</span><h2>Помогаем с документами</h2></div>
+          <p>Подскажем, какие страницы и согласия нужны для вашего сайта.</p>
+        </section>
+
+        <section class="item">
+          <svg class="art" viewBox="0 0 500 288" role="img" aria-label="Два связанных блоба показывают широкий и узкий экраны">
+            <path fill="#69efd4" d="M80 72c21-29 60-37 89-22 31-17 70-11 89 13 31-5 59 14 66 41 28 11 39 42 24 67 8 29-14 56-43 59-21 24-60 28-84 9-28 15-64 6-77-17-31 3-54-16-57-44-26-17-31-48-7-71-3-14-3-25 0-35Z"/>
+            <path fill="#69efd4" d="M365 44c19-17 46-15 62 0 28-7 49 13 49 38 17 20 11 48-4 60 15 24 7 51-11 63-4 32-31 47-57 38-25 14-53-1-57-27-19-15-19-42-5-59-8-20-2-45 16-58-5-22-1-42 7-55Z"/>
+            <path fill="#08080a" d="M117 105c0-10 8-18 18-18h149c10 0 18 8 18 18v92c0 10-8 18-18 18H135c-10 0-18-8-18-18v-92Z"/>
+            <path fill="#08080a" d="M378 77c0-10 8-18 18-18h22c10 0 18 8 18 18v131c0 10-8 18-18 18h-22c-10 0-18-8-18-18V77Z"/>
+            <path d="M145 121h87M145 150h123M145 179h96M397 92h19M397 118h19M397 144h19M397 170h19" fill="none" stroke="#c9ffe4" stroke-width="9" stroke-linecap="round"/>
+            <path d="M319 151h31" fill="none" stroke="#69efd4" stroke-width="13" stroke-linecap="round"/>
+          </svg>
+          <div class="label"><span class="number">04</span><h2>Адаптируем под телефон</h2></div>
+          <p>На мобильном удобно читать, выбирать и оставлять заявку.</p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

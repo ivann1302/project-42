@@ -21,7 +21,7 @@
   font-size: $font-size-sm;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: $color-gray-light;
+  color: var(--development-form-muted, $color-gray-light);
 }
 
 .input,
@@ -30,9 +30,9 @@
   padding: 12px 16px;
   font-family: $font-body;
   font-size: $font-size-base;
-  color: $color-white;
-  background: rgba($color-white, 4%);
-  border: 1px solid $color-border;
+  color: var(--development-form-foreground, $color-white);
+  background: color-mix(in srgb, var(--development-form-foreground, $color-white) 4%, transparent);
+  border: 1px solid var(--development-form-border, $color-border);
   border-radius: $radius-md;
   outline: none;
   transition:
@@ -40,17 +40,22 @@
     box-shadow $transition-base;
 
   &::placeholder {
-    color: $color-gray-dark;
+    color: var(--development-form-muted, $color-gray-dark);
   }
 
   &:focus {
-    border-color: rgba($color-purple, 60%);
-    box-shadow: 0 0 0 3px rgba($color-purple, 12%);
+    border-color: color-mix(
+      in srgb,
+      var(--development-form-accent, $color-purple) 60%,
+      transparent
+    );
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--development-form-accent, $color-purple) 12%, transparent);
   }
 
   option {
-    color: $color-white;
-    background: $color-card;
+    color: var(--development-form-foreground, $color-white);
+    background: var(--development-form-surface, $color-card);
   }
 }
 
@@ -60,12 +65,12 @@
 }
 
 .inputError {
-  border-color: rgba(#f87171, 60%);
+  border-color: color-mix(in srgb, var(--development-form-error, #f87171) 60%, transparent);
 }
 
 .error {
   font-size: $font-size-sm;
-  color: #f87171;
+  color: var(--development-form-error, #f87171);
 }
 
 .submit {
@@ -81,7 +86,7 @@
   padding: $spacing-2xl $spacing-md;
   font-size: $font-size-md;
   text-align: center;
-  color: $color-white;
+  color: var(--development-form-foreground, $color-white);
 }
 
 .successIcon {
@@ -90,8 +95,8 @@
   width: 56px;
   height: 56px;
   font-size: 24px;
-  color: $color-mint;
-  background: rgba($color-mint, 12%);
-  border: 1px solid rgba($color-mint, 30%);
+  color: var(--development-form-mint, $color-mint);
+  background: color-mix(in srgb, var(--development-form-mint, $color-mint) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--development-form-mint, $color-mint) 30%, transparent);
   border-radius: 50%;
 }

@@ -37,10 +37,13 @@ export function captureLeadAttribution() {
   if (typeof window === 'undefined') return
 
   try {
-    const current = window.sessionStorage.getItem(STORAGE_KEY)
-    if (current) return
+    const stored = getStoredAttribution()
+    const current = readCurrentAttribution()
+    const storedHasTracking = TRACKING_PARAMS.some((param) => stored?.[param])
+    const currentHasTracking = TRACKING_PARAMS.some((param) => current[param])
+    if (stored && (storedHasTracking || !currentHasTracking)) return
 
-    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(readCurrentAttribution()))
+    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(current))
   } catch {
     // Session storage can be unavailable in strict privacy modes.
   }
