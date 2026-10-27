@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { KeyboardEvent, TouchEvent as ReactTouchEvent } from 'react'
+import type { KeyboardEvent, UIEvent as ReactUIEvent } from 'react'
 import Image from 'next/image'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import styles from './CardStack.module.scss'
@@ -52,15 +52,6 @@ function signedOffset(index: number, active: number, length: number, loop: boole
   return Math.abs(wrapped) < Math.abs(direct) ? wrapped : direct
 }
 
-type SwipeStart = {
-  identifier: number
-  x: number
-  y: number
-  maxOffset: number
-  card: HTMLElement | null
-  horizontal: boolean
-}
-
 export function CardStack({
   items,
   initialIndex = 0,
@@ -88,7 +79,7 @@ export function CardStack({
   onChangeIndex,
 }: CardStackProps) {
   const rootRef = useRef<HTMLDivElement>(null)
-  const stageRef = useRef<HTMLDivElement>(null)
+  const mobileScrollerRef = useRef<HTMLDivElement>(null)
   const reducedMotion = useReducedMotion()
   const length = items.length
   const [active, setActive] = useState(() => wrapIndex(initialIndex, length))
@@ -96,21 +87,20 @@ export function CardStack({
   const [inView, setInView] = useState(false)
   const [hovering, setHovering] = useState(false)
   const [focusWithin, setFocusWithin] = useState(false)
-  const [touching, setTouching] = useState(false)
-  const swipeStartRef = useRef<SwipeStart | null>(null)
-  const suppressClickUntilRef = useRef(0)
+  const isMobileStage = stageWidth !== null && stageWidth <= 767
+  const wasMobileStageRef = useRef(false)
 
   useEffect(() => {
     setActive((index) => wrapIndex(index, length))
   }, [length])
 
   useEffect(() => {
-    const stage = stageRef.current
-    if (!stage) return
-    const measure = () => setStageWidth(Math.round(stage.getBoundingClientRect().width))
+    const root = rootRef.current
+    if (!root) return
+    const measure = () => setStageWidth(Math.round(root.getBoundingClientRect().width))
     measure()
     const observer = new ResizeObserver(measure)
-    observer.observe(stage)
+    observer.observe(root)
     return () => observer.disconnect()
   }, [length])
 
@@ -132,19 +122,35 @@ export function CardStack({
     if (length && active < length) onChangeIndex?.(active, items[active])
   }, [active, items, length, onChangeIndex])
 
+  const scrollMobileTo = useCallback((index: number, behavior: ScrollBehavior = 'auto') => {
+    const scroller = mobileScrollerRef.current
+    const card = scroller?.children.item(index) as HTMLElement | null
+    if (!scroller || !card) return
+    const left = card.offsetLeft - (scroller.clientWidth - card.clientWidth) / 2
+    scroller.scrollTo({ left, behavior })
+  }, [])
+
   const go = useCallback(
     (step: number) => {
       if (length <= 1) return
+      if (isMobileStage) {
+        const next = active + step
+        const target = loop ? wrapIndex(next, length) : Math.max(0, Math.min(length - 1, next))
+        scrollMobileTo(target)
+        setActive(target)
+        return
+      }
       setActive((index) => {
         const next = index + step
         return loop ? wrapIndex(next, length) : Math.max(0, Math.min(length - 1, next))
       })
     },
-    [length, loop],
+    [active, isMobileStage, length, loop, scrollMobileTo],
   )
 
   useEffect(() => {
-    if (!autoAdvance || !inView || reducedMotion || focusWithin || touching || length <= 1) return
+    if (!autoAdvance || isMobileStage || !inView || reducedMotion || focusWithin || length <= 1)
+      return
     if (pauseOnHover && hovering) return
     if (!loop && active === length - 1) return
     const timer = window.setInterval(() => go(1), Math.max(700, intervalMs))
@@ -157,53 +163,24 @@ export function CardStack({
     hovering,
     inView,
     intervalMs,
+    isMobileStage,
     length,
     loop,
     pauseOnHover,
     reducedMotion,
-    touching,
   ])
 
   useEffect(() => {
-    const stage = stageRef.current
-    if (!stage) return
-
-    function onTouchMove(event: TouchEvent) {
-      const swipe = swipeStartRef.current
-      if (!swipe) return
-      const touch = Array.from(event.changedTouches).find(
-        (candidate) => candidate.identifier === swipe.identifier,
-      )
-      if (!touch) return
-
-      const dx = touch.clientX - swipe.x
-      const dy = touch.clientY - swipe.y
-      if (!swipe.horizontal && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy) * 1.2) {
-        swipe.horizontal = true
-      }
-      if (!swipe.horizontal) return
-
-      if (event.cancelable) event.preventDefault()
-      swipe.card?.style.setProperty(
-        'translate',
-        `${Math.max(-swipe.maxOffset, Math.min(swipe.maxOffset, dx))}px 0`,
-      )
-    }
-
-    stage.addEventListener('touchmove', onTouchMove, { passive: false })
-    return () => stage.removeEventListener('touchmove', onTouchMove)
-  }, [])
+    if (isMobileStage && !wasMobileStageRef.current) scrollMobileTo(active, 'auto')
+    wasMobileStageRef.current = isMobileStage
+  }, [active, isMobileStage, scrollMobileTo])
 
   if (!length) return null
 
   const width =
     stageWidth === null ? cardWidth : Math.min(cardWidth, Math.max(180, stageWidth - 96))
-  const isMobileStage = stageWidth !== null && stageWidth <= 767
-  const height =
-    isMobileStage && mobileAspectRatio
-      ? Math.round(width / mobileAspectRatio)
-      : Math.min(cardHeight, Math.max(240, Math.round((width * cardHeight) / cardWidth)))
-  const stageHeight = isMobileStage ? height + 160 : Math.max(424, height + 160)
+  const height = Math.min(cardHeight, Math.max(240, Math.round((width * cardHeight) / cardWidth)))
+  const stageHeight = Math.max(424, height + 160)
   const maxOffset = Math.max(0, Math.floor(maxVisible / 2))
   const cardSpacing = Math.max(10, Math.round(width * (1 - overlap)))
   const stepDeg = maxOffset ? spreadDeg / maxOffset : 0
@@ -220,47 +197,14 @@ export function CardStack({
     }
   }
 
-  function resetSwipe() {
-    swipeStartRef.current?.card?.style.removeProperty('translate')
-    swipeStartRef.current = null
-    setTouching(false)
-  }
+  function onMobileScroll(event: ReactUIEvent<HTMLDivElement>) {
+    const scroller = event.currentTarget
+    const first = scroller.children.item(0) as HTMLElement | null
+    const second = scroller.children.item(1) as HTMLElement | null
+    if (!first || !second) return
 
-  function onStageTouchStart(event: ReactTouchEvent<HTMLDivElement>) {
-    if (!isMobileStage) return
-    if (event.touches.length !== 1) {
-      resetSwipe()
-      return
-    }
-
-    const touch = event.touches[0]
-    swipeStartRef.current = {
-      identifier: touch.identifier,
-      x: touch.clientX,
-      y: touch.clientY,
-      maxOffset: width / 2,
-      card: stageRef.current?.querySelector<HTMLElement>('[aria-current="true"]') ?? null,
-      horizontal: false,
-    }
-    setTouching(true)
-  }
-
-  function onStageTouchEnd(event: ReactTouchEvent<HTMLDivElement>) {
-    const start = swipeStartRef.current
-    if (!start) return
-    const touch = Array.from(event.changedTouches).find(
-      (candidate) => candidate.identifier === start.identifier,
-    )
-    if (!touch) return
-    resetSwipe()
-
-    const dx = touch.clientX - start.x
-    const dy = touch.clientY - start.y
-    if (Math.abs(dx) < 40 || Math.abs(dx) <= Math.abs(dy) * 1.2) return
-    if ((dx > 0 && !canPrev) || (dx < 0 && !canNext)) return
-
-    suppressClickUntilRef.current = performance.now() + 400
-    go(dx > 0 ? -1 : 1)
+    const step = Math.max(1, second.offsetLeft - first.offsetLeft)
+    setActive(Math.max(0, Math.min(length - 1, Math.round(scroller.scrollLeft / step))))
   }
 
   return (
@@ -281,86 +225,109 @@ export function CardStack({
       }}
     >
       <div
-        ref={stageRef}
+        ref={mobileScrollerRef}
+        className={styles.mobileScroller}
+        tabIndex={0}
+        aria-label="Листайте проекты горизонтально"
+        onScroll={onMobileScroll}
+      >
+        {items.map((item, index) => (
+          <article
+            className={styles.mobileCard}
+            key={item.id}
+            style={{ aspectRatio: mobileAspectRatio ?? cardWidth / cardHeight }}
+            aria-current={index === active ? 'true' : undefined}
+          >
+            <Image
+              src={item.imageSrc}
+              alt=""
+              fill
+              sizes="(max-width: 767px) calc(100vw - 64px), 520px"
+              className={styles.image}
+              draggable={false}
+            />
+            <div className={styles.shade} aria-hidden="true" />
+            <div className={styles.cardText}>
+              <strong>{item.title}</strong>
+              {item.description ? <span>{item.description}</span> : null}
+            </div>
+          </article>
+        ))}
+      </div>
+      <div
         className={styles.stage}
         style={{ height: stageHeight }}
         tabIndex={0}
         aria-label="Используйте стрелки влево и вправо для переключения проектов"
-        onTouchStart={onStageTouchStart}
-        onTouchEnd={onStageTouchEnd}
-        onTouchCancel={resetSwipe}
-        onClickCapture={(event) => {
-          if (event.detail === 0 || performance.now() > suppressClickUntilRef.current) return
-          event.preventDefault()
-          event.stopPropagation()
-          suppressClickUntilRef.current = 0
-        }}
       >
         <div className={styles.glow} aria-hidden="true" />
         <div className={styles.plane} style={{ perspective: perspectivePx }}>
           <AnimatePresence initial={false}>
-            {items.map((item, index) => {
-              const offset = signedOffset(index, active, length, loop)
-              const distance = Math.abs(offset)
-              if (distance > maxOffset) return null
+            {!isMobileStage &&
+              items.map((item, index) => {
+                const offset = signedOffset(index, active, length, loop)
+                const distance = Math.abs(offset)
+                if (distance > maxOffset) return null
 
-              const isActive = offset === 0
-              const x = offset * cardSpacing
-              const y = distance * 10 + (isActive ? -activeLiftPx : 0)
-              const z = -distance * depthPx
-              const rotateZ = offset * stepDeg
-              const rotateX = isActive ? 0 : tiltXDeg
-              const scale = isActive ? activeScale : inactiveScale
+                const isActive = offset === 0
+                const x = offset * cardSpacing
+                const y = distance * 10 + (isActive ? -activeLiftPx : 0)
+                const z = -distance * depthPx
+                const rotateZ = offset * stepDeg
+                const rotateX = isActive ? 0 : tiltXDeg
+                const scale = isActive ? activeScale : inactiveScale
 
-              return (
-                <motion.div
-                  key={item.id}
-                  className={`${styles.card} ${isActive ? styles.active : ''}`}
-                  style={{ width, height, marginLeft: -width / 2, zIndex: 100 - distance }}
-                  initial={
-                    reducedMotion ? false : { opacity: 0, x, y: y + 40, z, rotateZ, rotateX, scale }
-                  }
-                  animate={{ opacity: 1, x, y, z, rotateZ, rotateX, scale }}
-                  exit={{ opacity: 0 }}
-                  transition={
-                    reducedMotion
-                      ? { duration: 0 }
-                      : { type: 'spring', stiffness: springStiffness, damping: springDamping }
-                  }
-                  drag={isActive && !reducedMotion && !isMobileStage ? 'x' : false}
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.18}
-                  onDragEnd={(_, info) => {
-                    const threshold = Math.min(160, width * 0.22)
-                    if (info.offset.x > threshold || info.velocity.x > 650) go(-1)
-                    else if (info.offset.x < -threshold || info.velocity.x < -650) go(1)
-                  }}
-                  aria-current={isActive ? 'true' : undefined}
-                >
-                  <Image
-                    src={item.imageSrc}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) calc(100vw - 96px), 520px"
-                    className={styles.image}
-                    draggable={false}
-                  />
-                  <div className={styles.shade} aria-hidden="true" />
-                  <div className={styles.cardText}>
-                    <strong>{item.title}</strong>
-                    {item.description ? <span>{item.description}</span> : null}
-                  </div>
-                  {isActive ? null : (
-                    <button
-                      type="button"
-                      className={styles.selectCard}
-                      onClick={() => setActive(index)}
-                      aria-label={`Показать проект «${item.title}»`}
+                return (
+                  <motion.div
+                    key={item.id}
+                    className={`${styles.card} ${isActive ? styles.active : ''}`}
+                    style={{ width, height, marginLeft: -width / 2, zIndex: 100 - distance }}
+                    initial={
+                      reducedMotion
+                        ? false
+                        : { opacity: 0, x, y: y + 40, z, rotateZ, rotateX, scale }
+                    }
+                    animate={{ opacity: 1, x, y, z, rotateZ, rotateX, scale }}
+                    exit={{ opacity: 0 }}
+                    transition={
+                      reducedMotion
+                        ? { duration: 0 }
+                        : { type: 'spring', stiffness: springStiffness, damping: springDamping }
+                    }
+                    drag={isActive && !reducedMotion ? 'x' : false}
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.18}
+                    onDragEnd={(_, info) => {
+                      const threshold = Math.min(160, width * 0.22)
+                      if (info.offset.x > threshold || info.velocity.x > 650) go(-1)
+                      else if (info.offset.x < -threshold || info.velocity.x < -650) go(1)
+                    }}
+                    aria-current={isActive ? 'true' : undefined}
+                  >
+                    <Image
+                      src={item.imageSrc}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) calc(100vw - 96px), 520px"
+                      className={styles.image}
+                      draggable={false}
                     />
-                  )}
-                </motion.div>
-              )
-            })}
+                    <div className={styles.shade} aria-hidden="true" />
+                    <div className={styles.cardText}>
+                      <strong>{item.title}</strong>
+                      {item.description ? <span>{item.description}</span> : null}
+                    </div>
+                    {isActive ? null : (
+                      <button
+                        type="button"
+                        className={styles.selectCard}
+                        onClick={() => setActive(index)}
+                        aria-label={`Показать проект «${item.title}»`}
+                      />
+                    )}
+                  </motion.div>
+                )
+              })}
           </AnimatePresence>
         </div>
       </div>
@@ -382,7 +349,10 @@ export function CardStack({
               key={item.id}
               type="button"
               className={`${styles.dot} ${index === active ? styles.dotActive : ''}`}
-              onClick={() => setActive(index)}
+              onClick={() => {
+                if (isMobileStage) scrollMobileTo(index)
+                setActive(index)
+              }}
               aria-label={`Показать проект «${item.title}», ${index + 1} из ${length}`}
               aria-current={index === active ? 'true' : undefined}
             />

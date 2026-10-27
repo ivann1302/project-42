@@ -57,7 +57,7 @@ export function DevelopmentHero() {
         title="Получить консультацию"
         className={contactModalStyles.modal}
       >
-        <ContactForm onSuccess={closeContact} />
+        <ContactForm stayOnPage />
       </Modal>
     </>
   )

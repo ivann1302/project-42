@@ -10,7 +10,8 @@ export function DevelopmentBlobBackdrop() {
   useEffect(() => {
     const layer = layerRef.current
     const hero = layer?.parentElement
-    if (!layer || !hero) return
+    const flow = hero?.parentElement
+    if (!layer || !hero || !flow) return
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     let frame = 0
@@ -23,9 +24,15 @@ export function DevelopmentBlobBackdrop() {
       }
 
       const heroHeight = Math.max(1, hero.getBoundingClientRect().height)
-      const travel = heroHeight * 0.78
-      const progress = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / heroHeight))
-      layer.style.setProperty('--blob-flow-y', `${Math.round(progress * travel)}px`)
+      const flowBounds = flow.getBoundingClientRect()
+      const flowHeight = Math.max(1, flowBounds.height)
+      const scroll = Math.min(flowHeight, Math.max(0, -flowBounds.top))
+      const heroScroll = Math.min(scroll, heroHeight)
+      const followingScroll = Math.max(0, scroll - heroHeight)
+      layer.style.setProperty(
+        '--blob-flow-y',
+        `${Math.round(heroScroll * 0.78 + followingScroll)}px`,
+      )
     }
 
     const requestUpdate = () => {

@@ -26,11 +26,11 @@ const SERVICES = [
 
 const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/scripts/api/send.php'
 
-type Props = { onSuccess?: () => void; initialService?: string }
-export function ContactForm({ onSuccess, initialService }: Props) {
+type Props = { onSuccess?: () => void; initialService?: string; stayOnPage?: boolean }
+export function ContactForm({ onSuccess, initialService, stayOnPage = false }: Props) {
   const router = useRouter()
   const formId = useId()
-  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error' | 'success'>('idle')
 
   const {
     register,
@@ -61,10 +61,25 @@ export function ContactForm({ onSuccess, initialService }: Props) {
       reset()
       await trackYandexMetrikaLeadConversion()
       onSuccess?.()
-      router.push(YANDEX_METRIKA_LEAD_THANK_YOU_URL)
+      if (stayOnPage) {
+        setStatus('success')
+      } else {
+        router.push(YANDEX_METRIKA_LEAD_THANK_YOU_URL)
+      }
     } catch {
       setStatus('error')
     }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className={styles.success} role="status">
+        <span className={styles.successIcon} aria-hidden="true">
+          ✓
+        </span>
+        <p>Заявка отправлена. Мы скоро свяжемся с вами.</p>
+      </div>
+    )
   }
 
   return (

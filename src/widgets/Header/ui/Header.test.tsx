@@ -25,18 +25,18 @@ describe('Header', () => {
   it('points section links to razrabotka page outside razrabotka route', () => {
     render(<Header />)
     const servicesLink = screen.getByRole('link', { name: 'Услуги' })
-    expect(servicesLink).toHaveAttribute('href', '/razrabotka-sayta#services')
+    expect(servicesLink).toHaveAttribute('href', '/razrabotka#pricing')
   })
 
   it('renders page-local links on razrabotka route', () => {
-    mockPathname = '/razrabotka-sayta'
+    mockPathname = '/razrabotka'
     render(<Header />)
 
-    expect(screen.getByRole('link', { name: 'Услуги' })).toHaveAttribute('href', '#services')
+    expect(screen.getByRole('link', { name: 'Услуги' })).toHaveAttribute('href', '#pricing')
     expect(screen.getByRole('link', { name: 'Проекты' })).toHaveAttribute('href', '#projects')
-    expect(screen.getByRole('link', { name: 'О нас' })).toHaveAttribute('href', '#about')
+    expect(screen.getByRole('link', { name: 'Преимущества' })).toHaveAttribute('href', '#benefits')
     expect(screen.getByRole('link', { name: 'Этапы' })).toHaveAttribute('href', '#process')
-    expect(screen.getByRole('link', { name: 'Контакты' })).toHaveAttribute('href', '#contacts')
+    expect(screen.getByRole('link', { name: 'Контакты' })).toHaveAttribute('href', '#cta')
   })
 
   it('points cta links to razrabotka page outside razrabotka route', () => {
@@ -44,7 +44,7 @@ describe('Header', () => {
 
     expect(screen.getAllByRole('link', { name: /обсудить проект/i })[0]).toHaveAttribute(
       'href',
-      '/razrabotka-sayta#cta',
+      '/razrabotka#cta',
     )
   })
 })

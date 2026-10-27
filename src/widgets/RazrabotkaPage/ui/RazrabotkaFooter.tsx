@@ -5,12 +5,19 @@ import { usePathname } from 'next/navigation'
 import { Icon, SocialLinks, WaveDivider } from '@/shared/ui'
 import styles from './RazrabotkaFooter.module.scss'
 
-const RAZRABOTKA_PATH = '/razrabotka-sayta'
+const RAZRABOTKA_PATH = '/razrabotka'
 
 const defaultSectionLinks = [
   { label: 'Что входит', href: '#services' },
   { label: 'Как работаем', href: '#process' },
   { label: 'О студии', href: '#about' },
+  { label: 'К заявке', href: '#cta' },
+] as const
+
+const developmentSectionLinks = [
+  { label: 'Что входит', href: '#benefits' },
+  { label: 'Как работаем', href: '#process' },
+  { label: 'Стоимость', href: '#pricing' },
   { label: 'К заявке', href: '#cta' },
 ] as const
 
@@ -82,10 +89,12 @@ function FooterColumn({
 
 export function RazrabotkaFooter({
   usePageAnchors = false,
-  sectionLinks = defaultSectionLinks,
+  sectionLinks,
   ariaLabel = 'Футер страницы разработки сайта',
 }: Props) {
   const pathname = usePathname()
+  const resolvedSectionLinks =
+    sectionLinks ?? (usePageAnchors ? defaultSectionLinks : developmentSectionLinks)
   const logoHref = usePageAnchors || pathname === RAZRABOTKA_PATH ? '#top' : RAZRABOTKA_PATH
   const logoLabel =
     usePageAnchors || pathname === RAZRABOTKA_PATH
@@ -104,7 +113,11 @@ export function RazrabotkaFooter({
           <SocialLinks className={styles.socials} />
         </div>
 
-        <FooterColumn title="По странице" links={sectionLinks} usePageAnchors={usePageAnchors} />
+        <FooterColumn
+          title="По странице"
+          links={resolvedSectionLinks}
+          usePageAnchors={usePageAnchors}
+        />
 
         <div className={styles.contactColumn}>
           <h2 className={styles.columnTitle}>Связаться с нами</h2>

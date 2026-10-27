@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test.use({
-  viewport: { width: 700, height: 900 },
+  viewport: { width: 390, height: 844 },
   isMobile: true,
   hasTouch: true,
   launchOptions: { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE },
@@ -9,17 +9,16 @@ test.use({
 
 test.skip(({ browserName }) => browserName !== 'chromium', 'Continuous touch uses Chromium CDP')
 
-test('a short swipe on the active gallery card advances a project on a mobile viewport', async ({
+test('mobile gallery scrolls horizontally while swiping, then snaps to the next project', async ({
   page,
   context,
 }) => {
   await page.goto('/razrabotka')
-  const activeCard = page.locator('#projects div[aria-current="true"]')
-  await activeCard.scrollIntoViewIfNeeded()
-  await page.getByRole('button', { name: 'Показать проект «TrueTell», 2 из 7' }).tap()
-  await expect(activeCard).toContainText('TrueTell')
-  await page.getByRole('button', { name: 'Показать проект «ROSA», 1 из 7' }).tap()
+  const scroller = page.getByLabel('Листайте проекты горизонтально')
+  await scroller.scrollIntoViewIfNeeded()
+  const activeCard = scroller.locator('article[aria-current="true"]')
   await expect(activeCard).toContainText('ROSA')
+  await expect(scroller).toHaveCSS('scroll-snap-type', 'x mandatory')
 
   const box = await activeCard.boundingBox()
   if (!box) throw new Error('Active gallery card is not visible')
@@ -32,56 +31,44 @@ test('a short swipe on the active gallery card advances a project on a mobile vi
     touchPoints: [{ x, y }],
   })
   for (let step = 1; step <= 8; step++) {
-    await page.waitForTimeout(55)
+    await page.waitForTimeout(35)
     await cdp.send('Input.dispatchTouchEvent', {
       type: 'touchMove',
-      touchPoints: [{ x: x - step * 10, y }],
+      touchPoints: [{ x: x - step * 25, y }],
     })
+    if (step === 5) {
+      expect(await scroller.evaluate((element) => element.scrollLeft)).toBeGreaterThan(20)
+    }
   }
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
 
   await expect(activeCard).toContainText('TrueTell')
+  await expect(
+    page.getByRole('button', { name: 'Показать проект «TrueTell», 2 из 7' }),
+  ).toHaveAttribute('aria-current', 'true')
+
+  await page.getByRole('button', { name: 'Показать проект «Ziptron», 4 из 7' }).tap()
+  await expect(activeCard).toContainText('Ziptron')
 })
 
-test('holding a gallery card pauses automatic advancement on mobile', async ({ page, context }) => {
-  await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto('/razrabotka')
-  const activeCard = page.locator('#projects div[aria-current="true"]')
-  await activeCard.scrollIntoViewIfNeeded()
-  await expect(page.locator('#projects [aria-label^="Используйте стрелки"]')).toHaveCSS(
-    'height',
-    '356px',
-  )
-  await expect(activeCard).toContainText('ROSA')
-
-  const box = await activeCard.boundingBox()
-  if (!box) throw new Error('Active gallery card is not visible')
-
-  const cdp = await context.newCDPSession(page)
-  await cdp.send('Input.dispatchTouchEvent', {
-    type: 'touchStart',
-    touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }],
-  })
-  await page.waitForTimeout(3900)
-  await expect(activeCard).toContainText('ROSA')
-  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
-})
-
-test('vertical touch on a gallery card scrolls the page without switching projects', async ({
+test('mobile gallery stays on the selected project until the visitor scrolls it', async ({
   page,
-  context,
 }) => {
-  await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/razrabotka')
-  const activeCard = page.locator('#projects div[aria-current="true"]')
-  await activeCard.scrollIntoViewIfNeeded()
-  await expect(page.locator('#projects [aria-label^="Используйте стрелки"]')).toHaveCSS(
-    'height',
-    '356px',
-  )
+  const scroller = page.getByLabel('Листайте проекты горизонтально')
+  await scroller.scrollIntoViewIfNeeded()
+  await expect(scroller.locator('article[aria-current="true"]')).toContainText('ROSA')
+  await page.waitForTimeout(3900)
+  await expect(scroller.locator('article[aria-current="true"]')).toContainText('ROSA')
+})
 
-  const box = await activeCard.boundingBox()
-  if (!box) throw new Error('Active gallery card is not visible')
+test('vertical touch on the gallery still scrolls the page', async ({ page, context }) => {
+  await page.goto('/razrabotka')
+  const scroller = page.getByLabel('Листайте проекты горизонтально')
+  await scroller.scrollIntoViewIfNeeded()
+  const box = await scroller.boundingBox()
+  if (!box) throw new Error('Gallery is not visible')
+
   const x = box.x + box.width / 2
   const y = box.y + box.height / 2
   const scrollBefore = await page.evaluate(() => window.scrollY)
@@ -98,6 +85,6 @@ test('vertical touch on a gallery card scrolls the page without switching projec
   }
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
 
-  await expect(activeCard).toContainText('ROSA')
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(scrollBefore + 20)
+  await expect(scroller.locator('article[aria-current="true"]')).toContainText('ROSA')
 })

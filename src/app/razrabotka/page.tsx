@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { siteConfig } from '@/shared/config/seo'
 import { DevelopmentHeader } from './DevelopmentHeader'
 import { DevelopmentHero } from './DevelopmentHero'
 import { DevelopmentBlobBackdrop } from './DevelopmentBlobBackdrop'
 import { DevelopmentIntro } from './DevelopmentIntro'
+import { DevelopmentPromises } from './DevelopmentPromises'
 import { DevelopmentGallery } from './DevelopmentGallery'
 import { DevelopmentBenefits } from './DevelopmentBenefits'
 import { DevelopmentProcess } from './DevelopmentProcess'
@@ -27,6 +29,9 @@ const golos = localFont({
 
 export const metadata: Metadata = {
   title: 'Разработка',
+  alternates: {
+    canonical: `${siteConfig.url}/razrabotka`,
+  },
 }
 
 export default function DevelopmentPage() {
@@ -40,6 +45,7 @@ export default function DevelopmentPage() {
             <DevelopmentHero />
           </section>
           <DevelopmentIntro />
+          <DevelopmentPromises />
         </div>
         <DevelopmentGallery />
         <DevelopmentBenefits />

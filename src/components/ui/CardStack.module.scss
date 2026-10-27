@@ -16,6 +16,42 @@
   outline-offset: -3px;
 }
 
+.mobileScroller {
+  display: none;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+  padding: 12px 24px 20px;
+  overflow: auto hidden;
+  scroll-padding-inline: 24px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobileScroller::-webkit-scrollbar {
+  display: none;
+}
+
+.mobileScroller:focus-visible {
+  outline: 2px solid var(--development-accent, #51f0d8);
+  outline-offset: -3px;
+}
+
+.mobileCard {
+  flex: 0 0 min(520px, calc(100vw - 64px));
+  position: relative;
+  overflow: hidden;
+  background: var(--development-gallery-surface, #101314);
+  border: 2px solid color-mix(in srgb, var(--development-mint, #c9ffe4) 55%, transparent);
+  border-radius: 16px;
+  box-shadow: 0 22px 46px color-mix(in srgb, var(--development-black, #000) 50%, transparent);
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  user-select: none;
+}
+
 .glow {
   position: absolute;
   right: 16%;
@@ -216,20 +252,25 @@
 
 @media (width <= 767px) {
   .stage {
-    touch-action: pan-y;
+    display: none;
+  }
+
+  .mobileScroller {
+    display: flex;
+  }
+
+  .mobileCard .image {
+    object-fit: contain;
+  }
+
+  .mobileCard .cardText {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
   }
 }
 
 @media (width <= 640px) {
-  .image {
-    object-fit: contain;
-  }
-
-  .card {
-    bottom: 100px;
-    border-radius: 16px;
-  }
-
   .cardText {
     right: 16px;
     bottom: 16px;

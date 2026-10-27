@@ -5,6 +5,7 @@ import { siteConfig } from '@/shared/config/seo'
 import { YANDEX_METRIKA_ID } from '@/shared/lib/metrika'
 import { CookieNotice } from '@/shared/ui/CookieNotice'
 import { LeadAttribution } from '@/shared/ui/LeadAttribution'
+import { PublicPageGate } from '@/shared/ui/PublicPageGate'
 import { YandexMetrika } from '@/shared/ui/YandexMetrika'
 import '@/shared/styles/globals.scss'
 
@@ -116,6 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <PublicPageGate />
         {children}
         <Script id="yandex-metrika" strategy="afterInteractive">
           {`

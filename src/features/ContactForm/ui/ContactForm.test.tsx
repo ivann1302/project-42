@@ -47,3 +47,12 @@ it('counts a conversion and redirects only after the server confirms the lead', 
   await waitFor(() => expect(mockPush).toHaveBeenCalledWith('/thank-you'))
   expect(trackYandexMetrikaLeadConversion).toHaveBeenCalledTimes(1)
 })
+
+it('shows confirmation on the development page without navigating away', async () => {
+  global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => ({ ok: true }) })
+  render(<ContactForm stayOnPage />)
+  await submitForm()
+  expect(await screen.findByRole('status')).toHaveTextContent('Заявка отправлена')
+  expect(mockPush).not.toHaveBeenCalled()
+  expect(trackYandexMetrikaLeadConversion).toHaveBeenCalledTimes(1)
+})

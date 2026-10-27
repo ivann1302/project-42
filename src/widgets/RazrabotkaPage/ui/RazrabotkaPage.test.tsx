@@ -28,7 +28,7 @@ describe('RazrabotkaPage', () => {
     expect(screen.getByTestId('razrabotka-header')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /Project 42 Веб-студия/ })).toHaveAttribute(
       'href',
-      '/razrabotka-sayta',
+      '/razrabotka',
     )
   })
 

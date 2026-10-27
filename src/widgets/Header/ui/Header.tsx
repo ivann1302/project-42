@@ -8,14 +8,14 @@ import { Icon } from '@/shared/ui'
 import styles from './Header.module.scss'
 
 const SCROLL_THRESHOLD = 24
-const RAZRABOTKA_PATH = '/razrabotka-sayta'
+const RAZRABOTKA_PATH = '/razrabotka'
 
 const navLinks = [
-  { label: 'Услуги', href: '#services' },
+  { label: 'Услуги', href: '#pricing' },
   { label: 'Проекты', href: '#projects' },
-  { label: 'О нас', href: '#about' },
+  { label: 'Преимущества', href: '#benefits' },
   { label: 'Этапы', href: '#process' },
-  { label: 'Контакты', href: '#contacts' },
+  { label: 'Контакты', href: '#cta' },
 ] as const
 
 function getSectionHref(pathname: string, hash: string) {

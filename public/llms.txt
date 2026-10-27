@@ -20,7 +20,7 @@ Project 42 — небольшая AI-студия, где живые специ�
 ## Ключевые страницы
 
 - Главная: https://project42-studio.ru
-- Разработка сайтов: https://project42-studio.ru/razrabotka-sayta
+- Разработка сайтов: https://project42-studio.ru/razrabotka
 - SEO и GEO-оптимизация: https://project42-studio.ru/seo-prodvizhenie
 - Портфолио: https://project42-studio.ru/portfolio
 - Блог: https://project42-studio.ru/blog

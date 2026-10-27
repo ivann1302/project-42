@@ -79,17 +79,15 @@
 }
 
 .heroFlow::after {
-  --hero-fade-end: 100%;
-
   content: '';
   position: absolute;
   z-index: 2;
   background: linear-gradient(
     180deg,
     transparent,
-    color-mix(in srgb, var(--development-background) 24%, transparent) 38%,
-    color-mix(in srgb, var(--development-background) 72%, transparent) 57%,
-    var(--development-background) var(--hero-fade-end)
+    color-mix(in srgb, var(--development-background) 55%, transparent) 62%,
+    color-mix(in srgb, var(--development-background) 80%, transparent) 88%,
+    var(--development-background) 100%
   );
   inset: calc(100vh - clamp(160px, 24vh, 220px)) 0 0;
   pointer-events: none;
@@ -170,10 +168,6 @@
 }
 
 @media (width <= 767px) {
-  .heroFlow::after {
-    --hero-fade-end: 70%;
-  }
-
   .content {
     padding: 136px 24px 70px;
   }

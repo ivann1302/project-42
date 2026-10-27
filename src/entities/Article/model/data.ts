@@ -400,7 +400,7 @@ export const articles: Article[] = [
       text: 'Разберём задачу, формат сайта, страницы под SEO и рекламу, формы заявок, аналитику и интеграции, чтобы сайт был не витриной, а точкой продаж.',
       primary: {
         label: 'Обсудить сайт',
-        href: '/razrabotka-sayta#cta',
+        href: '/razrabotka#cta',
       },
       secondary: {
         label: 'Смотреть услуги',
@@ -1223,11 +1223,11 @@ export const articles: Article[] = [
       text: 'Проверим, где сайт теряет заявки, какие формы и скрипты требуют внимания, и предложим понятный план доработок.',
       primary: {
         label: 'Обсудить проект',
-        href: '/razrabotka-sayta#cta',
+        href: '/razrabotka#cta',
       },
       secondary: {
         label: 'Смотреть кейсы',
-        href: '/razrabotka-sayta#projects',
+        href: '/razrabotka#projects',
       },
       image: {
         src: '/images/razrabotka/cta-image.webp',
@@ -1407,7 +1407,7 @@ export const articles: Article[] = [
       text: 'Разберём вашу задачу, структуру, SEO, будущие интеграции и риски, чтобы сайт не упёрся в потолок через несколько месяцев после запуска.',
       primary: {
         label: 'Обсудить разработку',
-        href: '/razrabotka-sayta#cta',
+        href: '/razrabotka#cta',
       },
       secondary: {
         label: 'Смотреть проекты',

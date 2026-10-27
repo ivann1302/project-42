@@ -20,8 +20,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${siteConfig.url}/razrabotka-sayta`,
-      lastModified: new Date('2026-06-16'),
+      url: `${siteConfig.url}/razrabotka`,
+      lastModified: new Date('2026-10-26'),
       changeFrequency: 'monthly',
       priority: 0.9,
     },

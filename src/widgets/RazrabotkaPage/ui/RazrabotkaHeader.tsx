@@ -31,7 +31,7 @@ const defaultNavLinks = [
 ] as const
 
 export function RazrabotkaHeader({
-  logoHref = '/razrabotka-sayta',
+  logoHref = '/razrabotka',
   logoCaption = 'Веб-студия',
   navLinks = defaultNavLinks,
   ctaLabel = 'Обсудить проект',

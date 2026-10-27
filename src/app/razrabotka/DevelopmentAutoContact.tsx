@@ -212,7 +212,7 @@ export function DevelopmentAutoContact() {
         title="Обсудим проект?"
         className={contactModalStyles.modal}
       >
-        <ContactForm onSuccess={close} />
+        <ContactForm stayOnPage />
       </Modal>
     </div>
   )

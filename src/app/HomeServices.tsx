@@ -13,21 +13,21 @@ const SERVICES = [
     description:
       'Создаём выразительные и быстрые сайты, которые решают задачи бизнеса и помогают расти.',
     image: '/images/razrabotka/services/service-01.webp',
-    href: '/razrabotka-sayta',
+    href: '/razrabotka',
   },
   {
     id: '02',
     title: 'Разработка мобильных приложений',
     description: 'Проектируем и разрабатываем MVP для iOS, Android и PWA-формата.',
     image: '/images/razrabotka/services/service-06.webp',
-    href: '/razrabotka-sayta',
+    href: '/razrabotka',
   },
   {
     id: '03',
     title: 'Разработка Telegram-ботов',
     description: 'Автоматизируем заявки, консультации, рассылки и внутренние процессы.',
     image: '/images/razrabotka/services/service-05-no-caption.png',
-    href: '/razrabotka-sayta',
+    href: '/razrabotka',
   },
   {
     id: '04',
@@ -50,7 +50,7 @@ const SERVICES = [
     description:
       'Запускаем и оптимизируем рекламные кампании под заявки, продажи и понятную аналитику.',
     image: '/images/razrabotka/services/service-08.webp',
-    href: '/razrabotka-sayta',
+    href: '/razrabotka',
   },
 ] as const
 

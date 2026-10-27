@@ -10,12 +10,16 @@ import {
   requestBasicAuth,
 } from './admin-handler.mjs'
 import { handleContactRequest, loadEnv } from './contact-handler.mjs'
+import { getPublicPageRedirectTarget } from './public-page-gate.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const projectRoot = path.resolve(__dirname, '..')
 const staticDir = path.resolve(process.env.STATIC_DIR || path.join(projectRoot, 'out'))
-const parsedLegacyStaticReleaseLimit = Number.parseInt(process.env.LEGACY_STATIC_RELEASES || '30', 10)
+const parsedLegacyStaticReleaseLimit = Number.parseInt(
+  process.env.LEGACY_STATIC_RELEASES || '30',
+  10,
+)
 const legacyStaticReleaseLimit = Number.isFinite(parsedLegacyStaticReleaseLimit)
   ? parsedLegacyStaticReleaseLimit
   : 30
@@ -100,6 +104,13 @@ const server = createServer(async (req, res) => {
 
   if (contactEndpoints.has(requestUrl.pathname)) {
     await handleContactRequest(req, res)
+    return
+  }
+
+  const publicPageRedirectTarget = getPublicPageRedirectTarget(requestUrl, req.method)
+
+  if (publicPageRedirectTarget) {
+    sendRedirect(res, 307, publicPageRedirectTarget)
     return
   }
 
@@ -323,7 +334,7 @@ function sendPlain(res, statusCode, message) {
 function sendRedirect(res, statusCode, location) {
   res.writeHead(statusCode, {
     Location: location,
-    'Cache-Control': 'public, max-age=3600',
+    'Cache-Control': statusCode === 307 ? 'no-store, max-age=0' : 'public, max-age=3600',
   })
   res.end()
 }

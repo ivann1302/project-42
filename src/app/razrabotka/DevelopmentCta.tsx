@@ -24,7 +24,7 @@ export function DevelopmentCta() {
           <p className={styles.hint}>
             Достаточно имени и телефона или email. Остальное — по желанию.
           </p>
-          <ContactForm />
+          <ContactForm stayOnPage />
         </div>
       </div>
     </section>
